@@ -6,7 +6,7 @@
       </div>
       <div class="d-flex">
         <div class="add-contact">
-          <div class="mobile-close">
+          <div class="mobile-close" (click)="toggleOverlay()">
             <img src="assets/img/add-contacts/mobile-close.svg" alt="">
           </div>
           <div class="center-contact">
@@ -18,7 +18,7 @@
           </div>
         </div>
         <div class="user-data">
-          <div class="close-image">
+          <div class="close-image" (click)="toggleOverlay()">
             <img src="assets/img/add-contacts/Vector.svg" alt="" />
           </div>
           <div class="user-image">

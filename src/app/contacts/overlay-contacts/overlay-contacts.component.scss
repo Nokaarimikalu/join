@@ -1,4 +1,9 @@
 .background-overlay {
+    z-index: 5;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 100dvh;
     background-color: rgba(0, 0, 0, 0.072);
     font-size: 10px;
@@ -285,9 +290,9 @@
                     }
                     .user-contact-data {
                         height: 80%;
-                        .contact-form{
+                        .contact-form {
                             width: 360px;
-                            @media(max-width: 390px){
+                            @media (max-width: 390px) {
                                 width: 280px;
                             }
                             gap: 20px;
