@@ -189,11 +189,9 @@
         .content {
             .overlay-add-contact {
                 height: 60dvh;
-
                 @media (max-width: 880px) {
                     height: 55dvh;
                 }
-
                 .user-data {
                     .user-contact-data{
                         width: 60%;
@@ -204,10 +202,19 @@
     }
 }
 
-// @media (max-width: 750px) {
-//     .background-overlay{
-//         .content{
-
-//         }
-//     }  .overlay-add-contact .d-flex .user-data .user-contact-data .cancel-create-contact .create {
-// }
+@media (max-width: 880px) {
+    .background-overlay{
+        .content{
+            .overlay-add-contact {
+                .d-flex{
+                    .user-data{
+                        .user-image {
+                            height: 100px;
+                            width: 100px;
+                        }
+                    }
+                }
+            }
+        }
+    }  
+}
