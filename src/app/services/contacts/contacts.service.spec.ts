@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ContactsService } from '../../services/contacts/contacts.service';
+import { ContactsService } from './overlayState.service';
 
 describe('ContactsService', () => {
   let service: ContactsService;

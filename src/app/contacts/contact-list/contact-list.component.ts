@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { ContactList } from '../../shared/interface/contact-list.interface';
+import { OverlayState } from "../../services/contacts/overlayState.service";
+
 @Component({
   selector: 'app-contact-list',
   imports: [],
@@ -7,8 +9,19 @@ import { ContactList } from '../../shared/interface/contact-list.interface';
   styleUrl: './contact-list.component.scss',
 })
 export class ContactListComponent {
-  constructor() {
+
+  activeProfileIndex: number | null = null; //safes index if active or null if no profile is active. start value is null no active profile 
+
+  constructor(private overlayState: OverlayState) {
     this.sortContacts();
+  }
+
+  toggleSelectedProfile(activeUser: number){
+    this.activeProfileIndex = this.activeProfileIndex === activeUser ? null: activeUser; //
+  }
+
+  toggleOverlay(){
+    this.overlayState.toggleOverlay();
   }
 
   sortContacts() {
@@ -86,8 +99,8 @@ export class ContactListComponent {
     },
     {
       firstName: 'Tom',
-      lastName: 'Zimmermann',
-      email: 'tom.zimmermann@example.com',
+      lastName: 'Zimmer',
+      email: 'tom.zimmer@example.com',
       phone: '+49 171 0123456',
       initials: 'TZ',
     },

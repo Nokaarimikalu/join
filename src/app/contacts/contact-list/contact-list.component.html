@@ -2,7 +2,7 @@
 
   <div class="content">
     <div class="new-contact">
-      <button class="add-button">Add new contact <img
+      <button (click)="toggleOverlay()" class="add-button">Add new contact <img
           src="assets/img/contactList/personAddIcon.png"></button>
     </div>
 
@@ -13,8 +13,9 @@
       <div class="letter-heading-container">
         <h2 class="letter-heading">{{ user.firstName.charAt(0).toUpperCase() }}</h2>
       </div>
+      <div class="letter-heading-underline"></div>
       }
-      <div class="user-profile">
+      <div class="user-profile" [class.active]="activeProfileIndex === $index" (click)="toggleSelectedProfile($index)">
         <div class="initials">
           {{user.initials}}
         </div>
