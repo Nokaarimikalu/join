@@ -58,4 +58,30 @@ section {
             }
         }
     }
+
+    #drop-down {
+        background: #2A3647;
+        z-index: 15;
+        position: absolute;
+        right: 2rem;
+        top: 8dvh;
+        border-radius: 1.5rem;
+        border-top-right-radius: 0;
+        padding: 0.5rem;
+
+        p {
+            padding: 0.5rem;
+            font-size: 1rem;
+            color: rgba($color: #FFFFFF, $alpha: 0.4);
+
+            &:hover {
+                background: #2A3D59;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+.d-none {
+    display: none;
 }

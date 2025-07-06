@@ -3,7 +3,12 @@
         <div class="kanban">Kanban Project Management Tool</div>
         <div class="menu">
             <div class="help"></div>
-            <span>HA</span>
+            <span (click)="toggleDropDown()">HA</span>
         </div>
     </header>
+    <div id="drop-down" class="d-none">
+        <p>Legal Notice</p>
+        <p>Privacy Policy</p>
+        <p>Log out</p>
+    </div>
 </section>

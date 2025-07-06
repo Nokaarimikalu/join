@@ -8,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
+
+  toggleDropDown(){
+    const dropDownRef = document.getElementById('drop-down');
+    dropDownRef?.classList.toggle("d-none");
+  }
 }
