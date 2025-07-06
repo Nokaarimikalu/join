@@ -17,7 +17,7 @@ export class ContactListComponent {
   }
 
   toggleSelectedProfile(activeUser: number){
-    this.activeProfileIndex = this.activeProfileIndex === activeUser ? null: activeUser; //
+    this.activeProfileIndex = this.activeProfileIndex === activeUser ? null: activeUser; 
   }
 
   toggleOverlay(){
