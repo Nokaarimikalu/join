@@ -8,10 +8,10 @@
 
         <div class="add-contact">
           <div class="mobile-close" (click)="toggleOverlay()">
-            <img src="assets/img/add-contacts/mobile-close.svg" alt="">
+            <img src="assets/img/add-contacts/mobile-close.svg"/>
           </div>
           <div class="center-contact">
-            <img src="assets/img/add-contacts/join-logo.svg" alt="" />
+            <img src="assets/img/add-contacts/join-logo.svg"/>
             <h2>Add contact</h2>
             <span>Task are better with a team!
               <div class="blue-line"></div>
@@ -21,13 +21,13 @@
         
         <div class="user-data">
           <div class="close-image" (click)="toggleOverlay()">
-            <img src="assets/img/add-contacts/Vector.svg" alt="" />
+            <img src="assets/img/add-contacts/Vector.svg"/>
           </div>
           <div class="user-image">
-            <img src="assets/img/add-contacts/user-image.svg" alt="" />
+            <img src="assets/img/add-contacts/user-image.svg"/>
           </div>
           <div class="user-contact-data">
-            <form class="contact-form">
+            <form class="contact-form" >
               <input [(ngModel)]="newContact.firstName" class="user" type="text" placeholder="Name" name="name"
                 required />
               <input [(ngModel)]="newContact.email" class="mail" type="email" placeholder="Email" name="email"
@@ -38,12 +38,12 @@
             <div class="cancel-create-contact">
               <button class="cancel">
                 <span>Cancel</span>
-                <img src="assets/img/add-contacts/Vector.svg" alt="" />
+                <img src="assets/img/add-contacts/Vector.svg"/>
               </button>
               <button class="create"
                 (click)="overlayState.addContacts(newContact); resetNewContactInput(); toggleOverlay()">
                 <span>Create contact</span>
-                <img src="assets/img/add-contacts/check.svg" alt="" />
+                <img src="assets/img/add-contacts/check.svg"/>
               </button>
             </div>
           </div>
