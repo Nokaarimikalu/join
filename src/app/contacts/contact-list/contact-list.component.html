@@ -8,12 +8,12 @@
 
     <div class="user-profiles-container">
       @for (user of contactData; track $index) {
-      @if ($index === 0 || user.firstName.charAt(0).toUpperCase() !==
-      contactData[$index-1].firstName.charAt(0).toUpperCase()) {
-      <div class="letter-heading-container">
-        <h2 class="letter-heading">{{ user.firstName.charAt(0).toUpperCase() }}</h2>
-      </div>
-      <div class="letter-heading-underline"></div>
+        @if ($index === 0 || user.firstName.charAt(0).toUpperCase() !==
+          contactData[$index-1].firstName.charAt(0).toUpperCase()) {
+              <div class="letter-heading-container">
+                <h2 class="letter-heading">{{ user.firstName.charAt(0).toUpperCase() }}</h2>
+              </div>
+            <div class="letter-heading-underline"></div>
       }
       <div class="user-profile" [class.active]="activeProfileIndex === $index" (click)="toggleSelectedProfile($index)">
         <div class="initials">

@@ -15,8 +15,8 @@ export class ContactListComponent {
     activeProfileIndex: number | null = null; //safes index if active or null if no profile is active. start value is null no active profile
 
     constructor(private overlayState: OverlayState) {
-        this.sortContacts();
-        this.contactData = this.overlayState.getContacts(); // contactData is now being defined from overlayState.services.ts 
+        this.contactData = this.overlayState.getContacts(); // contactData is now being defined from overlayState.services.ts
+        this.overlayState.sortContacts();
     }
 
     toggleSelectedProfile(activeUser: number) {
@@ -28,10 +28,5 @@ export class ContactListComponent {
         this.overlayState.toggleOverlay();
     }
 
-    sortContacts() {
-        this.contactData.sort((a, b) => {
-            // sort rearranges the array elements based on the rules, in this case. alphabetic with firstname
-            return a.firstName.localeCompare(b.firstName); // localCompare is a string method, sorting strings in alphabetic order
-        });
-    }
+
 }
