@@ -1,0 +1,61 @@
+html {
+    font-size: 10px;
+}
+
+section {
+    width: 100dvw;
+    height: 8dvh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-shadow: 0 0.4rem 0.4rem -0.2rem rgba($color: #000000, $alpha: 0.2);
+
+    header {
+        width: 100%;
+        height: 100%;
+        padding-left: 20rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .kanban {
+            font-size: 1.2rem;
+        }
+
+        .menu {
+            padding-right: 3rem;
+            display: flex;
+            align-items: center;
+
+            .help {
+                background: url('./../../../public/assets/header/help-hover.png');
+                background-size: contain;
+                background-repeat: no-repeat;
+                height: 1.5rem;
+                width: 2rem;
+                margin-right: 0.5rem;
+
+                &:hover {
+                    background: url('./../../../public/assets/header/help.png');
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    cursor: pointer;
+                }
+            }
+
+            span {
+                font-size: 1.2rem;
+                padding: 0.8rem 0.6rem;
+                color: #29ABE2;
+                font-weight: bold;
+                border: solid black 0.15rem;
+                border-radius: 50%;
+
+                &:hover {
+                    background: rgba($color: #0C2E62, $alpha: 0.12);
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
