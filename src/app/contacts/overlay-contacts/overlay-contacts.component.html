@@ -26,16 +26,16 @@
           </div>
           <div class="user-contact-data">
             <form class="contact-form">
-              <input class="user" type="text" placeholder="Name" name="name" required />
-              <input class="mail" type="email" placeholder="Email" name="email" required />
-              <input class="phone" type="tel" placeholder="Phone" name="phone" required />
+              <input [(ngModel)]="newContact.firstName" class="user" type="text" placeholder="Name" name="name" required />
+              <input [(ngModel)]="newContact.email" class="mail" type="email" placeholder="Email" name="email" required />
+              <input [(ngModel)]="newContact.phone" class="phone" type="tel" placeholder="Phone" name="phone" required />
             </form>
             <div class="cancel-create-contact">
               <button class="cancel">
                 <span>Cancel</span>
                 <img src="assets/img/add-contacts/Vector.svg" alt="" />
               </button>
-              <button class="create">
+              <button class="create" (click)="overlayState.addContacts(newContact); resetNewContactInput(); toggleOverlay()">
                 <span>Create contact</span>
                 <img src="assets/img/add-contacts/check.svg" alt="" />
               </button>

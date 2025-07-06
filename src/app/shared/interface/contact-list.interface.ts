@@ -3,5 +3,5 @@
       lastName: string;
       email: string;
       phone: string;
-      initials: string;
+      initials?: string;
     }

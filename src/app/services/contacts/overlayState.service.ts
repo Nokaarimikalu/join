@@ -9,6 +9,8 @@ export class OverlayState {
 
     isActive = false;
 
+    newContact?: ContactList;
+
     contactData: ContactList[] = [
         {
             firstName: 'Anna',
@@ -83,9 +85,7 @@ export class OverlayState {
     ];
     //#endregion
     //#region constructor
-    constructor() {
-      
-    }
+    constructor() {}
     //#endregion
     //#region methods
     toggleOverlay() {
@@ -95,5 +95,11 @@ export class OverlayState {
     getContacts() {
         return this.contactData;
     }
+
+    addContacts(contact: ContactList) {
+        this.contactData.push(contact);
+        console.log(contact);
+    }
+
     //#endregion
 }
