@@ -1,11 +1,9 @@
 <section>
-
   <div class="content">
     <div class="new-contact">
       <button (click)="toggleOverlay()" class="add-button">Add new contact <img
           src="assets/img/contactList/personAddIcon.png"></button>
     </div>
-
     <div class="user-profiles-container">
       @for (user of contactData; track $index) {
         @if ($index === 0 || user.firstName.charAt(0).toUpperCase() !==
@@ -15,20 +13,16 @@
               </div>
             <div class="letter-heading-underline"></div>
       }
-      <div class="user-profile" [class.active]="activeProfileIndex === $index" (click)="toggleSelectedProfile($index)">
-        <div class="initials">
-          {{user.initials}}
+        <div class="user-profile" [class.active]="activeProfileIndex === $index" (click)="toggleSelectedProfile($index)">
+          <div class="initials">
+            {{user.initials}}
+          </div>
+          <div class="user-details">
+            <h3 class="user-name">{{user.firstName}} {{user.lastName}}</h3>
+            <p class="user-mail">{{user.email}}</p>
+          </div>
         </div>
-
-        <div class="user-details">
-          <h3 class="user-name">{{user.firstName}} {{user.lastName}}</h3>
-          <p class="user-mail">{{user.email}}</p>
-        </div>
-      </div>
       }
     </div>
-
-
-
   </div>
 </section>

@@ -99,10 +99,10 @@ export class OverlayState {
     addContacts(contact: ContactList) {
         this.contactData.push(contact);
         console.log(contact);
-          this.sortContacts(); 
+        this.sortContacts();
     }
 
-        sortContacts() {
+    sortContacts() {
         this.contactData.sort((a, b) => {
             // sort rearranges the array elements based on the rules, in this case. alphabetic with firstname
             return a.firstName.localeCompare(b.firstName); // localCompare is a string method, sorting strings in alphabetic order

@@ -5,6 +5,7 @@
         <img src="assets/img/add-contacts/user-image.svg" alt="">
       </div>
       <div class="d-flex">
+
         <div class="add-contact">
           <div class="mobile-close" (click)="toggleOverlay()">
             <img src="assets/img/add-contacts/mobile-close.svg" alt="">
@@ -17,6 +18,7 @@
             </span>
           </div>
         </div>
+        
         <div class="user-data">
           <div class="close-image" (click)="toggleOverlay()">
             <img src="assets/img/add-contacts/Vector.svg" alt="" />
@@ -26,16 +28,20 @@
           </div>
           <div class="user-contact-data">
             <form class="contact-form">
-              <input [(ngModel)]="newContact.firstName" class="user" type="text" placeholder="Name" name="name" required />
-              <input [(ngModel)]="newContact.email" class="mail" type="email" placeholder="Email" name="email" required />
-              <input [(ngModel)]="newContact.phone" class="phone" type="tel" placeholder="Phone" name="phone" required />
+              <input [(ngModel)]="newContact.firstName" class="user" type="text" placeholder="Name" name="name"
+                required />
+              <input [(ngModel)]="newContact.email" class="mail" type="email" placeholder="Email" name="email"
+                required />
+              <input [(ngModel)]="newContact.phone" class="phone" type="tel" placeholder="Phone" name="phone"
+                required />
             </form>
             <div class="cancel-create-contact">
               <button class="cancel">
                 <span>Cancel</span>
                 <img src="assets/img/add-contacts/Vector.svg" alt="" />
               </button>
-              <button class="create" (click)="overlayState.addContacts(newContact); resetNewContactInput(); toggleOverlay()">
+              <button class="create"
+                (click)="overlayState.addContacts(newContact); resetNewContactInput(); toggleOverlay()">
                 <span>Create contact</span>
                 <img src="assets/img/add-contacts/check.svg" alt="" />
               </button>
