@@ -3,9 +3,9 @@ html {
 }
 
 section {
-    position: absolute;
+/*     position: absolute;
     top: 0;
-    left: 0;
+    left: 0; */
     display: flex;
     flex-direction: column;
     height: 100dvh;
@@ -80,7 +80,6 @@ section {
     }
 
     footer {
-        width: 100%;
         height: 50dvh;
         display: flex;
         margin-left: 2.5rem;
