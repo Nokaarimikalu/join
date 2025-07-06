@@ -1,0 +1,106 @@
+html {
+    font-size: 10px;
+}
+
+section {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100dvh;
+    width: 15rem;
+    background: #2A3647;
+    z-index: 5;
+    padding: 3rem 0;
+
+    .not-footer {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 50dvh;
+
+        .logo {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+
+            img {
+                height: 7rem;
+            }
+        }
+
+        nav {
+            ul {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                color: rgba($color: #FFFFFF, $alpha: 0.5);
+
+
+                li {
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    font-size: 1rem;
+                    font-weight: lighter;
+                    padding: 0.5rem;
+                    width: 100%;
+                    margin: 0.4rem 0;
+
+                    &:hover {
+                        cursor: pointer;
+                        background: #2A3D59;
+                    }
+
+                    img {
+                        margin-right: 0.5rem;
+                        margin-left: 2.5rem;
+                        opacity: 0.5;
+                    }
+                }
+
+                .active {
+                    color: #FFFFFF;
+                    background: #091931;
+                    font-weight: normal;
+
+                    img {
+                        opacity: 1;
+                    }
+
+                    &:hover {
+                        cursor: default;
+                        background: #091931;
+                    }
+                }
+            }
+        }
+    }
+
+    footer {
+        width: 100%;
+        height: 50dvh;
+        display: flex;
+        margin-left: 2.5rem;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-end;
+        font-size: 1rem;
+
+        a {
+            color: white;
+            padding: 0.5rem;
+            opacity: 0.5;
+
+            &:hover {
+                opacity: 1;
+                font-size: 1.1rem;
+                color: #29ABE2;
+            }
+        }
+    }
+
+
+}
