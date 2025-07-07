@@ -88,6 +88,14 @@ section {
         border-top-right-radius: 0;
         padding: 1em;
 
+        #help {
+            display: none;
+
+            @media (max-width:750px) {
+                display: block;
+            }
+        }
+
         p {
             padding: 0.8em;
             font-size: 1.6em;
@@ -97,6 +105,10 @@ section {
                 background: #2A3D59;
                 cursor: pointer;
             }
+        }
+
+        @media (max-width:750px) {
+            right: 1em;
         }
     }
 }
