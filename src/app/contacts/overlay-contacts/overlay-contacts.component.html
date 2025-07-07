@@ -45,7 +45,8 @@
                 <span>Cancel</span>
                 <img src="assets/img/add-contacts/Vector.svg" />
               </button>
-              <button class="create" [disabled]="!contactForm.valid" (click)=" overlayState.addContacts(newContact); resetNewContactInput() ; toggleOverlay()">
+              <button class="create" [disabled]="!contactForm.valid"
+                (click)=" splitFullName(); overlayState.addContacts(newContact); resetNewContactInput(); toggleOverlay()">
                 <span>Create contact</span>
                 <img src="assets/img/add-contacts/check.svg" />
               </button>

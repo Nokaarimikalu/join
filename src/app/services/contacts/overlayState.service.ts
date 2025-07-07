@@ -6,13 +6,15 @@ import { ContactList } from '../../shared/interface/contact-list.interface';
 })
 export class OverlayState {
     //#region attributes
-
-    isActive = false;
     AddOrEditState = 'addContact'
+/*   fullName: string = ''; // to use split(' '), firstName & lastName; used in overlay-contacts.components
+    splittedName?: string[]; // to safe split(' '), firstName & lastName; used in overlay-contacts.components
+ */    isActive: boolean = false; // toggle on off overlay; used in overlay-contacts- and contact-list.components
 
-    newContact?: ContactList;
+    newContact?: ContactList; // to add new contact; used in overlay-contacts.components
 
     contactData: ContactList[] = [
+        //dummy data
         {
             firstName: 'Anna',
             lastName: 'Schmidt',
@@ -99,7 +101,6 @@ export class OverlayState {
 
     addContacts(contact: ContactList) {
         this.contactData.push(contact);
-        console.log(contact);
         this.sortContacts();
     }
 
@@ -110,5 +111,10 @@ export class OverlayState {
         });
     }
 
+/*     splitFullName() {
+        this.splittedName = this.fullName.split(' ');
+        console.log(this.splittedName);
+    }
+ */
     //#endregion
 }

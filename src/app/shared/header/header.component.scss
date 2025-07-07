@@ -1,25 +1,41 @@
-html {
-    font-size: 10px;
-}
-
 section {
+    font-size: 10px;
     height: 8dvh;
-    box-shadow: 0 0.4rem 0.4rem -0.2rem rgba($color: #000000, $alpha: 0.2);
+    box-shadow: 0 0.6em 0.6em -0.2em rgba($color: #000000, $alpha: 0.2);
+
 
     header {
         width: 100%;
         height: 100%;
-        padding: 0rem 5rem;
+        padding: 0em 5em;
         display: flex;
         align-items: center;
         justify-content: space-between;
 
         .kanban {
-            font-size: 1rem;
+            font-size: 1.8em;
+            padding-left: 2em;
+
+            &::after {
+                content: "Kanban Project Management Tool";
+            }
+
+            @media (max-width:750px) {
+                padding-left: 0;
+
+                &::after {
+                    background-image: url('./../../../../public/assets/images/header/Logo.png');
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    display: inline-block;
+                    height: 6dvh;
+                    width: 4em;
+                    content: "";
+                }
+            }
         }
 
         .menu {
-            padding-right: 3rem;
             display: flex;
             align-items: center;
 
@@ -27,9 +43,9 @@ section {
                 background: url('./../../../../public/assets/images/header/help-hover.png');
                 background-size: contain;
                 background-repeat: no-repeat;
-                height: 1.5rem;
-                width: 2rem;
-                margin-right: 0.5rem;
+                height: 2.7em;
+                width: 3.6em;
+                margin-right: 0.9em;
 
                 &:hover {
                     background: url('./../../../../public/assets/images/header/help.png');
@@ -37,14 +53,18 @@ section {
                     background-repeat: no-repeat;
                     cursor: pointer;
                 }
+
+                @media (max-width:750px) {
+                    display: none;
+                }
             }
 
             span {
-                font-size: 1rem;
-                padding: 0.8rem 0.6rem;
+                font-size: 1.6em;
+                padding: 0.8em 0.6em;
                 color: #29ABE2;
                 font-weight: bold;
-                border: solid black 0.15rem;
+                border: solid black 0.15em;
                 border-radius: 50%;
 
                 &:hover {
@@ -53,21 +73,34 @@ section {
                 }
             }
         }
+
+        @media (max-width:750px) {
+            padding: 1em;
+        }
     }
 
     #drop-down {
         background: #2A3647;
         z-index: 15;
         position: absolute;
-        right: 2rem;
+        right: 5em;
         top: 8dvh;
-        border-radius: 1.5rem;
+        border-radius: 2.4em;
         border-top-right-radius: 0;
-        padding: 0.5rem;
+        padding: 1em;
+        animation: fade-in-left 0.5s ease-in-out;
+
+        #help {
+            display: none;
+
+            @media (max-width:750px) {
+                display: block;
+            }
+        }
 
         p {
-            padding: 0.5rem;
-            font-size: 1rem;
+            padding: 0.8em;
+            font-size: 1.6em;
             color: rgba($color: #FFFFFF, $alpha: 0.4);
 
             &:hover {
@@ -75,9 +108,25 @@ section {
                 cursor: pointer;
             }
         }
+
+        @media (max-width:750px) {
+            right: 1em;
+        }
     }
 }
 
 .d-none {
     display: none;
+}
+
+@keyframes fade-in-left {
+    0% {
+        opacity: 0;
+        transform: translateX(20em);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
