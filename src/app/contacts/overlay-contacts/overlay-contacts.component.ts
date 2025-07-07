@@ -20,7 +20,7 @@ export class OverlayContactsComponent {
         initials: '',
     };
 
-    constructor(public overlayState: OverlayState) {}
+    constructor(public overlayState: OverlayState) { }
 
     toggleOverlay() {
         this.overlayState.toggleOverlay();
