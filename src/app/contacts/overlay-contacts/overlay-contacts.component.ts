@@ -11,6 +11,7 @@ import { ContactList } from '../../shared/interface/contact-list.interface';
 })
 export class OverlayContactsComponent {
     fullName: string = '';
+    
 
     newContact: ContactList = {
         firstName: '',
@@ -35,4 +36,6 @@ export class OverlayContactsComponent {
             initials: '',
         };
     }
+
+
 }
