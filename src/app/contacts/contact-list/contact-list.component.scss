@@ -2,8 +2,11 @@ section {
     font-size: 10px;
     width: 400px;
     overflow-y: auto;
-        overflow-x: hidden;
+    overflow-x: hidden;
 
+    @media (max-width: 750px) {
+        display: none;
+    }
 
     .content {
         height: auto;

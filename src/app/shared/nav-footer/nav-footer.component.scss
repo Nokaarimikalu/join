@@ -3,10 +3,14 @@ section {
     display: flex;
     flex-direction: column;
     height: 100dvh;
-    width: 23em;
-    background: #2A3647;
+    width: 15rem;
+    background: #2a3647;
     z-index: 5;
     padding: 4.8em 0;
+
+    @media (max-width: 965px) {
+        display: none;
+    }
 
     .not-footer {
         width: 100%;
@@ -31,7 +35,7 @@ section {
                 display: flex;
                 flex-direction: column;
                 align-items: flex-start;
-                color: rgba($color: #FFFFFF, $alpha: 0.5);
+                color: rgba($color: #ffffff, $alpha: 0.5);
 
                 li {
                     display: flex;
@@ -46,7 +50,7 @@ section {
 
                     &:hover {
                         cursor: pointer;
-                        background: #2A3D59;
+                        background: #2a3d59;
                     }
 
                     img {
@@ -57,7 +61,7 @@ section {
                 }
 
                 .active {
-                    color: #FFFFFF;
+                    color: #ffffff;
                     background: #091931;
                     font-weight: normal;
 
@@ -90,13 +94,9 @@ section {
 
             &:hover {
                 opacity: 1;
-                font-size: 1.7em;
-                color: #29ABE2;
+                font-size: 1.1rem;
+                color: #29abe2;
             }
         }
-    }
-
-    @media (max-width:965px) {
-        display: none;
     }
 }
