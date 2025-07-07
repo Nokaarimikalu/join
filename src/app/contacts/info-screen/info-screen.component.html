@@ -1,90 +1,70 @@
 <div class="header"></div>
 <div class="wrapper1">
-    <div class="nav"></div>
-    <div class="list"></div>
+  <div class="nav"></div>
+  <div class="list"></div>
 
-    <div class="wrapper2">
-        <section>
-            <div class="content">
-                <div class="header-info">
-                    <h2 class="title">Contacts</h2>
-                    <div class="arrow-back">
-                        <img
-                            class="backbtn"
-                            src="./assets/images/arrow-left-line.png"
-                            alt="back"
-                        />
-                    </div>
-                    <div class="line"></div>
-                    <h4>Better with a Team</h4>
-                    <div class="line-mobile"></div>
-                </div>
+  <div class="wrapper2">
+    <section>
+      <div class="content">
+        <div class="header-info">
+          <h2 class="title">Contacts</h2>
+          <div class="arrow-back">
+            <img class="backbtn" src="./assets/images/arrow-left-line.png" alt="back" />
+          </div>
+          <div class="line"></div>
+          <h4>Better with a Team</h4>
+          <div class="line-mobile"></div>
+        </div>
+      </div>
+    </section>
+
+
+    @if (overlayState.selectedUser) {
+
+    <section>
+      <div class="content">
+        <div class="info-container">
+          <div class="initiales-bg">
+            <p>{{overlayState.selectedUser?.initials}}</p>
+          </div>
+
+          <div class="name-user">
+            <h2>{{overlayState.selectedUser?.firstName}} {{overlayState.selectedUser?.lastName}}</h2>
+            <div class="edit-delete">
+              <button class="edit" (click)="toggleOverlay() + overlayState.AddOrEditState ='editContact'"> <img
+                  src="./assets/images/edit.png" alt="edit" />Edit</button>
+              <button class="delete"> <img src="./assets/images/delete.png" alt="delete" />Delete</button>
             </div>
-        </section>
-
-        <section>
-            <div class="content">
-                <div class="info-container">
-                    <div class="initiales-bg">
-                        <p>AM</p>
-                    </div>
-                    <div class="name-user">
-                        <h2>Anton Mayer</h2>
-                        <div class="edit-delete">
-                            <button class="edit" (click)="toggleOverlay() + overlayState.AddOrEditState ='editContact'">
-                                <img
-                                    src="./assets/images/edit.png"
-                                    alt="edit"
-                                />
-                                <p>Edit</p>
-                            </button>
-                            <button class="delete">
-                                <img
-                                    src="./assets/images/delete.png"
-                                    alt="delete"
-                                />
-                                <p>Delete</p>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <p class="contactinfos">Contact Information</p>
-                <div class="mailbox">
-                    <p class="mail-phone">Email</p>
-                    <a href="mailto:">antom&#64;gmail.com</a>
-                </div>
-                <div class="phonebox">
-                    <p class="mail-phone">Phone</p>
-                    <p class="phonenumber">+49 1111 111 11 1</p>
-                </div>
-                <!-- Dein bestehender Code -->
-
-                <div
-                    class="edit-mobilebtn"
-                    (click)="toggleDropdown()"
-                    tabindex="0"
-                >
-                    <img src="./assets/images/more_vert.png" alt="edit menu" />
-
-                    <div
-                        class="dropdown-menu"
-                        *ngIf="isDropdownOpen"
-                        (click)="$event.stopPropagation()"
-                    >
-                        <div class="edit">
-                            <img src="./assets/images/edit.png" alt="edit" />
-                            <p>Edit</p>
-                        </div>
-                        <div class="delete">
-                            <img
-                                src="./assets/images/delete.png"
-                                alt="delete"
-                            />
-                            <p>Delete</p>
-                        </div>
-                    </div>
-                </div>
+          </div>
+        </div>
+        <p class="contactinfos">Contact Information</p>
+        <div class="mailbox">
+          <p class="mail-phone">Email</p>
+          <a href="mailto:">{{overlayState.selectedUser?.email}}</a>
+        </div>
+        <div class="phonebox">
+          <p class="mail-phone">Phone</p>
+          <p class="phonenumber">{{overlayState.selectedUser?.phone}}</p>
+        </div>
+        <div class="edit-mobilebtn" (click)="toggleDropdown()" tabindex="0">
+          <img src="./assets/images/more_vert.png" alt="edit menu" />
+          <div class="dropdown-menu" *ngIf="isDropdownOpen" (click)="$event.stopPropagation()">
+            <div class="edit">
+              <img src="./assets/images/edit.png" alt="edit" />
+              <p>Edit</p>
             </div>
-        </section>
-    </div>
+            <div class="delete">
+              <img src="./assets/images/delete.png" alt="delete" />
+              <p>Delete</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    }
+
+
+
+
+  </div>
 </div>

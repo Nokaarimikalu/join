@@ -12,16 +12,15 @@ export class ContactListComponent {
   prevLetter?: string;
   contactData: ContactList[] = [];
 
-  activeProfileIndex: number | null = null; //safes index if active or null if no profile is active. start value is null no active profile
-
+/*   activeProfileIndex: number | null = null; //safes index if active or null if no profile is active. start value is null no active profile
+ */
   constructor(public overlayState: OverlayState) {
     this.contactData = this.overlayState.getContacts(); // contactData is now being defined from overlayState.services.ts
     this.overlayState.sortContacts();
   }
 
   toggleSelectedProfile(activeUser: number) {
-    this.activeProfileIndex =
-    this.activeProfileIndex === activeUser ? null : activeUser;
+    this.overlayState.toggleSelectedProfile(activeUser)
   }
 
   toggleOverlay() {

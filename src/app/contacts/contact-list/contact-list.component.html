@@ -12,7 +12,7 @@
               </div>
             <div class="letter-heading-underline"></div>
       }
-        <div class="user-profile" [class.active]="activeProfileIndex === $index" (click)="toggleSelectedProfile($index)">
+        <div class="user-profile" [class.active]="overlayState.activeProfileIndex === $index" (click)="toggleSelectedProfile($index)">
           <div class="initials">
             {{user.initials}}
           </div>
