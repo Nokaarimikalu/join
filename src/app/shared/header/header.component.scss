@@ -18,6 +18,20 @@ section {
             &::after {
                 content: "Kanban Project Management Tool";
             }
+
+            @media (max-width:750px) {
+                padding-left: 0;
+
+                &::after {
+                    background-image: url('./../../../../public/assets/images/header/Logo.png');
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    display: inline-block;
+                    height: 6dvh;
+                    width: 4em;
+                    content: "";
+                }
+            }
         }
 
         .menu {
@@ -38,6 +52,10 @@ section {
                     background-repeat: no-repeat;
                     cursor: pointer;
                 }
+
+                @media (max-width:750px) {
+                    display: none;
+                }
             }
 
             span {
@@ -53,6 +71,10 @@ section {
                     cursor: pointer;
                 }
             }
+        }
+
+        @media (max-width:750px) {
+            padding: 1em;
         }
     }
 
