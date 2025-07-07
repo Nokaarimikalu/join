@@ -28,7 +28,7 @@
           </div>
           <div class="user-contact-data">
             <form class="contact-form" >
-              <input [(ngModel)]="newContact.firstName" class="user" type="text" placeholder="Name" name="name"
+              <input [(ngModel)]="newContact.fullName" class="user" type="text" placeholder="Name" name="name"
                 required />
               <input [(ngModel)]="newContact.email" class="mail" type="email" placeholder="Email" name="email"
                 required />
@@ -41,7 +41,7 @@
                 <img src="assets/img/add-contacts/Vector.svg"/>
               </button>
               <button class="create"
-                (click)="overlayState.addContacts(newContact); resetNewContactInput(); toggleOverlay()">
+                (click)=" splitFullName(); overlayState.addContacts(newContact); resetNewContactInput(); toggleOverlay()">
                 <span>Create contact</span>
                 <img src="assets/img/add-contacts/check.svg"/>
               </button>
