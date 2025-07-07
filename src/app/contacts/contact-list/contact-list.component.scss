@@ -1,10 +1,12 @@
 section {
     font-size: 10px;
     width: 400px;
-    height: 928px;
     overflow-y: auto;
+        overflow-x: hidden;
+
 
     .content {
+        height: auto;
     }
 
     .new-contact {
@@ -47,6 +49,7 @@ section {
 }
 
 .user-profiles-container {
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;

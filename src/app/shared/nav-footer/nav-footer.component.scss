@@ -3,9 +3,6 @@ html {
 }
 
 section {
-/*     position: absolute;
-    top: 0;
-    left: 0; */
     display: flex;
     flex-direction: column;
     height: 100dvh;
@@ -19,7 +16,6 @@ section {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        height: 50dvh;
 
         .logo {
             width: 100%;
