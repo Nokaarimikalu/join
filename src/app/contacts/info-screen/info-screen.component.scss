@@ -73,13 +73,6 @@
                 font-size: 2.7em;
                 font-weight: 400;
 
-                // @media (max-width: 1150px) {
-                //     font-size: 2.2em;
-                // }
-
-                // @media (max-width: 330px) {
-                //     font-size: 1.8em;
-                // }
             }
 
             .line-mobile {
@@ -183,6 +176,7 @@
                             font-size: 1.8em;
                             background-color: white;
                             border: none;
+                            cursor: pointer;
                         }
 
                         .delete {
@@ -191,6 +185,7 @@
                             font-size: 1.8em;
                             background-color: white;
                             border: none;
+                            cursor: pointer;
                         }
                     }
                 }
