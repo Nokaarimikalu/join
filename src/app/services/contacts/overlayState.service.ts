@@ -8,7 +8,7 @@ export class OverlayState {
     //#region attributes
 
     isActive = false;
-    AddOrEditState = 'editContact'
+    AddOrEditState = 'addContact'
 
     newContact?: ContactList;
 
