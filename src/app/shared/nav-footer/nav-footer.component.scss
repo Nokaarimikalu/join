@@ -26,12 +26,12 @@ section {
         }
 
         nav {
+
             ul {
                 display: flex;
                 flex-direction: column;
                 align-items: flex-start;
                 color: rgba($color: #FFFFFF, $alpha: 0.5);
-
 
                 li {
                     display: flex;
@@ -41,6 +41,7 @@ section {
                     font-weight: lighter;
                     padding: 0.3em;
                     width: 100%;
+
                     margin: 0.6em 0;
 
                     &:hover {
@@ -95,5 +96,7 @@ section {
         }
     }
 
-
+    @media (max-width:965px) {
+        display: none;
+    }
 }
