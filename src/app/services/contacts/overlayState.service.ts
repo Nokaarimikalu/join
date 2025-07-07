@@ -6,7 +6,7 @@ import { ContactList } from '../../shared/interface/contact-list.interface';
 })
 export class OverlayState {
     //#region attributes
-
+    AddOrEditState = 'addContact'
 /*   fullName: string = ''; // to use split(' '), firstName & lastName; used in overlay-contacts.components
     splittedName?: string[]; // to safe split(' '), firstName & lastName; used in overlay-contacts.components
  */    isActive: boolean = false; // toggle on off overlay; used in overlay-contacts- and contact-list.components

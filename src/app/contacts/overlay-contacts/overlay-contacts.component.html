@@ -2,49 +2,61 @@
   <div class="content">
     <div class="overlay-contact">
       <div class="mobile-image">
-        <img src="assets/img/add-contacts/user-image.svg" alt="">
+        <img src="assets/img/add-contacts/user-image.svg" alt="" />
       </div>
       <div class="d-flex">
-
         <div class="add-contact">
           <div class="mobile-close" (click)="toggleOverlay()">
-            <img src="assets/img/add-contacts/mobile-close.svg"/>
+            <img src="assets/img/add-contacts/mobile-close.svg" />
           </div>
           <div class="center-contact">
-            <img src="assets/img/add-contacts/join-logo.svg"/>
+            <img src="assets/img/add-contacts/join-logo.svg" />
+            @switch (overlayState.AddOrEditState) { @case
+            ("addContact") {
             <h2>Add contact</h2>
             <span>Task are better with a team!
               <div class="blue-line"></div>
             </span>
+            } @case ("editContact") {
+            <h2>Edit contact</h2>
+            } }
           </div>
         </div>
-        
         <div class="user-data">
           <div class="close-image" (click)="toggleOverlay()">
-            <img src="assets/img/add-contacts/Vector.svg"/>
+            <img src="assets/img/add-contacts/Vector.svg" />
           </div>
           <div class="user-image">
-            <img src="assets/img/add-contacts/user-image.svg"/>
+            <img src="assets/img/add-contacts/user-image.svg" />
           </div>
           <div class="user-contact-data">
-            <form class="contact-form" >
-              <input [(ngModel)]="newContact.fullName" class="user" type="text" placeholder="Name" name="name"
-                required />
-              <input [(ngModel)]="newContact.email" class="mail" type="email" placeholder="Email" name="email"
-                required />
-              <input [(ngModel)]="newContact.phone" class="phone" type="tel" placeholder="Phone" name="phone"
-                required />
+            <form class="contact-form" #contactForm="ngForm">
+              <input [(ngModel)]="newContact.fullName" class="user" type="text" placeholder="Name" name="name" required 
+                pattern="[A-Za-zÄÖÜäöüß\s]{2,}" id="name" #name = "ngModel"  [class.invalid] = " name.invalid && name.touched " />
+              <input [(ngModel)]="newContact.email" class="mail" type="email" placeholder="Email" name="email" required
+                pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" id="mail" #mail = "ngModel"  [class.invalid] = " mail.invalid && mail.touched " />
+              <input [(ngModel)]="newContact.phone" class="phone" type="tel" placeholder="Phone" name="phone" required
+                pattern="[0-9]{6,15}" id="phone" #phone = "ngModel"  [class.invalid] = " phone.invalid && phone.touched " />
             </form>
             <div class="cancel-create-contact">
-              <button class="cancel">
-                <span>Cancel</span>
-                <img src="assets/img/add-contacts/Vector.svg"/>
+              @switch (overlayState.AddOrEditState) { 
+                @case ("addContact") {
+              <button (click)="toggleOverlay()" class="cancel">
+                Cancel
+                <img src="assets/img/add-contacts/Vector.svg" />
               </button>
-              <button class="create"
-                (click)=" splitFullName(); overlayState.addContacts(newContact); resetNewContactInput(); toggleOverlay()">
-                <span>Create contact</span>
-                <img src="assets/img/add-contacts/check.svg"/>
+              <button class="create" [disabled]="!contactForm.valid"
+                (click)=" splitFullName(); overlayState.addContacts(newContact); resetNewContactInput(); toggleOverlay(); contactForm.resetForm();">
+                Create contact
+                <img src="assets/img/add-contacts/check.svg" />
               </button>
+              } @case ("editContact") {
+              <button class="cancel">Delete</button>
+              <button class="create" [disabled]=" !contactForm.valid" (click)=" resetNewContactInput(); toggleOverlay()">
+                Save
+                <img src="assets/img/add-contacts/check.svg" />
+              </button>
+              } }
             </div>
           </div>
         </div>

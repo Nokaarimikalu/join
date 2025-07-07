@@ -14,7 +14,7 @@ export class ContactListComponent {
 
   activeProfileIndex: number | null = null; //safes index if active or null if no profile is active. start value is null no active profile
 
-  constructor(private overlayState: OverlayState) {
+  constructor(public overlayState: OverlayState) {
     this.contactData = this.overlayState.getContacts(); // contactData is now being defined from overlayState.services.ts
     this.overlayState.sortContacts();
   }
