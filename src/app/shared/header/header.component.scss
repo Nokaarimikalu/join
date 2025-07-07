@@ -3,6 +3,7 @@ section {
     height: 8dvh;
     box-shadow: 0 0.6em 0.6em -0.2em rgba($color: #000000, $alpha: 0.2);
 
+
     header {
         width: 100%;
         height: 100%;
@@ -87,6 +88,7 @@ section {
         border-radius: 2.4em;
         border-top-right-radius: 0;
         padding: 1em;
+        animation: fade-in-left 0.5s ease-in-out;
 
         #help {
             display: none;
@@ -115,4 +117,16 @@ section {
 
 .d-none {
     display: none;
+}
+
+@keyframes fade-in-left {
+    0% {
+        opacity: 0;
+        transform: translateX(20em);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }

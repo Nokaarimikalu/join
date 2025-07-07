@@ -1,6 +1,7 @@
 .main-content {
     display: flex;
     height: 100dvh;
+    overflow-x: hidden;
 
     @media (max-width:965px) {
         height: 92dvh;
