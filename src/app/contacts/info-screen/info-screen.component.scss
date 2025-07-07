@@ -24,6 +24,10 @@
                 align-items: start;
             }
 
+            @media (max-width: 1075px) {
+                margin-left: 2em;
+            }
+
             .title {
                 font-size: 6.1em;
                 font-weight: 700;
@@ -41,30 +45,11 @@
             //#region Arrow Back Button
             .arrow-back {
                 position: absolute;
-                left: 52em;
+                display: none;
 
-                @media (min-width: 1301px) {
-                    display: none;
-                }
-
-                @media (max-width: 1275px) {
-                    left: 45em;
-                }
-
-                @media (max-width: 1200px) {
-                    left: 40em;
-                }
-
-                @media (max-width: 1150px) {
-                    left: 35em;
-                }
-
-                @media (max-width: 1090px) {
-                    left: 30em;
-                }
-
-                @media (max-width: 1040px) {
+                @media (max-width: 750px) {
                     left: 25em;
+                    display: block;
                 }
 
                 @media (max-width: 330px) {
@@ -135,11 +120,14 @@
                     border: 0.3em solid white;
                     border-radius: 50%;
 
-                    @media (max-width: 1240px) {
-                        width: 8em;
-                        height: 8em;
+                    @media (max-width: 1130px) {
+                        width: 9em;
+                        height: 9em;
                     }
 
+                    @media (max-width: 1075px) {
+                        margin-left: 2em;
+                    }
                     @media (max-width: 330px) {
                         width: 7em;
                         height: 7em;
@@ -149,8 +137,8 @@
                         font-size: 4.7em;
                         color: white;
 
-                        @media (max-width: 1240px) {
-                            font-size: 3.7em;
+                        @media (max-width: 1130px) {
+                            font-size: 4.2em;
                         }
 
                         @media (max-width: 330px) {
@@ -165,17 +153,14 @@
                     flex-direction: column;
                     justify-content: center;
                     align-items: start;
+
                     h2 {
                         font-size: 4.7em;
-                        font-weight: 500;
-                        margin-left: 1.5em;
+                        font-weight: 700;
+                        margin-left: 0.4em;
 
-                        @media (max-width: 1300px) {
-                            margin-left: 0.5em;
-                        }
-
-                        @media (max-width: 1240px) {
-                            font-size: 3.7em;
+                        @media (max-width: 1130px) {
+                            font-size: 4em;
                         }
 
                         @media (max-width: 1040px) {
@@ -211,6 +196,10 @@
                 margin-left: 2.2em;
                 font-size: 2em;
                 margin-bottom: 1em;
+
+                @media (max-width: 1075px) {
+                    margin-left: 2em;
+                }
             }
 
             .mail-phone {
@@ -219,17 +208,29 @@
                 margin-left: 2.8em;
                 margin-bottom: 1em;
                 margin-top: 2em;
+
+                @media (max-width: 1075px) {
+                    margin-left: 2em;
+                }
             }
 
             a {
                 font-size: 1.6em;
                 margin-left: 2.8em;
                 color: #007cee;
+
+                @media (max-width: 1075px) {
+                    margin-left: 2em;
+                }
             }
 
             .phonenumber {
                 font-size: 1.6em;
                 margin-left: 2.8em;
+
+                @media (max-width: 1075px) {
+                    margin-left: 2em;
+                }
             }
             //#endregion
         }
@@ -246,16 +247,18 @@
             height: 5.6em;
             background: #2a3647;
             border-radius: 50%;
+            cursor: pointer;
 
+            //#region Responsive Edit Mobil Button
             @media (min-width: 1300px) {
                 display: none;
             }
 
-            @media (max-width: 1275px) {
+            @media (max-width: 1260px) {
                 left: 48em;
             }
 
-            @media (max-width: 1200px) {
+            @media (max-width: 1190px) {
                 left: 43em;
             }
 
@@ -274,6 +277,11 @@
             @media (max-width: 340px) {
                 left: 25em;
             }
+            //#endregion
+
+            &:hover {
+                background: #29abe2;
+            }
 
             .dropdown-menu {
                 position: absolute;
@@ -285,6 +293,7 @@
                 padding: 1em 0.2em;
                 width: 120px;
                 z-index: 100;
+                animation: fade-in-left 0.5s ease-in-out;
             }
 
             .dropdown-menu div {
@@ -319,5 +328,17 @@
             }
         }
         //#endregion
+    }
+}
+
+@keyframes fade-in-left {
+    0% {
+        opacity: 0;
+        transform: translateX(20em);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
     }
 }
