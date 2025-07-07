@@ -31,29 +31,29 @@
           </div>
           <div class="user-contact-data">
             <form class="contact-form" #contactForm="ngForm">
-              <input [(ngModel)]="newContact.firstName" [class.invalid] = " name.invalid && name.dirty " class="user" type="text" placeholder="Name" name="name" required 
-                pattern="[A-Za-zÄÖÜäöüß\s]{2,}" id="name" #name = "ngModel" />
+              <input [(ngModel)]="newContact.fullName" class="user" type="text" placeholder="Name" name="name" required 
+                pattern="[A-Za-zÄÖÜäöüß\s]{2,}" id="name" #name = "ngModel"  [class.invalid] = " name.invalid && name.touched " />
               <input [(ngModel)]="newContact.email" class="mail" type="email" placeholder="Email" name="email" required
-                pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" />
+                pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" id="mail" #mail = "ngModel"  [class.invalid] = " mail.invalid && mail.touched " />
               <input [(ngModel)]="newContact.phone" class="phone" type="tel" placeholder="Phone" name="phone" required
-                pattern="[0-9]{6,15}" />
+                pattern="[0-9]{6,15}" id="phone" #phone = "ngModel"  [class.invalid] = " phone.invalid && phone.touched " />
             </form>
             <div class="cancel-create-contact">
               @switch (overlayState.AddOrEditState) { 
                 @case ("addContact") {
-              <button class="cancel">
-                <span>Cancel</span>
+              <button (click)="toggleOverlay()" class="cancel">
+                Cancel
                 <img src="assets/img/add-contacts/Vector.svg" />
               </button>
               <button class="create" [disabled]="!contactForm.valid"
-                (click)=" splitFullName(); overlayState.addContacts(newContact); resetNewContactInput(); toggleOverlay()">
-                <span>Create contact</span>
+                (click)=" splitFullName(); overlayState.addContacts(newContact); resetNewContactInput(); toggleOverlay(); contactForm.resetForm();">
+                Create contact
                 <img src="assets/img/add-contacts/check.svg" />
               </button>
               } @case ("editContact") {
               <button class="cancel">Delete</button>
               <button class="create" [disabled]=" !contactForm.valid" (click)=" resetNewContactInput(); toggleOverlay()">
-                <span>Save</span>
+                Save
                 <img src="assets/img/add-contacts/check.svg" />
               </button>
               } }
