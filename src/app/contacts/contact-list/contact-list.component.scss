@@ -1,8 +1,9 @@
 section {
     font-size: 10px;
     width: 400px;
-    height: 90%;
     overflow-y: auto;
+        overflow-x: hidden;
+
 
     .content {
         height: auto;
