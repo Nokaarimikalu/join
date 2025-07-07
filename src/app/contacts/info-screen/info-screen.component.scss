@@ -170,7 +170,6 @@
 
                     .edit-delete {
                         display: flex;
-                        font-size: 1.9em;
                         margin-left: 3.6em;
                         gap: 1em;
 
@@ -180,10 +179,18 @@
 
                         .edit {
                             display: flex;
+                            align-items: center;
+                            font-size: 1.8em;
+                            background-color: white;
+                            border: none;
                         }
 
                         .delete {
                             display: flex;
+                            align-items: center;
+                            font-size: 1.8em;
+                            background-color: white;
+                            border: none;
                         }
                     }
                 }
