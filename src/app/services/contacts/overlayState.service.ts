@@ -8,11 +8,19 @@ export class OverlayState {
   //#region attributes
   AddOrEditState: string = 'addContact';
 
-  selectedUser?: ContactList; // to safe selectedUser; used in info-screen.components to display selected user
+  selectedUser: ContactList = {
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    initials: '',
+  };
 
   activeProfileIndex: number | null = null; //safes index if active or null if no profile is active. start value is null no active profile
 
   isActive: boolean = false; // toggle on off overlay; used in overlay-contacts- and contact-list.components
+
+  inputActive: boolean | null = null; // default info-list page flag
 
   newContact?: ContactList; // to add new contact; used in overlay-contacts.components
 
@@ -115,8 +123,16 @@ export class OverlayState {
   }
 
   toggleSelectedProfile(activeUser: number) {
-    this.activeProfileIndex = this.activeProfileIndex === activeUser ? null : activeUser;
-    this.selectedUser = this.contactData[activeUser]; // get the object from array correct
+    const isSameUser = this.activeProfileIndex === activeUser;
+    this.activeProfileIndex = isSameUser ? null : activeUser;
+    this.selectedUser = isSameUser? {
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        initials: '',
+      } : this.contactData[activeUser];
+    this.inputActive = isSameUser ? false : true;
   }
 
   //#endregion

@@ -12,6 +12,8 @@ import { NewContact } from '../../shared/interface/newContact.interface';
 export class OverlayContactsComponent {
     splittedName?: string[]; // to safe split(' '), firstName & lastName; used in overlay-contacts.components
 
+    editFullName?: string;
+
     newContact: NewContact = {
         fullName: '',
         firstName: '',
@@ -21,7 +23,9 @@ export class OverlayContactsComponent {
         initials: '',
     };
 
-    constructor(public overlayState: OverlayState) {}
+    constructor(public overlayState: OverlayState) {
+        this.editFullNameUser();
+    }
 
     toggleOverlay() {
         this.overlayState.toggleOverlay();
@@ -42,6 +46,17 @@ export class OverlayContactsComponent {
         this.splittedName = this.newContact.fullName.split(' ');
         this.newContact.firstName = this.splittedName[0];
         this.newContact.lastName = this.splittedName[1];
-        this.newContact.initials = this.newContact.firstName.charAt(0).toUpperCase() + this.newContact.lastName.charAt(0).toUpperCase()
+        this.newContact.initials =
+            this.newContact.firstName.charAt(0).toUpperCase() +
+            this.newContact.lastName.charAt(0).toUpperCase();
+    }
+
+    editFullNameUser() {
+        if (
+            this.overlayState.AddOrEditState === 'editContact' &&
+            this.overlayState.selectedUser
+        ) {
+            this.editFullName = `${this.overlayState.selectedUser.firstName} ${this.overlayState.selectedUser.lastName}`;
+        }
     }
 }

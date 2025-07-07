@@ -19,17 +19,17 @@
     </section>
 
 
-    @if (overlayState.selectedUser) {
+    @if (overlayState.selectedUser && overlayState.inputActive) {
 
     <section>
       <div class="content">
         <div class="info-container">
           <div class="initiales-bg">
-            <p>{{overlayState.selectedUser?.initials}}</p>
+            <p>{{overlayState.selectedUser.initials}}</p>
           </div>
 
           <div class="name-user">
-            <h2>{{overlayState.selectedUser?.firstName}} {{overlayState.selectedUser?.lastName}}</h2>
+            <h2>{{overlayState.selectedUser.firstName}} {{overlayState.selectedUser.lastName}}</h2>
             <div class="edit-delete">
               <button class="edit" (click)="toggleOverlay() + overlayState.AddOrEditState ='editContact'"> <img
                   src="./assets/images/edit.png" alt="edit" />Edit</button>
@@ -40,11 +40,11 @@
         <p class="contactinfos">Contact Information</p>
         <div class="mailbox">
           <p class="mail-phone">Email</p>
-          <a href="mailto:">{{overlayState.selectedUser?.email}}</a>
+          <a href="mailto:">{{overlayState.selectedUser.email}}</a>
         </div>
         <div class="phonebox">
           <p class="mail-phone">Phone</p>
-          <p class="phonenumber">{{overlayState.selectedUser?.phone}}</p>
+          <p class="phonenumber">{{overlayState.selectedUser.phone}}</p>
         </div>
         <div class="edit-mobilebtn" (click)="toggleDropdown()" tabindex="0">
           <img src="./assets/images/more_vert.png" alt="edit menu" />
