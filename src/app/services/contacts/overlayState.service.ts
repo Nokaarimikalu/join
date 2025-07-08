@@ -135,5 +135,9 @@ export class OverlayState {
     this.inputActive = isSameUser ? false : true; //flag to toggle display when klicking same user 
   }
 
+  getFullNameForEdit(): string {
+  return this.selectedUser ? `${this.selectedUser.firstName} ${this.selectedUser.lastName}` : '';
+}
+
   //#endregion
 }
