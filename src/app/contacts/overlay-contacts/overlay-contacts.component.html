@@ -45,7 +45,7 @@
                     pattern="^\+?[0-9\s]{6,25}$" id="phone" #phone="ngModel" [class.invalid]=" phone.invalid && phone.dirty " />
                     
                 } @case ('editContact') {
-                  <input [ngModel]="overlayState.getFullNameForEdit()" class="user" type="text" placeholder="Name" name="name" required
+                  <input [ngModel]="overlayState.getFullNameForEdit" class="user" type="text" placeholder="Name" name="name" required
                     pattern="[A-Za-zÄÖÜäöüß\s\-']{2,}" id="name" #name="ngModel"
                     [class.invalid]=" name.invalid && name.touched " />
                   <input [(ngModel)]="overlayState.selectedUser.email" class="mail" type="email" placeholder="Email" name="email" required
