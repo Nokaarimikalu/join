@@ -26,4 +26,5 @@ export class ContactListComponent {
   toggleOverlay() {
     this.overlayState.toggleOverlay();
   }
+
 }
