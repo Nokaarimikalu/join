@@ -10,10 +10,13 @@ import { OverlayState } from '../../services/contacts/overlayState.service';
 })
 export class InfoScreenComponent {
     isDropdownOpen: boolean = false;
+    
 
     constructor(public overlayState: OverlayState) {}
 
     toggleDropdown(): void {
+        const overlayRef = document.querySelector('.overlay');
+        overlayRef?.classList.toggle('hidden');
         this.isDropdownOpen = !this.isDropdownOpen;
     }
 
