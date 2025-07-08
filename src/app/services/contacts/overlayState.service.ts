@@ -1,11 +1,15 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable, OnDestroy } from '@angular/core';
+import { Firestore, collection, onSnapshot, addDoc, updateDoc, doc, deleteDoc} from '@angular/fire/firestore';
 import { ContactList } from '../../shared/interface/contact-list.interface';
 
 @Injectable({
   providedIn: 'root',
 })
-export class OverlayState {
+export class OverlayState{
   //#region attributes
+  firestore:Firestore = inject(Firestore);
+
+
   AddOrEditState: string = 'addContact';
 
   fullNameForEdit: string = '';
@@ -20,79 +24,80 @@ export class OverlayState {
 
   newContact?: ContactList; // to add new contact; used in overlay-contacts.components
 
-  contactData: ContactList[] = [
-    //dummy data
-    {
-      firstName: 'Anna',
-      lastName: 'Schmidt',
-      email: 'anna.schmidt@example.com',
-      phone: '+49 170 1234567',
-      initials: 'AS',
-    },
-    {
-      firstName: 'Max',
-      lastName: 'Müller',
-      email: 'max.mueller@example.com',
-      phone: '+49 152 2345678',
-      initials: 'MM',
-    },
-    {
-      firstName: 'Lena',
-      lastName: 'Fischer',
-      email: 'lena.fischer@example.com',
-      phone: '+49 160 3456789',
-      initials: 'LF',
-    },
-    {
-      firstName: 'Paul',
-      lastName: 'Weber',
-      email: 'paul.weber@example.com',
-      phone: '+49 151 4567890',
-      initials: 'PW',
-    },
-    {
-      firstName: 'Julia',
-      lastName: 'Klein',
-      email: 'julia.klein@example.com',
-      phone: '+49 176 5678901',
-      initials: 'JK',
-    },
-    {
-      firstName: 'Tim',
-      lastName: 'Hoffmann',
-      email: 'tim.hoffmann@example.com',
-      phone: '+49 175 6789012',
-      initials: 'TH',
-    },
-    {
-      firstName: 'Laura',
-      lastName: 'Wolf',
-      email: 'laura.wolf@example.com',
-      phone: '+49 174 7890123',
-      initials: 'LW',
-    },
-    {
-      firstName: 'Jan',
-      lastName: 'Neumann',
-      email: 'jan.neumann@example.com',
-      phone: '+49 172 8901234',
-      initials: 'JN',
-    },
-    {
-      firstName: 'Mia',
-      lastName: 'Schneider',
-      email: 'mia.schneider@example.com',
-      phone: '+49 173 9012345',
-      initials: 'MS',
-    },
-    {
-      firstName: 'Tom',
-      lastName: 'Zimmer',
-      email: 'tom.zimmer@example.com',
-      phone: '+49 171 0123456',
-      initials: 'TZ',
-    },
-  ];
+  contactData = this.getContacts();
+  // contactData: ContactList[] = [
+  //   //dummy data
+  //   {
+  //     firstName: 'Anna',
+  //     lastName: 'Schmidt',
+  //     email: 'anna.schmidt@example.com',
+  //     phone: '+49 170 1234567',
+  //     initials: 'AS',
+  //   },
+  //   {
+  //     firstName: 'Max',
+  //     lastName: 'Müller',
+  //     email: 'max.mueller@example.com',
+  //     phone: '+49 152 2345678',
+  //     initials: 'MM',
+  //   },
+  //   {
+  //     firstName: 'Lena',
+  //     lastName: 'Fischer',
+  //     email: 'lena.fischer@example.com',
+  //     phone: '+49 160 3456789',
+  //     initials: 'LF',
+  //   },
+  //   {
+  //     firstName: 'Paul',
+  //     lastName: 'Weber',
+  //     email: 'paul.weber@example.com',
+  //     phone: '+49 151 4567890',
+  //     initials: 'PW',
+  //   },
+  //   {
+  //     firstName: 'Julia',
+  //     lastName: 'Klein',
+  //     email: 'julia.klein@example.com',
+  //     phone: '+49 176 5678901',
+  //     initials: 'JK',
+  //   },
+  //   {
+  //     firstName: 'Tim',
+  //     lastName: 'Hoffmann',
+  //     email: 'tim.hoffmann@example.com',
+  //     phone: '+49 175 6789012',
+  //     initials: 'TH',
+  //   },
+  //   {
+  //     firstName: 'Laura',
+  //     lastName: 'Wolf',
+  //     email: 'laura.wolf@example.com',
+  //     phone: '+49 174 7890123',
+  //     initials: 'LW',
+  //   },
+  //   {
+  //     firstName: 'Jan',
+  //     lastName: 'Neumann',
+  //     email: 'jan.neumann@example.com',
+  //     phone: '+49 172 8901234',
+  //     initials: 'JN',
+  //   },
+  //   {
+  //     firstName: 'Mia',
+  //     lastName: 'Schneider',
+  //     email: 'mia.schneider@example.com',
+  //     phone: '+49 173 9012345',
+  //     initials: 'MS',
+  //   },
+  //   {
+  //     firstName: 'Tom',
+  //     lastName: 'Zimmer',
+  //     email: 'tom.zimmer@example.com',
+  //     phone: '+49 171 0123456',
+  //     initials: 'TZ',
+  //   },
+  // ];
   //#endregion
   //#region constructor
   constructor() { }
@@ -103,11 +108,13 @@ export class OverlayState {
   }
 
   getContacts() {
-    return this.contactData;
+    return collection(this.firestore, 'contacts');
   }
 
-  addContacts(contact: ContactList) {
-    this.contactData.push(contact);
+  async addContacts(contact: ContactList) {
+    await addDoc(collection(this.firestore, 'contacts'), contact);
+    // await this.firestore.collection('contacts').add(contact);
+    // this.contactData.push(contact);
     this.sortContacts();
     console.log(this.contactData);
 
