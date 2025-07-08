@@ -9,5 +9,5 @@ import { ContactsComponent } from './contacts/contacts.component';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'Join';
+  title = 'join';
 }
