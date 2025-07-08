@@ -8,9 +8,13 @@ import { Component } from '@angular/core';
     styleUrl: './info-screen.component.scss',
 })
 export class InfoScreenComponent {
-    isDropdownOpen = false;
+    isDropdownOpen: boolean = false;
+
+    constructor(public overlayState: OverlayState) {}
 
     toggleDropdown(): void {
+        const overlayRef = document.querySelector('.overlay');
+        overlayRef?.classList.toggle('hidden');
         this.isDropdownOpen = !this.isDropdownOpen;
     }
 

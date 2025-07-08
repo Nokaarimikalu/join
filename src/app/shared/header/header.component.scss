@@ -24,7 +24,7 @@ section {
             align-items: center;
 
             .help {
-                background: url('./../../../../public/assets/images/header/help-hover.png');
+                background: url("./../../../../public/assets/images/header/help-hover.png");
                 background-size: contain;
                 background-repeat: no-repeat;
                 height: 1.5rem;
@@ -32,7 +32,7 @@ section {
                 margin-right: 0.5rem;
 
                 &:hover {
-                    background: url('./../../../../public/assets/images/header/help.png');
+                    background: url("./../../../../public/assets/images/header/help.png");
                     background-size: contain;
                     background-repeat: no-repeat;
                     cursor: pointer;
@@ -42,13 +42,13 @@ section {
             span {
                 font-size: 1rem;
                 padding: 0.8rem 0.6rem;
-                color: #29ABE2;
+                color: #29abe2;
                 font-weight: bold;
                 border: solid black 0.15rem;
                 border-radius: 50%;
 
                 &:hover {
-                    background: rgba($color: #0C2E62, $alpha: 0.12);
+                    background: rgba($color: #0c2e62, $alpha: 0.12);
                     cursor: pointer;
                 }
             }
@@ -56,7 +56,7 @@ section {
     }
 
     #drop-down {
-        background: #2A3647;
+        background: #2a3647;
         z-index: 15;
         position: absolute;
         right: 2rem;
@@ -68,16 +68,27 @@ section {
         p {
             padding: 0.5rem;
             font-size: 1rem;
-            color: rgba($color: #FFFFFF, $alpha: 0.4);
+            color: rgba($color: #ffffff, $alpha: 0.4);
 
             &:hover {
-                background: #2A3D59;
+                background: #2a3d59;
                 cursor: pointer;
             }
         }
     }
 }
 
-.d-none {
-    display: none;
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100dvh;
+    z-index: 4;
+    background: rgba($color: #000000, $alpha: 0);
+}
+
+.active {
+    background: rgba($color: #0c2e62, $alpha: 0.12);
+    cursor: pointer;
 }
