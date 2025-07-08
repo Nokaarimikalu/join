@@ -51,7 +51,7 @@ export class OverlayContactsComponent {
             this.newContact.lastName.charAt(0).toUpperCase();
     }
 
-    editFullNameUser() {
+    editFullNameUser() { //not working properly 
         if (
             this.overlayState.AddOrEditState === 'editContact' &&
             this.overlayState.selectedUser
