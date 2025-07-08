@@ -8,13 +8,9 @@ export class OverlayState {
   //#region attributes
   AddOrEditState: string = 'addContact';
 
-  selectedUser: ContactList = {
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    initials: '',
-  };
+  fullNameForEdit: string = '';
+
+  selectedUser: ContactList | null = null;
 
   activeProfileIndex: number | null = null; //safes index if active or null if no profile is active. start value is null no active profile
 
@@ -113,6 +109,8 @@ export class OverlayState {
   addContacts(contact: ContactList) {
     this.contactData.push(contact);
     this.sortContacts();
+    console.log(this.contactData);
+
   }
 
   sortContacts() {
@@ -123,21 +121,33 @@ export class OverlayState {
   }
 
   toggleSelectedProfile(activeUser: number) {
-    const isSameUser = this.activeProfileIndex === activeUser; 
-    this.activeProfileIndex = isSameUser ? null : activeUser; // if isSameUser clicked again set null (to display default);
-    this.selectedUser = isSameUser? { // if selectedUser is sameUser = reset edit form 
-        firstName: '',
-        lastName: '',
-        email: '',
-        phone: '',
-        initials: '',
-      } : this.contactData[activeUser]; // else this.selectedUser = aktiveUser 
-    this.inputActive = isSameUser ? false : true; //flag to toggle display when klicking same user 
+    const isSameUser = this.activeProfileIndex === activeUser;
+    this.activeProfileIndex = isSameUser ? null : activeUser;
+    this.selectedUser = isSameUser ? null : this.contactData[activeUser];
+    this.inputActive = isSameUser ? false : true;
+    this.fullNameForEdit = this.selectedUser ? `${this.contactData[activeUser].firstName} ${this.contactData[activeUser].lastName}` : '';
   }
 
-  getFullNameForEdit(): string {
-  return this.selectedUser ? `${this.selectedUser.firstName} ${this.selectedUser.lastName}` : '';
-}
+/*   getFullNameForEdit(): string {
+    return this.selectedUser ? `${this.selectedUser.firstName} ${this.selectedUser.lastName}` : '';
+  } */
+
+  updateContact() {
+    if (this.selectedUser && this.activeProfileIndex !== null) {
+          this.editSplitFullName(this.fullNameForEdit, this.selectedUser);
+
+      this.contactData[this.activeProfileIndex] = { ...this.selectedUser };
+      
+    }
+  }
+
+  
+	editSplitFullName(fullName: string, target: ContactList ) {
+		const [firstName, ...lastParts] = fullName.split(' ');
+		target.firstName = firstName;
+		target.lastName = lastParts.join(' '); 
+		target.initials = firstName.charAt(0).toUpperCase() + (lastParts[0]?.charAt(0).toUpperCase() || '');
+	}
 
   //#endregion
 }

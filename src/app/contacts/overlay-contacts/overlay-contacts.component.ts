@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { OverlayState } from '../../services/contacts/overlayState.service';
 import { FormsModule } from '@angular/forms';
 import { NewContact } from '../../shared/interface/newContact.interface';
+import { ContactList } from "../../shared/interface/contact-list.interface";
 
 @Component({
 	selector: 'app-overlay-contacts',
@@ -48,5 +49,6 @@ export class OverlayContactsComponent {
 			this.newContact.firstName.charAt(0).toUpperCase() +
 			this.newContact.lastName.charAt(0).toUpperCase();
 	}
+
 
 }
