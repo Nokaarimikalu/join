@@ -13,6 +13,7 @@ export class ContactListComponent {
     contactData: ContactList[] = [];
 
     activeProfileIndex: number | null = null; //safes index if active or null if no profile is active. start value is null no active profile
+
     isHiddenList: any;
 
     constructor(private overlayState: OverlayState) {
