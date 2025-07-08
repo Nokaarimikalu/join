@@ -123,16 +123,16 @@ export class OverlayState {
   }
 
   toggleSelectedProfile(activeUser: number) {
-    const isSameUser = this.activeProfileIndex === activeUser;
-    this.activeProfileIndex = isSameUser ? null : activeUser;
-    this.selectedUser = isSameUser? {
+    const isSameUser = this.activeProfileIndex === activeUser; 
+    this.activeProfileIndex = isSameUser ? null : activeUser; // if isSameUser clicked again set null (to display default);
+    this.selectedUser = isSameUser? { // if selectedUser is sameUser = reset edit form 
         firstName: '',
         lastName: '',
         email: '',
         phone: '',
         initials: '',
-      } : this.contactData[activeUser];
-    this.inputActive = isSameUser ? false : true;
+      } : this.contactData[activeUser]; // else this.selectedUser = aktiveUser 
+    this.inputActive = isSameUser ? false : true; //flag to toggle display when klicking same user 
   }
 
   //#endregion
