@@ -117,7 +117,17 @@ section {
     }
 }
 
-.d-none {
-    display: none;
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100dvh;
+    z-index: 4;
+    background: rgba($color: #000000, $alpha: 0);
 }
 
+.active {
+    background: rgba($color: #0C2E62, $alpha: 0.12) !important;
+    cursor: pointer;
+}

@@ -1,3 +1,4 @@
+<div class="overlay hidden" (click)="toggleDropdown()"></div>
 <div class="header"></div>
 <div class="wrapper1">
   <div class="nav"></div>
@@ -57,7 +58,7 @@
         <div class="edit-mobilebtn" (click)="toggleDropdown()" tabindex="0">
           <img src="assets/img/info-screen/more_vert.png" alt="edit menu" />
           <div class="dropdown-menu" *ngIf="isDropdownOpen" (click)="$event.stopPropagation()">
-            <div class="edit">
+            <div class="edit" (click)="toggleOverlay() + overlayState.AddOrEditState ='editContact'">
               <img src="assets/img/info-screen/edit.svg" alt="edit" />
               <p>Edit</p>
             </div>
