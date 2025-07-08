@@ -24,7 +24,7 @@ section {
                 padding-left: 0;
 
                 &::after {
-                    background-image: url('./../../../../public/assets/images/header/Logo.png');
+                    background-image: url('./../../../../public/assets/img/header/Logo.png');
                     background-size: contain;
                     background-repeat: no-repeat;
                     display: inline-block;
@@ -40,7 +40,7 @@ section {
             align-items: center;
 
             .help {
-                background: url('./../../../../public/assets/images/header/help-hover.png');
+                background: url('./../../../../public/assets/img/header/help-hover.png');
                 background-size: contain;
                 background-repeat: no-repeat;
                 height: 2.7em;
@@ -48,7 +48,7 @@ section {
                 margin-right: 0.9em;
 
                 &:hover {
-                    background: url('./../../../../public/assets/images/header/help.png');
+                    background: url('./../../../../public/assets/img/header/help.png');
                     background-size: contain;
                     background-repeat: no-repeat;
                     cursor: pointer;
@@ -60,6 +60,8 @@ section {
             }
 
             span {
+                height: 49px;
+                width: 49px;
                 font-size: 1.6em;
                 padding: 0.8em 0.6em;
                 color: #29ABE2;
@@ -119,14 +121,3 @@ section {
     display: none;
 }
 
-@keyframes fade-in-left {
-    0% {
-        opacity: 0;
-        transform: translateX(20em);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}

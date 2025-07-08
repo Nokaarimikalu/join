@@ -37,22 +37,22 @@
                 @case ('addContact') {
                   <input [(ngModel)]="newContact.fullName" class="user" type="text" placeholder="Name" name="name" required
                     pattern="[A-Za-zÄÖÜäöüß\s]{2,}" id="name" #name="ngModel"
-                    [class.invalid]=" name.invalid && name.touched " />
+                    [class.invalid]=" name.invalid && name.dirty " />
                   <input [(ngModel)]="newContact.email" class="mail" type="email" placeholder="Email" name="email" required
                     pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" id="mail" #mail="ngModel"
-                    [class.invalid]=" mail.invalid && mail.touched " />
+                    [class.invalid]=" mail.invalid && mail.dirty " />
                   <input [(ngModel)]="newContact.phone" class="phone" type="tel" placeholder="Phone" name="phone" required
-                    pattern="[0-9]{6,15}" id="phone" #phone="ngModel" [class.invalid]=" phone.invalid && phone.touched " />
+                    pattern="[0-9]{6,15}" id="phone" #phone="ngModel" [class.invalid]=" phone.invalid && phone.dirty " />
                     
                 } @case ('editContact') {
                   <input [(ngModel)]="editFullName" class="user" type="text" placeholder="Name" name="name" required
                     pattern="[A-Za-zÄÖÜäöüß\s]{2,}" id="name" #name="ngModel"
-                    [class.invalid]=" name.invalid && name.touched " />
+                    [class.invalid]=" name.invalid && name.dirty " />
                   <input [(ngModel)]="overlayState.selectedUser.email" class="mail" type="email" placeholder="Email" name="email" required
                     pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" id="mail" #mail="ngModel"
-                    [class.invalid]=" mail.invalid && mail.touched " />
+                    [class.invalid]=" mail.invalid && mail.dirty " />
                   <input [(ngModel)]="overlayState.selectedUser.phone" class="phone" type="tel" placeholder="Phone" name="phone" required
-                    pattern="[0-9]{6,15}" id="phone" #phone="ngModel" [class.invalid]=" phone.invalid && phone.touched " />
+                    pattern="[0-9]{6,15}" id="phone" #phone="ngModel" [class.invalid]=" phone.invalid && phone.dirty " />
                 }
               }
             </form>
