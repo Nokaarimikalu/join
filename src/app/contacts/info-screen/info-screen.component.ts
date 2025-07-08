@@ -17,4 +17,18 @@ export class InfoScreenComponent {
     closeDropdown(): void {
         this.isDropdownOpen = false;
     }
+
+    isHiddenInfo = false;
+    isHiddenList = false;
+
+    close() {
+        this.isHiddenInfo = !this.isHiddenInfo;
+        this.isHiddenList = !this.isHiddenList;
+    }
+    // close() {
+    //     const infoToggleRef = document.querySelector('.wrapper1');
+    //     const listToggleRef = document.querySelector('#contact-list');
+    //     infoToggleRef?.classList.toggle('hidden');
+    //     listToggleRef?.classList.toggle('hidden');
+    // }
 }

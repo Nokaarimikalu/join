@@ -46,14 +46,22 @@
             .arrow-back {
                 position: absolute;
                 display: none;
+                border: none;
+                background: white;
+                cursor: pointer;
+
+                @media (max-width: 965px) {
+                    left: 19.5em;
+                    display: block;
+                }
 
                 @media (max-width: 750px) {
-                    left: 25em;
+                    left: 19.5em;
                     display: block;
                 }
 
                 @media (max-width: 330px) {
-                    left: 23em;
+                    left: 18em;
                 }
             }
             //#endregion
@@ -72,7 +80,6 @@
             h4 {
                 font-size: 2.7em;
                 font-weight: 400;
-
             }
 
             .line-mobile {
@@ -331,6 +338,10 @@
         }
         //#endregion
     }
+}
+
+.hidden {
+    display: none;
 }
 
 @keyframes fade-in-left {

@@ -1,20 +1,16 @@
-<div class="header"></div>
-<div class="wrapper1">
-    <div class="nav"></div>
-    <div class="list"></div>
-
+<div #infoToggle class="wrapper1" [class.hidden]="isHiddenInfo">
     <div class="wrapper2">
         <section>
             <div class="content">
                 <div class="header-info">
                     <h2 class="title">Contacts</h2>
-                    <div class="arrow-back">
+                    <button (click)="close()" class="arrow-back">
                         <img
                             class="backbtn"
-                            src="./assets/images/arrow-left-line.png"
+                            src="assets/images/arrow-left-line.png"
                             alt="back"
                         />
-                    </div>
+                    </button>
                     <div class="line"></div>
                     <h4>Better with a Team</h4>
                     <div class="line-mobile"></div>
@@ -32,15 +28,12 @@
                         <h2>Anton Mayer</h2>
                         <div class="edit-delete">
                             <button class="edit">
-                                <img
-                                    src="./assets/images/edit.png"
-                                    alt="edit"
-                                />
+                                <img src="assets/images/edit.png" alt="edit" />
                                 <p>Edit</p>
                             </button>
                             <button class="delete">
                                 <img
-                                    src="./assets/images/delete.png"
+                                    src="assets/images/delete.png"
                                     alt="delete"
                                 />
                                 <p>Delete</p>
@@ -64,7 +57,7 @@
                     (click)="toggleDropdown()"
                     tabindex="0"
                 >
-                    <img src="./assets/images/more_vert.png" alt="edit menu" />
+                    <img src="assets/images/more_vert.png" alt="edit menu" />
 
                     <div
                         class="dropdown-menu"
@@ -72,14 +65,11 @@
                         (click)="$event.stopPropagation()"
                     >
                         <div class="edit">
-                            <img src="./assets/images/edit.png" alt="edit" />
+                            <img src="assets/images/edit.png" alt="edit" />
                             <p>Edit</p>
                         </div>
                         <div class="delete">
-                            <img
-                                src="./assets/images/delete.png"
-                                alt="delete"
-                            />
+                            <img src="assets/images/delete.png" alt="delete" />
                             <p>Delete</p>
                         </div>
                     </div>
