@@ -11,6 +11,8 @@ export class OverlayState implements OnDestroy {
 
   unsubscribe: () => void;
 
+  isMobileView: boolean = false;
+
   AddOrEditState: string = 'addContact';
 
   fullNameForEdit: string = '';
@@ -38,6 +40,7 @@ export class OverlayState implements OnDestroy {
         this.contactList.push(this.setContactsObject(element.id, element.data()));
       });
       this.sortContacts();
+      this.controllResize();
     })
   }
   //#endregion
@@ -62,10 +65,14 @@ export class OverlayState implements OnDestroy {
     }
   }
 
-  async addContacts(contact: ContactList) {
-    await addDoc(collection(this.firestore, 'contacts'), contact);
-    this.sortContacts();
-  }
+async addContacts(contact: ContactList) {
+  contact.firstName = contact.firstName.charAt(0).toUpperCase() + contact.firstName.slice(1); // contact.firstName.slice(1) to add the rest of the name!
+  contact.lastName = contact.lastName.charAt(0).toUpperCase() + contact.lastName.slice(1);
+  const docRef = await addDoc(collection(this.firestore, 'contacts'), contact);
+  this.sortContacts();
+  const newIndex = this.contactList.findIndex(u => u.id === docRef.id); 
+  this.toggleSelectedProfile(newIndex);
+}
 
   sortContacts() {
     this.contactList.sort((a, b) => { // sort rearranges the array elements based on the rules, in this case. alphabetic with firstname
@@ -75,23 +82,42 @@ export class OverlayState implements OnDestroy {
 
   toggleSelectedProfile(activeUser: number) {
     const isSameUser = this.activeProfileIndex === activeUser;
-    this.selectedUser = isSameUser ? null : this.contactList[activeUser];
-    this.inputActive = isSameUser ? false : true;
-    this.fullNameForEdit = this.selectedUser ? `${this.contactList[activeUser].firstName} ${this.contactList[activeUser].lastName}` : '';
+
     if (window.innerWidth <= 750) {
-      this.mobileViewContacts(activeUser)
-    } else if (window.innerHeight >= 750) {
+      this.activeProfileIndex = activeUser;
+      this.selectedUser = this.contactList[activeUser];
+      this.mobileViewContacts(activeUser);
+    } else {
       this.activeProfileIndex = isSameUser ? null : activeUser;
+      this.selectedUser = isSameUser ? null : this.contactList[activeUser];
     }
+    this.inputActive = !!this.selectedUser; // first ! makes null to true because its falsy, the second makes it true 
+    this.fullNameForEdit = this.selectedUser
+      ? `${this.selectedUser.firstName} ${this.selectedUser.lastName}`
+      : '';
   }
 
   mobileViewContacts(activeUser: number) {
-    const shouldShowUser = this.activeProfileIndex !== activeUser;
-    this.selectedUser = shouldShowUser ? this.contactList[activeUser] : null;
+    this.activeProfileIndex = activeUser;
+    this.selectedUser = this.contactList[activeUser];
+
     const contactListRef = document.querySelector('.contact-list-component');
-    contactListRef?.classList.add('hidden')
     const infoRef = document.querySelector('.app-info-screen-mobile-component');
+    contactListRef?.classList.add('hidden');
     infoRef?.classList.remove('hidden');
+  }
+
+  controllResize() {
+    window.addEventListener('resize', () => { // 'resize' JS implemented eventlistener! 
+      const contactListRef = document.querySelector('.contact-list-component');
+            const infoRef = document.querySelector('.app-info-screen-mobile-component');
+
+      if (window.innerWidth > 750) {
+        contactListRef?.classList.remove('hidden');
+                infoRef?.classList.add('hidden');
+
+      }
+    });
   }
 
   async updateContact() {
@@ -124,8 +150,8 @@ export class OverlayState implements OnDestroy {
 
   editSplitFullName(fullName: string, target: ContactList) {
     const [firstName, ...lastParts] = fullName.split(' ');
-    target.firstName = firstName;
-    target.lastName = lastParts.join(' ');
+    target.firstName = firstName.charAt(0).toUpperCase() + firstName.slice(1);
+    target.lastName = lastParts.join(' ').charAt(0).toUpperCase() + lastParts.join(' ').slice(1);
     target.initials = firstName.charAt(0).toUpperCase() + (lastParts[0]?.charAt(0).toUpperCase() || '');
   }
 
@@ -135,6 +161,7 @@ export class OverlayState implements OnDestroy {
     if (!contactId) return;
     await deleteDoc(doc(this.firestore, 'contacts', contactId))
     this.sortContacts();
+        this.toggleSelectedProfile(this.activeProfileIndex);
   }//new deleteFunction
 
   ngOnDestroy() {

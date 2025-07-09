@@ -116,6 +116,9 @@ section {
     border-bottom: 1.5px solid rgb(207, 207, 207);
     margin-bottom: 0.7em;
   }
+  @media (max-width: 750px) {
+    display: none;
+  }
 }
 
 .letter-heading-container {
@@ -138,13 +141,16 @@ section {
   user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   width: 90%;
   height: 78px;
   display: flex;
   justify-content: start;
   align-items: center;
   padding-left: 1em;
+      @media (max-width: 380px ) {
+      width: 98%;
+    }
 
   &:hover {
     background: linear-gradient(to bottom, #ededed30, #e7e7e7);
@@ -158,7 +164,10 @@ section {
 
     .initials {
       border: solid 1px white;
+      
     }
+
+
   }
 
   .initials {
@@ -172,6 +181,9 @@ section {
     width: 42px;
     border-radius: 50px;
     background-color: rgb(random(256), random(256), random(256));
+          @media (max-width: 380px ) {
+    margin-right: 5%;
+    }
   }
 
   .user-name {
@@ -197,6 +209,9 @@ section {
     width: 90%;
     border-bottom: 1.5px solid rgb(207, 207, 207);
     margin-bottom: 0.7em;
+  }
+    @media (min-width: 750px) {
+    display: none;
   }
 }
 
