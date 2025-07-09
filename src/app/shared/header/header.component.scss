@@ -1,0 +1,94 @@
+html {
+    font-size: 10px;
+}
+
+section {
+    height: 8dvh;
+    box-shadow: 0 0.4rem 0.4rem -0.2rem rgba($color: #000000, $alpha: 0.2);
+
+    header {
+        width: 100%;
+        height: 100%;
+        padding: 0rem 5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .kanban {
+            font-size: 1rem;
+        }
+
+        .menu {
+            padding-right: 3rem;
+            display: flex;
+            align-items: center;
+
+            .help {
+                background: url("./../../../../public/assets/images/header/help-hover.png");
+                background-size: contain;
+                background-repeat: no-repeat;
+                height: 1.5rem;
+                width: 2rem;
+                margin-right: 0.5rem;
+
+                &:hover {
+                    background: url("./../../../../public/assets/images/header/help.png");
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    cursor: pointer;
+                }
+            }
+
+            span {
+                font-size: 1rem;
+                padding: 0.8rem 0.6rem;
+                color: #29abe2;
+                font-weight: bold;
+                border: solid black 0.15rem;
+                border-radius: 50%;
+
+                &:hover {
+                    background: rgba($color: #0c2e62, $alpha: 0.12);
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    #drop-down {
+        background: #2a3647;
+        z-index: 15;
+        position: absolute;
+        right: 2rem;
+        top: 8dvh;
+        border-radius: 1.5rem;
+        border-top-right-radius: 0;
+        padding: 0.5rem;
+
+        p {
+            padding: 0.5rem;
+            font-size: 1rem;
+            color: rgba($color: #ffffff, $alpha: 0.4);
+
+            &:hover {
+                background: #2a3d59;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100dvh;
+    z-index: 4;
+    background: rgba($color: #000000, $alpha: 0);
+}
+
+.active {
+    background: rgba($color: #0c2e62, $alpha: 0.12);
+    cursor: pointer;
+}
