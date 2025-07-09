@@ -140,5 +140,10 @@ if (newIndex !== this.activeProfileIndex) { // if no change in position keep sel
       const b:number = Math.floor(Math.random()*256);
     return `rgb(${r}, ${g}, ${b})`;
   }
+
+  toList(){
+        const infoRef = document.querySelector('.info-screen-component');
+        infoRef?.classList.toggle('hidden');
+    }
   //#endregion
 }

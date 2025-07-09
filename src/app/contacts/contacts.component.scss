@@ -26,6 +26,9 @@
 }
 
 .info-screen-component {
-    display: flex;
     height: auto;
+
+    @media (max-width:750px) {
+        display: none;
+    }
 }

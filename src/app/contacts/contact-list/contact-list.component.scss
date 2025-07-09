@@ -4,10 +4,6 @@ section {
     overflow-y: auto;
     overflow-x: hidden;
 
-    @media (max-width: 750px) {
-        display: none;
-    }
-
     .content {
         height: auto;
     }
