@@ -118,5 +118,12 @@ if (newIndex !== this.activeProfileIndex) { // if no change in position keep sel
     target.initials = firstName.charAt(0).toUpperCase() + (lastParts[0]?.charAt(0).toUpperCase() || '');
   }
 
+  async deleteContact(){
+    if (!this.selectedUser || this.activeProfileIndex === null) return;
+    const contactId = this.contactList[this.activeProfileIndex]?.id;
+    if (!contactId) return;
+    await deleteDoc(doc(this.firestore, 'contacts', contactId))
+    this.sortContacts();
+  }
   //#endregion
 }
