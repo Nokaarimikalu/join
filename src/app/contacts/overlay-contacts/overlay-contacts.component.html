@@ -51,7 +51,7 @@
             <form class="contact-form" #contactForm="ngForm">
               @switch (overlayState.AddOrEditState) {
                 @case ('addContact') {
-                  <input [(ngModel)]="contactList.firstName" class="user" type="text" placeholder="Name" name="name" required pattern="^([A-ZÄÖÜ][a-zäöüß'’\-]+)(?:\s+[A-ZÄÖÜ][a-zäöüß'’\-]+)?$" id="name" #name="ngModel" [class.invalid]=" name.invalid && name.dirty " />
+                  <input [(ngModel)]="contactList.firstName" class="user" type="text" placeholder="Name" name="name" required pattern="^([A-ZÄÖÜ][a-zäöüß'-]+)(\s[A-ZÄÖÜ][a-zäöüß'-]+)*$"  id="name" #name="ngModel" [class.invalid]=" name.invalid && name.dirty " />
                   @if (name.invalid && name.dirty) {
                     <div class="invalid-input">Invalid Username</div>
                   }
@@ -95,7 +95,7 @@
                 <img src="assets/img/add-contacts/Vector.svg" />
               </button>
               <button class="create" [disabled]="!contactForm.valid"
-                (click)=" splitFullName(); overlayState.addContacts(newContact); resetNewContactInput(); toggleOverlay(); contactForm.resetForm();">
+                (click)=" splitFullName(); overlayState.addContacts(contactList); resetNewContactInput(); toggleOverlay(); contactForm.resetForm();">
                 Create contact
                 <img src="assets/img/add-contacts/check.svg" />
               </button>
