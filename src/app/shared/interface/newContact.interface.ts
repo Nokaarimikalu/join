@@ -4,5 +4,6 @@ export interface NewContact {
     lastName: string;
     email: string;
     phone: string;
+    color: string;
     initials: string;
 }

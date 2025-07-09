@@ -51,17 +51,17 @@
             <form class="contact-form" #contactForm="ngForm">
               @switch (overlayState.AddOrEditState) {
                 @case ('addContact') {
-                  <input [(ngModel)]="newContact.fullName" class="user" type="text" placeholder="Name" name="name" required pattern="^([A-ZÄÖÜ][a-zäöüß'-]+)(\s[A-ZÄÖÜ][a-zäöüß'-]+)*$" id="name" #name="ngModel" [class.invalid]=" name.invalid && name.dirty " />
+                  <input [(ngModel)]="contactList.firstName" class="user" type="text" placeholder="Name" name="name" required pattern="^([A-ZÄÖÜ][a-zäöüß'’\-]+)(?:\s+[A-ZÄÖÜ][a-zäöüß'’\-]+)?$" id="name" #name="ngModel" [class.invalid]=" name.invalid && name.dirty " />
                   @if (name.invalid && name.dirty) {
                     <div class="invalid-input">Invalid Username</div>
                   }
 
-                  <input [(ngModel)]="newContact.email" class="mail" type="email" placeholder="Email" name="email" required pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" id="mail" #mail="ngModel" [class.invalid]=" mail.invalid && mail.dirty " />
+                  <input [(ngModel)]="contactList.email" class="mail" type="email" placeholder="Email" name="email" required pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" id="mail" #mail="ngModel" [class.invalid]=" mail.invalid && mail.dirty " />
                   @if (mail.invalid && mail.dirty) {
                     <div class="invalid-input">Invalid Email</div>
                   }
 
-                  <input [(ngModel)]="newContact.phone" class="phone" type="tel" placeholder="Phone" name="phone" required pattern="^(?:\+|0)[0-9\s]{5,24}$" id="phone" #phone="ngModel" [class.invalid]=" phone.invalid && phone.dirty " />
+                  <input [(ngModel)]="contactList.phone" class="phone" type="tel" placeholder="Phone" name="phone" required pattern="^\+?[0-9\s]{6,25}$" id="phone" #phone="ngModel" [class.invalid]=" phone.invalid && phone.dirty " />
                   @if (phone.invalid && phone.dirty) {
                     <div class="invalid-input">Invalid Number</div>
                   }  
@@ -95,7 +95,7 @@
                 <img src="assets/img/add-contacts/Vector.svg" />
               </button>
               <button class="create" [disabled]="!contactForm.valid"
-                (click)=" splitFullName(); overlayState.addContacts(newContact);  toggleOverlay(); contactForm.resetForm();resetNewContactInput()">
+                (click)=" splitFullName(); overlayState.addContacts(newContact); resetNewContactInput(); toggleOverlay(); contactForm.resetForm();">
                 Create contact
                 <img src="assets/img/add-contacts/check.svg" />
               </button>
