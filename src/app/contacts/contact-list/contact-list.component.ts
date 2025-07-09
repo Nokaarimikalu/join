@@ -9,28 +9,21 @@ import { OverlayState } from '../../services/contacts/overlayState.service';
     styleUrl: './contact-list.component.scss',
 })
 export class ContactListComponent {
+    prevLetter?: string;
+    contactData: ContactList[] = [];
 
-  prevLetter?: string;
-  contactData: ContactList[] = [];
-  
-
-/*   activeProfileIndex: number | null = null; //safes index if active or null if no profile is active. start value is null no active profile
- */
-  constructor(public overlayState: OverlayState) {
-    this.contactData = this.overlayState.contactList; // contactData is now being defined from overlayState.services.ts
-    this.overlayState.sortContacts();
-    console.log(this.contactData);
-  }
-
-
-    isHiddenList: any;
+    /*   activeProfileIndex: number | null = null; //safes index if active or null if no profile is active. start value is null no active profile
+     */
+    constructor(public overlayState: OverlayState) {
+        this.contactData = this.overlayState.contactList; // contactData is now being defined from overlayState.services.ts
+        this.overlayState.sortContacts();
+    }
 
     toggleSelectedProfile(activeUser: number) {
         this.overlayState.toggleSelectedProfile(activeUser);
     }
 
-
-
-
-
+    toggleOverlay() {
+        this.overlayState.toggleOverlay();
+    }
 }
