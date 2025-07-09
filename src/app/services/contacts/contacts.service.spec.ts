@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ContactsService } from './overlayState.service';
+import { OverlayState } from './overlayState.service';
 
 describe('ContactsService', () => {
-  let service: ContactsService;
+  let service: OverlayState;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ContactsService);
+    service = TestBed.inject(OverlayState);
   });
 
   it('should be created', () => {
