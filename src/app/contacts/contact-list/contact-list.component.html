@@ -15,7 +15,7 @@
       }
       <div class="user-profile" [class.active]="overlayState.activeProfileIndex === $index"
         (click)="toggleSelectedProfile($index)">
-        <div class="initials">
+        <div class="initials" [style.background]= user.color>
           {{user.initials}}
         </div>
         <div class="user-details">
