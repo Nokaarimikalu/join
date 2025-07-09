@@ -47,7 +47,8 @@ export class OverlayContactsComponent {
 		this.contactList.initials =
 			this.contactList.firstName.charAt(0).toUpperCase() +
 			this.contactList.lastName.charAt(0).toUpperCase();
+			this.contactList.color = this.overlayState.getRandomColor();
 	}
 
-
+	
 }
