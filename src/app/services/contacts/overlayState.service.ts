@@ -29,7 +29,6 @@ export class OverlayState implements OnDestroy {
 
   contactList: ContactList[] = [];
 
-
   //#endregion
   //#region constructor
   constructor() {
@@ -76,21 +75,23 @@ export class OverlayState implements OnDestroy {
 
   toggleSelectedProfile(activeUser: number) {
     const isSameUser = this.activeProfileIndex === activeUser;
-    this.activeProfileIndex = isSameUser ? null : activeUser;
     this.selectedUser = isSameUser ? null : this.contactList[activeUser];
     this.inputActive = isSameUser ? false : true;
     this.fullNameForEdit = this.selectedUser ? `${this.contactList[activeUser].firstName} ${this.contactList[activeUser].lastName}` : '';
-
-
-
     if (window.innerWidth <= 750) {
-      // const contactListRef = document.querySelector('.contact-list-component');
-      // contactListRef?.classList.add('hidden')
-      const infoRef = document.querySelector('.app-info-screen-mobile-component');
-      infoRef?.classList.remove('hidden');
+      this.mobileViewContacts(activeUser)
+    } else if (window.innerHeight >= 750) {
+      this.activeProfileIndex = isSameUser ? null : activeUser;
+    }
+  }
 
-      
-    } 
+  mobileViewContacts(activeUser: number) {
+    const shouldShowUser = this.activeProfileIndex !== activeUser;
+    this.selectedUser = shouldShowUser ? this.contactList[activeUser] : null;
+    const contactListRef = document.querySelector('.contact-list-component');
+    contactListRef?.classList.add('hidden')
+    const infoRef = document.querySelector('.app-info-screen-mobile-component');
+    infoRef?.classList.remove('hidden');
   }
 
   async updateContact() {

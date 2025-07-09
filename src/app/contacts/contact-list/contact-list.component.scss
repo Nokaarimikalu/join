@@ -186,6 +186,20 @@ section {
   }
 }
 
+.user-profiles-container-mobile{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .letter-heading-underline {
+    width: 90%;
+    border-bottom: 1.5px solid rgb(207, 207, 207);
+    margin-bottom: 0.7em;
+  }
+}
+
 
 @media (max-width: 750px) {
   section {
@@ -200,6 +214,6 @@ section {
 }
 @media (min-width: 750px){
   .contactListSection{
-    display: flex;
+    display: block;
   }
 }
