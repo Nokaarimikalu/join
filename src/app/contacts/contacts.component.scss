@@ -25,11 +25,22 @@
     @media (max-width:750px) {
         width: 100%;
     }
+    @media (min-width: 750px){
+        display: flex;
+    }
+}
+.hidden{
+    display: none;
 }
 
 .info-screen-component {
     height: auto;
     @media (max-width:750px) {
-        z-index: 2;
+        display: none;
+    }
+}
+.app-info-screen-mobile-component{
+    @media (min-width: 750px){
+        display: none;
     }
 }

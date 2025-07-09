@@ -186,6 +186,7 @@ section {
   }
 }
 
+
 @media (max-width: 750px) {
   section {
     font-size: 9px;
@@ -195,5 +196,10 @@ section {
 @media (max-width: 368px) {
   section {
     font-size: 9px;
+  }
+}
+@media (min-width: 750px){
+  .contactListSection{
+    display: flex;
   }
 }

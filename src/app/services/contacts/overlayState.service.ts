@@ -80,21 +80,17 @@ export class OverlayState implements OnDestroy {
     this.selectedUser = isSameUser ? null : this.contactList[activeUser];
     this.inputActive = isSameUser ? false : true;
     this.fullNameForEdit = this.selectedUser ? `${this.contactList[activeUser].firstName} ${this.contactList[activeUser].lastName}` : '';
+
+
+
     if (window.innerWidth <= 750) {
-      const contactListRef = document.querySelector('.contact-list-component');
-      contactListRef?.classList.add('hidden')
+      // const contactListRef = document.querySelector('.contact-list-component');
+      // contactListRef?.classList.add('hidden')
+      const infoRef = document.querySelector('.app-info-screen-mobile-component');
+      infoRef?.classList.remove('hidden');
 
-      const contactInfoRef = document.querySelector('.info-screen-component');
-      console.log(contactInfoRef);
-      contactInfoRef?.classList.add('hidden')
-    } else if (window.innerWidth >= 750) {
-            const contactListRef = document.querySelector('.contact-list-component');
-      contactListRef?.classList.remove('hidden')
-
-      const contactInfoRef = document.querySelector('.info-screen-component');
-      console.log(contactInfoRef);
-      contactInfoRef?.classList.remove('hidden')
-    }
+      
+    } 
   }
 
   async updateContact() {
@@ -154,8 +150,10 @@ export class OverlayState implements OnDestroy {
   }
 
   toList() {
-    const infoRef = document.querySelector('.info-screen-component');
+    const infoRef = document.querySelector('.app-info-screen-mobile-component');
     infoRef?.classList.toggle('hidden');
+    const contactListRef = document.querySelector('.contact-list-component');
+    contactListRef?.classList.remove('hidden')
   }
   //#endregion
 }
