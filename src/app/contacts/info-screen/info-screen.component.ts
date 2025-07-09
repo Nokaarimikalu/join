@@ -1,5 +1,6 @@
 import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
+import { OverlayState } from '../../services/contacts/overlayState.service';
 
 @Component({
     selector: 'app-info-screen',
@@ -9,6 +10,7 @@ import { Component } from '@angular/core';
 })
 export class InfoScreenComponent {
     isDropdownOpen: boolean = false;
+    isActive: boolean | undefined;
 
     constructor(public overlayState: OverlayState) {}
 
@@ -22,6 +24,10 @@ export class InfoScreenComponent {
         this.isDropdownOpen = false;
     }
 
+
+    toggleOverlay() {
+        this.isActive = !this.isActive;
+    }
     isHiddenInfo = false;
     isHiddenList = false;
 
@@ -29,10 +35,4 @@ export class InfoScreenComponent {
         this.isHiddenInfo = !this.isHiddenInfo;
         this.isHiddenList = !this.isHiddenList;
     }
-    // close() {
-    //     const infoToggleRef = document.querySelector('.wrapper1');
-    //     const listToggleRef = document.querySelector('#contact-list');
-    //     infoToggleRef?.classList.toggle('hidden');
-    //     listToggleRef?.classList.toggle('hidden');
-    // }
 }

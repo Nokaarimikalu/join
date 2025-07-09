@@ -83,6 +83,8 @@ export class OverlayState {
             initials: 'TZ',
         },
     ];
+inputActive: any;
+selectedUser: any;
     //#endregion
     //#region constructor
     constructor() {}
