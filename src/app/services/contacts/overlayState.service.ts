@@ -99,6 +99,7 @@ export class OverlayState implements OnDestroy{
         lastName: this.selectedUser.lastName,
         email: this.selectedUser.email,
         phone: this.selectedUser.phone,
+        color: this.selectedUser.color,
         initials: this.selectedUser.initials
       });
       this.sortContacts();
