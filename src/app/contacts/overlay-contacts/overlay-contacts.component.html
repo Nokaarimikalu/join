@@ -44,7 +44,7 @@
                     <div class="invalid-input">Invalid Email</div>
                   }
 
-                  <input [(ngModel)]="newContact.phone" class="phone" type="tel" placeholder="Phone" name="phone" required pattern="^\+?[0-9\s]{6,25}$" id="phone" #phone="ngModel" [class.invalid]=" phone.invalid && phone.dirty " />
+                  <input [(ngModel)]="newContact.phone" class="phone" type="tel" placeholder="Phone" name="phone" required pattern="^(?:\+|0)[0-9\s]{5,24}$" id="phone" #phone="ngModel" [class.invalid]=" phone.invalid && phone.dirty " />
                   @if (phone.invalid && phone.dirty) {
                     <div class="invalid-input">Invalid Number</div>
                   }  
@@ -61,7 +61,7 @@
                       <div class="invalid-input">Invalid Email</div>
                     }
 
-                    <input [(ngModel)]="overlayState.selectedUser.phone" class="phone" type="tel" placeholder="Phone" name="phone" required pattern="^\+?[0-9\s]{6,25}$" id="phone" #phone="ngModel" [class.invalid]=" phone.invalid && phone.dirty " />
+                    <input [(ngModel)]="overlayState.selectedUser.phone" class="phone" type="tel" placeholder="Phone" name="phone" required pattern="^(?:\+|0)[0-9\s]{5,24}$" id="phone" #phone="ngModel" [class.invalid]=" phone.invalid && phone.dirty " />
                     @if (phone.invalid && phone.dirty) {
                       <div class="invalid-input">Invalid Number</div>
                     }

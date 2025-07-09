@@ -38,10 +38,11 @@
             transform: translate(-50%, -50%);
             width: 120em;
             height: 70dvh;
+            animation: fade-in-left-overlay 0.5s ease-in-out;
             @media (min-width: 750px) {
                 max-height: 70em;
             }
-            animation: fade-in-left-overlay 0.5s ease-in-out;
+
             .mobile-image {
                 display: none;
                 position: absolute;
