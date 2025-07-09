@@ -24,7 +24,6 @@ export class InfoScreenComponent {
         this.isDropdownOpen = false;
     }
 
-
     toggleOverlay() {
         this.isActive = !this.isActive;
     }
