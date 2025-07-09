@@ -124,6 +124,6 @@ export class OverlayState {
     if (!contactId) return;
     await deleteDoc(doc(this.firestore, 'contacts', contactId))
     this.sortContacts();
-  }
+  }//new deleteFunction
   //#endregion
 }
