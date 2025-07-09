@@ -12,6 +12,7 @@ export class InfoScreenComponent {
     isDropdownOpen: boolean = false;
     
 
+
     constructor(public overlayState: OverlayState) {}
 
     toggleDropdown(): void {
@@ -23,6 +24,8 @@ export class InfoScreenComponent {
     closeDropdown(): void {
         this.isDropdownOpen = false;
     }
+
+    
 
     toggleOverlay() {
         this.overlayState.toggleOverlay();

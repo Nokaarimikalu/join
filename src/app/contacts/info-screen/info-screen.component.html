@@ -1,5 +1,4 @@
 <div class="overlay hidden" (click)="toggleDropdown()"></div>
-<div class="header"></div>
 <div class="wrapper1">
   <div class="nav"></div>
   <div class="list"></div>
@@ -9,8 +8,8 @@
       <div class="content">
         <div class="header-info">
           <h2 class="title">Contacts</h2>
-          <div class="arrow-back">
-            <img class="backbtn" src="assets/img/info-screen/arrow-left-line.png" alt="back" />
+          <div class="arrow-back" (click)="overlayState.toList()">
+            <img class="backbtn" src="assets/img/info-screen/arrow-left-line.png" alt="back"/>
           </div>
           <div class="line"></div>
           <h4>Better with a Team</h4>
