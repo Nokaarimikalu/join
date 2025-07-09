@@ -13,72 +13,72 @@
     font-family: "Inter";
     font-style: normal;
     font-weight: 400;
-    src: url("./../public/assets/fonts/inter-v19-latin-regular.woff2")
-        format("woff2");
+    src: url("./../public/assets/fonts/inter-v19-latin-regular.woff2") format("woff2");
 }
+
 /* inter-100 - latin */
 @font-face {
     font-display: swap;
     font-family: "Inter";
     font-style: normal;
     font-weight: 100;
-    src: url("./../public/assets/fonts/inter-v19-latin-100.woff2")
-        format("woff2");
+    src: url("./../public/assets/fonts/inter-v19-latin-100.woff2") format("woff2");
 }
+
 /* inter-200 - latin */
 @font-face {
     font-display: swap;
     font-family: "Inter";
     font-style: normal;
     font-weight: 200;
-    src: url("./../public/assets/fonts/inter-v19-latin-200.woff2")
-        format("woff2");
+    src: url("./../public/assets/fonts/inter-v19-latin-200.woff2") format("woff2");
 }
+
 /* inter-300 - latin */
 @font-face {
     font-display: swap;
     font-family: "Inter";
     font-style: normal;
     font-weight: 300;
-    src: url("./../public/assets/fonts/inter-v19-latin-300.woff2")
-        format("woff2");
+    src: url("./../public/assets/fonts/inter-v19-latin-300.woff2") format("woff2");
 }
+
 /* inter-500 - latin */
 @font-face {
     font-display: swap;
     font-family: "Inter";
     font-style: normal;
     font-weight: 500;
-    src: url("./../public/assets/fonts/inter-v19-latin-500.woff2")
-        format("woff2");
+    src: url("./../public/assets/fonts/inter-v19-latin-500.woff2") format("woff2");
 }
+
 /* inter-700 - latin */
 @font-face {
     font-display: swap;
     font-family: "Inter";
     font-style: normal;
     font-weight: 700;
-    src: url("./../public/assets/fonts/inter-v19-latin-700.woff2")
-        format("woff2");
+    src: url("./../public/assets/fonts/inter-v19-latin-700.woff2") format("woff2");
 }
+
 /* inter-800 - latin */
 @font-face {
     font-display: swap;
     font-family: "Inter";
     font-style: normal;
     font-weight: 800;
-    src: url("./../public/assets/fonts/inter-v19-latin-800.woff2")
-        format("woff2");
+    src: url("./../public/assets/fonts/inter-v19-latin-800.woff2") format("woff2");
 }
+
 /* inter-900 - latin */
 @font-face {
     font-display: swap;
     font-family: "Inter";
     font-style: normal;
     font-weight: 900;
-    src: url("./../public/assets/fonts/inter-v19-latin-900.woff2")
-        format("woff2");
+    src: url("./../public/assets/fonts/inter-v19-latin-900.woff2") format("woff2");
 }
+
 /* 
 header,
 footer {
@@ -94,4 +94,44 @@ footer {
 
 .hidden {
     display: none;
+}
+
+button{
+    cursor: pointer;
+}
+
+@keyframes fade-in-left {
+    0% {
+        opacity: 0;
+        transform: translateX(20em);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fade-in-left-overlay {
+    0% {
+        opacity: 0;
+        transform: translate(calc(-50% + 50em), -50%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@keyframes fade-out-right-overlay {
+    0% {
+        opacity: 0;
+        transform: translate(-50, -50%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(calc(-50% + 50em), -50%);
+    }
 }

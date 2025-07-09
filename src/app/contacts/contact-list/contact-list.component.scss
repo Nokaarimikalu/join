@@ -107,10 +107,12 @@ section {
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: rgb(random(256), random(256), random(256));
+
+
         height: 42px;
         width: 42px;
         border-radius: 50px;
+        background-color: rgb(random(256), random(256), random(256));
     }
 
     .user-name {

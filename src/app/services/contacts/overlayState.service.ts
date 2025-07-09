@@ -60,6 +60,7 @@ export class OverlayState implements OnDestroy{
       lastName: obj.lastName,
       email: obj.email,
       phone: obj.phone,
+      color: obj.color,
       initials: obj.initials
     }
   }
@@ -98,6 +99,7 @@ export class OverlayState implements OnDestroy{
         lastName: this.selectedUser.lastName,
         email: this.selectedUser.email,
         phone: this.selectedUser.phone,
+        color: this.selectedUser.color,
         initials: this.selectedUser.initials
       });
       this.sortContacts();
@@ -130,6 +132,13 @@ export class OverlayState implements OnDestroy{
     if(this.unsubscribe){
       this.unsubscribe();
     }
+  }
+
+  getRandomColor(){
+    	const r:number = Math.floor(Math.random()*256);
+    	const g:number = Math.floor(Math.random()*256);
+    	const b:number = Math.floor(Math.random()*256);
+    return `rgb(${r}, ${g}, ${b})`;
   }
   //#endregion
 }

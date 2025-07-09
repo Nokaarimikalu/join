@@ -4,5 +4,6 @@
       lastName: string;
       email: string;
       phone: string;
+      color: string;
       initials?: string;
     }
