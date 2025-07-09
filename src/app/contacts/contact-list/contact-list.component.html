@@ -1,10 +1,13 @@
 <section>
     <div class="content">
         <div class="new-contact">
-            <button (click)="
+            <button
+                (click)="
                     toggleOverlay() +
                         (overlayState.AddOrEditState = 'addContact')
-                " class="add-button">
+                "
+                class="add-button"
+            >
                 Add new contact
                 <img src="assets/img/contactList/personAddIcon.png" />
             </button>
@@ -21,8 +24,11 @@
             </div>
             <div class="letter-heading-underline"></div>
             }
-            <div class="user-profile" [class.active]="overlayState.activeProfileIndex === $index"
-                (click)="toggleSelectedProfile($index)">
+            <div
+                class="user-profile"
+                [class.active]="overlayState.activeProfileIndex === $index"
+                (click)="toggleSelectedProfile($index)"
+            >
                 <div class="initials" [style.background]="user.color">
                     {{ user.initials }}
                 </div>
