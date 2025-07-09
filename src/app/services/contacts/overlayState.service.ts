@@ -5,7 +5,7 @@ import { ContactList } from '../../shared/interface/contact-list.interface';
 @Injectable({
   providedIn: 'root',
 })
-export class OverlayState implements OnDestroy{
+export class OverlayState implements OnDestroy {
   //#region attributes
   firestore: Firestore = inject(Firestore);
 
@@ -38,9 +38,7 @@ export class OverlayState implements OnDestroy{
       contact.forEach((element) => {
         this.contactList.push(this.setContactsObject(element.id, element.data()));
       });
-      console.log(this.contactList);
       this.sortContacts();
-
     })
   }
   //#endregion
@@ -68,7 +66,6 @@ export class OverlayState implements OnDestroy{
   async addContacts(contact: ContactList) {
     await addDoc(collection(this.firestore, 'contacts'), contact);
     this.sortContacts();
-    console.log(this.contactData);
   }
 
   sortContacts() {
@@ -83,6 +80,21 @@ export class OverlayState implements OnDestroy{
     this.selectedUser = isSameUser ? null : this.contactList[activeUser];
     this.inputActive = isSameUser ? false : true;
     this.fullNameForEdit = this.selectedUser ? `${this.contactList[activeUser].firstName} ${this.contactList[activeUser].lastName}` : '';
+    if (window.innerWidth <= 750) {
+      const contactListRef = document.querySelector('.contact-list-component');
+      contactListRef?.classList.add('hidden')
+
+      const contactInfoRef = document.querySelector('.info-screen-component');
+      console.log(contactInfoRef);
+      contactInfoRef?.classList.add('hidden')
+    } else if (window.innerWidth >= 750) {
+            const contactListRef = document.querySelector('.contact-list-component');
+      contactListRef?.classList.remove('hidden')
+
+      const contactInfoRef = document.querySelector('.info-screen-component');
+      console.log(contactInfoRef);
+      contactInfoRef?.classList.remove('hidden')
+    }
   }
 
   async updateContact() {
@@ -105,9 +117,9 @@ export class OverlayState implements OnDestroy{
       this.sortContacts();
       const newIndex = this.contactList.findIndex(contact => contact.id === this.selectedUser?.id);
 
-if (newIndex !== this.activeProfileIndex) { // if no change in position keep selection (or it will deselecct because of this.tsp() logic)
-  this.toggleSelectedProfile(newIndex);
-}
+      if (newIndex !== this.activeProfileIndex) { // if no change in position keep selection (or it will deselecct because of this.tsp() logic)
+        this.toggleSelectedProfile(newIndex);
+      }
     } catch (error) {
       console.error('Error updating document: ', error);
     }
@@ -120,7 +132,7 @@ if (newIndex !== this.activeProfileIndex) { // if no change in position keep sel
     target.initials = firstName.charAt(0).toUpperCase() + (lastParts[0]?.charAt(0).toUpperCase() || '');
   }
 
-  async deleteContact(){
+  async deleteContact() {
     if (!this.selectedUser || this.activeProfileIndex === null) return;
     const contactId = this.contactList[this.activeProfileIndex]?.id;
     if (!contactId) return;
@@ -128,22 +140,22 @@ if (newIndex !== this.activeProfileIndex) { // if no change in position keep sel
     this.sortContacts();
   }//new deleteFunction
 
-  ngOnDestroy(){
-    if(this.unsubscribe){
+  ngOnDestroy() {
+    if (this.unsubscribe) {
       this.unsubscribe();
     }
   }
 
-  getRandomColor(){
-      const r:number = Math.floor(Math.random()*256);
-      const g:number = Math.floor(Math.random()*256);
-      const b:number = Math.floor(Math.random()*256);
+  getRandomColor() {
+    const r: number = Math.floor(Math.random() * 256);
+    const g: number = Math.floor(Math.random() * 256);
+    const b: number = Math.floor(Math.random() * 256);
     return `rgb(${r}, ${g}, ${b})`;
   }
 
-  toList(){
-        const infoRef = document.querySelector('.info-screen-component');
-        infoRef?.classList.toggle('hidden');
-    }
+  toList() {
+    const infoRef = document.querySelector('.info-screen-component');
+    infoRef?.classList.toggle('hidden');
+  }
   //#endregion
 }

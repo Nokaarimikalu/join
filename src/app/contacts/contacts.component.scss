@@ -16,19 +16,20 @@
 
 .contact-list-content {
     display: flex;
-    height: auto;
     height: 90%;
 }
 
 .contact-list-component {
     display: flex;
     height: auto;
+    @media (max-width:750px) {
+        width: 100%;
+    }
 }
 
 .info-screen-component {
     height: auto;
-
     @media (max-width:750px) {
-        display: none;
+        z-index: 2;
     }
 }

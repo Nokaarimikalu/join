@@ -4,6 +4,10 @@
       <button (click)="toggleOverlay() + overlayState.AddOrEditState ='addContact' " class="add-button">Add new contact
         <img src="assets/img/contactList/personAddIcon.png"></button>
     </div>
+        <div class="new-contact-mobile">
+      <button (click)="toggleOverlay() + overlayState.AddOrEditState ='addContact' " class="add-button">
+        <img src="assets/img/contactList/personAddIcon.png"></button>
+    </div>
     <div class="user-profiles-container">
       @for (user of overlayState.contactList; track $index) {
         @if ($index === 0 || user.firstName.charAt(0).toUpperCase() !==
