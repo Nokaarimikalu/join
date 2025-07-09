@@ -1,26 +1,28 @@
 <section>
   <div class="content">
     <div class="new-contact">
-      <button (click)="toggleOverlay() + overlayState.AddOrEditState ='addContact' " class="add-button">Add new contact <img
-          src="assets/img/contactList/personAddIcon.png"></button>
+      <button (click)="toggleOverlay() + overlayState.AddOrEditState ='addContact' " class="add-button">Add new contact
+        <img src="assets/img/contactList/personAddIcon.png"></button>
     </div>
     <div class="user-profiles-container">
-      @for (user of contactData; track $index) {
-        @if ($index === 0 || user.firstName.charAt(0).toUpperCase() !== contactData[$index-1].firstName.charAt(0).toUpperCase()) {
-              <div class="letter-heading-container">
-                <h2 class="letter-heading">{{ user.firstName.charAt(0).toUpperCase() }}</h2>
-              </div>
-            <div class="letter-heading-underline"></div>
+      @for (user of overlayState.contactList; track $index) {
+        @if ($index === 0 || user.firstName.charAt(0).toUpperCase() !==
+          overlayState.contactList[$index-1].firstName.charAt(0).toUpperCase()) {
+          <div class="letter-heading-container">
+            <h2 class="letter-heading">{{ user.firstName.charAt(0).toUpperCase() }}</h2>
+          </div>
+          <div class="letter-heading-underline"></div>
       }
-        <div class="user-profile" [class.active]="overlayState.activeProfileIndex === $index" (click)="toggleSelectedProfile($index)">
-          <div class="initials">
-            {{user.initials}}
-          </div>
-          <div class="user-details">
-            <h3 class="user-name">{{user.firstName}} {{user.lastName}}</h3>
-            <p class="user-mail">{{user.email}}</p>
-          </div>
+      <div class="user-profile" [class.active]="overlayState.activeProfileIndex === $index"
+        (click)="toggleSelectedProfile($index)">
+        <div class="initials">
+          {{user.initials}}
         </div>
+        <div class="user-details">
+          <h3 class="user-name">{{user.firstName}} {{user.lastName}}</h3>
+          <p class="user-mail">{{user.email}}</p>
+        </div>
+      </div>
       }
     </div>
   </div>

@@ -10,7 +10,12 @@ export class HeaderComponent {
 
 
   toggleDropDown(){
-    const dropDownRef = document.getElementById('drop-down');
-    dropDownRef?.classList.toggle("d-none");
+    const dropDownRef = document.querySelector('#drop-down');
+    const overlayRef = document.querySelector('#overlay');
+    const spanRef = document.querySelector('#user');
+    dropDownRef?.classList.toggle("hidden");
+    overlayRef?.classList.toggle("hidden");
+    spanRef?.classList.toggle("active");
   }
+
 }
