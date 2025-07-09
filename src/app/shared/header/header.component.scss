@@ -24,7 +24,7 @@ section {
             align-items: center;
 
             .help {
-                background: url("./../../../../public/assets/images/header/help-hover.png");
+                background: url("./../../../../public/assets/img/header/help-hover.png");
                 background-size: contain;
                 background-repeat: no-repeat;
                 height: 1.5rem;
@@ -32,7 +32,7 @@ section {
                 margin-right: 0.5rem;
 
                 &:hover {
-                    background: url("./../../../../public/assets/images/header/help.png");
+                    background: url("./../../../../public/assets/img/header/help.png");
                     background-size: contain;
                     background-repeat: no-repeat;
                     cursor: pointer;
