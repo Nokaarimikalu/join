@@ -5,7 +5,7 @@ import { ContactList } from '../../shared/interface/contact-list.interface';
 @Injectable({
   providedIn: 'root',
 })
-export class OverlayState {
+export class OverlayState implements OnDestroy{
   //#region attributes
   firestore: Firestore = inject(Firestore);
 
@@ -125,5 +125,11 @@ if (newIndex !== this.activeProfileIndex) { // if no change in position keep sel
     await deleteDoc(doc(this.firestore, 'contacts', contactId))
     this.sortContacts();
   }//new deleteFunction
+
+  ngOnDestroy(){
+    if(this.unsubscribe){
+      this.unsubscribe();
+    }
+  }
   //#endregion
 }
