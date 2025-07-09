@@ -51,37 +51,37 @@
                 cursor: pointer;
 
                 @media (max-width: 965px) {
-                    left: 19.5em;
+                    left: 26em;
                     display: block;
                 }
 
                 @media (max-width: 750px) {
-                    left: 48em;
+                    left: 62em;
                     display: block;
                 }
 
                 @media (max-width: 700px) {
-                    left: 40em;
+                    left: 50em;
                     display: block;
                 }
 
                 @media (max-width: 595px) {
-                    left: 32em;
+                    left: 41em;
                     display: block;
                 }
 
                 @media (max-width: 485px) {
-                    left: 24em;
+                    left: 31em;
                     display: block;
                 }
 
                 @media (max-width: 380px) {
-                    left: 20em;
+                    left: 25em;
                     display: block;
                 }
 
                 @media (max-width: 330px) {
-                    left: 18em;
+                    left: 24em;
                 }
             }
 
@@ -152,7 +152,7 @@
                         margin-left: 2em;
                     }
 
-                    @media (max-width: 330px) {
+                    @media (max-width: 345px) {
                         width: 7em;
                         height: 7em;
                     }
@@ -172,7 +172,7 @@
                 }
 
                 .name-user {
-                    height: 30em;
+                    height: 23em;
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
@@ -384,10 +384,6 @@
 
             p {
                 font-size: 1.5em;
-            }
-
-            .hidden {
-                display: none;
             }
         }
 
