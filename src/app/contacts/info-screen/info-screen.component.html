@@ -61,7 +61,7 @@
               <img src="assets/img/info-screen/edit.svg" alt="edit" />
               <p>Edit</p>
             </div>
-            <div class="delete">
+            <div class="delete" (click)="overlayState.deleteContact(); toggleDropdown()">
               <img src="assets/img/info-screen/delete.svg" alt="delete" />
               <p>Delete</p>
             </div>
