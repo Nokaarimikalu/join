@@ -11,15 +11,15 @@
           </div>
           <div class="center-contact">
             <img src="assets/img/add-contacts/join-logo.svg" />
-            @switch (overlayState.AddOrEditState) { @case
-            ("addContact") {
-            <h2>Add contact</h2>
-            <span>Task are better with a team!
-              <div class="blue-line"></div>
-            </span>
-            } @case ("editContact") {
-            <h2>Edit contact</h2>
-            } }
+            @switch (overlayState.AddOrEditState) { 
+              @case ("addContact") {
+                <h2>Add contact</h2>
+                <span>Task are better with a team!
+                  <div class="blue-line"></div>
+                </span> }
+              @case ("editContact") {
+                <h2>Edit contact</h2>
+                } }
           </div>
         </div>
         <div class="user-data">
@@ -34,16 +34,37 @@
             <form class="contact-form" #contactForm="ngForm">
               @switch (overlayState.AddOrEditState) {
                 @case ('addContact') {
-                  <input [(ngModel)]="newContact.fullName" class="user" type="text" placeholder="Name" name="name" required pattern="[A-Za-zÄÖÜäöüß\s\-']{2,}" id="name" #name="ngModel" [class.invalid]=" name.invalid && name.dirty " />
-                  <input [(ngModel)]="newContact.email" class="mail" type="email" placeholder="Email" name="email" required pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" id="mail" #mail="ngModel" [class.invalid]=" mail.invalid && mail.dirty " />
-                  <input [(ngModel)]="newContact.phone" class="phone" type="tel" placeholder="Phone" name="phone" required pattern="^\+?[0-9\s]{6,25}$" id="phone" #phone="ngModel" [class.invalid]=" phone.invalid && phone.dirty " />
-                    
-                } @case ('editContact') {
-                  @if (overlayState.selectedUser) {
-                  <input [(ngModel)]="overlayState.fullNameForEdit" class="user" type="text" placeholder="Name" name="name" required pattern="[A-Za-zÄÖÜäöüß\s\-']{2,}" id="name" #name="ngModel" [class.invalid]=" name.invalid && name.dirty " />
-                  <input [(ngModel)]="overlayState.selectedUser.email" class="mail" type="email" placeholder="Email" name="email" required pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" id="mail" #mail="ngModel" [class.invalid]=" mail.invalid && mail.dirty " />
-                  <input [(ngModel)]="overlayState.selectedUser.phone" class="phone" type="tel" placeholder="Phone" name="phone" required pattern="^\+?[0-9\s]{6,25}$" id="phone" #phone="ngModel" [class.invalid]=" phone.invalid && phone.dirty " />
+                  <input [(ngModel)]="newContact.fullName" class="user" type="text" placeholder="Name" name="name" required pattern="^([A-ZÄÖÜ][a-zäöüß'’\-]+)(?:\s+[A-ZÄÖÜ][a-zäöüß'’\-]+)?$" id="name" #name="ngModel" [class.invalid]=" name.invalid && name.dirty " />
+                  @if (name.invalid && name.dirty) {
+                    <div class="invalid-input">Invalid Username</div>
+                  }
 
+                  <input [(ngModel)]="newContact.email" class="mail" type="email" placeholder="Email" name="email" required pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" id="mail" #mail="ngModel" [class.invalid]=" mail.invalid && mail.dirty " />
+                  @if (mail.invalid && mail.dirty) {
+                    <div class="invalid-input">Invalid Email</div>
+                  }
+
+                  <input [(ngModel)]="newContact.phone" class="phone" type="tel" placeholder="Phone" name="phone" required pattern="^\+?[0-9\s]{6,25}$" id="phone" #phone="ngModel" [class.invalid]=" phone.invalid && phone.dirty " />
+                  @if (phone.invalid && phone.dirty) {
+                    <div class="invalid-input">Invalid Number</div>
+                  }  
+
+                }@case ('editContact') {
+                  @if (overlayState.selectedUser) {
+                    <input [(ngModel)]="overlayState.fullNameForEdit" class="user" type="text" placeholder="Name" name="name" required pattern="^([A-ZÄÖÜ][a-zäöüß'’\-]+)(?:\s+[A-ZÄÖÜ][a-zäöüß'’\-]+)?$" id="name" #name="ngModel" [class.invalid]=" name.invalid && name.dirty " />
+                    @if (name.invalid && name.dirty) {
+                      <div class="invalid-input">Invalid Username</div>
+                    }
+
+                    <input [(ngModel)]="overlayState.selectedUser.email" class="mail" type="email" placeholder="Email" name="email" required pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" id="mail" #mail="ngModel" [class.invalid]=" mail.invalid && mail.dirty " />
+                    @if (mail.invalid && mail.dirty) {
+                      <div class="invalid-input">Invalid Email</div>
+                    }
+
+                    <input [(ngModel)]="overlayState.selectedUser.phone" class="phone" type="tel" placeholder="Phone" name="phone" required pattern="^\+?[0-9\s]{6,25}$" id="phone" #phone="ngModel" [class.invalid]=" phone.invalid && phone.dirty " />
+                    @if (phone.invalid && phone.dirty) {
+                      <div class="invalid-input">Invalid Number</div>
+                    }
                   }
                 }
               }
@@ -52,7 +73,7 @@
             <div class="cancel-create-contact">
               @switch (overlayState.AddOrEditState) {
               @case ("addContact") {
-              <button (click)="toggleOverlay()" class="cancel">
+              <button (click)="toggleOverlay();  resetNewContactInput();" class="cancel">
                 Cancel
                 <img src="assets/img/add-contacts/Vector.svg" />
               </button>
@@ -62,9 +83,9 @@
                 <img src="assets/img/add-contacts/check.svg" />
               </button>
               } @case ("editContact") {
-              <button class="cancel">Delete</button>
+              <button class="cancel" >Delete</button>
               <button class="create"
-                (click)="overlayState.updateContact(); resetNewContactInput(); toggleOverlay();">
+                (click)="overlayState.updateContact(); resetNewContactInput(); toggleOverlay();" [disabled]="!contactForm.valid">
                 Save
                 <img src="assets/img/add-contacts/check.svg" />
               </button>

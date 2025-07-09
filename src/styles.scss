@@ -96,6 +96,10 @@ footer {
     display: none;
 }
 
+button{
+    cursor: pointer;
+}
+
 @keyframes fade-in-left {
     0% {
         opacity: 0;
