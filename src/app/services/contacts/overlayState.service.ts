@@ -60,6 +60,7 @@ export class OverlayState implements OnDestroy{
       lastName: obj.lastName,
       email: obj.email,
       phone: obj.phone,
+      color: obj.color,
       initials: obj.initials
     }
   }

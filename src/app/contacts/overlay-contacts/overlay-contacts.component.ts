@@ -21,6 +21,7 @@ export class OverlayContactsComponent {
 		lastName: '',
 		email: '',
 		phone: '',
+		color: '',
 		initials: '',
 	};
 
@@ -37,6 +38,7 @@ export class OverlayContactsComponent {
 			lastName: '',
 			email: '',
 			phone: '',
+			color: '',
 			initials: '',
 		};
 	}

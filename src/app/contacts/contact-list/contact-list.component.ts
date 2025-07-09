@@ -11,6 +11,7 @@ import { OverlayState } from '../../services/contacts/overlayState.service';
 export class ContactListComponent {
   prevLetter?: string;
   contactData: ContactList[] = [];
+  
 
 /*   activeProfileIndex: number | null = null; //safes index if active or null if no profile is active. start value is null no active profile
  */
@@ -18,7 +19,6 @@ export class ContactListComponent {
     this.contactData = this.overlayState.contactList; // contactData is now being defined from overlayState.services.ts
     this.overlayState.sortContacts();
     console.log(this.contactData);
-    
   }
 
   toggleSelectedProfile(activeUser: number) {
@@ -27,6 +27,13 @@ export class ContactListComponent {
 
   toggleOverlay() {
     this.overlayState.toggleOverlay();
+  }
+
+  getRandomColor(){
+    const r:number = Math.floor(Math.random()*256);
+    const g:number = Math.floor(Math.random()*256);
+    const b:number = Math.floor(Math.random()*256);
+    return `rgb(${r}, ${g}, ${b})`;
   }
 
 }
