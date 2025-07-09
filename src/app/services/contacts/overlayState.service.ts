@@ -124,6 +124,6 @@ if (newIndex !== this.activeProfileIndex) { // if no change in position keep sel
     if (!contactId) return;
     await deleteDoc(doc(this.firestore, 'contacts', contactId))
     this.sortContacts();
-  }
+  }//new deleteFunction
   //#endregion
 }
