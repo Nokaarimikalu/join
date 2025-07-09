@@ -52,36 +52,46 @@
               @switch (overlayState.AddOrEditState) {
                 @case ('addContact') {
                   <input [(ngModel)]="contactList.firstName" class="user" type="text" placeholder="Name" name="name" required pattern="^([A-ZÄÖÜ][a-zäöüß'-]+)(\s[A-ZÄÖÜ][a-zäöüß'-]+)*$"  id="name" #name="ngModel" [class.invalid]=" name.invalid && name.dirty " />
-                  @if (name.invalid && name.dirty) {
-                    <div class="invalid-input">Invalid Username</div>
-                  }
-
+                  <div class="invalid-input">
+                      @if (name.invalid && name.dirty) {
+                        <div>Invalid Username</div>
+                      }
+                  </div>
                   <input [(ngModel)]="contactList.email" class="mail" type="email" placeholder="Email" name="email" required pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" id="mail" #mail="ngModel" [class.invalid]=" mail.invalid && mail.dirty " />
-                  @if (mail.invalid && mail.dirty) {
-                    <div class="invalid-input">Invalid Email</div>
-                  }
+                  <div class="invalid-input">
+                      @if (name.invalid && name.dirty) {
+                        <div>Invalid Username</div>
+                      }
+                  </div>
 
-                  <input [(ngModel)]="contactList.phone" class="phone" type="tel" placeholder="Phone" name="phone" required pattern="^\+?[0-9\s]{6,25}$" id="phone" #phone="ngModel" [class.invalid]=" phone.invalid && phone.dirty " />
-                  @if (phone.invalid && phone.dirty) {
-                    <div class="invalid-input">Invalid Number</div>
-                  }  
-
-                }@case ('editContact') {
+                  <input [(ngModel)]="contactList.phone" class="phone" type="tel" placeholder="Phone" name="phone" required pattern="^\+?[0-9\s]{6,16}$" id="phone" #phone="ngModel" [class.invalid]=" phone.invalid && phone.dirty " />
+                  <div class="invalid-input">
+                      @if (phone.invalid && phone.dirty) {
+                        <div>Invalid Username</div>
+                      }
+                  </div>
+                  } @case ('editContact') {
                   @if (overlayState.selectedUser) {
                     <input [(ngModel)]="overlayState.fullNameForEdit" class="user" type="text" placeholder="Name" name="name" required pattern="^([A-ZÄÖÜ][a-zäöüß'-]+)(\s[A-ZÄÖÜ][a-zäöüß'-]+)*$" id="name" #name="ngModel" [class.invalid]=" name.invalid && name.dirty " />
-                    @if (name.invalid && name.dirty) {
-                      <div class="invalid-input">Invalid Username</div>
-                    }
+                    <div class="invalid-input">
+                      @if (name.invalid && name.dirty) {
+                        <div>Invalid Username</div>
+                      }
+                    </div>
 
                     <input [(ngModel)]="overlayState.selectedUser.email" class="mail" type="email" placeholder="Email" name="email" required pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" id="mail" #mail="ngModel" [class.invalid]=" mail.invalid && mail.dirty " />
-                    @if (mail.invalid && mail.dirty) {
-                      <div class="invalid-input">Invalid Email</div>
-                    }
+                    <div class="invalid-input">
+                      @if (mail.invalid && mail.dirty) {
+                        <div>Invalid Username</div>
+                      }
+                    </div>
 
-                    <input [(ngModel)]="overlayState.selectedUser.phone" class="phone" type="tel" placeholder="Phone" name="phone" required pattern="^(?:\+|0)[0-9\s]{5,24}$" id="phone" #phone="ngModel" [class.invalid]=" phone.invalid && phone.dirty " />
-                    @if (phone.invalid && phone.dirty) {
-                      <div class="invalid-input">Invalid Number</div>
-                    }
+                    <input [(ngModel)]="overlayState.selectedUser.phone" class="phone" type="tel" placeholder="Phone" name="phone" required pattern="^\+?[0-9\s]{6,16}$" id="phone" #phone="ngModel" [class.invalid]=" phone.invalid && phone.dirty " />
+                    <div class="invalid-input">
+                      @if (phone.invalid && phone.dirty) {
+                        <div>Invalid Username</div>
+                      }
+                    </div>
                   }
                 }
               }

@@ -18,7 +18,6 @@ export class ContactListComponent {
   constructor(public overlayState: OverlayState) {
     this.contactData = this.overlayState.contactList; // contactData is now being defined from overlayState.services.ts
     this.overlayState.sortContacts();
-    console.log(this.contactData);
   }
 
   toggleSelectedProfile(activeUser: number) {
