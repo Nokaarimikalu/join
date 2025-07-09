@@ -13,9 +13,9 @@ export class OverlayState {
 
   AddOrEditState: string = 'addContact';
 
-  fullNameForEdit: string = '';
+  fullNameForEdit: string = ''; // join 
 
-  selectedUser: ContactList | null = null;
+  selectedUser: ContactList | null = null; //clicked user 
 
   activeProfileIndex: number | null = null; //safes index if active or null if no profile is active. start value is null no active profile
 
@@ -79,7 +79,7 @@ export class OverlayState {
   toggleSelectedProfile(activeUser: number) {
     const isSameUser = this.activeProfileIndex === activeUser;
     this.activeProfileIndex = isSameUser ? null : activeUser;
-    this.selectedUser = isSameUser ? null : this.contactList[activeUser];
+    this.selectedUser = isSameUser ? null : this.contactList[activeUser]; // sets profile null to deselect if sam eprofil is clicked 
     this.inputActive = isSameUser ? false : true;
     this.fullNameForEdit = this.selectedUser ? `${this.contactList[activeUser].firstName} ${this.contactList[activeUser].lastName}` : '';
   }
@@ -103,9 +103,9 @@ export class OverlayState {
       this.sortContacts();
       const newIndex = this.contactList.findIndex(contact => contact.id === this.selectedUser?.id);
 
-if (newIndex !== this.activeProfileIndex) { // if no change in position keep selection (or it will deselecct because of this.tsp() logic)
-  this.toggleSelectedProfile(newIndex);
-}
+      if (newIndex !== this.activeProfileIndex) { // if no change in position keep selection (or it will deselecct because of this.tsp() logic)
+        this.toggleSelectedProfile(newIndex);
+      }
     } catch (error) {
       console.error('Error updating document: ', error);
     }
