@@ -4,15 +4,15 @@ import { FormsModule } from '@angular/forms';
 import { ContactList } from "../../shared/interface/contact-list.interface";
 
 @Component({
-	selector: 'app-overlay-contacts',
-	imports: [FormsModule],
-	templateUrl: './overlay-contacts.component.html',
-	styleUrl: './overlay-contacts.component.scss',
+    selector: 'app-overlay-contacts',
+    imports: [FormsModule],
+    templateUrl: './overlay-contacts.component.html',
+    styleUrl: './overlay-contacts.component.scss',
 })
 export class OverlayContactsComponent {
-	splittedName?: string[]; // to safe split(' '), firstName & lastName; used in overlay-contacts.components
+    splittedName?: string[]; // to safe split(' '), firstName & lastName; used in overlay-contacts.components
 
-	editFullName?: string;
+    editFullName?: string;
 
 	contactList: ContactList = {
 		firstName: '',
@@ -23,7 +23,7 @@ export class OverlayContactsComponent {
 		initials: '',
 	};
 
-	constructor(public overlayState: OverlayState) { }
+    constructor(public overlayState: OverlayState) {}
 
 	toggleOverlay() {
 		this.overlayState.toggleOverlay();

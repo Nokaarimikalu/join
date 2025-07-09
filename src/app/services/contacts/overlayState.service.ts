@@ -21,9 +21,9 @@ export class OverlayState implements OnDestroy {
 
   AddOrEditState: string = 'addContact';
 
-  fullNameForEdit: string = '';
+  fullNameForEdit: string = ''; // join 
 
-  selectedUser: ContactList | null = null;
+  selectedUser: ContactList | null = null; //clicked user 
 
   activeProfileIndex: number | null = null; //safes index if active or null if no profile is active. start value is null no active profile
 
@@ -92,7 +92,7 @@ export class OverlayState implements OnDestroy {
   toggleSelectedProfile(activeUser: number) {
     const isSameUser = this.activeProfileIndex === activeUser;
     this.activeProfileIndex = isSameUser ? null : activeUser;
-    this.selectedUser = isSameUser ? null : this.contactList[activeUser];
+    this.selectedUser = isSameUser ? null : this.contactList[activeUser]; // sets profile null to deselect if sam eprofil is clicked 
     this.inputActive = isSameUser ? false : true;
     this.fullNameForEdit = this.selectedUser
       ? `${this.contactList[activeUser].firstName} ${this.contactList[activeUser].lastName}`

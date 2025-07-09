@@ -17,13 +17,15 @@
         (click)="toggleSelectedProfile($index)">
         <div class="initials" [style.background]= user.color>
           {{user.initials}}
+                </div>
+                <div class="user-details">
+                    <h3 class="user-name">
+                        {{ user.firstName }} {{ user.lastName }}
+                    </h3>
+                    <p class="user-mail">{{ user.email }}</p>
+                </div>
+            </div>
+            }
         </div>
-        <div class="user-details">
-          <h3 class="user-name">{{user.firstName}} {{user.lastName}}</h3>
-          <p class="user-mail">{{user.email}}</p>
-        </div>
-      </div>
-      }
     </div>
-  </div>
 </section>

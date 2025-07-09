@@ -1,12 +1,15 @@
-section {
+html {
     font-size: 10px;
+}
+
+section {
     display: flex;
     flex-direction: column;
     height: 100dvh;
     width: 15rem;
     background: #2a3647;
     z-index: 5;
-    padding: 4.8em 0;
+    padding: 3rem 0;
 
     @media (max-width: 965px) {
         display: none;
@@ -22,15 +25,13 @@ section {
             width: 100%;
             display: flex;
             justify-content: center;
-            margin-bottom: 11em;
 
             img {
-                height: 11.2em;
+                height: 7rem;
             }
         }
 
         nav {
-
             ul {
                 display: flex;
                 flex-direction: column;
@@ -43,10 +44,9 @@ section {
                     align-items: center;
                     font-size: 1rem;
                     font-weight: lighter;
-                    padding: 0.3em;
+                    padding: 0.5rem;
                     width: 100%;
-
-                    margin: 0.6em 0;
+                    margin: 0.4rem 0;
 
                     &:hover {
                         cursor: pointer;
@@ -54,8 +54,8 @@ section {
                     }
 
                     img {
-                        margin-right: 0.8em;
-                        margin-left: 3em;
+                        margin-right: 0.5rem;
+                        margin-left: 2.5rem;
                         opacity: 0.5;
                     }
                 }
@@ -81,16 +81,16 @@ section {
     footer {
         height: 50dvh;
         display: flex;
-        margin-left: 3.5em;
+        margin-left: 2.5rem;
         flex-direction: column;
         align-items: flex-start;
         justify-content: flex-end;
+        font-size: 1rem;
 
         a {
             color: white;
-            padding: 0.5em;
+            padding: 0.5rem;
             opacity: 0.5;
-            font-size: 1.6em;
 
             &:hover {
                 opacity: 1;

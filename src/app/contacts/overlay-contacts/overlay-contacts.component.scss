@@ -5,7 +5,7 @@
     left: 0;
     width: 100%;
     height: 100dvh;
-    background-color: rgba(0, 0, 0, 0.205);
+    background-color: rgba(0, 0, 0, 0.072);
     font-size: 10px;
     @media (max-width: 1250px) {
         font-size: 9px;
@@ -38,10 +38,12 @@
             transform: translate(-50%, -50%);
             width: 120em;
             height: 70dvh;
+
             @media (min-width: 750px) {
                 max-height: 70em;
             }
             animation: fade-in-left-overlay 0.5s ease-in-out;
+
             .mobile-image {
                 display: none;
                 position: absolute;
@@ -153,13 +155,9 @@
                                 border: rgba(0, 0, 0, 0.109) 2px solid;
                                 transition: border 0.2s ease;
                             }
-                            input:hover:required {
+                            input:focus {
                                 border: #29abe2 2px solid;
                                 outline: none;
-                            }
-                            .invalid {
-                                border: 2px solid red;
-                                background-color: #ffe6e6;
                             }
                             .user {
                                 background: url("./../../../../public/assets/img/add-contacts/person.svg");

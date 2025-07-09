@@ -46,18 +46,46 @@
             .arrow-back {
                 position: absolute;
                 display: none;
+                border: none;
+                background: white;
+                cursor: pointer;
+
+                @media (max-width: 965px) {
+                    left: 19.5em;
+                    display: block;
+                }
 
                 &:hover {
                     cursor: pointer;
                 }
 
                 @media (max-width: 750px) {
-                    left: 25em;
+                    left: 48em;
+                    display: block;
+                }
+
+                @media (max-width: 700px) {
+                    left: 40em;
+                    display: block;
+                }
+
+                @media (max-width: 595px) {
+                    left: 32em;
+                    display: block;
+                }
+
+                @media (max-width: 485px) {
+                    left: 24em;
+                    display: block;
+                }
+
+                @media (max-width: 380px) {
+                    left: 20em;
                     display: block;
                 }
 
                 @media (max-width: 330px) {
-                    left: 23em;
+                    left: 18em;
                 }
             }
 
@@ -153,7 +181,6 @@
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
-                    gap: 10px;
                     align-items: start;
 
                     h2 {
@@ -161,18 +188,21 @@
                         font-weight: 700;
                         margin-left: 0.4em;
 
-                        @media (max-width: 1130px) {
+                        @media (max-width: 1160px) {
                             font-size: 4em;
                         }
 
-                        @media (max-width: 1040px) {
+                        @media (max-width: 1060px) {
                             font-size: 3em;
+                        }
+
+                        @media (max-width: 345px) {
+                            font-size: 2.5em;
                         }
                     }
 
                     .edit-delete {
                         display: flex;
-                        height: 2.5em;
                         margin-left: 3.6em;
                         gap: 1em;
 
@@ -185,10 +215,10 @@
                             display: flex;
                             align-items: center;
                             font-size: 1.8em;
-                            width: 4em;
                             background-color: white;
                             border: none;
                             cursor: pointer;
+
                             transition: color 0.2s ease;
 
                             &:hover {
@@ -204,13 +234,12 @@
 
             //#region detail infos
             .contactinfos {
-                margin-top: 3em;
                 margin-left: 2.2em;
                 font-size: 2em;
                 margin-bottom: 1em;
 
                 @media (max-width: 1075px) {
-                    margin-left: 2em;
+                    margin-left: 1.3em;
                 }
             }
 
@@ -252,7 +281,7 @@
         .edit-mobilebtn {
             position: absolute;
             left: 55em;
-            top: 49em;
+            top: 51em;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -284,7 +313,31 @@
             }
 
             @media (max-width: 1040px) {
-                left: 27.5em;
+                left: 30em;
+            }
+
+            @media (max-width: 1005px) {
+                left: 28em;
+            }
+
+            @media (max-width: 750px) {
+                left: 64em;
+            }
+
+            @media (max-width: 700px) {
+                left: 53em;
+            }
+
+            @media (max-width: 595px) {
+                left: 42.5em;
+            }
+
+            @media (max-width: 485px) {
+                left: 32em;
+            }
+
+            @media (max-width: 380px) {
+                left: 26em;
             }
 
             @media (max-width: 340px) {
@@ -304,6 +357,7 @@
                 border-radius: 20px;
                 border-bottom-right-radius: 0;
                 box-shadow: 6px 4px 10px rgba(0, 0, 0, 0.274);
+                padding: 1em 0.2em;
                 width: 120px;
                 z-index: 100;
                 animation: fade-in-left 0.5s ease-in-out;
@@ -311,8 +365,9 @@
 
             .dropdown-menu div {
                 display: flex;
+                justify-content: center;
                 align-items: center;
-                padding: 1.5em 2em 1.5em 2em;
+                padding: 1em 1em;
                 cursor: pointer;
             }
 
@@ -324,8 +379,6 @@
 
             .dropdown-menu div:hover {
                 background-color: #f0f0f0;
-                border-radius: 20px;
-                border-bottom-right-radius: 0;
             }
 
             .dropdown-menu img {
@@ -344,6 +397,18 @@
         }
 
         //#endregion
+    }
+}
+
+@keyframes fade-in-left {
+    0% {
+        opacity: 0;
+        transform: translateX(20em);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
     }
 }
 

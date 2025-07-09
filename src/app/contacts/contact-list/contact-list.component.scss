@@ -94,10 +94,6 @@ section {
         color: white;
         background: #2a3647;
         border-radius: 0.8em;
-
-        .initials {
-            border: solid 1px white;
-        }
     }
 
     .initials {
@@ -107,6 +103,8 @@ section {
         display: flex;
         justify-content: center;
         align-items: center;
+
+
         height: 42px;
         width: 42px;
         border-radius: 50px;
