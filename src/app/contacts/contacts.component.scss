@@ -29,8 +29,7 @@
 
 .info-screen-component {
     height: auto;
-
     @media (max-width:750px) {
-        display: none;
+        z-index: 2;
     }
 }
