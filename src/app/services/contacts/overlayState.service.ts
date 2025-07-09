@@ -3,10 +3,9 @@ import { Firestore, collection, onSnapshot, addDoc, updateDoc, doc, deleteDoc } 
 import { ContactList } from '../../shared/interface/contact-list.interface';
 
 @Injectable({
-    providedIn: 'root',
+  providedIn: 'root',
 })
 export class OverlayState {
-
   //#region attributes
   firestore: Firestore = inject(Firestore);
 
@@ -14,11 +13,9 @@ export class OverlayState {
 
   AddOrEditState: string = 'addContact';
 
+  fullNameForEdit: string = ''; // join 
 
-    isActive = false;
-
-    newContact?: ContactList;
-
+  selectedUser: ContactList | null = null; //clicked user 
 
   activeProfileIndex: number | null = null; //safes index if active or null if no profile is active. start value is null no active profile
 
@@ -82,7 +79,7 @@ export class OverlayState {
   toggleSelectedProfile(activeUser: number) {
     const isSameUser = this.activeProfileIndex === activeUser;
     this.activeProfileIndex = isSameUser ? null : activeUser;
-    this.selectedUser = isSameUser ? null : this.contactList[activeUser];
+    this.selectedUser = isSameUser ? null : this.contactList[activeUser]; // sets profile null to deselect if sam eprofil is clicked 
     this.inputActive = isSameUser ? false : true;
     this.fullNameForEdit = this.selectedUser ? `${this.contactList[activeUser].firstName} ${this.contactList[activeUser].lastName}` : '';
   }
@@ -106,14 +103,13 @@ export class OverlayState {
       this.sortContacts();
       const newIndex = this.contactList.findIndex(contact => contact.id === this.selectedUser?.id);
 
-if (newIndex !== this.activeProfileIndex) { // if no change in position keep selection (or it will deselecct because of this.tsp() logic)
-  this.toggleSelectedProfile(newIndex);
-}
+      if (newIndex !== this.activeProfileIndex) { // if no change in position keep selection (or it will deselecct because of this.tsp() logic)
+        this.toggleSelectedProfile(newIndex);
+      }
     } catch (error) {
       console.error('Error updating document: ', error);
-
     }
-
+  }
 
   editSplitFullName(fullName: string, target: ContactList) {
     const [firstName, ...lastParts] = fullName.split(' ');
@@ -122,19 +118,5 @@ if (newIndex !== this.activeProfileIndex) { // if no change in position keep sel
     target.initials = firstName.charAt(0).toUpperCase() + (lastParts[0]?.charAt(0).toUpperCase() || '');
   }
 
-
-    addContacts(contact: ContactList) {
-        this.contactData.push(contact);
-        console.log(contact);
-        this.sortContacts();
-    }
-
-    sortContacts() {
-        this.contactData.sort((a, b) => {
-            // sort rearranges the array elements based on the rules, in this case. alphabetic with firstname
-            return a.firstName.localeCompare(b.firstName); // localCompare is a string method, sorting strings in alphabetic order
-        });
-    }
-
-    //#endregion
+  //#endregion
 }
