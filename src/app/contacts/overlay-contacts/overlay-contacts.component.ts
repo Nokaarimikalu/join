@@ -29,7 +29,7 @@ export class OverlayContactsComponent {
 	toggleOverlay() {
 		this.overlayState.toggleOverlay();
 	}
-
+	
 	resetNewContactInput() {
 		this.newContact = {
 			fullName: '',
