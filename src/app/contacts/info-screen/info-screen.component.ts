@@ -10,7 +10,7 @@ import { OverlayState } from '../../services/contacts/overlayState.service';
 })
 export class InfoScreenComponent {
     isDropdownOpen: boolean = false;
-    isActive: boolean | undefined;
+    
 
     constructor(public overlayState: OverlayState) {}
 
@@ -24,15 +24,7 @@ export class InfoScreenComponent {
         this.isDropdownOpen = false;
     }
 
-
     toggleOverlay() {
-        this.isActive = !this.isActive;
-    }
-    isHiddenInfo = false;
-    isHiddenList = false;
-
-    close() {
-        this.isHiddenInfo = !this.isHiddenInfo;
-        this.isHiddenList = !this.isHiddenList;
+        this.overlayState.toggleOverlay();
     }
 }

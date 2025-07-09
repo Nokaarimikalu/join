@@ -1,7 +1,6 @@
-
 <div class="overlay hidden" (click)="toggleDropdown()"></div>
 <div class="header"></div>
-<div #infoToggle class="wrapper1" [class.hidden]="isHiddenInfo">
+<div class="wrapper1">
   <div class="nav"></div>
   <div class="list"></div>
 
@@ -10,13 +9,9 @@
       <div class="content">
         <div class="header-info">
           <h2 class="title">Contacts</h2>
-          <button (click)="close()" class="arrow-back">
-                        <img
-                            class="backbtn"
-                            src="assets/images/arrow-left-line.png"
-                            alt="back"
-                        />
-                    </button>
+          <div class="arrow-back">
+            <img class="backbtn" src="assets/img/info-screen/arrow-left-line.png" alt="back" />
+          </div>
           <div class="line"></div>
           <h4>Better with a Team</h4>
           <div class="line-mobile"></div>
@@ -66,8 +61,15 @@
             <div class="edit" (click)="toggleOverlay() + overlayState.AddOrEditState ='editContact'">
               <img src="assets/img/info-screen/edit.svg" alt="edit" />
               <p>Edit</p>
-
             </div>
-        </section>
-    </div>
+            <div class="delete">
+              <img src="assets/img/info-screen/delete.svg" alt="delete" />
+              <p>Delete</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    }
+  </div>
 </div>

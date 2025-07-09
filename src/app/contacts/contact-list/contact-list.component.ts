@@ -18,15 +18,15 @@ export class ContactListComponent {
         this.contactData = this.overlayState.contactList; // contactData is now being defined from overlayState.services.ts
         this.overlayState.sortContacts();
         console.log(this.contactData);
+
     }
 
-    isHiddenList: any;
-
     toggleSelectedProfile(activeUser: number) {
-        this.overlayState.toggleSelectedProfile(activeUser);
+        this.overlayState.toggleSelectedProfile(activeUser)
     }
 
     toggleOverlay() {
         this.overlayState.toggleOverlay();
     }
+
 }
