@@ -117,17 +117,22 @@ export class OverlayState implements OnDestroy {
         initials: this.selectedUser.initials,
       });
       this.sortContacts();
-      const newIndex = this.contactList.findIndex(
-        (contact) => contact.id === this.selectedUser?.id
-      );
-
-      if (newIndex !== this.activeProfileIndex) {
-        // if no change in position keep selection (or it will deselecct because of this.tsp() logic)
-        this.toggleSelectedProfile(newIndex);
-      }
+      this.setNewSelectedProfile();
     } catch (error) {
       console.error('Error updating document: ', error);
     }
+  }
+
+  setNewSelectedProfile() {
+    const newIndex = this.contactList.findIndex(
+      (contact) => contact.id === this.selectedUser?.id
+    );
+
+    if (newIndex !== this.activeProfileIndex) {
+      // if no change in position keep selection (or it will deselecct because of this.tsp() logic)
+      this.toggleSelectedProfile(newIndex);
+    }
+
   }
 
   editSplitFullName(fullName: string, target: ContactList) {
@@ -144,7 +149,7 @@ export class OverlayState implements OnDestroy {
     const contactId = this.contactList[this.activeProfileIndex]?.id;
     if (!contactId) return;
     await deleteDoc(doc(this.firestore, 'contacts', contactId));
-    this.selectedUser = null
+    this.selectedUser = null;
     this.sortContacts();
   }
 
