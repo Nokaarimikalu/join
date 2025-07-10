@@ -186,7 +186,7 @@ section {
     background-color: rgb(random(256), random(256), random(256));
 
     @media (max-width: 380px) {
-      margin-right: 5%;
+      margin-right: 1%;
     }
   }
 
@@ -197,7 +197,6 @@ section {
 
   .user-mail {
     font-size: 1.8em;
-
     color: #007cee;
   }
 }
