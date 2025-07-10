@@ -1,80 +1,119 @@
-html {
-    font-size: 10px;
-}
-
 section {
+    font-size: 10px;
     height: 8dvh;
-    box-shadow: 0 0.4rem 0.4rem -0.2rem rgba($color: #000000, $alpha: 0.2);
+    box-shadow: 0 0.6em 0.6em -0.2em rgba($color: #000000, $alpha: 0.2);
+
 
     header {
         width: 100%;
         max-width: (1920px - 230px);
         height: 100%;
-        padding: 0rem 5rem;
+        padding: 0em 5em;
         display: flex;
         align-items: center;
         justify-content: space-between;
 
         .kanban {
-            font-size: 1rem;
+            font-size: 1.8em;
+            padding-left: 2em;
+
+            &::after {
+                content: "Kanban Project Management Tool";
+            }
+
+            @media (max-width:750px) {
+                padding-left: 0;
+
+                &::after {
+                    background-image: url('./../../../../public/assets/img/header/Logo.png');
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    display: inline-block;
+                    height: 6dvh;
+                    width: 4em;
+                    content: "";
+                }
+            }
         }
 
         .menu {
-            padding-right: 3rem;
             display: flex;
             align-items: center;
 
             .help {
-                background: url("./../../../../public/assets/img/header/help-hover.png");
+                background: url('./../../../../public/assets/img/header/help-hover.png');
                 background-size: contain;
                 background-repeat: no-repeat;
-                height: 1.5rem;
-                width: 2rem;
-                margin-right: 0.5rem;
+                height: 2.7em;
+                width: 3.6em;
+                margin-right: 0.9em;
 
                 &:hover {
-                    background: url("./../../../../public/assets/img/header/help.png");
+                    background: url('./../../../../public/assets/img/header/help.png');
                     background-size: contain;
                     background-repeat: no-repeat;
                     cursor: pointer;
                 }
+
+                @media (max-width:750px) {
+                    display: none;
+                }
             }
 
             span {
-                font-size: 1rem;
-                padding: 0.8rem 0.6rem;
-                color: #29abe2;
+                height: 49px;
+                width: 49px;
+                font-size: 1.6em;
+                padding: 0.8em 0.6em;
+                color: #29ABE2;
                 font-weight: bold;
-                border: solid black 0.15rem;
+                border: solid black 0.15em;
                 border-radius: 50%;
 
                 &:hover {
-                    background: rgba($color: #0c2e62, $alpha: 0.12);
+                    background: rgba($color: #0C2E62, $alpha: 0.12);
                     cursor: pointer;
                 }
             }
         }
+
+        @media (max-width:750px) {
+            padding: 1em;
+        }
     }
 
     #drop-down {
-        background: #2a3647;
+        background: #2A3647;
         z-index: 15;
         position: absolute;
-        right: 2rem;
+        right: 5em;
         top: 8dvh;
-        border-radius: 1.5rem;
+        border-radius: 2.4em;
         border-top-right-radius: 0;
-        padding: 0.5rem;
+        padding: 1em;
+        animation: fade-in-left 0.5s ease-in-out;
+
+        #help {
+            display: none;
+
+            @media (max-width:750px) {
+                display: block;
+            }
+        }
 
         p {
-            padding: 0.5rem;
-            font-size: 1rem;
-            color: rgba($color: #ffffff, $alpha: 0.4);
+            padding: 0.8em;
+            font-size: 1.6em;
+            color: rgba($color: #FFFFFF, $alpha: 0.4);
 
             &:hover {
-                background: #2a3d59;
+                background: #2A3D59;
                 cursor: pointer;
             }
+        }
+
+        @media (max-width:750px) {
+            right: 1em;
         }
     }
 }
@@ -90,6 +129,6 @@ section {
 }
 
 .active {
-    background: rgba($color: #0c2e62, $alpha: 0.12);
+    background: rgba($color: #0C2E62, $alpha: 0.12) !important;
     cursor: pointer;
 }
