@@ -1,130 +1,234 @@
 section {
-    font-size: 10px;
-    width: 400px;
-    overflow-y: auto;
-    overflow-x: hidden;
+  font-size: 10px;
+  width: 400px;
+  overflow-y: auto;
+  overflow-x: hidden;
 
-    .content {
-        height: auto;
-    }
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
 
-    .new-contact {
-        z-index: 1;
-        width: 100%;
-        height: 9em;
-        background-color: white;
-        position: sticky;
-        top: 0px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-    }
+  &::-webkit-scrollbar-button {
+    display: none;
+  }
 
-    .add-button {
-        gap: 1em;
-        cursor: pointer;
-        border: none;
-        border-radius: 10px;
-        font-size: 21px;
-        color: white;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 90%;
-        height: 56px;
-        background-color: #2a3647;
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+  }
 
-        &:hover {
-            background-color: #29abe2;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-        }
+  &::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+  }
 
-        img {
-            width: 32px;
-            height: 32px;
-        }
-    }
-}
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
 
-.user-profiles-container {
-    height: 100%;
+
+  @media (max-width: 750px) {
+    width: 100%;
+  }
+
+  .content {
+    height: auto;
+  }
+
+  .new-contact {
+    z-index: 1;
+    width: 100%;
+    height: 9em;
+    background-color: white;
+    position: sticky;
+    top: 0px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 
-    .letter-heading-underline {
-        width: 90%;
-        border-bottom: 1.5px solid rgb(207, 207, 207);
-        margin-bottom: 0.7em;
+    @media (max-width: 750px) {
+      display: none;
     }
+  }
+
+  .new-contact-mobile {
+    display: none;
+    z-index: 1;
+    width: 56px;
+    height: 56px;
+    position: fixed;
+    top: 83em;
+    right: 3em;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    @media (max-width: 750px) {
+      display: flex;
+    }
+  }
+
+  .add-button {
+    gap: 1em;
+    cursor: pointer;
+    border: none;
+    border-radius: 20px;
+    font-size: 21px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 56px;
+    background-color: #2a3647;
+
+    @media (max-width:750px) {
+      border-radius: 50px;
+      width: 100%;
+      box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.2);
+
+
+    }
+
+    &:hover {
+      background-color: #29abe2;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    img {
+      width: 32px;
+      height: 32px;
+    }
+  }
+}
+
+.user-profiles-container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .letter-heading-underline {
+    width: 90%;
+    border-bottom: 1.5px solid rgb(207, 207, 207);
+    margin-bottom: 0.7em;
+  }
+  @media (max-width: 750px) {
+    display: none;
+  }
 }
 
 .letter-heading-container {
-    width: 100%;
-    padding-left: 4em;
+  width: 100%;
+  padding-left: 4em;
+  @media (max-width:750px) {
+    padding-left: 1em;
+    width: 86%;
+  }
 
-    .letter-heading {
-        margin: 1em 0em;
-        font-weight: 500;
-        font-size: 2em;
-    }
+  .letter-heading {
+    margin: 1em 0em;
+    font-weight: 500;
+    font-size: 2em;
+  }
 }
 
 .user-profile {
-    cursor: pointer;
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    flex-wrap: nowrap;
-    width: 90%;
-    height: 78px;
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    padding-left: 1em;
-
-    &:hover {
-        background: linear-gradient(to bottom, #ededed30, #e7e7e7);
-        border-radius: 0.8em;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  flex-wrap: wrap;
+  width: 90%;
+  height: 78px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding-left: 1em;
+      @media (max-width: 380px ) {
+      width: 98%;
     }
 
-    &.active {
-        color: white;
-        background: #2a3647;
-        border-radius: 0.8em;
-    }
+  &:hover {
+    background: linear-gradient(to bottom, #ededed30, #e7e7e7);
+    border-radius: 0.8em;
+  }
+
+  &.active {
+    color: white;
+    background: #2a3647;
+    border-radius: 0.8em;
 
     .initials {
-        font-size: 1.2em;
-        margin-right: 8%;
-        color: white;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-
-        height: 42px;
-        width: 42px;
-        border-radius: 50px;
-        background-color: rgb(random(256), random(256), random(256));
+      border: solid 1px white;
+      
     }
 
-    .user-name {
-        font-size: 2em;
-        font-weight: 400;
-    }
 
-    .user-mail {
-        font-size: 1.6em;
+  }
 
-        color: #007cee;
+  .initials {
+    font-size: 1.2em;
+    margin-right: 8%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 42px;
+    width: 42px;
+    border-radius: 50px;
+    background-color: rgb(random(256), random(256), random(256));
+          @media (max-width: 380px ) {
+    margin-right: 5%;
     }
+  }
+
+  .user-name {
+    font-size: 2em;
+    font-weight: 400;
+  }
+
+  .user-mail {
+    font-size: 1.6em;
+
+    color: #007cee;
+  }
+}
+
+.user-profiles-container-mobile{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .letter-heading-underline {
+    width: 90%;
+    border-bottom: 1.5px solid rgb(207, 207, 207);
+    margin-bottom: 0.7em;
+  }
+    @media (min-width: 750px) {
+    display: none;
+  }
+}
+
+
+@media (max-width: 750px) {
+  section {
+    font-size: 9px;
+  }
 }
 
 @media (max-width: 368px) {
-    section {
-        font-size: 9px;
-    }
+  section {
+    font-size: 9px;
+  }
+}
+@media (min-width: 750px){
+  .contactListSection{
+    display: block;
+  }
 }

@@ -51,7 +51,7 @@
             <form class="contact-form" #contactForm="ngForm">
               @switch (overlayState.AddOrEditState) {
                 @case ('addContact') {
-                  <input [(ngModel)]="contactList.firstName" class="user" type="text" placeholder="Name" name="name" required pattern="^([A-ZÄÖÜ][a-zäöüß'-]+)(\s[A-ZÄÖÜ][a-zäöüß'-]+)*$"  id="name" #name="ngModel" [class.invalid]=" name.invalid && name.dirty " />
+                  <input [(ngModel)]="contactList.firstName" class="user" type="text" placeholder="Name" name="name" required pattern="^[a-zA-ZäöüÄÖÜß]+( [a-zA-ZäöüÄÖÜß]+)?$"  id="name" #name="ngModel" [class.invalid]=" name.invalid && name.dirty " />
                   <div class="invalid-input">
                       @if (name.invalid && name.dirty) {
                         <div>Invalid Username</div>
@@ -72,7 +72,7 @@
                   </div>
                   } @case ('editContact') {
                   @if (overlayState.selectedUser) {
-                    <input [(ngModel)]="overlayState.fullNameForEdit" class="user" type="text" placeholder="Name" name="name" required pattern="^([A-ZÄÖÜ][a-zäöüß'-]+)(\s[A-ZÄÖÜ][a-zäöüß'-]+)*$" id="name" #name="ngModel" [class.invalid]=" name.invalid && name.dirty " />
+                    <input [(ngModel)]="overlayState.fullNameForEdit" class="user" type="text" placeholder="Name" name="name" required pattern="^[a-zA-ZäöüÄÖÜß]+( [a-zA-ZäöüÄÖÜß]+)?$" id="name" #name="ngModel" [class.invalid]=" name.invalid && name.dirty " />
                     <div class="invalid-input">
                       @if (name.invalid && name.dirty) {
                         <div>Invalid Username</div>

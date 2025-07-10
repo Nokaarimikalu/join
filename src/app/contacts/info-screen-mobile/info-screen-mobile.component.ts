@@ -3,14 +3,14 @@ import { Component } from '@angular/core';
 import { OverlayState } from '../../services/contacts/overlayState.service';
 
 @Component({
-    selector: 'app-info-screen',
+    selector: 'app-info-screen-mobile',
     imports: [NgIf],
-    templateUrl: './info-screen.component.html',
-    styleUrl: './info-screen.component.scss',
+    templateUrl: './info-screen-mobile.component.html',
+    styleUrl: './info-screen-mobile.component.scss',
 })
-export class InfoScreenComponent {
+export class InfoScreenMobileComponent {
     isDropdownOpen: boolean = false;
-    isActive: boolean | undefined;
+    
 
 
     constructor(public overlayState: OverlayState) {}
@@ -25,16 +25,7 @@ export class InfoScreenComponent {
         this.isDropdownOpen = false;
     }
 
-    
-
     toggleOverlay() {
-        this.isActive = !this.isActive;
-    }
-    isHiddenInfo = false;
-    isHiddenList = false;
-
-    close() {
-        this.isHiddenInfo = !this.isHiddenInfo;
-        this.isHiddenList = !this.isHiddenList;
+        this.overlayState.toggleOverlay();
     }
 }
