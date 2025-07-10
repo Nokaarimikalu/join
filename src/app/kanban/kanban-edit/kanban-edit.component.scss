@@ -1,0 +1,176 @@
+.dimmed-background {
+    z-index: 5;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100dvh;
+    background-color: rgba(0, 0, 0, 0.205);
+    font-size: 10px;
+    .overlay-kanban-edit {
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        z-index: 100;
+        border-radius: 25px;
+        overflow: hidden; //damit border-radius geht
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 52em;
+        height: 92dvh;
+        background-color: white;
+        animation: fade-in-left-overlay 0.5s ease-in-out;
+        .close-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: 4em;
+            right: 4em;
+            height: 3em;
+            width: 3em;
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.078);
+                border-radius: 50px;
+            }
+        }
+        .overlay-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            padding: 48px 40px 48px 40px;
+            width: 100%;
+            top: 3em;
+            .content-in-overlay {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                overflow-y: auto;
+                max-height: 65em;
+                .kanban-overlay-form {
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
+                    gap: 30px;
+                    .kanban-div {
+                        display: flex;
+                        flex-direction: column;
+                        min-height: 64px;
+                        input,
+                        textarea {
+                            min-height: 48px;
+                            border-radius: 15px;
+                            padding: 0.5em;
+                            font-size: 16px;
+                            resize: none;
+                            border: 2px solid rgba(0, 0, 0, 0.214);
+                            &:focus{
+                                border: 2px solid #29ABE2;
+                            }
+                        }
+                        textarea {
+                            height: 84px; 
+
+                        }
+                        span {
+                            color: rgba(0, 0, 0, 0.746);
+                            font-size: 18px;
+                            padding-bottom: 0.3em;
+                        }
+                    }
+                }
+                .kanban-edit-overlay-priority{
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
+                    p{
+                        color: #42526e;
+                        font-size: 16px;
+                        font-weight: 700;
+                        padding: 3em 0em 1em 0em;
+                    }
+                    .prioity-buttons{
+                        display: flex;
+                        justify-content: space-evenly;
+                        padding-bottom: 4em;
+
+                        button{
+                            display: flex;
+                            gap: 5px;
+                            background-color: transparent;
+                            border: solid rgba(0, 0, 0, 0.049) 2px;
+                            border-radius: 10px;
+                            font-size: 20px;
+                            padding: 10px 16px;
+                            transition: box-shadow 0.3s ease;
+                            &:hover{
+                                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                            }
+                        }
+                    }
+                }
+                .kanban-assigned-to{
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
+                    .assigned-span{
+                        font-size: 16px;
+                        padding-bottom: 0.4em;
+                    }
+                    .all-user-container{
+                        .select-to-assign{
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            border: 2px rgba(0, 0, 0, 0.346) solid;
+                            padding: 1em;
+                            border-radius: 10px;
+                            height: 48px;
+                            font-size: 16px;
+                            &:hover{
+                                border: 2px rgba(0, 0, 0, 0.694) solid;
+                            }
+                        }
+                    }
+                }
+                .kanban-overlay-subtask{
+                    width: 100%;
+                    padding-top: 3em;
+                    span{
+                        font-size: 16px;
+                        padding-bottom: 0.4em;
+                    }
+                    .subtaskfield{
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        padding: 1em;
+                        font-size: 16px;
+                        height: 48px;
+                        border: 2px solid rgba(0, 0, 0, 0.151);
+                        border-radius: 10px;
+                    }
+                }
+            }
+            .confirm-edit-button {
+                display: flex;
+                justify-content: flex-end;
+                padding-top: 2em;
+                button {
+                    display: flex;
+                    align-items: center;
+                    color: white;
+                    background-color: #2a3647;
+                    padding: 0.5em 0.8em;
+                    border-radius: 10px;
+                    font-weight: 700;
+                    font-size: 21px;
+                    gap: 4px;
+                    img {
+                        height: 12px;
+                    }
+                }
+            }
+        }
+    }
+}
