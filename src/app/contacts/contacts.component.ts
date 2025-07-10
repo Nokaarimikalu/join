@@ -4,13 +4,12 @@ import { OverlayContactsComponent } from './overlay-contacts/overlay-contacts.co
 import { NavFooterComponent } from '../shared/nav-footer/nav-footer.component';
 import { HeaderComponent } from '../shared/header/header.component';
 import { InfoScreenComponent } from './info-screen/info-screen.component';
-import { NavFooterMobileComponent } from "../shared/nav-footer-mobile/nav-footer-mobile.component";
 import { InfoScreenMobileComponent } from './info-screen-mobile/info-screen-mobile.component';
 
 
 @Component({
   selector: 'app-contacts',
-  imports: [ContactListComponent, HeaderComponent, InfoScreenComponent, NavFooterComponent, ContactListComponent, OverlayContactsComponent, NavFooterMobileComponent, InfoScreenMobileComponent],
+  imports: [ContactListComponent, HeaderComponent, InfoScreenComponent, NavFooterComponent, ContactListComponent, OverlayContactsComponent, InfoScreenMobileComponent],
   templateUrl: './contacts.component.html',
   styleUrl: './contacts.component.scss'
 })
