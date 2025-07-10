@@ -1,6 +1,11 @@
 .main-content {
     display: flex;
     height: 100dvh;
+    overflow-x: hidden;
+
+    @media (max-width:965px) {
+        height: 92dvh;
+    }
 }
 
 .main-content-input {
@@ -11,15 +16,39 @@
 
 .contact-list-content {
     display: flex;
-    height: auto;
     height: 90%;
 }
 
 .contact-list-component {
     display: flex;
     height: auto;
+
+    @media (max-width:750px) {
+        width: 100%;
+    }
+
+    @media (min-width: 750px) {
+        display: flex;
+    }
 }
+
+.hidden {
+    display: none;
+}
+
 .info-screen-component {
-    display: flex;
     height: auto;
+    width: 100%;
+
+    @media (max-width:750px) {
+        display: none;
+    }
+}
+
+.app-info-screen-mobile-component {
+    width: 100%;
+
+    @media (min-width: 750px) {
+        display: none;
+    }
 }

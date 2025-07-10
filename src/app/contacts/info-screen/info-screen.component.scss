@@ -1,8 +1,9 @@
 .wrapper1 {
-    display: flex;
+    width: 100%;
 
     section {
         font-size: 10px;
+        width: 100%;
 
         .content {
             display: flex;
@@ -18,6 +19,7 @@
             display: flex;
             align-items: center;
             flex: 1;
+            width: 100%;
 
             @media (max-width: 1300px) {
                 flex-direction: column;
@@ -46,14 +48,12 @@
             .arrow-back {
                 position: absolute;
                 display: none;
+                border: none;
+                background: white;
+                cursor: pointer;
 
-                @media (max-width: 750px) {
-                    left: 25em;
-                    display: block;
-                }
-
-                @media (max-width: 330px) {
-                    left: 23em;
+                &:hover {
+                    cursor: pointer;
                 }
             }
 
@@ -114,6 +114,7 @@
                     background: #ff7a00;
                     border: 0.3em solid white;
                     border-radius: 50%;
+                    box-shadow: 0px 0px 4px 1px rgba($color: #000000, $alpha: 0.2);
 
                     @media (max-width: 1130px) {
                         width: 9em;
@@ -124,7 +125,7 @@
                         margin-left: 2em;
                     }
 
-                    @media (max-width: 330px) {
+                    @media (max-width: 345px) {
                         width: 7em;
                         height: 7em;
                     }
@@ -144,11 +145,10 @@
                 }
 
                 .name-user {
-                    height: 30em;
+                    height: 16em;
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
-                    gap: 10px;
                     align-items: start;
 
                     h2 {
@@ -156,18 +156,21 @@
                         font-weight: 700;
                         margin-left: 0.4em;
 
-                        @media (max-width: 1130px) {
+                        @media (max-width: 1160px) {
                             font-size: 4em;
                         }
 
-                        @media (max-width: 1040px) {
+                        @media (max-width: 1060px) {
                             font-size: 3em;
+                        }
+
+                        @media (max-width: 345px) {
+                            font-size: 2.5em;
                         }
                     }
 
                     .edit-delete {
                         display: flex;
-                        height: 2.5em;
                         margin-left: 3.6em;
                         gap: 1em;
 
@@ -180,10 +183,10 @@
                             display: flex;
                             align-items: center;
                             font-size: 1.8em;
-                            width: 4em;
                             background-color: white;
                             border: none;
                             cursor: pointer;
+
                             transition: color 0.2s ease;
 
                             &:hover {
@@ -199,13 +202,12 @@
 
             //#region detail infos
             .contactinfos {
-                margin-top: 3em;
                 margin-left: 2.2em;
                 font-size: 2em;
                 margin-bottom: 1em;
 
                 @media (max-width: 1075px) {
-                    margin-left: 2em;
+                    margin-left: 1.3em;
                 }
             }
 
@@ -246,8 +248,7 @@
         //#region mobile edit Button
         .edit-mobilebtn {
             position: absolute;
-            left: 55em;
-            top: 49em;
+            top: 51em;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -263,27 +264,7 @@
             }
 
             @media (max-width: 1260px) {
-                left: 48em;
-            }
-
-            @media (max-width: 1190px) {
-                left: 43em;
-            }
-
-            @media (max-width: 1150px) {
-                left: 38em;
-            }
-
-            @media (max-width: 1090px) {
-                left: 32.5em;
-            }
-
-            @media (max-width: 1040px) {
-                left: 27.5em;
-            }
-
-            @media (max-width: 340px) {
-                left: 25em;
+                right: 5em;
             }
 
             //#endregion
@@ -299,6 +280,7 @@
                 border-radius: 20px;
                 border-bottom-right-radius: 0;
                 box-shadow: 6px 4px 10px rgba(0, 0, 0, 0.274);
+                padding: 1em 0.2em;
                 width: 120px;
                 z-index: 100;
                 animation: fade-in-left 0.5s ease-in-out;
@@ -306,8 +288,9 @@
 
             .dropdown-menu div {
                 display: flex;
+                justify-content: center;
                 align-items: center;
-                padding: 1.5em 2em 1.5em 2em;
+                padding: 1em 1em;
                 cursor: pointer;
             }
 
@@ -319,8 +302,6 @@
 
             .dropdown-menu div:hover {
                 background-color: #f0f0f0;
-                border-radius: 20px;
-                border-bottom-right-radius: 0;
             }
 
             .dropdown-menu img {
@@ -332,13 +313,21 @@
             p {
                 font-size: 1.5em;
             }
-
-            .hidden {
-                display: none;
-            }
         }
 
         //#endregion
+    }
+}
+
+@keyframes fade-in-left {
+    0% {
+        opacity: 0;
+        transform: translateX(20em);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
     }
 }
 
@@ -348,6 +337,6 @@
     left: 0;
     width: 100%;
     height: 100dvh;
-    z-index: 4;
+    z-index: 99;
     background: rgba($color: #000000, $alpha: 0);
 }

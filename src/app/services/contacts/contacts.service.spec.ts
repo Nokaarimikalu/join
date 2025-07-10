@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { OverlayState } from './overlayState.service';
 
-describe('ContactsService', () => {
+describe('overlayState', () => {
   let service: OverlayState;
 
   beforeEach(() => {

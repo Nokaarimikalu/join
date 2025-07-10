@@ -8,6 +8,7 @@ section {
 
     header {
         width: 100%;
+        max-width: (1920px - 230px);
         height: 100%;
         padding: 0rem 5rem;
         display: flex;
@@ -24,7 +25,7 @@ section {
             align-items: center;
 
             .help {
-                background: url("./../../../../public/assets/images/header/help-hover.png");
+                background: url("./../../../../public/assets/img/header/help-hover.png");
                 background-size: contain;
                 background-repeat: no-repeat;
                 height: 1.5rem;
@@ -32,7 +33,7 @@ section {
                 margin-right: 0.5rem;
 
                 &:hover {
-                    background: url("./../../../../public/assets/images/header/help.png");
+                    background: url("./../../../../public/assets/img/header/help.png");
                     background-size: contain;
                     background-repeat: no-repeat;
                     cursor: pointer;
