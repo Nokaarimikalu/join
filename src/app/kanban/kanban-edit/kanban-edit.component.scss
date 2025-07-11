@@ -7,6 +7,7 @@
     height: 100dvh;
     background-color: rgba(0, 0, 0, 0.205);
     font-size: 10px;
+
     .overlay-kanban-edit {
         display: flex;
         justify-content: center;
@@ -21,6 +22,7 @@
         height: 92dvh;
         background-color: white;
         animation: fade-in-left-overlay 0.5s ease-in-out;
+
         .close-button {
             display: flex;
             align-items: center;
@@ -30,6 +32,7 @@
             right: 4em;
             height: 3em;
             width: 3em;
+
             &:hover {
                 background-color: rgba(0, 0, 0, 0.078);
                 border-radius: 50px;
@@ -48,21 +51,25 @@
             padding: 48px 40px 48px 40px;
             width: 100%;
             top: 3em;
+
             .content-in-overlay {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 overflow-y: auto;
                 max-height: 65em;
+
                 .kanban-overlay-form {
                     display: flex;
                     flex-direction: column;
                     width: 100%;
                     gap: 30px;
+
                     .kanban-div {
                         display: flex;
                         flex-direction: column;
                         min-height: 64px;
+
                         input,
                         textarea {
                             min-height: 48px;
@@ -71,14 +78,17 @@
                             font-size: 16px;
                             resize: none;
                             border: 2px solid rgba(0, 0, 0, 0.214);
-                            &:focus{
+
+                            &:focus {
                                 border: 2px solid #29ABE2;
                             }
                         }
+
                         textarea {
-                            height: 84px; 
+                            height: 84px;
 
                         }
+
                         span {
                             color: rgba(0, 0, 0, 0.746);
                             font-size: 18px;
@@ -86,22 +96,25 @@
                         }
                     }
                 }
-                .kanban-edit-overlay-priority{
+
+                .kanban-edit-overlay-priority {
                     display: flex;
                     flex-direction: column;
                     width: 100%;
-                    p{
+
+                    p {
                         color: #42526e;
                         font-size: 16px;
                         font-weight: 700;
                         padding: 3em 0em 1em 0em;
                     }
-                    .prioity-buttons{
+
+                    .prioity-buttons {
                         display: flex;
                         justify-content: space-evenly;
                         padding-bottom: 4em;
 
-                        button{
+                        button {
                             display: flex;
                             gap: 5px;
                             background-color: transparent;
@@ -110,22 +123,26 @@
                             font-size: 20px;
                             padding: 10px 16px;
                             transition: box-shadow 0.3s ease;
-                            &:hover{
+
+                            &:hover {
                                 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
                             }
                         }
                     }
                 }
-                .kanban-assigned-to{
+
+                .kanban-assigned-to {
                     display: flex;
                     flex-direction: column;
                     width: 100%;
-                    .assigned-span{
+
+                    .assigned-span {
                         font-size: 16px;
                         padding-bottom: 0.4em;
                     }
-                    .all-user-container{
-                        .select-to-assign{
+
+                    .all-user-container {
+                        .select-to-assign {
                             display: flex;
                             align-items: center;
                             justify-content: space-between;
@@ -135,20 +152,24 @@
                             border-radius: 10px;
                             height: 48px;
                             font-size: 16px;
-                            &:hover{
+
+                            &:hover {
                                 border: 2px rgba(0, 0, 0, 0.694) solid;
                             }
                         }
                     }
                 }
-                .kanban-overlay-subtask{
+
+                .kanban-overlay-subtask {
                     width: 100%;
                     padding-top: 3em;
-                    span{
+
+                    span {
                         font-size: 16px;
                         padding-bottom: 0.4em;
                     }
-                    .subtaskfield{
+
+                    .subtaskfield {
                         display: flex;
                         align-items: center;
                         justify-content: space-between;
@@ -160,10 +181,12 @@
                     }
                 }
             }
+
             .confirm-edit-button {
                 display: flex;
                 justify-content: flex-end;
                 padding-top: 2em;
+
                 button {
                     display: flex;
                     align-items: center;
@@ -174,6 +197,7 @@
                     font-weight: 700;
                     font-size: 21px;
                     gap: 4px;
+
                     img {
                         height: 12px;
                     }

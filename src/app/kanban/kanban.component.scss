@@ -1,0 +1,88 @@
+.main-content {
+    display: flex;
+    height: 100dvh;
+    overflow-x: hidden;
+
+    @media (max-width:965px) {
+        height: 92dvh;
+    }
+}
+
+.main-content-input {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.contact-list-content {
+    display: flex;
+    height: 90%;
+}
+
+.contact-list-component {
+    display: flex;
+    height: auto;
+
+    @media (max-width:750px) {
+        width: 100%;
+    }
+
+    @media (min-width: 750px) {
+        display: flex;
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+.info-screen-component {
+    height: auto;
+    width: 100%;
+
+    @media (max-width:750px) {
+        display: none;
+    }
+}
+
+.app-info-screen-mobile-component {
+    width: 100%;
+
+    @media (min-width: 750px) {
+        display: none;
+    }
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    appearance: textfield;
+}
+
+.createdContact {
+    z-index: 4;
+    width: 15em;
+    height: 4em;
+    position: fixed;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    border-radius: 14px;
+    border: 1px solid black;
+    background-color: #2a3647;
+    color: white;
+    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.15);
+    animation: fade-in-left-overlay-viewport 2s ease-in-out;
+}
+
+.display {
+    display: flex;
+}
