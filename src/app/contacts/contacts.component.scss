@@ -1,4 +1,3 @@
-
 .main-content {
     display: flex;
     height: 100dvh;
@@ -80,9 +79,8 @@ input[type="number"] {
     border: 1px solid black;
     background-color: #2a3647;
     color: white;
-    transition: 0.2s ease-in-out;
     box-shadow: 0 4px 0 rgba(0, 0, 0, 0.15);
-    animation: fade-in-left-overlay-viewport 0.5s ease-in-out;
+    animation: fade-in-left-overlay-viewport 2s ease-in-out;
 }
 
 .display {

@@ -189,7 +189,7 @@ async addContacts(contact: ContactList) {
         overlayRef?.classList.add('display');
     setTimeout(() => {
         overlayRef?.classList.remove('display');
-    }, 2000);    
+    }, 1900);    
   }
   //#endregion
 }

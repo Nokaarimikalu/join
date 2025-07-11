@@ -104,14 +104,34 @@ button {
 }
 
 @keyframes fade-in-left-overlay-viewport {
-    from {
+    0% {
         opacity: 0;
         transform: translate(-50%, -50%) translateX(500px);
     }
 
-    to {
+    20% {
         opacity: 1;
         transform: translate(-50%, -50%) translateX(0);
+    }
+
+    40% {
+        opacity: 1;
+        transform: translate(-50%, -50%) translateX(0);
+    }
+
+    60% {
+        opacity: 1;
+        transform: translate(-50%, -50%) translateX(0);
+    }
+
+    80% {
+        opacity: 1;
+        transform: translate(-50%, -50%) translateX(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) translateX(500px);
     }
 }
 
