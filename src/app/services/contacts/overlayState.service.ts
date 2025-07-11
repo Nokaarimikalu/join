@@ -183,5 +183,13 @@ async addContacts(contact: ContactList) {
     const contactListRef = document.querySelector('.contact-list-component');
     contactListRef?.classList.remove('hidden')
   }
+
+  contactConfirmation(){
+        const overlayRef = document.querySelector('.createdContact');
+        overlayRef?.classList.add('display');
+    setTimeout(() => {
+        overlayRef?.classList.remove('display');
+    }, 2000);    
+  }
   //#endregion
 }
