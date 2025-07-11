@@ -52,7 +52,7 @@
               @switch (overlayState.AddOrEditState) {
               @case ('addContact') {
               <input [(ngModel)]="contactList.firstName" class="user" type="text" placeholder="Name" name="name"
-                required pattern="^[a-zA-ZäöüÄÖÜß]+( [a-zA-ZäöüÄÖÜß]+)?$" id="name" #name="ngModel"
+                required pattern="^[a-zA-ZäöüÄÖÜß]+ [a-zA-ZäöüÄÖÜß]+$" id="name" #name="ngModel"
                 [class.invalid]=" name.invalid && name.dirty " />
               <div class="invalid-input">
                 @if (name.invalid && name.dirty) {
