@@ -1,7 +1,88 @@
 <div class="main-content">
-  <div class="nav-area"><app-nav-footer></app-nav-footer></div>
-  <div class="main-content-input">
-    <app-header></app-header>
-  </div>
+    <div class="nav-area"><app-nav-footer></app-nav-footer></div>
+    <div class="main-content-input">
+        <app-header></app-header>
+        <section>
+            <div class="content">
+                <form class="kanban-overlay-form">
+                    <h1>Add Task</h1>
+                    <div class="form-title div-cont">
+                        <span>Title</span>
+                        <input placeholder="Enter a title" type="text" />
+                    </div>
+                    <div class="form-description div-cont">
+                        <span>Description</span>
+                        <textarea
+                            placeholder="Enter a Description "
+                            name=""
+                            id=""
+                        ></textarea>
+                    </div>
+                    <div class="form-date div-cont">
+                        <span>Due date</span>
+                        <input type="date" />
+                    </div>
+                </form>
+                <div class="line"></div>
+                <div class="kanban-addtask-priority">
+                    <p>Priority</p>
+                    <div class="priority-buttons">
+                        <button>
+                            <span>Urgent</span>
+                            <img
+                                src="assets/img/kanban-edit-overlay/urgent-arrow.svg"
+                                alt=""
+                            />
+                        </button>
+
+                        <button>
+                            <span>Medium</span>
+                            <img
+                                src="assets/img/kanban-edit-overlay/medium-arrow.svg"
+                                alt=""
+                            />
+                        </button>
+
+                        <button>
+                            <span>Low</span>
+                            <img
+                                src="assets/img/kanban-edit-overlay/low-arrow.svg"
+                                alt=""
+                            />
+                        </button>
+                    </div>
+                </div>
+                <div class="kanban-assigned-to">
+                    <span class="assigned-span">Assigned to</span>
+                    <div class="all-user-container">
+                        <div class="select-to-assign">
+                            <span>Select contacts to assign</span>
+                            <img
+                                src="assets/img/kanban-edit-overlay/arrow-down.svg"
+                                alt=""
+                            />
+                        </div>
+                        <div class="list-of-members">
+                            <div class="kanban-overlay-subtask">
+                                <span>Subtask</span>
+                                <div class="subtaskfield">
+                                    Add new subtask
+                                    <img
+                                        src="assets/img/kanban-edit-overlay/plus-zichen.svg"
+                                        alt=""
+                                    />
+                                </div>
+                                <div class="each-sub-task">
+                                    <li>Contact Form</li>
+                                </div>
+                                <button class="clear">Clear</button>
+                                <button class="create-task">Create Task</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
 </div>
 <app-nav-footer-mobile></app-nav-footer-mobile>
