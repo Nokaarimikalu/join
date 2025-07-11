@@ -1,26 +1,31 @@
 <div class="main-content">
-  <div class="nav-area"><app-nav-footer></app-nav-footer></div>
-  <div class="main-content-input">
-    <app-header></app-header>
-    <section>
-    <div class="content">
-    <div class="kanban-task">
-       <h1>Add Task</h1>
-       <form class="kanban-add-form">
-         <div class="kanban-task-input">
-            <span>Title</span>
-             <input type="text" placeholder="Task title" />
-             <span>Description</span>
-             </div>
-             <textarea placeholder="Description"></textarea>
-             <div class="form-date kanban-div">
-                        <span>Due date</span>
-                        <input type="date" />
-                    </div>
+    <div class="nav-area"><app-nav-footer></app-nav-footer></div>
+    <div class="main-content-input">
+        <app-header></app-header>
+        <section>
+            <div class="content">
+                <div class="kanban-task">
+                    <h1>Add Task</h1>
+                    <form class="kanban-add-form">
+                        <div class="kanban-task-input">
+                            <label>
+                                Title<span class="required-asterisk">*</span>
+                            </label>
+                            <input type="text" placeholder="Task title" />
+                            <span>Description</span>
+                        </div>
+                        <textarea placeholder="Description"></textarea>
+                        <div class="form-date kanban-div">
+                            <label>
+                                Due date<span class="required-asterisk">*</span>
+                            </label>
+                            <input type="date" />
+                        </div>
                     </form>
+                </div>
+                <div class="line"></div>
+            </div>
+        </section>
     </div>
-    </div>
-  </section>
-  </div>
-  </div>
+</div>
 <app-nav-footer-mobile></app-nav-footer-mobile>
