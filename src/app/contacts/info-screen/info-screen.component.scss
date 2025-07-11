@@ -103,6 +103,7 @@
                 display: flex;
                 align-items: center;
                 flex: 1;
+                animation: fade-in-left 0.75s ease-in-out;
 
                 .initiales-bg {
                     margin-left: 4em;
@@ -205,42 +206,64 @@
                 margin-left: 2.2em;
                 font-size: 2em;
                 margin-bottom: 1em;
+                animation: fade-in-left 1s ease-in-out;
 
                 @media (max-width: 1075px) {
                     margin-left: 1.3em;
                 }
             }
 
-            .mail-phone {
-                font-size: 1.6em;
-                font-weight: 700;
-                margin-left: 2.8em;
-                margin-bottom: 1em;
-                margin-top: 2em;
+            .mailbox {
+                animation: fade-in-left 0.75s ease-in-out;
 
-                @media (max-width: 1075px) {
-                    margin-left: 2em;
+                .mail-phone {
+                    font-size: 1.6em;
+                    font-weight: 700;
+                    margin-left: 2.8em;
+                    margin-bottom: 1em;
+                    margin-top: 2em;
+
+                    @media (max-width: 1075px) {
+                        margin-left: 2em;
+                    }
+                }
+
+                a {
+                    font-size: 1.6em;
+                    margin-left: 2.8em;
+                    color: #007cee;
+
+                    @media (max-width: 1075px) {
+                        margin-left: 2em;
+                    }
                 }
             }
 
-            a {
-                font-size: 1.6em;
-                margin-left: 2.8em;
-                color: #007cee;
+            .phonebox {
+                animation: fade-in-left 0.75s ease-in-out;
 
-                @media (max-width: 1075px) {
-                    margin-left: 2em;
+                .mail-phone {
+                    font-size: 1.6em;
+                    font-weight: 700;
+                    margin-left: 2.8em;
+                    margin-bottom: 1em;
+                    margin-top: 2em;
+
+                    @media (max-width: 1075px) {
+                        margin-left: 2em;
+                    }
+                }
+
+                .phonenumber {
+                    font-size: 1.6em;
+                    margin-left: 2.8em;
+
+                    @media (max-width: 1075px) {
+                        margin-left: 2em;
+                    }
                 }
             }
 
-            .phonenumber {
-                font-size: 1.6em;
-                margin-left: 2.8em;
-
-                @media (max-width: 1075px) {
-                    margin-left: 2em;
-                }
-            }
 
             //#endregion
         }

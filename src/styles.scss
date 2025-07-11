@@ -96,11 +96,11 @@ footer {
     display: none;
 }
 
-.flex{
+.flex {
     display: flex;
 }
 
-button{
+button {
     cursor: pointer;
 }
 
@@ -113,6 +113,18 @@ button{
     100% {
         opacity: 1;
         transform: translateX(0);
+    }
+}
+
+@keyframes fade-in-left-overlay-viewport {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) translateX(100px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) translateX(0);
     }
 }
 
