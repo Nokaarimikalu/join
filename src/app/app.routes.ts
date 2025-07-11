@@ -9,11 +9,10 @@ import { LegalNoticeComponent } from './shared/legal-notice/legal-notice.compone
 
 
 export const routes: Routes = [
-  {path: '', component:KanbanComponent},
-      {path: 'privacy', component:PrivacyComponent},
-      {path: 'help', component:HelpMeComponent},
-
-    {path: 'legalNotice', component:LegalNoticeComponent},
+  {path: '', component: ContactsComponent},
+  {path: 'privacy', component:PrivacyComponent},
+  {path: 'help', component:HelpMeComponent},
+  {path: 'legalNotice', component:LegalNoticeComponent},
   {path: 'task', component:KanbanAddComponent},
   {path: 'board', component:KanbanComponent},
   {path: 'edit', component:KanbanEditComponent},
