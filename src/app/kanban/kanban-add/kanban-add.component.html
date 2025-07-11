@@ -4,7 +4,7 @@
         <app-header></app-header>
         <section>
             <div class="content">
-                <div class="kanban-task">
+                <div class="kanban-task-left">
                     <h1>Add Task</h1>
                     <form class="kanban-add-form">
                         <div class="kanban-task-input">
@@ -24,6 +24,23 @@
                     </form>
                 </div>
                 <div class="line"></div>
+                <div class="kanban-task-right">
+                    <span>Priority</span>
+                    <div class="kanban-priority">
+                        <div class="kanban-priority-item">
+                            <input type="radio" name="priority" id="low" />
+                            <label for="low">Low</label>
+                        </div>
+                        <div class="kanban-priority-item">
+                            <input type="radio" name="priority" id="medium" />
+                            <label for="medium">Medium</label>
+                        </div>
+                        <div class="kanban-priority-item">
+                            <input type="radio" name="priority" id="high" />
+                            <label for="high">High</label>
+                        </div>
+                </div>
+            </div>
             </div>
         </section>
     </div>
