@@ -7,82 +7,72 @@
                 <form class="kanban-form">
                     <h1>Add Task</h1>
                     <div class="form-title div-cont">
-                        <span>Title</span>
+                        <label>
+                            Title<span class="required-asterisk">*</span>
+                        </label>
                         <input placeholder="Enter a title" type="text" />
                     </div>
                     <div class="form-description div-cont">
-                        <span>Description</span>
-                        <textarea
-                            placeholder="Enter a Description "
-                            name=""
-                            id=""
-                        ></textarea>
+                        <label>
+                            Description<span class="required-asterisk">*</span>
+                        </label>
+                        <textarea placeholder="Enter a Description " name="" id=""></textarea>
                     </div>
                     <div class="form-date div-cont">
-                        <span>Due date</span>
+                        <label>
+                            Due date<span class="required-asterisk">*</span>
+                        </label>
                         <input type="date" />
                     </div>
+                    <label class="form-label">
+                    This field is required<span class="required-asterisk">*</span>
+                </label>
                 </form>
+                
                 <div class="line"></div>
-                <div class="kanban-addtask-priority">
-                    <p>Priority</p>
-                    <div class="priority-buttons">
-                        <button>
-                            <span>Urgent</span>
-                            <img
-                                src="assets/img/kanban-edit-overlay/urgent-arrow.svg"
-                                alt=""
-                            />
-                        </button>
+                <div class="right-addtask">
+                    <div class="kanban-addtask-priority">
+                        <p>Priority</p>
+                        <div class="priority-buttons">
+                            <button>
+                                <span>Urgent</span>
+                                <img src="assets/img/kanban-edit-overlay/urgent-arrow.svg" alt="" />
+                            </button>
 
-                        <button>
-                            <span>Medium</span>
-                            <img
-                                src="assets/img/kanban-edit-overlay/medium-arrow.svg"
-                                alt=""
-                            />
-                        </button>
+                            <button>
+                                <span>Medium</span>
+                                <img src="assets/img/kanban-edit-overlay/medium-arrow.svg" alt="" />
+                            </button>
 
-                        <button>
-                            <span>Low</span>
-                            <img
-                                src="assets/img/kanban-edit-overlay/low-arrow.svg"
-                                alt=""
-                            />
-                        </button>
-                    </div>
-                </div>
-                <div class="kanban-assigned-to">
-                    <span class="assigned-span">Assigned to</span>
-                    <div class="all-user-container">
-                        <div class="select-to-assign">
-                            <span>Select contacts to assign</span>
-                            <img
-                                src="assets/img/kanban-edit-overlay/arrow-down.svg"
-                                alt=""
-                            />
+                            <button>
+                                <span>Low</span>
+                                <img src="assets/img/kanban-edit-overlay/low-arrow.svg" alt="" />
+                            </button>
                         </div>
-                        <div class="list-of-members">
-                            <div class="kanban-overlay-subtask">
-                                <span>Subtask</span>
-                                <div class="subtaskfield">
-                                    Add new subtask
-                                    <img
-                                        src="assets/img/kanban-edit-overlay/plus-zichen.svg"
-                                        alt=""
-                                    />
-                                </div>
-                                <div class="each-sub-task">
-                                    <button class="clear">Clear</button>
-                                    <button class="create-task">
-                                        Create Task
-                                    </button>
+                    </div>
+                    <div class="kanban-assigned-to">
+                        <span class="assigned-span">Assigned to</span>
+                        <div class="all-user-container">
+                            <div class="select-to-assign">
+                                <span>Select contacts to assign</span>
+                                <img src="assets/img/kanban-edit-overlay/arrow-down.svg" alt="select User" />
+                            </div>
+                            <div class="list-of-members">
+                                <div class="kanban-overlay-subtask">
+                                    <span class="subtask-span">Subtask</span>
+                                    <div class="subtaskfield">
+                                        Add new subtask
+                                        <img src="assets/img/kanban-edit-overlay/plus-zichen.svg" alt="Add new" />
+                                    </div>
+                                    <div class="each-sub-task">
+                                        <button class="clear">Clear <img src="assets/img/add-contacts/close.svg" alt="clear"></button>
+                                        <button class="create-task">
+                                            Create Task <img src="assets/img/add-contacts/check.svg" alt="Create Task">
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <label class="form-label">
-                            This field is required<span class="required-asterisk">*</span>
-                        </label>
                     </div>
                 </div>
             </div>
