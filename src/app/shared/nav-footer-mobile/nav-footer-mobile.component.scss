@@ -37,6 +37,13 @@ section {
                     margin: 0;
                 }
 
+                a{
+                    gap: 0.5em;
+                    display: flex;
+                    align-items: center;
+                    color: white;
+                }
+
                 &:hover {
                     cursor: pointer;
                     background: #2A3D59;

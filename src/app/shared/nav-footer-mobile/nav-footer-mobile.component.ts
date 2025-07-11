@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-nav-footer-mobile',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './nav-footer-mobile.component.html',
   styleUrl: './nav-footer-mobile.component.scss'
 })

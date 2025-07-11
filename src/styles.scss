@@ -8,6 +8,7 @@
     font-family: Inter;
 }
 
+
 @font-face {
     font-display: swap;
     font-family: "Inter";
@@ -79,19 +80,6 @@
     src: url("./../public/assets/fonts/inter-v19-latin-900.woff2") format("woff2");
 }
 
-/* 
-header,
-footer {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-}
-.content {
-    width: 100%;
-    max-width: 1980px;
-}
- */
-
 .hidden {
     display: none;
 }
@@ -117,14 +105,34 @@ button {
 }
 
 @keyframes fade-in-left-overlay-viewport {
-    from {
+    0% {
         opacity: 0;
-        transform: translate(-50%, -50%) translateX(100px);
+        transform: translate(-50%, -50%) translateX(500px);
     }
 
-    to {
+    20% {
         opacity: 1;
         transform: translate(-50%, -50%) translateX(0);
+    }
+
+    40% {
+        opacity: 1;
+        transform: translate(-50%, -50%) translateX(0);
+    }
+
+    60% {
+        opacity: 1;
+        transform: translate(-50%, -50%) translateX(0);
+    }
+
+    80% {
+        opacity: 1;
+        transform: translate(-50%, -50%) translateX(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) translateX(500px);
     }
 }
 
@@ -159,5 +167,5 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 input[type="number"] {
-    -moz-appearance: textfield;
+    appearance: textfield;
 }
