@@ -5,7 +5,7 @@ export interface TaskItem {
   dueDate: Date;
   priority: number | string;
   assignedTo?: any;
-  subTask: {
+  subTask?: {
     task: string;
   }[];
 }
