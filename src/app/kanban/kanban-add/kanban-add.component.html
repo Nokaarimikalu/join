@@ -5,11 +5,12 @@
         <section>
             <div class="content">
                 <form class="kanban-overlay-form">
-                    <div class="form-title kanban-div">
+                    <h1>Add Task</h1>
+                    <div class="form-title div-cont">
                         <span>Title</span>
                         <input placeholder="Enter a title" type="text" />
                     </div>
-                    <div class="form-description kanban-div">
+                    <div class="form-description div-cont">
                         <span>Description</span>
                         <textarea
                             placeholder="Enter a Description "
@@ -17,7 +18,7 @@
                             id=""
                         ></textarea>
                     </div>
-                    <div class="form-date kanban-div">
+                    <div class="form-date div-cont">
                         <span>Due date</span>
                         <input type="date" />
                     </div>
@@ -49,6 +50,35 @@
                                 alt=""
                             />
                         </button>
+                    </div>
+                </div>
+                <div class="kanban-assigned-to">
+                    <span class="assigned-span">Assigned to</span>
+                    <div class="all-user-container">
+                        <div class="select-to-assign">
+                            <span>Select contacts to assign</span>
+                            <img
+                                src="assets/img/kanban-edit-overlay/arrow-down.svg"
+                                alt=""
+                            />
+                        </div>
+                        <div class="list-of-members">
+                            <div class="kanban-overlay-subtask">
+                                <span>Subtask</span>
+                                <div class="subtaskfield">
+                                    Add new subtask
+                                    <img
+                                        src="assets/img/kanban-edit-overlay/plus-zichen.svg"
+                                        alt=""
+                                    />
+                                </div>
+                                <div class="each-sub-task">
+                                    <li>Contact Form</li>
+                                </div>
+                                <button class="clear">Clear</button>
+                                <button class="create-task">Create Task</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
