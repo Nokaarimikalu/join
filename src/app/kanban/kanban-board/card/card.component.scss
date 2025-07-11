@@ -1,0 +1,78 @@
+section {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.testcontainer {
+  padding: 18px;
+  border-radius: 20px;
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+  height: 244px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  box-shadow: 0 6px 0 rgba(0, 0, 0, 0.02);
+
+
+  .category {
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(76, 187, 150);
+    width: 125px;
+    height: 27px;
+    border-radius: 5px;
+    margin-bottom: 12px;
+  }
+
+  .description {
+    color: rgb(143, 143, 143);
+    font-weight: 500;
+  }
+
+  .user-priority {
+    display: flex;
+    justify-content: space-between;
+
+    .user{
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .urgent {
+    width: 32px;
+    height: 32px;
+    background-image: url('../../../../../public/assets/img/kanban-edit-overlay/urgent-arrow.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+
+  }
+
+  .medium {
+    width: 32px;
+    height: 32px;
+    background-image: url('../../../../../public/assets/img/kanban-edit-overlay/medium-arrow.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+
+  }
+
+  .low {
+    width: 32px;
+    height: 32px;
+    background-image: url('../../../../../public/assets/img/kanban-edit-overlay/low-arrow.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .description {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+}
