@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { CardComponent } from './card/card.component';
+import { BoardService } from '../../services/board/board.service';
+
 
 @Component({
   selector: 'app-kanban-board',
@@ -9,6 +11,9 @@ import { CardComponent } from './card/card.component';
 })
 export class KanbanBoardComponent {
 
+  constructor(public boardService: BoardService){
+
+  }
 }
 
 

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { BoardService } from '../../../services/board/board.service';
+
 
 @Component({
   selector: 'app-card',
@@ -7,5 +9,8 @@ import { Component } from '@angular/core';
   styleUrl: './card.component.scss'
 })
 export class CardComponent {
+  constructor(public boardService: BoardService) {
+
+  }
 
 }

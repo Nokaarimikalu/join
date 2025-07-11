@@ -1,11 +1,19 @@
-<div class="testcontainer">
-  <div class="category">USER STORY</div>
-  <div class="tite"> <h4>TASK TITLE</h4></div>
-    <div class="description"> <p> description description</p></div>
-    <div class="subtask">subtasks</div>
+<section>
+  @for (item of boardService.dummyTasks; track $index) {
+  <div class="testcontainer">
+  <div class="category">{{item.category}}</div>
+  <div class="tite"> <h4>{{item.title}}</h4></div>
+    <div class="description"> <p> {{item.description}}</p></div>
+    @for (subtask of item.subTask; track $index) {
+    <div class="subtask">{{subtask.task}}</div>
+    }
     <div class="user-priority">
-      <div class="user">user</div>
-      <div class="urgent"></div>
+<!--       @for (user of item.assignedTo; track $index) {
+      <div class="user">{{user.name}}</div>
+      } -->
+      <div [class]="item.priority"></div>
     </div>
-
 </div>
+  }
+</section>
+
