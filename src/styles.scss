@@ -79,19 +79,6 @@
     src: url("./../public/assets/fonts/inter-v19-latin-900.woff2") format("woff2");
 }
 
-/* 
-header,
-footer {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-}
-.content {
-    width: 100%;
-    max-width: 1980px;
-}
- */
-
 .hidden {
     display: none;
 }
@@ -119,7 +106,7 @@ button {
 @keyframes fade-in-left-overlay-viewport {
     from {
         opacity: 0;
-        transform: translate(-50%, -50%) translateX(100px);
+        transform: translate(-50%, -50%) translateX(500px);
     }
 
     to {

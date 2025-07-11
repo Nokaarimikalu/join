@@ -1,3 +1,4 @@
+
 .main-content {
     display: flex;
     height: 100dvh;
@@ -67,7 +68,7 @@ input[type="number"] {
     z-index: 4;
     width: 15em;
     height: 4em;
-    position: absolute;
+    position: fixed;
     top: 80%;
     left: 50%;
     transform: translate(-50%, -50%);
