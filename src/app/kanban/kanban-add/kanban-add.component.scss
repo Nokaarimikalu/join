@@ -3,7 +3,7 @@
     height: 100dvh;
     overflow-x: hidden;
 
-    @media (max-width:965px) {
+    @media (max-width: 965px) {
         height: 92dvh;
     }
 }
@@ -12,6 +12,87 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+}
+
+section {
+    background: yellow;
+    font-size: 10px;
+}
+
+.content {
+    display: flex;
+    background: red;
+    width: 100%;
+    height: 92dvh;
+
+    .kanban-overlay-form {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 30px;
+
+        .div-cont {
+            display: flex;
+            flex-direction: column;
+            min-height: 64px;
+
+            input,
+            textarea {
+                min-height: 48px;
+                border-radius: 15px;
+                padding: 0.5em;
+                font-size: 16px;
+                resize: none;
+                border: 2px solid rgba(0, 0, 0, 0.214);
+
+                &:focus {
+                    border: 2px solid #29abe2;
+                }
+            }
+
+            textarea {
+                height: 84px;
+            }
+
+            span {
+                color: rgba(0, 0, 0, 0.746);
+                font-size: 18px;
+                padding-bottom: 0.3em;
+            }
+        }
+    }
+
+    .kanban-addtask-priority {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        p {
+            font-size: 18px;
+            padding: 4em;
+        }
+
+        .priority-buttons {
+            display: flex;
+            justify-content: space-evenly;
+            padding-bottom: 4em;
+
+            button {
+                display: flex;
+                gap: 5px;
+                background-color: white;
+                border: solid rgba(0, 0, 0, 0.049) 2px;
+                border-radius: 10px;
+                font-size: 20px;
+                padding: 10px 16px;
+                transition: box-shadow 0.3s ease;
+
+                &:hover {
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                }
+            }
+        }
+    }
 }
 
 .contact-list-content {
@@ -23,7 +104,7 @@
     display: flex;
     height: auto;
 
-    @media (max-width:750px) {
+    @media (max-width: 750px) {
         width: 100%;
     }
 
@@ -40,7 +121,7 @@
     height: auto;
     width: 100%;
 
-    @media (max-width:750px) {
+    @media (max-width: 750px) {
         display: none;
     }
 }
