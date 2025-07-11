@@ -1,0 +1,133 @@
+section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+
+  .content {
+    display: flex;
+    flex-direction: column;
+
+    .board {
+      display: flex;
+      justify-content: space-between;
+
+      .task-column {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        width: 200px;
+
+        .add-area {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+        }
+
+        .testcontainer {
+          border-radius: 20px;
+          width: 100%;
+          background-color: black;
+          height: 244px;
+        }
+
+        h3 {
+          font-size: 20px;
+        }
+
+        .small-add-task-button {
+          font-weight: normal;
+          font-size: 16px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 24px;
+          height: 24px;
+          line-height: 1;
+          padding: 0;
+          border: 2px solid black;
+          border-radius: 6px;
+          background: none;
+          color: black;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+.headline-area {
+  height: 12em;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin-bottom: 70px;
+
+  h1 {
+    text-align: end;
+    font-size: 61px;
+  }
+}
+
+.search-input {
+  gap: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+input {
+  font-size: 18px;
+  border-radius: 10px;
+  width: 300px;
+  height: 50px;
+  padding-left: 20px;
+  outline: none;
+
+  &:hover {
+    border-color: cadetblue;
+  }
+}
+
+.add-task-button {
+  font-weight: 600;
+  gap: 1em;
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  font-size: 21px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 50px;
+  background-color: #2a3647;
+}
+
+.search-button {
+  width: 50px;
+  position: absolute;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  img {
+    width: 32px;
+    height: 32px;
+  }
+
+  .hyphen {
+    height: 30px;
+    width: 1px;
+    background-color: rgba(0, 0, 0, 0.178);
+  }
+}
