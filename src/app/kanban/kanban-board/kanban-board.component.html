@@ -17,28 +17,36 @@
         <div class="add-area">
           <h3>To do</h3> <button class="small-add-task-button">+</button>
         </div>
-        <app-card></app-card>
+        @for (task of filterTaskStatus('to do'); track $index) {
+          <app-card [task]="task"></app-card>
+        }
       </div>
 
       <div class="task-column">
         <div class="add-area">
           <h3>In progress</h3> <button class="small-add-task-button">+</button>
         </div>
-        <app-card></app-card>
+        @for (task of filterTaskStatus('in progress'); track $index) {
+          <app-card [task]="task"></app-card>
+        }
       </div>
 
       <div class="task-column">
         <div class="add-area">
           <h3>Await feedback</h3> <button class="small-add-task-button">+</button>
         </div>
+        @for (task of filterTaskStatus('await feedback'); track $index) {
+          <app-card [task]="task"></app-card>
+          }
       </div>
 
       <div class="task-column">
         <div class="add-area">
           <h3>Done</h3> <button class="small-add-task-button">+</button>
         </div>
-        <app-card></app-card>
-
+        @for (task of filterTaskStatus('done'); track $index) {
+          <app-card [task]="task"></app-card>
+        }
       </div>
     </div>
   </div>

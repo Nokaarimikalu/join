@@ -7,37 +7,68 @@ import { TaskItem } from "../../shared/interface/task.interface";
 export class BoardService {
 
   constructor() {
-    console.log(this.dummyTasks);
-    
-  }
+/*     console.log(this.filterTaskStatus('to do'));
+ */  }
 
   dummyTasks: TaskItem[] = [
-    {
-      id: '1',
-      category: 'IT',
-      title: 'Erster Task',
-      description: 'Das ist ein Test-Task',
-      dueDate: new Date('2023-12-31'),
-      priority: 'Medium',
-      assignedTo: { name: 'Max Mustermann' },
-      subTask: [
-        { task: 'Unteraufgabe 1' },
-        { task: 'Unteraufgabe 2' }
-      ]
-    },
-    {
-      id: '2',
-      category: 'I',
-      title: 'Zweiter Task',
-      description: 'Noch ein Beispiel',
-      dueDate: new Date('2024-01-15'),
-      priority: 'High',
-      assignedTo: { name: 'Anna Müller' },
-      subTask: [
-        { task: 'Research' },
-        { task: 'Dokumentation' }
-      ]
-    }
-  ];
+  {
+    id: '1',
+    title: 'Projektstart',
+    category: 'Management',
+    description: 'Initiales Meeting und Aufgabenverteilung',
+    dueDate: '2025-07-15',
+    priority: 'Urgent',
+    assignedTo: [{ user: 'Max Mustermann' }],
+    subTask: ['Meeting vorbereiten', 'Teilnehmer einladen'],
+    status: 'to do'
+  },
+  {
+    id: '2',
+    title: 'Dokumentation schreiben',
+    category: 'Entwicklung',
+    description: 'Technische Details dokumentieren',
+    dueDate: '2025-07-20',
+    priority: 'Medium',
+    assignedTo: [{ user: 'Anna Müller' }],
+    subTask: ['Inhalt gliedern', 'Screenshots einfügen', 'Review einholen'],
+    status: 'in progress'
+  },
+  {
+    id: '3',
+    title: 'Design-Review',
+    category: 'Design',
+    description: 'UI/UX mit Kunden abstimmen',
+    dueDate: '2025-07-18',
+    priority: 'Urgent',
+    assignedTo: [{ user: 'Lisa Schmidt' }],
+    subTask: ['Mockups aktualisieren', 'Feedback einarbeiten'],
+    status: 'await feedback'
+  },
+  {
+    id: '4',
+    title: 'API-Tests',
+    category: 'Entwicklung',
+    description: 'Endpunkte testen und dokumentieren',
+    dueDate: '2025-07-10',
+    priority: 'Medium',
+    assignedTo: [{ user: 'Tom Weber' }],
+    subTask: ['Testfälle schreiben', 'Postman-Sammlung erstellen'],
+    status: 'done'
+  },
+  {
+    id: '5',
+    title: 'Kickoff-Präsentation',
+    category: 'Management',
+    description: 'Präsentation für Stakeholder vorbereiten',
+    dueDate: '2025-07-12',
+    priority: 'Urgent',
+    assignedTo: [{ user: 'Julia Fischer' }],
+    subTask: ['Folien designen', 'Daten aktualisieren'],
+    status: 'done'
+  }
+];
 
+/*   filterTaskStatus(status: string ){
+    return this.dummyTasks.filter(task => task.status === status);
+    } */
 }
