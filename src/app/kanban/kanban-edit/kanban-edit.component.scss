@@ -32,13 +32,19 @@
             right: 4em;
             height: 3em;
             width: 3em;
-
+            
             &:hover {
                 background-color: rgba(0, 0, 0, 0.078);
                 border-radius: 50px;
             }
         }
-
+        .testzwecken{
+            position: absolute;
+            display: flex;
+            width: 60%;
+            justify-content: space-between;
+            top: 3em;
+        }
         .overlay-content-wrapper {
             display: flex;
             flex-direction: column;
@@ -142,6 +148,7 @@
                             justify-content: space-between;
                             border: 2px rgba(0, 0, 0, 0.346) solid;
                             padding: 1em;
+                            width: 100%;
                             border-radius: 10px;
                             height: 48px;
                             font-size: 16px;

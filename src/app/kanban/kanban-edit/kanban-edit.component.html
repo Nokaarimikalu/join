@@ -1,14 +1,18 @@
 <section class="dimmed-background">
     <div class="overlay-kanban-edit">
         <div class="close-button">
-            <img src="assets/img/add-contacts/Vector.svg" alt="" />
+            <img src="assets/img/add-contacts/Vector.svg"  alt="" />
+        </div>
+        <div class="testzwecken">
+            <button class="prev" (click)="prevTask()">Prev</button>
+            <button class="next" (click)="nextTask()">Next</button>
         </div>
         <div class="overlay-content-wrapper">
             <div class="content-in-overlay">
                 <form class="kanban-overlay-form">
                     <div class="form-title kanban-div">
                         <span>Title</span>
-                        <input placeholder="Enter a title" type="text" />
+                        <input [(ngModel)]="dummyTasks[0].title" placeholder="Enter a title" type="text" #name="ngModel" />
                     </div>
                     <div class="form-description kanban-div">
                         <span>Description</span>
@@ -52,29 +56,12 @@
                 <div class="kanban-assigned-to">
                     <span class="assigned-span">Assigned to</span>
                     <div class="all-user-container">
-                        <div class="select-to-assign">
-                            <span>Select contacts to assign</span>
-                            <img
-                                src="assets/img/kanban-edit-overlay/arrow-down.svg"
-                                alt=""
-                            />
-                        </div>
-                        <div class="list-of-members">
-
-                            <!-- <button class="dummy-user">
-                                <div class="initial-FullName">
-                                    <span>PF</span>
-                                    <span>Pascal Fliedner</span>
-                                </div>
-                                <div class="checkmark-box">
-                                    <img
-                                        src="assets/img/kanban-edit-overlay/Check button.svg"
-                                        alt=""
-                                    />
-                                </div>
-                            </button>
-                            -->
-                        </div>
+                        <select class="select-to-assign" required name="name" id="">
+                            <option value="1">hallo</option>
+                            <option value="2">haallo</option>
+                            <option value="3">haaallo</option>
+                            <option value="4">haaaallo</option>
+                        </select>
                     </div>
                 </div>
 

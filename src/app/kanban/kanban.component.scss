@@ -14,43 +14,20 @@
     width: 100%;
 }
 
-.contact-list-content {
+.kanban-board-content {
     display: flex;
-    height: 90%;
+    height: 100%;
+    width: 100%;
+    padding: 0em 4em;
+
 }
 
-.contact-list-component {
-    display: flex;
-    height: auto;
-
-    @media (max-width:750px) {
-        width: 100%;
-    }
-
-    @media (min-width: 750px) {
-        display: flex;
-    }
+app-kanban-board {
+    width: 100%;
 }
 
 .hidden {
     display: none;
-}
-
-.info-screen-component {
-    height: auto;
-    width: 100%;
-
-    @media (max-width:750px) {
-        display: none;
-    }
-}
-
-.app-info-screen-mobile-component {
-    width: 100%;
-
-    @media (min-width: 750px) {
-        display: none;
-    }
 }
 
 input[type="number"]::-webkit-inner-spin-button,
