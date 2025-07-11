@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { TaskItem } from '../../shared/interface/task.interface';
+
 
 @Component({
   selector: 'app-kanban-edit',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './kanban-edit.component.html',
   styleUrl: './kanban-edit.component.scss'
 })
