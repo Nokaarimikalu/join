@@ -79,28 +79,15 @@
     src: url("./../public/assets/fonts/inter-v19-latin-900.woff2") format("woff2");
 }
 
-/* 
-header,
-footer {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-}
-.content {
-    width: 100%;
-    max-width: 1980px;
-}
- */
-
 .hidden {
     display: none;
 }
 
-.flex{
+.flex {
     display: flex;
 }
 
-button{
+button {
     cursor: pointer;
 }
 
@@ -113,6 +100,18 @@ button{
     100% {
         opacity: 1;
         transform: translateX(0);
+    }
+}
+
+@keyframes fade-in-left-overlay-viewport {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) translateX(500px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) translateX(0);
     }
 }
 
@@ -138,4 +137,14 @@ button{
         opacity: 1;
         transform: translate(calc(-50% + 50em), -50%);
     }
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
 }
