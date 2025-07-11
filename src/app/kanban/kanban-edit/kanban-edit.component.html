@@ -4,15 +4,15 @@
             <img src="assets/img/add-contacts/Vector.svg"  alt="" />
         </div>
         <div class="testzwecken">
-            <button class="prev">Prev</button>
-            <button class="next">Next</button>
+            <button class="prev" (click)="prevTask()">Prev</button>
+            <button class="next" (click)="nextTask()">Next</button>
         </div>
         <div class="overlay-content-wrapper">
             <div class="content-in-overlay">
                 <form class="kanban-overlay-form">
                     <div class="form-title kanban-div">
                         <span>Title</span>
-                        <input placeholder="Enter a title" type="text" />
+                        <input [(ngModel)]="dummyTasks[0].title" placeholder="Enter a title" type="text" #name="ngModel" />
                     </div>
                     <div class="form-description kanban-div">
                         <span>Description</span>
