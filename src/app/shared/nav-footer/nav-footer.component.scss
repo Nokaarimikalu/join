@@ -48,6 +48,12 @@ section {
 
                     margin: 0.6em 0;
 
+                    a {
+                        text-align: center;
+                        display: flex;
+                        align-items: center;
+                    }
+
                     &:hover {
                         cursor: pointer;
                         background: #2a3d59;
