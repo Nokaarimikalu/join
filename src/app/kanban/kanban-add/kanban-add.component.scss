@@ -20,82 +20,78 @@ section {
 }
 
 .content {
+    display: flex;
     background: red;
     width: 100%;
     height: 92dvh;
 
-    .kanban-task-left {
-        width: 50%;
-        height: 92%;
-        background: teal;
-        padding: 10em 5em;
-
-        h1 {
-            font-size: 6em;
-        }
-
-        .kanban-task-input {
-            display: flex;
-            flex-direction: column;
-
-            label {
-                font-size: 16px;
-                margin-top: 1.5em;
-
-                .required-asterisk {
-                    color: red;
-                    margin-left: 0.2em;
-                }
-            }
-
-            span {
-                font-size: 16px;
-                margin-top: 1.5em;
-                
-            }
-        }
-
-        input,
-        textarea {
-            width: 100%;
-            height: 2.5em;
-            border-radius: 5px;
-            border: 2px solid rgba(0, 0, 0, 0.214);
-            padding: 0.5em;
-            margin-top: 0.4em;
-            font-size: 16px;
-
-            &:focus {
-                border: 2px solid #29abe2;
-            }
-        }
-
-        textarea {
-            height: 6em;
-            border: 2px solid rgba(0, 0, 0, 0.214);
-        }
+    .kanban-overlay-form {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 30px;
 
         .kanban-div {
             display: flex;
             flex-direction: column;
+            min-height: 64px;
 
-            label {
+            input,
+            textarea {
+                min-height: 48px;
+                border-radius: 15px;
+                padding: 0.5em;
                 font-size: 16px;
-                margin-top: 1.5em;
+                resize: none;
+                border: 2px solid rgba(0, 0, 0, 0.214);
 
-                .required-asterisk {
-                    color: red;
-                    margin-left: 0.2em;
+                &:focus {
+                    border: 2px solid #29abe2;
                 }
+            }
+
+            textarea {
+                height: 84px;
+            }
+
+            span {
+                color: rgba(0, 0, 0, 0.746);
+                font-size: 18px;
+                padding-bottom: 0.3em;
             }
         }
     }
 
-    .kanban-task.right {
-        width: 50%;
-        height: 92%;
-        background: teal;
-        padding: 10em 5em;
+    .kanban-addtask-priority {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        p {
+            font-size: 18px;
+            padding: 3em 0em 1em 0em;
+        }
+
+        .priority-buttons {
+            display: flex;
+            justify-content: space-evenly;
+            padding-bottom: 4em;
+
+            button {
+                display: flex;
+                gap: 5px;
+                background-color: white;
+                border: solid rgba(0, 0, 0, 0.049) 2px;
+                border-radius: 10px;
+                font-size: 20px;
+                padding: 10px 16px;
+                transition: box-shadow 0.3s ease;
+
+                &:hover {
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                }
+            }
+        }
     }
 }
 
