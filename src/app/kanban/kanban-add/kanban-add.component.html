@@ -4,7 +4,7 @@
         <app-header></app-header>
         <section>
             <div class="content">
-                <form class="kanban-overlay-form">
+                <form class="kanban-form">
                     <h1>Add Task</h1>
                     <div class="form-title div-cont">
                         <span>Title</span>
@@ -73,12 +73,16 @@
                                     />
                                 </div>
                                 <div class="each-sub-task">
-                                    <li>Contact Form</li>
+                                    <button class="clear">Clear</button>
+                                    <button class="create-task">
+                                        Create Task
+                                    </button>
                                 </div>
-                                <button class="clear">Clear</button>
-                                <button class="create-task">Create Task</button>
                             </div>
                         </div>
+                        <label class="form-label">
+                            This field is required<span class="required-asterisk">*</span>
+                        </label>
                     </div>
                 </div>
             </div>

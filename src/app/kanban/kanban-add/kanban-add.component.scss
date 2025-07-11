@@ -15,21 +15,28 @@
 }
 
 section {
-    background: yellow;
     font-size: 10px;
 }
 
 .content {
     display: flex;
-    background: red;
+    background: rgb(0, 132, 255);
     width: 100%;
     height: 92dvh;
 
-    .kanban-overlay-form {
+    .kanban-form {
+        background: grey;
         display: flex;
         flex-direction: column;
         width: 100%;
         gap: 30px;
+        padding-left: 3em;
+        padding-right: 3em;
+
+        h1{
+            padding-top: 1.5em;
+            font-size: 6em;
+        }
 
         .div-cont {
             display: flex;
@@ -95,6 +102,14 @@ section {
     }
 }
 
+.form-label{
+
+    .required-asterisk {
+        color: red;
+        margin-right: 1em;
+    }
+}
+
 .contact-list-content {
     display: flex;
     height: 90%;
@@ -144,25 +159,6 @@ input[type="number"] {
     appearance: textfield;
 }
 
-.createdContact {
-    z-index: 4;
-    width: 15em;
-    height: 4em;
-    position: fixed;
-    top: 80%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    font-size: 16px;
-    border-radius: 14px;
-    border: 1px solid black;
-    background-color: #2a3647;
-    color: white;
-    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.15);
-    animation: fade-in-left-overlay-viewport 2s ease-in-out;
-}
 
 .display {
     display: flex;
