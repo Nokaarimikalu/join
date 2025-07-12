@@ -5,50 +5,103 @@ import { TaskItem } from '../../shared/interface/task.interface';
 
 @Component({
   selector: 'app-kanban-edit',
-  imports: [FormsModule],
+  imports: [FormsModule, ],
   templateUrl: './kanban-edit.component.html',
   styleUrl: './kanban-edit.component.scss'
 })
 export class KanbanEditComponent {
 
-  dummyTasks: TaskItem[] = [
-    {
-      id: '1',
-      title: 'Erster Task',
-      description: 'Das ist ein Test-Task',
-      dueDate: new Date('2023-12-31'),
-      priority: 'Medium',
-      assignedTo: { name: 'Max Mustermann' },
-      subTask: [
-        { task: 'Unteraufgabe 1' },
-        { task: 'Unteraufgabe 2' }
-      ]
-    },
-    {
-      id: '2',
-      title: 'Zweiter Task',
-      description: 'Noch ein Beispiel',
-      dueDate: new Date('2024-01-15'),
-      priority: 'High',
-      assignedTo: { name: 'Anna Müller' },
-      subTask: [
-        { task: 'Research' },
-        { task: 'Dokumentation' }
-      ]
-    }
-  ];
+  isInputFocused = false;
 
+  subtaskString = ''; 
 
-  currentIndex = 0; 
+dummyTasks: TaskItem[] = [
+  {
+    id: '1',
+    title: 'Projektstart',
+    category: 'Management',
+    description: 'Initiales Meeting und Aufgabenverteilung',
+    dueDate: '2025-07-15',
+    priority: 'Urgent',
+    assignedTo: [{ user: 'Max Mustermann' }],
+    subTask: ['Meeting vorbereiten', 'Teilnehmer einladen']
+  },
+  {
+    id: '2',
+    title: 'Dokumentation schreiben',
+    category: 'Entwicklung',
+    description: 'Technische Details dokumentieren',
+    dueDate: '2025-07-20',
+    priority: 'Medium',
+    assignedTo: [{ user: 'Anna Müller' }],
+    subTask: ['Inhalt gliedern', 'Screenshots einfügen', 'Review einholen']
+  },
+  {
+    id: '3',
+    title: 'Bugfixing Sprint 3',
+    category: 'Entwicklung',
+    description: 'Offene Bugs aus Sprint 3 beheben',
+    dueDate: '2025-07-25',
+    priority: 'Urgent',
+    assignedTo: [{ user: 'Lukas Schmidt' }],
+    subTask: ['Fehler identifizieren', 'Fix schreiben', 'Testen']
+  },
+  {
+    id: '4',
+    title: 'Kundendemo vorbereiten',
+    category: 'Marketing',
+    description: 'Demo für Stakeholder vorbereiten',
+    dueDate: '2025-07-18',
+    priority: 'Low',
+    assignedTo: [{ user: 'Clara Becker' }],
+    subTask: ['Ablauf planen', 'Unterlagen erstellen', 'Technik prüfen']
+  },
+  {
+    id: '5',
+    title: 'UX-Review',
+    category: 'Design',
+    description: 'Feedbackrunde zur Nutzerfreundlichkeit',
+    dueDate: '2025-07-22',
+    priority: 'Medium',
+    assignedTo: [{ user: 'Tom Meier' }],
+    subTask: ['Feedback sammeln', 'UX-Bericht erstellen']
+  }
+];
+
+  changeToUrgent(){
+      this.dummyTasks[this.currentIndex].priority = 'Urgent'
+  }
+  changeToMedium(){
+    this.dummyTasks[this.currentIndex].priority = 'Medium'
+  }
+  changeToLow(){
+    this.dummyTasks[this.currentIndex].priority = 'Low'
+  }
+
+  currentIndex = 0;
+  
+  debug(){
+    console.log('hallo');
+  }
 
   nextTask() {
-    
     this.currentIndex = (this.currentIndex + 1) % this.dummyTasks.length;
   }
 
   prevTask() {
-    
     this.currentIndex = (this.currentIndex - 1 + this.dummyTasks.length) % this.dummyTasks.length;
   }
 
+  pushToSubtask(){
+    console.log(this.dummyTasks[this.currentIndex].subTask);
+    if (this.subtaskString !== '') {
+      this.dummyTasks[this.currentIndex].subTask.push(this.subtaskString)
+    }else{
+      return;
+    }
+  }
+
+  emptySubtask(){
+    this.subtaskString = '';
+  }
 }

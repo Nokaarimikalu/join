@@ -11,13 +11,14 @@ section {
     .board {
       display: flex;
       justify-content: space-between;
+      flex-wrap: wrap;
 
       .task-column {
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 20px;
-        width: 200px;
+        width: 252px;
 
         .add-area {
           display: flex;
@@ -123,4 +124,8 @@ input {
     width: 1px;
     background-color: rgba(0, 0, 0, 0.178);
   }
+}
+
+app-card{
+    width: 100%;
 }
