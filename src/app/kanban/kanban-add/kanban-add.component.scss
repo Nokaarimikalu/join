@@ -91,7 +91,7 @@ section {
 
         p {
             font-size: 18px;
-            padding-left: 4em;
+            padding-left: 2em;
             padding-top: 10.5em;
             margin-bottom: 0.4em;
         }
@@ -101,6 +101,19 @@ section {
             justify-content: space-evenly;
             margin-bottom: 4em;
             padding-right: 8em;
+
+            .active-urgent {
+                background-color: #ff3d00;
+                color: white;
+            }
+            .active-medium {
+                background-color: #ffa800;
+                color: white;
+            }
+            .active-low {
+                background-color: #7ae229;
+                color: white;
+            }
 
             button {
                 display: flex;
