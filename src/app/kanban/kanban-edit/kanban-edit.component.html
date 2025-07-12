@@ -1,11 +1,11 @@
-<section class="dimmed-background">
-    <div class="overlay-kanban-edit">
+<section class="dimmed-background" (click)="handleBackdropClick($event)">
+    <div class="overlay-kanban-edit" (click)="$event.stopPropagation()">
         <div class="close-button">
             <img src="assets/img/add-contacts/Vector.svg"  alt="" />
         </div>
         <div class="testzwecken">
             <button class="prev" (click)="prevTask()">Prev</button>
-            <button class="next" (click)="nextTask()">Next</button>
+            <button class="next" (click)="prevTask()">Next</button>
         </div>
         <div class="overlay-content-wrapper">
             <div class="content-in-overlay">
@@ -32,27 +32,27 @@
                     <p>Priority</p>
                     <div class="prioity-buttons">
 
-                        <button (click)="changeToUrgent()" [disabled]="dummyTasks[currentIndex].priority === 'Urgent'"  [class.active-urgent]="dummyTasks[currentIndex].priority === 'Urgent'">
+                        <button (click)="changeToUrgent();debugPriority()" [disabled]="copyDummyTasks[currentIndex].priority === 'Urgent'"  [class.active-urgent]="copyDummyTasks[currentIndex].priority === 'Urgent'">
                             <span>Urgent</span>
-                            @if(dummyTasks[currentIndex].priority !== 'Urgent'){
+                            @if(copyDummyTasks[currentIndex].priority !== 'Urgent'){
                                 <img src="assets/img/kanban-edit-overlay/urgent-arrow.svg"alt=""/>
                             }@else {
                                 <img src="assets/img/kanban-edit-overlay/white-urgent.svg"alt=""/>
                             }
                         </button>
 
-                        <button (click)="changeToMedium()" [disabled]="dummyTasks[currentIndex].priority === 'Medium'"   [class.active-medium]="dummyTasks[currentIndex].priority === 'Medium'">
+                        <button (click)="changeToMedium();debugPriority()" [disabled]="copyDummyTasks[currentIndex].priority === 'Medium'"   [class.active-medium]="copyDummyTasks[currentIndex].priority === 'Medium'">
                             <span>Medium</span>
-                            @if(dummyTasks[currentIndex].priority !== 'Medium'){
+                            @if(copyDummyTasks[currentIndex].priority !== 'Medium'){
                                 <img src="assets/img/kanban-edit-overlay/medium-arrow.svg"alt=""/>
                             }@else {
                                 <img src="assets/img/kanban-edit-overlay/white-medium.svg"alt=""/>
                             }
                         </button>
 
-                        <button (click)="changeToLow()" [disabled]="dummyTasks[currentIndex].priority === 'Low'" [class.active-low]="dummyTasks[currentIndex].priority === 'Low'">
+                        <button (click)="changeToLow(); debugPriority()" [disabled]="copyDummyTasks[currentIndex].priority === 'Low'" [class.active-low]="copyDummyTasks[currentIndex].priority === 'Low'">
                             <span>Low</span>
-                            @if(dummyTasks[currentIndex].priority !== 'Low'){
+                            @if(copyDummyTasks[currentIndex].priority !== 'Low'){
                                 <img src="assets/img/kanban-edit-overlay/low-arrow.svg" alt=""/>
                             }@else{
                                 <img src="assets/img/kanban-edit-overlay/white-low.svg" alt=""/>
@@ -84,12 +84,12 @@
                             </div>
                         }@else {
                             <div class="submit-cancel">
-                                <button (click)="emptySubtask(); debug()">
+                                <button (click)="emptySubtask()">
                                     <img  src="assets/img/kanban-edit-overlay/exit-subtask.svg" alt="">
                                 </button>
                                 
                                 <div class="grey-line"></div>
-                                <button (click)="pushToSubtask(); debug()">
+                                <button (click)="pushToSubtask()">
                                     <img  src="assets/img/kanban-edit-overlay/checkmark-subtask.svg" alt="">
                                 </button>
                             </div>
@@ -103,7 +103,7 @@
                 </div>
             </div>
             <div class="confirm-edit-button">
-                <button>
+                <button (click)="confirmChanges()">
                     <span>Ok</span>
                     <img src="assets/img/add-contacts/check.svg" alt="" />
                 </button>
