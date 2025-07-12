@@ -36,6 +36,16 @@ section {
             font-size: 6em;
         }
 
+        label {
+            font-size: 1.6em;
+            margin-bottom: 0.3em;
+
+            .required-asterisk {
+                color: red;
+                margin-right: 1em;
+            }
+        }
+
         .div-cont {
             display: flex;
             flex-direction: column;
@@ -114,16 +124,6 @@ section {
     }
 }
 
-label {
-    font-size: 1.8em;
-    margin-bottom: 0.3em;
-}
-
-.required-asterisk {
-    color: red;
-    margin-right: 1em;
-}
-
 .right-addtask {
     width: 50%;
 
@@ -133,7 +133,7 @@ label {
 
         .assigned-span {
             font-size: 1.6em;
-            padding-left: 4em;
+            padding-left: 2.7em;
             padding-bottom: 0.4em;
         }
 
@@ -206,6 +206,7 @@ label {
             &:hover {
                 color: #29abe2;
                 border: 2px #29abe2 solid;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             }
         }
 
@@ -223,6 +224,11 @@ label {
 
             img {
                 margin-left: 0.5em;
+            }
+
+            &:hover {
+                background-color: #29abe2;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             }
         }
     }
