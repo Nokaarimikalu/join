@@ -8,7 +8,8 @@ export class BoardService {
 
   constructor() {
 /*     console.log(this.filterTaskStatus('to do'));
- */  }
+ */  
+}
 
   dummyTasks: TaskItem[] = [
   {
@@ -71,4 +72,5 @@ export class BoardService {
 /*   filterTaskStatus(status: string ){
     return this.dummyTasks.filter(task => task.status === status);
     } */
+
 }

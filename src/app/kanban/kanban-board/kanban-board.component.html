@@ -3,8 +3,8 @@
     <div class="headline-area">
       <h1>Board</h1>
       <div class="search-input">
-        <input type="text" placeholder="Find Task">
-        <button class="search-button">
+        <input type="text" placeholder="Find Task" class="searchTitle" name="searchTitle">
+        <button class="search-button" (click)="searchTasks()">
           <div class="hyphen"></div>
           <img src="../../../../assets/img/kanban-board/search.png" alt="Search" width="20">
         </button>
@@ -43,6 +43,7 @@
         <div class="add-area">
           <h3>Await feedback</h3> <button class="small-add-task-button">+</button>
         </div>
+
           @if (filterTaskStatus('await feedback').length === 0) {
             <div class="noTaskPlaceholder">No tasks to do</div>
               } @else {
