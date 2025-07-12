@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { BoardService } from '../../../services/board/board.service';
+import { TaskItem } from '../../../shared/interface/task.interface';
 
 @Component({
   selector: 'app-full-card',
@@ -7,5 +9,8 @@ import { Component } from '@angular/core';
   styleUrl: './full-card.component.scss'
 })
 export class FullCardComponent {
+  constructor(public boardService: BoardService) {
+  }
+  @Input() task!: TaskItem
 
 }
