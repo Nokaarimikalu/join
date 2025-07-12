@@ -20,7 +20,7 @@ export class BoardService {
     priority: 'Urgent',
     assignedTo: [{ user: 'Max Mustermann' }],
     subTask: ['Meeting vorbereiten', 'Teilnehmer einladen'],
-    status: 'to do'
+    status: ''
   },
   {
     id: '2',
