@@ -75,6 +75,7 @@ section {
     }
 
     .kanban-addtask-priority {
+        width: 100%;
         display: flex;
         flex-direction: column;
 
@@ -191,7 +192,7 @@ label {
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: white;
+            background-color: transparent;
             border: solid rgba(0, 0, 0, 0.049) 2px;
             border-radius: 10px;
             font-size: 1.8em;
@@ -201,6 +202,11 @@ label {
             img {
                 margin-left: 0.5em;
             }
+
+            &:hover {
+                color: #29abe2;
+                border: 2px #29abe2 solid;
+            }
         }
 
         .create-task {
@@ -208,14 +214,14 @@ label {
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #2A3647;
+            background-color: #2a3647;
             border: solid rgba(0, 0, 0, 0.049) 2px;
             border-radius: 10px;
             font-size: 1.8em;
             padding: 10px 18px;
             transition: box-shadow 0.3s ease;
 
-            img{
+            img {
                 margin-left: 0.5em;
             }
         }
