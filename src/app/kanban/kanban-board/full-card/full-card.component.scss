@@ -1,5 +1,6 @@
 section {
-  z-index: 5;
+    z-index: 5;
+    font-size: 20px;
 }
 
 .full-card-container {
@@ -13,7 +14,7 @@ section {
     height: 870px;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    gap: 45px;
     box-shadow: 0 6px 0 rgba(0, 0, 0, 0.02);
     transition: ease-in-out 0.2s;
 
@@ -21,32 +22,27 @@ section {
         box-shadow: 0 0 6px rgba(42, 54, 71, 0.3);
     }
 
-    .category-area{
+    .category-area {
         display: flex;
         justify-content: space-between;
         align-items: center;
 
-    .category {
-        font-size: 23px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 190px;
-        height: 35px;
-        border-radius: 5px;
-    }
+        .category {
+            font-size: 23px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 190px;
+            height: 35px;
+            border-radius: 5px;
+        }
 
     }
 
-
-    .description {
-        color: rgb(143, 143, 143);
-        font-weight: 500;
-    }
 
     .user-priority {
         display: flex;
-        justify-content: space-between;
+        align-items: center;
 
         .user {
             display: flex;
@@ -83,6 +79,29 @@ section {
         overflow: hidden;
         text-overflow: ellipsis;
     }
+
+    .input {
+        display: flex;
+        align-items: center;
+    }
+
+    .input-assigned-to {
+        gap: 20px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .input-subtasks{
+                display: flex;
+        align-items: start;
+        flex-direction: column;
+    }
+
+    span {
+        width: 150px;
+
+        color: rgb(138, 138, 138);
+    }
 }
 
 .management {
@@ -106,36 +125,38 @@ section {
 }
 
 .initials {
-    font-size: 12px;
+    margin-left: 20px;
+    margin-right: 50px;
+    font-size: 16px;
     color: white;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 32px;
-    width: 32px;
+    height: 42px;
+    width: 42px;
     border-radius: 50px;
     background-color: rgb(random(256), random(256), random(256));
     border: solid 2px rgb(255, 255, 255);
-    margin-left: -8px;
 }
-.user-content{
+
+.user-content {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
 
-.user-area{
+.user-area {
     display: flex;
     align-items: center;
     gap: -20px;
 }
 
-.title{
+.title {
     font-size: 61px;
 }
 
-.close-button{
+.close-button {
     font-weight: 600;
     gap: 1em;
     cursor: pointer;
@@ -152,7 +173,8 @@ section {
     background-repeat: none;
     background-position: center;
     transition: ease-in-out 0.15s;
- &:hover{
-    background-color: rgb(230, 230, 230);
-}
+
+    &:hover {
+        background-color: rgb(230, 230, 230);
+    }
 }
