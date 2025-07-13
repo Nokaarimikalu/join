@@ -36,6 +36,16 @@ section {
             font-size: 6em;
         }
 
+        label {
+            font-size: 1.6em;
+            margin-bottom: 0.3em;
+
+            .required-asterisk {
+                color: red;
+                margin-right: 1em;
+            }
+        }
+
         .div-cont {
             display: flex;
             flex-direction: column;
@@ -75,12 +85,13 @@ section {
     }
 
     .kanban-addtask-priority {
+        width: 100%;
         display: flex;
         flex-direction: column;
 
         p {
             font-size: 18px;
-            padding-left: 4em;
+            padding-left: 2em;
             padding-top: 10.5em;
             margin-bottom: 0.4em;
         }
@@ -90,6 +101,19 @@ section {
             justify-content: space-evenly;
             margin-bottom: 4em;
             padding-right: 8em;
+
+            .active-urgent {
+                background-color: #ff3d00;
+                color: white;
+            }
+            .active-medium {
+                background-color: #ffa800;
+                color: white;
+            }
+            .active-low {
+                background-color: #7ae229;
+                color: white;
+            }
 
             button {
                 display: flex;
@@ -113,16 +137,6 @@ section {
     }
 }
 
-label {
-    font-size: 1.8em;
-    margin-bottom: 0.3em;
-}
-
-.required-asterisk {
-    color: red;
-    margin-right: 1em;
-}
-
 .right-addtask {
     width: 50%;
 
@@ -132,7 +146,7 @@ label {
 
         .assigned-span {
             font-size: 1.6em;
-            padding-left: 4em;
+            padding-left: 2.7em;
             padding-bottom: 0.4em;
         }
 
@@ -191,7 +205,7 @@ label {
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: white;
+            background-color: transparent;
             border: solid rgba(0, 0, 0, 0.049) 2px;
             border-radius: 10px;
             font-size: 1.8em;
@@ -201,6 +215,12 @@ label {
             img {
                 margin-left: 0.5em;
             }
+
+            &:hover {
+                color: #29abe2;
+                border: 2px #29abe2 solid;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            }
         }
 
         .create-task {
@@ -208,15 +228,20 @@ label {
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #2A3647;
+            background-color: #2a3647;
             border: solid rgba(0, 0, 0, 0.049) 2px;
             border-radius: 10px;
             font-size: 1.8em;
             padding: 10px 18px;
             transition: box-shadow 0.3s ease;
 
-            img{
+            img {
                 margin-left: 0.5em;
+            }
+
+            &:hover {
+                background-color: #29abe2;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             }
         }
     }
