@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { TaskItem, TaskItemBoard } from "../../shared/interface/task.interface";
 
 @Injectable({
@@ -7,6 +7,7 @@ import { TaskItem, TaskItemBoard } from "../../shared/interface/task.interface";
 export class BoardService {
   
   fullCardActive: boolean = false;
+selectedTask: TaskItem | null = null;
 
   constructor() {
 
@@ -167,8 +168,15 @@ export class BoardService {
   }
 ];
 
-  openFullCard() {
+  openFullCard(task: TaskItem) {
     this.fullCardActive = !this.fullCardActive;
+    this.selectedTask = task;
+  }
+/* 
+    getSelectedProfile(activeUser: number) {
+    const isSameUser = this.activeProfileIndex === activeUser;
   }
 
+
+ */
 }

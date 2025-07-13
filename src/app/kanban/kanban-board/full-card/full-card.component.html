@@ -2,7 +2,7 @@
   <div class="full-card-container">
     <div class="category-area">
       <div class="category {{task.category?.toLocaleLowerCase()}}">{{task.category}}</div>
-      <button class="close-button" (click)="boardService.openFullCard()"></button>
+      <button class="close-button" (click)="boardService.openFullCard(task)"></button>
     </div>
 
     <div class="title">

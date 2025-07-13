@@ -24,12 +24,11 @@
             </div>
           } @else {
               @for (task of tasksSearchAndStatus('to do', searchValue); track $index) {
-                <app-card [task]="task" (click)="boardService.openFullCard()"></app-card>
+                <app-card [task]="task" (click)="boardService.openFullCard(task)"></app-card>
               }
           }
         </div>
       </div>
-
 
       <div class="task-column">
         <div class="add-area">
@@ -42,7 +41,7 @@
             </div>
           } @else {
               @for (task of tasksSearchAndStatus('in progress', searchValue); track $index) {
-                <app-card [task]="task" (click)="boardService.openFullCard()"></app-card>
+                <app-card [task]="task" (click)="boardService.openFullCard(task)"></app-card>
               }
           }
         </div>
@@ -60,7 +59,7 @@
             </div>
           } @else {
               @for (task of tasksSearchAndStatus('await feedback', searchValue); track $index) {
-                <app-card [task]="task" (click)="boardService.openFullCard()"></app-card>
+                <app-card [task]="task" (click)="boardService.openFullCard(task)"></app-card>
               }
           }
         </div>
@@ -77,18 +76,15 @@
             </div>
           } @else {
               @for (task of tasksSearchAndStatus('done', searchValue); track $index) {
-                <app-card [task]="task" (click)="boardService.openFullCard()"></app-card>
+                <app-card [task]="task" (click)="boardService.openFullCard(task)"></app-card>
               }
           }
         </div>
       </div>
-
     </div>
   </div>
   
-  @if (boardService.fullCardActive) {  
-    @for (task of tasksSearchAndStatus('done', searchValue); track $index) {
-      <app-full-card [task]="task" ></app-full-card>
-    }
+  @if (boardService.fullCardActive && boardService.selectedTask) {
+    <app-full-card [task]="boardService.selectedTask"></app-full-card>
   }
 </section>
