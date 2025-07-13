@@ -155,12 +155,11 @@
                     }
 
                     .all-user-container {
-                        .select-to-assign {
+                        select {
                             display: flex;
                             align-items: center;
                             justify-content: space-between;
                             border: 2px rgba(0, 0, 0, 0.346) solid;
-                            padding: 1em;
                             width: 100%;
                             border-radius: 10px;
                             height: 48px;
@@ -169,7 +168,13 @@
                             &:hover {
                                 border: 2px rgba(0, 0, 0, 0.694) solid;
                             }
+
                         }
+                        option:hover {
+                                background-color: #ffffff;
+                                color: #333;
+                                padding: 8px;
+                            }
                     }
                 }
 

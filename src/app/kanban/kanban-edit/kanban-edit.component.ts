@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TaskItem } from '../../shared/interface/task.interface';
+import { OverlayState } from '../../services/contacts/overlayState.service';
 
 @Component({
     selector: 'app-kanban-edit',
@@ -10,11 +11,11 @@ import { TaskItem } from '../../shared/interface/task.interface';
 })
 export class KanbanEditComponent {
     
-    isInputFocused = false;
+    isInputFocused:boolean = false;
 
-    subtaskString = '';
+    subtaskString:string = '';
 
-    currentIndex = 0;
+    currentIndex:number = 0;
 //----------------------------------------------------------------------------------
     // dummy Daten solange Firebase nicht eingerichtet wurde
     dummyTasks: TaskItem[] = [
@@ -79,6 +80,11 @@ export class KanbanEditComponent {
     ];
     // copy dummyDaten
     copyDummyTasks: TaskItem[] = JSON.parse(JSON.stringify(this.dummyTasks));
+//---------------------------------------------------------------------------------------------
+
+
+    constructor(public overlayState: OverlayState) {}
+
 
 //------------------------------------------------------------------------------------------
     changeToUrgent() {
@@ -125,14 +131,16 @@ export class KanbanEditComponent {
         this.subtaskString = '';
     }
 
-    handleBackdropClick(event: MouseEvent) {
-        this.resetChanges();
+    confirmChanges() {
+        // muss mit json usw weil sonst die Buttons net gehen ??
+        this.dummyTasks[this.currentIndex] =  JSON.parse(JSON.stringify(this.copyDummyTasks[this.currentIndex]));
+    }
+    resetChanges() {
+        // muss mit json usw weil sonst die Buttons net gehen ??
+        this.copyDummyTasks[this.currentIndex] = JSON.parse(JSON.stringify(this.dummyTasks[this.currentIndex]));
     }
 
-        confirmChanges(){
-        this.dummyTasks[this.currentIndex].priority = this.copyDummyTasks[this.currentIndex].priority
-    }
-    resetChanges(){
-        this.copyDummyTasks[this.currentIndex].priority = this.dummyTasks[this.currentIndex].priority
+    handleBackdropClick(event: MouseEvent) {
+        this.resetChanges();
     }
 }
