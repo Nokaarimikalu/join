@@ -28,26 +28,43 @@
       <span>Assignet To:</span>
       <div class="user-priority">
         @for (user of task.assignedTo; track $index) {
-        <div class="user initials">{{ user.user.slice(0, 2).toLocaleUpperCase()}}</div>
-        <div>{{user.user}}</div>
+        <div class="user-details">
+          <div class="user initials">{{ user.user.slice(0, 2).toLocaleUpperCase()}} </div>
+          <div class="user-name">{{user.user}}</div>
+        </div>
+
         }
       </div>
     </div>
 
 
-        <div class="input-assigned-to">
+    <div class="input-assigned-to">
       <span>Subtasks:</span>
-      <div class="user-priority">
-    <div class="subtask">{{task.subTask}}</div>
+      <div class="subtask-priority">
+        <div class="subtask">{{task.subTask}}</div>
       </div>
     </div>
 
-<!--             <div class="input-assigned-to">
+    <!--             <div class="input-assigned-to">
       <span>Subtasks:</span>
       <div class="user-priority">
         <input type="checkbox" [(ngModel)]="task.subTask">
       </div>
     </div>
---> 
+-->
+
+<div class="edit-delete-area">
+
+  <div class="delete-container">
+  <div class="delete"></div> <p>Delete</p>
+  </div>
+
+  <div class="hyphen"></div>
+
+  <div class="edit-container">
+  <div class="edit"></div> <p>Edit</p>
+  </div>
+
+</div>
   </div>
 </section>

@@ -17,15 +17,21 @@
         <div class="add-area">
           <h3>To do</h3> <button class="small-add-task-button">+</button>
         </div>
-        <div class="task-columns">
-          @if (tasksSearchAndStatus('to do', searchValue).length === 0) {
-            <div class="no-task-place-holder">
-                No tasks to do
-            </div>
+        
+        <div class="task-columns" cdkDropList [cdkDropListData]="tasksSearchAndStatus('to do', searchValue)"
+          (cdkDropListDropped)="drop($event)" id="to do"> 
+
+
+
+          @if (tasksSearchAndStatus('to do', searchValue).length === 0)
+          {
+          <div class="no-task-place-holder">
+            No tasks to do
+          </div>
           } @else {
-              @for (task of tasksSearchAndStatus('to do', searchValue); track $index) {
-                <app-card [task]="task" (click)="boardService.openFullCard(task)"></app-card>
-              }
+          @for (task of tasksSearchAndStatus('to do', searchValue); track $index) {
+          <app-card [cdkDragData]="task" [task]="task" (click)="boardService.openFullCard(task) " cdkDrag></app-card>
+          }
           }
         </div>
       </div>
@@ -34,33 +40,30 @@
         <div class="add-area">
           <h3>In progress</h3> <button class="small-add-task-button">+</button>
         </div>
-        <div class="task-columns">
+        <div class="task-columns" cdkDropList [cdkDropListData]="tasksSearchAndStatus('in progress', searchValue)"
+          (cdkDropListDropped)="drop($event)" id="in progress">
           @if (tasksSearchAndStatus('in progress', searchValue).length === 0) {
-            <div class="no-task-place-holder">
-                No tasks to do
-            </div>
+          <div class="no-task-place-holder">No tasks to do</div>
           } @else {
-              @for (task of tasksSearchAndStatus('in progress', searchValue); track $index) {
-                <app-card [task]="task" (click)="boardService.openFullCard(task)"></app-card>
-              }
+          @for (task of tasksSearchAndStatus('in progress', searchValue); track $index) {
+          <app-card [cdkDragData]="task" [task]="task" (click)="boardService.openFullCard(task)" cdkDrag></app-card>
+          }
           }
         </div>
       </div>
-
 
       <div class="task-column">
         <div class="add-area">
           <h3>Await feedback</h3> <button class="small-add-task-button">+</button>
         </div>
-        <div class="task-columns">
+        <div class="task-columns" cdkDropList [cdkDropListData]="tasksSearchAndStatus('await feedback', searchValue)"
+          (cdkDropListDropped)="drop($event)" id="await feedback">
           @if (tasksSearchAndStatus('await feedback', searchValue).length === 0) {
-            <div class="no-task-place-holder">
-                No tasks to do
-            </div>
+          <div class="no-task-place-holder">No tasks to do</div>
           } @else {
-              @for (task of tasksSearchAndStatus('await feedback', searchValue); track $index) {
-                <app-card [task]="task" (click)="boardService.openFullCard(task)"></app-card>
-              }
+          @for (task of tasksSearchAndStatus('await feedback', searchValue); track $index) {
+          <app-card [cdkDragData]="task" [task]="task" (click)="boardService.openFullCard(task)" cdkDrag></app-card>
+          }
           }
         </div>
       </div>
@@ -69,22 +72,21 @@
         <div class="add-area">
           <h3>Done</h3> <button class="small-add-task-button">+</button>
         </div>
-        <div class="task-columns">
+        <div class="task-columns" cdkDropList [cdkDropListData]="tasksSearchAndStatus('done', searchValue)"
+          (cdkDropListDropped)="drop($event)" id="done">
           @if (tasksSearchAndStatus('done', searchValue).length === 0) {
-            <div class="no-task-place-holder">
-                No tasks to do
-            </div>
+          <div class="no-task-place-holder">No tasks to do</div>
           } @else {
-              @for (task of tasksSearchAndStatus('done', searchValue); track $index) {
-                <app-card [task]="task" (click)="boardService.openFullCard(task)"></app-card>
-              }
+          @for (task of tasksSearchAndStatus('done', searchValue); track $index) {
+          <app-card [cdkDragData]="task" [task]="task" (click)="boardService.openFullCard(task)" cdkDrag></app-card>
+          }
           }
         </div>
       </div>
     </div>
   </div>
-  
+
   @if (boardService.fullCardActive && boardService.selectedTask) {
-    <app-full-card [task]="boardService.selectedTask"></app-full-card>
+  <app-full-card [task]="boardService.selectedTask"></app-full-card>
   }
 </section>

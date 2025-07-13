@@ -1,181 +1,258 @@
 section {
-    z-index: 5;
-    font-size: 20px;
+  z-index: 5;
+  font-size: 20px;
 }
 
 .full-card-container {
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    padding: 25px;
-    border-radius: 20px;
-    background-color: rgb(255, 255, 255);
-    height: 870px;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  padding: 25px;
+  border-radius: 20px;
+  background-color: rgb(255, 255, 255);
+  height: 870px;
+  display: flex;
+  flex-direction: column;
+  gap: 45px;
+  box-shadow: 0 6px 0 rgba(0, 0, 0, 0.02);
+  transition: ease-in-out 0.2s;
+
+  &:hover {
+    box-shadow: 0 0 6px rgba(42, 54, 71, 0.3);
+  }
+
+  .category-area {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .category {
+      font-size: 23px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 190px;
+      height: 35px;
+      border-radius: 5px;
+    }
+
+  }
+
+
+  .user-priority {
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    margin-left: 30px;
+
+    .user {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .urgent {
+    width: 32px;
+    height: 32px;
+    background-image: url("../../../../../public/assets/img/kanban-edit-overlay/urgent-arrow.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .medium {
+    width: 32px;
+    height: 32px;
+    background-image: url("../../../../../public/assets/img/kanban-edit-overlay/medium-arrow.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .low {
+    width: 32px;
+    height: 32px;
+    background-image: url("../../../../../public/assets/img/kanban-edit-overlay/low-arrow.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .description {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .input {
+    display: flex;
+    align-items: center;
+  }
+
+  .input-assigned-to {
+    gap: 20px;
     display: flex;
     flex-direction: column;
-    gap: 45px;
-    box-shadow: 0 6px 0 rgba(0, 0, 0, 0.02);
-    transition: ease-in-out 0.2s;
 
-    &:hover {
-        box-shadow: 0 0 6px rgba(42, 54, 71, 0.3);
+    .user-details {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
     }
+  }
 
-    .category-area {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+  .input-subtasks {
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+  }
 
-        .category {
-            font-size: 23px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 190px;
-            height: 35px;
-            border-radius: 5px;
-        }
+  span {
+    width: 150px;
 
-    }
-
-
-    .user-priority {
-        display: flex;
-        align-items: start;
-        flex-direction: column;
-
-        .user {
-            display: flex;
-            align-items: center;
-        }
-    }
-
-    .urgent {
-        width: 32px;
-        height: 32px;
-        background-image: url("../../../../../public/assets/img/kanban-edit-overlay/urgent-arrow.svg");
-        background-repeat: no-repeat;
-        background-position: center;
-    }
-
-    .medium {
-        width: 32px;
-        height: 32px;
-        background-image: url("../../../../../public/assets/img/kanban-edit-overlay/medium-arrow.svg");
-        background-repeat: no-repeat;
-        background-position: center;
-    }
-
-    .low {
-        width: 32px;
-        height: 32px;
-        background-image: url("../../../../../public/assets/img/kanban-edit-overlay/low-arrow.svg");
-        background-repeat: no-repeat;
-        background-position: center;
-    }
-
-    .description {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    .input {
-        display: flex;
-        align-items: center;
-    }
-
-    .input-assigned-to {
-        gap: 20px;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .input-subtasks{
-                display: flex;
-        align-items: start;
-        flex-direction: column;
-    }
-
-    span {
-        width: 150px;
-
-        color: rgb(138, 138, 138);
-    }
+    color: rgb(138, 138, 138);
+  }
 }
 
 .management {
-    background-color: rgb(208, 127, 255);
+  background-color: rgb(208, 127, 255);
 }
 
 .entwicklung {
-    background-color: rgb(127, 204, 255);
+  background-color: rgb(127, 204, 255);
 }
 
 .design {
-    background-color: rgb(127, 255, 212);
+  background-color: rgb(127, 255, 212);
 }
 
 .devops {
-    background-color: rgb(255, 210, 127);
+  background-color: rgb(255, 210, 127);
 }
 
 .dokumentation {
-    background-color: rgb(255, 127, 127);
+  background-color: rgb(255, 127, 127);
 }
 
 .initials {
-    margin-left: 20px;
-    margin-right: 50px;
-    font-size: 16px;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 42px;
-    width: 42px;
-    border-radius: 50px;
-    background-color: rgb(random(256), random(256), random(256));
-    border: solid 2px rgb(255, 255, 255);
+  margin-right: 20px;
+  font-size: 16px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 42px;
+  width: 42px;
+  border-radius: 50px;
+  background-color: rgb(random(256), random(256), random(256));
+  border: solid 2px rgb(255, 255, 255);
 }
 
+
 .user-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 
 .user-area {
-    display: flex;
-    align-items: center;
-    gap: -20px;
+  display: flex;
+  align-items: center;
+  gap: -20px;
 }
 
 .title {
-    font-size: 61px;
+  font-size: 61px;
 }
 
 .close-button {
-    font-weight: 600;
-    gap: 1em;
+  font-weight: 600;
+  gap: 1em;
+  cursor: pointer;
+  border: none;
+  border-radius: 30px;
+  font-size: 21px;
+  color: rgb(95, 95, 95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  background: url('../../../../../public/assets/img/kanban-board/fullCardCloseButton.png');
+  background-repeat: none;
+  background-position: center;
+  transition: ease-in-out 0.15s;
+
+  &:hover {
+    background-color: rgb(230, 230, 230);
+  }
+}
+
+.edit-delete-area {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 10px;
+
+  .edit-container {
     cursor: pointer;
-    border: none;
-    border-radius: 30px;
-    font-size: 21px;
-    color: rgb(95, 95, 95);
     display: flex;
-    justify-content: center;
     align-items: center;
+
+    .edit {
+      background: url('../../../../../public/assets/img/kanban-board/fullCardEditButton.png');
+      width: 32px;
+      height: 32px;
+      background-position: center;
+      background-repeat: no-repeat;
+      gap: 10px;
+      display: flex;
+      align-items: center;
+    }
+        &:hover {
+      color: #29abe2;
+
+      .edit {
+        background: url('../../../../../public/assets/img/kanban-board/fullCardEditButtonHover.png');
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+  }
+  }
+  .delete-container {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    .delete {
+      background: url('../../../../../public/assets/img/kanban-board/fullCardDeleteButton.png');
+      width: 32px;
+      height: 32px;
+      background-position: center;
+      background-repeat: no-repeat;
+      gap: 10px;
+      display: flex;
+      align-items: center;
+    }
+    &:hover {
+      color: #29abe2;
+
+      .delete {
+        background: url('../../../../../public/assets/img/kanban-board/fullCardDeleteButtonHover.png');
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+
+    }
+  }
+
+
+  img {
     width: 32px;
     height: 32px;
-    background: url('../../../../../public/assets/img/kanban-board/fullCardCloseButton.png');
-    background-repeat: none;
-    background-position: center;
-    transition: ease-in-out 0.15s;
+  }
 
-    &:hover {
-        background-color: rgb(230, 230, 230);
-    }
+  .hyphen {
+    height: 30px;
+    width: 1px;
+    background-color: rgba(0, 0, 0, 0.178);
+  }
 }
