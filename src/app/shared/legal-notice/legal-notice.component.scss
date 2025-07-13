@@ -1,0 +1,132 @@
+.main-content {
+    display: flex;
+    height: 100dvh;
+    overflow-x: hidden;
+
+    @media (max-width:965px) {
+        height: 92dvh;
+    }
+}
+
+
+
+.main-content-input {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.display {
+    display: flex;
+}
+
+.contractDetails {
+    padding-left: 4dvw;
+    font-family: sans-serif;
+    overflow-wrap: break-word;
+    overflow-y: auto;
+
+    h1 {
+        margin-top: 8dvh;
+    }
+
+    h2,
+    h3,
+    h4 {
+        margin: 1em 0;
+    }
+}
+
+p.BodyLeft,
+p.Body {
+    margin-left: 0;
+}
+
+p.BodyLeft p,
+p.Body p {
+    margin-left: 0;
+}
+
+p.BodyLeft p span,
+p.Body p span {
+    margin-left: 0;
+}
+
+p.BodyLeft p span span,
+p.Body p span span {
+    margin-left: 0;
+}
+
+.DieterLista,
+.DieterListi,
+.BulletList1 {
+    padding-left: 4dvw;
+}
+
+.DieterLista .number-prefix-p,
+.DieterListi .number-prefix-p,
+.BulletList1 .number-prefix-p {
+    margin-left: -4dvw;
+    display: inline-block;
+    width: 1.25cm;
+}
+
+.DieterListaIndent,
+.DieterListiIndent,
+.BulletList2 .number-prefix-p {
+    margin-left: 4dvw;
+    display: inline-block;
+    width: 1.25cm;
+}
+
+.DieterHeading2 .number-prefix-p,
+.DieterHeading3 .number-prefix-p,
+.DieterHeading4 .number-prefix-p {
+    display: inline-block;
+    width: 4dvw;
+    margin-left: -1.25cm;
+}
+
+.DieterHeading2,
+.HeadingLeft {
+    font-weight: 600;
+}
+
+.DieterHeading2 span:not(.number-prefix-p) {
+    margin-left: 0;
+}
+
+.BulletListNoIndent {
+    margin-left: 0;
+}
+
+.BulletListNoIndent span {
+    text-indent: 0;
+}
+
+.BulletListNoIndent .number-prefix-p {
+    display: inline-block;
+    width: 1.25cm;
+    margin-left: -1.25cm;
+}
+
+.BulletListNoIndent span:not(.number-prefix-p) {
+    text-indent: 1.25cm;
+}
+
+.HeadingLeft {
+    margin-left: 0;
+    font-size: 1.25rem;
+}
+
+.HeadingLeft span {
+    margin-left: 0;
+}
+
+.DieterInvisible {
+    display: none;
+}
+
+.multiline {
+    white-space: pre-wrap;
+}

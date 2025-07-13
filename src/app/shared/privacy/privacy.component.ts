@@ -6,7 +6,7 @@ import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-privacy',
-  imports: [HeaderComponent, NavFooterComponent, NavFooterMobileComponent, RouterLink],
+  imports: [HeaderComponent, NavFooterComponent, NavFooterMobileComponent],
   templateUrl: './privacy.component.html',
   styleUrl: './privacy.component.scss'
 })
