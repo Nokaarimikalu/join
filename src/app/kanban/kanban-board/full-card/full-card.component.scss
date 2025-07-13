@@ -42,7 +42,8 @@ section {
 
     .user-priority {
         display: flex;
-        align-items: center;
+        align-items: start;
+        flex-direction: column;
 
         .user {
             display: flex;
