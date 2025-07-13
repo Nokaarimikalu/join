@@ -9,10 +9,13 @@ import { TaskItem } from '../../../shared/interface/task.interface';
   styleUrl: './card.component.scss'
 })
 
+
+
 export class CardComponent {
   constructor(public boardService: BoardService) {
   }
 
 @Input() task!: TaskItem
+
 
 }

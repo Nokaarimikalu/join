@@ -12,19 +12,15 @@
                 <form class="kanban-overlay-form">
                     <div class="form-title kanban-div">
                         <span>Title</span>
-                        <input [ngModel]="dummyTasks[currentIndex].title" name="taskTitle" placeholder="Enter a title" type="text">
+                        <input [(ngModel)]="copyDummyTasks[currentIndex].title" name="taskTitle" placeholder="Enter a title" type="text">
                     </div>
                     <div class="form-description kanban-div">
                         <span>Description</span>
-                        <textarea
-                            [ngModel]="dummyTasks[currentIndex].description" name="taskDescription"
-                            placeholder="Enter a Description "
-                        ></textarea>
+                        <textarea [(ngModel)]="copyDummyTasks[currentIndex].description" name="taskDescription"placeholder="Enter a Description "></textarea>
                     </div>
                     <div class="form-date kanban-div">
                         <span>Due date</span>
-                        <input type="date" [ngModel]="dummyTasks[currentIndex].dueDate" name="taskDate"
-                        />
+                        <input type="date" [(ngModel)]="copyDummyTasks[currentIndex].dueDate" name="taskDate"/>
                     </div>
                 </form>
 
@@ -66,10 +62,12 @@
                     <span class="assigned-span">Assigned to</span>
                     <div class="all-user-container">
                         <select class="select-to-assign" required name="name" id="">
-                            <option value="1">hallo</option>
-                            <option value="2">haallo</option>
-                            <option value="3">haaallo</option>
-                            <option value="4">haaaallo</option>
+                            @for (user of overlayState.contactList; track $index) {
+                                <option value="$index + 1">
+                                    {{user.firstName}} {{user.lastName}} {{$index}}
+                                </option>
+                            }
+                            
                         </select>
                     </div>
                 </div>
@@ -77,7 +75,7 @@
                 <div class="kanban-overlay-subtask">
                     <span>Subtask</span>
                     <div class="subtaskfield">
-                        <input [(ngModel)]="subtaskString" type="text"(focus)="isInputFocused = true" (blur)="isInputFocused = false">
+                        <input [(ngModel)]="subtaskString" type="text"(focus)="isInputFocused = true">
                         @if(!isInputFocused){
                             <div class="add">
                                 <img src="assets/img/kanban-edit-overlay/plus-zichen.svg" alt=""/>

@@ -3,8 +3,8 @@
     <div class="headline-area">
       <h1>Board</h1>
       <div class="search-input">
-        <input type="text" placeholder="Find Task">
-        <button class="search-button">
+        <input type="text" placeholder="Find Task" class="searchTitle" name="searchTitle" (keyup)="searchTasks()">
+        <button class="search-button" (click)="searchTasks()">
           <div class="hyphen"></div>
           <img src="../../../../assets/img/kanban-board/search.png" alt="Search" width="20">
         </button>
@@ -17,37 +17,74 @@
         <div class="add-area">
           <h3>To do</h3> <button class="small-add-task-button">+</button>
         </div>
-        @for (task of filterTaskStatus('to do'); track $index) {
-          <app-card [task]="task"></app-card>
-        }
+        <div class="task-columns">
+          @if (tasksSearchAndStatus('to do', searchValue).length === 0) {
+            <div class="no-task-place-holder">
+                No tasks to do
+            </div>
+          } @else {
+              @for (task of tasksSearchAndStatus('to do', searchValue); track $index) {
+                <app-card [task]="task" (click)="boardService.openFullCard(task)"></app-card>
+              }
+          }
+        </div>
       </div>
 
       <div class="task-column">
         <div class="add-area">
           <h3>In progress</h3> <button class="small-add-task-button">+</button>
         </div>
-        @for (task of filterTaskStatus('in progress'); track $index) {
-          <app-card [task]="task"></app-card>
-        }
+        <div class="task-columns">
+          @if (tasksSearchAndStatus('in progress', searchValue).length === 0) {
+            <div class="no-task-place-holder">
+                No tasks to do
+            </div>
+          } @else {
+              @for (task of tasksSearchAndStatus('in progress', searchValue); track $index) {
+                <app-card [task]="task" (click)="boardService.openFullCard(task)"></app-card>
+              }
+          }
+        </div>
       </div>
+
 
       <div class="task-column">
         <div class="add-area">
           <h3>Await feedback</h3> <button class="small-add-task-button">+</button>
         </div>
-        @for (task of filterTaskStatus('await feedback'); track $index) {
-          <app-card [task]="task"></app-card>
+        <div class="task-columns">
+          @if (tasksSearchAndStatus('await feedback', searchValue).length === 0) {
+            <div class="no-task-place-holder">
+                No tasks to do
+            </div>
+          } @else {
+              @for (task of tasksSearchAndStatus('await feedback', searchValue); track $index) {
+                <app-card [task]="task" (click)="boardService.openFullCard(task)"></app-card>
+              }
           }
+        </div>
       </div>
 
       <div class="task-column">
         <div class="add-area">
           <h3>Done</h3> <button class="small-add-task-button">+</button>
         </div>
-        @for (task of filterTaskStatus('done'); track $index) {
-          <app-card [task]="task"></app-card>
-        }
+        <div class="task-columns">
+          @if (tasksSearchAndStatus('done', searchValue).length === 0) {
+            <div class="no-task-place-holder">
+                No tasks to do
+            </div>
+          } @else {
+              @for (task of tasksSearchAndStatus('done', searchValue); track $index) {
+                <app-card [task]="task" (click)="boardService.openFullCard(task)"></app-card>
+              }
+          }
+        </div>
       </div>
     </div>
   </div>
+  
+  @if (boardService.fullCardActive && boardService.selectedTask) {
+    <app-full-card [task]="boardService.selectedTask"></app-full-card>
+  }
 </section>

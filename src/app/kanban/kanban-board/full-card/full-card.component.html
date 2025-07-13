@@ -1,1 +1,53 @@
-<p>full-card works!</p>
+<section>
+  <div class="full-card-container">
+    <div class="category-area">
+      <div class="category {{task.category?.toLocaleLowerCase()}}">{{task.category}}</div>
+      <button class="close-button" (click)="boardService.openFullCard(task)"></button>
+    </div>
+
+    <div class="title">
+      <h1>{{task.title}}</h1>
+    </div>
+
+    <div class="description">
+      {{task.description}}
+    </div>
+
+    <div class="input">
+      <span>Due date:</span>
+      <p>{{task.dueDate}}</p>
+    </div>
+
+    <div class="input">
+      <span>Priority:</span>
+      <p>{{task.priority}}</p>
+      <div [class]="task.priority.toLowerCase()"></div>
+    </div>
+
+    <div class="input-assigned-to">
+      <span>Assignet To:</span>
+      <div class="user-priority">
+        @for (user of task.assignedTo; track $index) {
+        <div class="user initials">{{ user.user.slice(0, 2).toLocaleUpperCase()}}</div>
+        <div>{{user.user}}</div>
+        }
+      </div>
+    </div>
+
+
+        <div class="input-assigned-to">
+      <span>Subtasks:</span>
+      <div class="user-priority">
+    <div class="subtask">{{task.subTask}}</div>
+      </div>
+    </div>
+
+<!--             <div class="input-assigned-to">
+      <span>Subtasks:</span>
+      <div class="user-priority">
+        <input type="checkbox" [(ngModel)]="task.subTask">
+      </div>
+    </div>
+--> 
+  </div>
+</section>
