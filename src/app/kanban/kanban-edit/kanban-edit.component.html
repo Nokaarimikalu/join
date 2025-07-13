@@ -1,5 +1,5 @@
 <section class="dimmed-background" (click)="handleBackdropClick($event)">
-    <div class="overlay-kanban-edit" (click)="$event.stopPropagation()">
+    <div class="overlay-kanban-edit" (click)="$event.stopPropagation() ;subtaskTest($event) ">
         <div class="close-button">
             <img src="assets/img/add-contacts/Vector.svg"  alt="" />
         </div>
@@ -61,10 +61,10 @@
                 <div class="kanban-assigned-to">
                     <span class="assigned-span">Assigned to</span>
                     <div class="all-user-container">
-                        <select class="select-to-assign" required name="name" id="">
+                        <select class="select-to-assign"  required name="name" id="" multiple>
                             @for (user of overlayState.contactList; track $index) {
                                 <option value="$index + 1">
-                                    {{user.firstName}} {{user.lastName}} {{$index}}
+                                    {{user.firstName}} {{user.lastName}}
                                 </option>
                             }
                         </select>
@@ -73,8 +73,8 @@
 
                 <div class="kanban-overlay-subtask">
                     <span>Subtask</span>
-                    <div class="subtaskfield">
-                        <input [(ngModel)]="subtaskString" type="text"(focus)="isInputFocused = true">
+                    <div class="subtaskfield" (click)="$event.stopPropagation();">
+                        <input [(ngModel)]="subtaskString" type="text"(focus)="isInputFocused = true" >
                         @if(!isInputFocused){
                             <div class="add">
                                 <img src="assets/img/kanban-edit-overlay/plus-zichen.svg" alt=""/>
@@ -94,7 +94,12 @@
                     </div>
                     <div class="each-sub-task">
                         @for (item of dummyTasks[currentIndex].subTask; track $index) {
-                            <li>{{ dummyTasks[currentIndex].subTask[$index]}}</li>
+                            @if (isListClicked === 'list') {
+                                <li (dblclick)="isListClicked = 'activateTextarea'">{{ dummyTasks[currentIndex].subTask[$index]}}</li>
+                            }@else {
+                                
+                            }
+                            
                         }
                     </div>
                 </div>
