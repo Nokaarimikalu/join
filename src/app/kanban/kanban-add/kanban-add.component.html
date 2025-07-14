@@ -81,25 +81,26 @@
                                 <div class="kanban-overlay-subtask">
                                     <span class="subtask-span">Subtask</span>
                                     <div class="subtaskfield" (click)="$event.stopPropagation();">
-                        <input [(ngModel)]="subtaskString" type="text"(focus)="isInputFocused = true" placeholder="Add a subtask">
-                        @if(!isInputFocused){
-                            <div class="add">
-                                <img src="assets/img/kanban-edit-overlay/plus-zichen.svg" alt=""/>
-                            </div>
-                        }@else {
-                            <div class="submit-cancel">
-                                <button (click)="emptySubtask()">
-                                    <img  src="assets/img/kanban-edit-overlay/exit-subtask.svg" alt="">
-                                </button>
-                                
-                                <div class="grey-line"></div>
-                                <button (click)="pushToSubtask()">
-                                    <img  src="assets/img/kanban-edit-overlay/checkmark-subtask.svg" alt="">
-                                </button>
-                            </div>
-                        }
-                    </div>
-                    <div class="each-sub-task">
+                                        <input [(ngModel)]="subtaskString" type="text" (focus)="isInputFocused = true"
+                                            placeholder="Add a subtask">
+                                        @if(!isInputFocused){
+                                        <div class="add">
+                                            <img src="assets/img/kanban-edit-overlay/plus-zichen.svg" alt="" />
+                                        </div>
+                                        }@else {
+                                        <div class="submit-cancel">
+                                            <button (click)="emptySubtask()">
+                                                <img src="assets/img/kanban-edit-overlay/exit-subtask.svg" alt="">
+                                            </button>
+
+                                            <div class="grey-line"></div>
+                                            <button (click)="pushToSubtask()">
+                                                <img src="assets/img/kanban-edit-overlay/checkmark-subtask.svg" alt="">
+                                            </button>
+                                        </div>
+                                        }
+                                    </div>
+                                    <!-- <div class="each-sub-task">
                         @for (item of dummyTasks[currentIndex].subTask; track $index) {
                             @if (isListClicked === 'list') {
                                 <li (dblclick)="isListClicked = 'activateTextarea'">{{ dummyTasks[currentIndex].subTask[$index]}}</li>
@@ -108,8 +109,22 @@
                             }
                             
                         }
-                    </div>
-                </div>
+                    </div> -->
+                                    <div class="each-sub-task"
+                                        *ngFor="let item of dummyTasks[currentIndex].subTask; let i = index">
+                                        <span class="subtask-text" (dblclick)="isListClicked = 'activateTextarea'">
+                                            {{ item }}
+                                        </span>
+
+                                        <div class="edit-subtask" (click)="editSubtask(i)">
+                                            <img src="assets/img/info-screen/edit.svg" alt="Edit">
+                                        </div>
+
+                                        <div class="delete-subtask" (click)="deleteSubtask(i)">
+                                            <img src="assets/img/info-screen/delete.svg" alt="Delete">
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <div class="confirm-clear-add-button">
                                     <button class="clear" (click)="emptySubtask()">

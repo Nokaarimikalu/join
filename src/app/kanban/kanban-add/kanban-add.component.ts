@@ -6,11 +6,13 @@ import { NavFooterMobileComponent } from '../../shared/nav-footer-mobile/nav-foo
 import { OverlayState } from '../../services/contacts/overlayState.service';
 import { FormsModule } from '@angular/forms';
 import { TaskItem } from '../../shared/interface/task.interface';
+import { NgFor } from '@angular/common';
+
 
 
 @Component({
   selector: 'app-kanban-add',
-  imports: [FormsModule, HeaderComponent, NavFooterComponent, NavFooterMobileComponent],
+  imports: [FormsModule, NgFor, HeaderComponent, NavFooterComponent, NavFooterMobileComponent],
   templateUrl: './kanban-add.component.html',
   styleUrl: './kanban-add.component.scss'
 })
@@ -166,5 +168,17 @@ export class KanbanAddComponent {
     subtaskTest(event: MouseEvent){
         this.isInputFocused = false
     }
+
+
+    editSubtask(index: number) {
+  // Logik zum Bearbeiten des Subtasks
+  this.isListClicked = 'activateTextarea';
+  // Weitere Logik...
+}
+
+deleteSubtask(index: number) {
+  // Logik zum Löschen des Subtasks
+  this.dummyTasks[this.currentIndex].subTask.splice(index, 1);
+}
 }
 
