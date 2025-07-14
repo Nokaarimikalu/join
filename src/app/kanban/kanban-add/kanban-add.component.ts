@@ -29,90 +29,103 @@ export class KanbanAddComponent {
 
   currentIndex: number = 0;
 
-  
-
-  // *Dummy Daten
-  dummyTasks: TaskItem[] = [
+  selectedContacts: TaskItem[] = [
     {
-      id: '1',
-      title: 'Projektstart',
-      category: 'Management',
-      description: 'Initiales Meeting und Aufgabenverteilung',
-      dueDate: '2025-07-15',
-      priority: 'Urgent',
-      assignedTo: [{ user: 'Max Mustermann' }],
-      subTask: ['Meeting vorbereiten', 'Teilnehmer einladen'],
-    },
-    {
-      id: '2',
-      title: 'Dokumentation schreiben',
-      category: 'Entwicklung',
-      description: 'Technische Details dokumentieren',
-      dueDate: '2025-07-20',
+      id: '',
+      title: '',
+      category: '',
+      description: '',
+      dueDate: '',
       priority: 'Medium',
-      assignedTo: [{ user: 'Anna Müller' }],
-      subTask: ['Inhalt gliedern', 'Screenshots einfügen', 'Review einholen'],
-    },
-    {
-      id: '3',
-      title: 'Bugfixing Sprint 3',
-      category: 'Entwicklung',
-      description: 'Offene Bugs aus Sprint 3 beheben',
-      dueDate: '2025-07-25',
-      priority: 'Urgent',
-      assignedTo: [{ user: 'Lukas Schmidt' }],
-      subTask: ['Fehler identifizieren', 'Fix schreiben', 'Testen'],
-    },
-    {
-      id: '4',
-      title: 'Kundendemo vorbereiten',
-      category: 'Marketing',
-      description: 'Demo für Stakeholder vorbereiten',
-      dueDate: '2025-07-18',
-      priority: 'Low',
-      assignedTo: [{ user: 'Clara Becker' }],
-      subTask: ['Ablauf planen', 'Unterlagen erstellen', 'Technik prüfen'],
-    },
-    {
-      id: '5',
-      title: 'UX-Review',
-      category: 'Design',
-      description: 'Feedbackrunde zur Nutzerfreundlichkeit',
-      dueDate: '2025-07-22',
-      priority: 'Medium',
-      assignedTo: [{ user: 'Tom Meier' }],
-      subTask: ['Feedback sammeln', 'UX-Bericht erstellen'],
+      assignedTo: [{ user: '' }],
+      subTask: [],
     },
   ];
 
+  // *Dummy Daten
+  // dummyTasks: TaskItem[] = [
+  //   {
+  //     id: '1',
+  //     title: 'Projektstart',
+  //     category: 'Management',
+  //     description: 'Initiales Meeting und Aufgabenverteilung',
+  //     dueDate: '2025-07-15',
+  //     priority: 'Urgent',
+  //     assignedTo: [{ user: 'Max Mustermann' }],
+  //     subTask: ['Meeting vorbereiten', 'Teilnehmer einladen'],
+  //   },
+  //   {
+  //     id: '2',
+  //     title: 'Dokumentation schreiben',
+  //     category: 'Entwicklung',
+  //     description: 'Technische Details dokumentieren',
+  //     dueDate: '2025-07-20',
+  //     priority: 'Medium',
+  //     assignedTo: [{ user: 'Anna Müller' }],
+  //     subTask: ['Inhalt gliedern', 'Screenshots einfügen', 'Review einholen'],
+  //   },
+  //   {
+  //     id: '3',
+  //     title: 'Bugfixing Sprint 3',
+  //     category: 'Entwicklung',
+  //     description: 'Offene Bugs aus Sprint 3 beheben',
+  //     dueDate: '2025-07-25',
+  //     priority: 'Urgent',
+  //     assignedTo: [{ user: 'Lukas Schmidt' }],
+  //     subTask: ['Fehler identifizieren', 'Fix schreiben', 'Testen'],
+  //   },
+  //   {
+  //     id: '4',
+  //     title: 'Kundendemo vorbereiten',
+  //     category: 'Marketing',
+  //     description: 'Demo für Stakeholder vorbereiten',
+  //     dueDate: '2025-07-18',
+  //     priority: 'Low',
+  //     assignedTo: [{ user: 'Clara Becker' }],
+  //     subTask: ['Ablauf planen', 'Unterlagen erstellen', 'Technik prüfen'],
+  //   },
+  //   {
+  //     id: '5',
+  //     title: 'UX-Review',
+  //     category: 'Design',
+  //     description: 'Feedbackrunde zur Nutzerfreundlichkeit',
+  //     dueDate: '2025-07-22',
+  //     priority: 'Medium',
+  //     assignedTo: [{ user: 'Tom Meier' }],
+  //     subTask: ['Feedback sammeln', 'UX-Bericht erstellen'],
+  //   },
+  // ];
+
   //* Copy der Dummy Daten
-  copyDummyTasks: TaskItem[] = JSON.parse(JSON.stringify(this.dummyTasks));
+  // copyDummyTasks: TaskItem[] = JSON.parse(JSON.stringify(this.dummyTasks));
 
   constructor(public overlayState: OverlayState) {}
 
   changeToUrgent() {
-    this.copyDummyTasks[this.currentIndex].priority = 'Urgent';
+    this.selectedContacts[this.currentIndex].priority = 'Urgent';
   }
   changeToMedium() {
-    this.copyDummyTasks[this.currentIndex].priority = 'Medium';
+    this.selectedContacts[this.currentIndex].priority = 'Medium';
   }
   changeToLow() {
-    this.copyDummyTasks[this.currentIndex].priority = 'Low';
+    this.selectedContacts[this.currentIndex].priority = 'Low';
   }
 
-  debugPriority() {
-    console.log(this.copyDummyTasks[this.currentIndex].priority);
-    console.log('oben ist referenz');
-    console.log(this.dummyTasks[this.currentIndex].priority);
+  debug() {
+    console.log();
+    
+    
+    
   }
 
   nextTask() {
-    this.currentIndex = (this.currentIndex + 1) % this.dummyTasks.length;
+    this.currentIndex = (this.currentIndex + 1) % this.selectedContacts.length;
   }
 
   prevTask() {
     this.currentIndex =
-      (this.currentIndex - 1 + this.dummyTasks.length) % this.dummyTasks.length;
+      (this.currentIndex - 1 + this.selectedContacts.length) %
+      this.selectedContacts.length;
   }
 
   pushToSubtask() {
@@ -120,7 +133,7 @@ export class KanbanAddComponent {
       return; // Leere Eingabe ignorieren
     }
 
-    const currentSubtasks = this.dummyTasks[this.currentIndex].subTask;
+    const currentSubtasks = this.selectedContacts[this.currentIndex].subTask;
     const isAlreadyExists = currentSubtasks.some(
       (task) => task.toLowerCase() === this.subtaskString.toLowerCase().trim()
     );
@@ -145,14 +158,14 @@ export class KanbanAddComponent {
 
   confirmChanges() {
     // muss mit json usw weil sonst die Buttons net gehen ??
-    this.dummyTasks[this.currentIndex] = JSON.parse(
-      JSON.stringify(this.copyDummyTasks[this.currentIndex])
+    this.selectedContacts[this.currentIndex] = JSON.parse(
+      JSON.stringify(this.selectedContacts[this.currentIndex])
     );
   }
   resetChanges() {
     // muss mit json usw weil sonst die Buttons net gehen ??
-    this.copyDummyTasks[this.currentIndex] = JSON.parse(
-      JSON.stringify(this.dummyTasks[this.currentIndex])
+    this.selectedContacts[this.currentIndex] = JSON.parse(
+      JSON.stringify(this.selectedContacts[this.currentIndex])
     );
   }
 
@@ -171,6 +184,6 @@ export class KanbanAddComponent {
 
   deleteSubtask(index: number) {
     // Logik zum Löschen des Subtasks
-    this.dummyTasks[this.currentIndex].subTask.splice(index, 1);
+    this.selectedContacts[this.currentIndex].subTask.splice(index, 1);
   }
 }
