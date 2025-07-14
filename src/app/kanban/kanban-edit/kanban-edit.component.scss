@@ -79,17 +79,13 @@
                             font-size: 16px;
                             resize: none;
                             border: 2px solid rgba(0, 0, 0, 0.214);
-
                             &:focus {
                                 border: 2px solid #29ABE2;
                             }
                         }
-
                         textarea {
                             height: 84px;
-
                         }
-
                         span {
                             color: rgba(0, 0, 0, 0.746);
                             font-size: 18px;
@@ -193,14 +189,18 @@
                         justify-content: space-between;
                         border: 2px solid rgba(0, 0, 0, 0.151);
                         border-radius: 10px;
-                        height: 100%;
                         width: 100%;
-                        padding: 1em;
-                        
                         height: 48px;
                         input{
+                            width: 100%;
+                            padding: 1em;
+                            height: 100%;
+                            border: transparent;
                             font-size: 16px;
                             background-color: transparent;
+                            &:focus{
+                                border-radius: 10px;
+                            }
                         }
                         .add,.submit-cancel{
                             display: flex;
