@@ -1,116 +1,170 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { TaskItem } from '../../shared/interface/task.interface';
-import { TaskService } from '../../services/addtask/task.service';
+import { RouterLink } from '@angular/router';
+import { HeaderComponent } from '../../shared/header/header.component';
+import { NavFooterComponent } from '../../shared/nav-footer/nav-footer.component';
+import { NavFooterMobileComponent } from '../../shared/nav-footer-mobile/nav-footer-mobile.component';
 import { OverlayState } from '../../services/contacts/overlayState.service';
-import { lastValueFrom } from 'rxjs';
+import { FormsModule } from '@angular/forms';
+import { TaskItem } from '../../shared/interface/task.interface';
 
 
 @Component({
   selector: 'app-kanban-add',
-  imports: [TaskItem, OverlayState, TaskService],
+  imports: [FormsModule, HeaderComponent, NavFooterComponent, NavFooterMobileComponent],
   templateUrl: './kanban-add.component.html',
-  styleUrls: ['./kanban-add.component.scss']
+  styleUrl: './kanban-add.component.scss'
 })
 export class KanbanAddComponent {
-  taskForm: FormGroup;
-  users: any[] = [];
-  selectedUsers: string[] = [];
-  subtasks: string[] = [];
-  newSubtask: string = '';
-  priority: string = 'medium';
-  isUserDropdownOpen = false;
-  allUsers: any;
-  filteredUsers: any[] | undefined;
+  isInputFocused:boolean = false;
 
-  constructor(
-    private fb: FormBuilder,
-    private taskService: TaskService,
-    private userService: OverlayState
-  ) {
-    this.taskForm = this.fb.group({
-      title: ['', Validators.required],
-      description: [''],
-      dueDate: ['', Validators.required],
-      category: ['']
-    });
+    isListClicked:string = 'list';
 
-    this.loadUsers();
-  }
+    subtaskString:string = '';
 
-  async loadUsers() {
-  try {
-    this.allUsers = await lastValueFrom(this.userService.getContacts());
-    this.filteredUsers = [...this.allUsers];
-  } catch (error) {
-    console.error('Error loading users:', error);
-  }
+    currentIndex:number = 0;
+
+
+    // *Dummy Daten
+    dummyTasks: TaskItem[] = [
+            {
+                id: '1',
+                title: 'Projektstart',
+                category: 'Management',
+                description: 'Initiales Meeting und Aufgabenverteilung',
+                dueDate: '2025-07-15',
+                priority: 'Urgent',
+                assignedTo: [{ user: 'Max Mustermann' }],
+                subTask: ['Meeting vorbereiten', 'Teilnehmer einladen'],
+            },
+            {
+                id: '2',
+                title: 'Dokumentation schreiben',
+                category: 'Entwicklung',
+                description: 'Technische Details dokumentieren',
+                dueDate: '2025-07-20',
+                priority: 'Medium',
+                assignedTo: [{ user: 'Anna Müller' }],
+                subTask: [
+                    'Inhalt gliedern',
+                    'Screenshots einfügen',
+                    'Review einholen',
+                ],
+            },
+            {
+                id: '3',
+                title: 'Bugfixing Sprint 3',
+                category: 'Entwicklung',
+                description: 'Offene Bugs aus Sprint 3 beheben',
+                dueDate: '2025-07-25',
+                priority: 'Urgent',
+                assignedTo: [{ user: 'Lukas Schmidt' }],
+                subTask: ['Fehler identifizieren', 'Fix schreiben', 'Testen'],
+            },
+            {
+                id: '4',
+                title: 'Kundendemo vorbereiten',
+                category: 'Marketing',
+                description: 'Demo für Stakeholder vorbereiten',
+                dueDate: '2025-07-18',
+                priority: 'Low',
+                assignedTo: [{ user: 'Clara Becker' }],
+                subTask: [
+                    'Ablauf planen',
+                    'Unterlagen erstellen',
+                    'Technik prüfen',
+                ],
+            },
+            {
+                id: '5',
+                title: 'UX-Review',
+                category: 'Design',
+                description: 'Feedbackrunde zur Nutzerfreundlichkeit',
+                dueDate: '2025-07-22',
+                priority: 'Medium',
+                assignedTo: [{ user: 'Tom Meier' }],
+                subTask: ['Feedback sammeln', 'UX-Bericht erstellen'],
+            },
+        ];
+
+        //* Copy der Dummy Daten
+        copyDummyTasks: TaskItem[] = JSON.parse(JSON.stringify(this.dummyTasks));
+
+
+
+
+  constructor(public overlayState: OverlayState) { }
+
+
+  changeToUrgent() {
+        this.copyDummyTasks[this.currentIndex].priority = 'Urgent';
+    }
+    changeToMedium() {
+        this.copyDummyTasks[this.currentIndex].priority = 'Medium';
+    }
+    changeToLow() {
+        this.copyDummyTasks[this.currentIndex].priority = 'Low';
+    }
+
+
+     debugPriority() {
+        console.log(this.copyDummyTasks[this.currentIndex].priority);
+        console.log('oben ist referenz');
+        console.log(this.dummyTasks[this.currentIndex].priority);
+    }
+
+    nextTask() {
+        this.currentIndex = (this.currentIndex + 1) % this.dummyTasks.length;
+    }
+
+    prevTask() {
+        this.currentIndex =
+            (this.currentIndex - 1 + this.dummyTasks.length) %
+            this.dummyTasks.length;
+    }
+
+    pushToSubtask() {
+        if (this.subtaskString.trim() === '') {
+         return; // Leere Eingabe ignorieren
+        }
+        
+        const currentSubtasks = this.dummyTasks[this.currentIndex].subTask;
+        const isAlreadyExists = currentSubtasks.some(
+            task => task.toLowerCase() === this.subtaskString.toLowerCase().trim()
+        );
+
+        //trim() entfernt die " "
+        
+        if (!isAlreadyExists) {
+            currentSubtasks.push(this.subtaskString.trim());
+            this.subtaskString = '';
+            this.isInputFocused = false;
+        } else {
+            // Optional: Feedback an den Benutzer (z. B. Toast, Alert, Console)
+            console.warn('Dieser Eintrag existiert bereits!');
+            // this.showError = true; // Falls du eine Fehlermeldung anzeigen willst
+        }
+    }
+
+    emptySubtask() {
+        this.subtaskString = '';
+        this.isInputFocused = false
+    }
+
+    confirmChanges() {
+        // muss mit json usw weil sonst die Buttons net gehen ??
+        this.dummyTasks[this.currentIndex] =  JSON.parse(JSON.stringify(this.copyDummyTasks[this.currentIndex]));
+    }
+    resetChanges() {
+        // muss mit json usw weil sonst die Buttons net gehen ??
+        this.copyDummyTasks[this.currentIndex] = JSON.parse(JSON.stringify(this.dummyTasks[this.currentIndex]));
+    }
+
+    handleBackdropClick(event: MouseEvent) {
+        this.resetChanges();
+    }
+
+    subtaskTest(event: MouseEvent){
+        this.isInputFocused = false
+    }
 }
 
-  toggleUserDropdown(): void {
-    this.isUserDropdownOpen = !this.isUserDropdownOpen;
-  }
-
-  toggleUserSelection(userId: string): void {
-    const index = this.selectedUsers.indexOf(userId);
-    if (index === -1) {
-      this.selectedUsers.push(userId);
-    } else {
-      this.selectedUsers.splice(index, 1);
-    }
-  }
-
-  isUserSelected(userId: string): boolean {
-    return this.selectedUsers.includes(userId);
-  }
-
-  setPriority(priority: string): void {
-    this.priority = priority;
-  }
-
-  addSubtask(): void {
-    if (this.newSubtask.trim()) {
-      this.subtasks.push(this.newSubtask.trim());
-      this.newSubtask = '';
-    }
-  }
-
-  removeSubtask(index: number): void {
-    this.subtasks.splice(index, 1);
-  }
-
-  clearForm(): void {
-    this.taskForm.reset();
-    this.selectedUsers = [];
-    this.subtasks = [];
-    this.priority = 'medium';
-    this.isUserDropdownOpen = false;
-  }
-
-  async createTask() {
-    if (this.taskForm.valid) {
-      const newTask: TaskItem = {
-        title: this.taskForm.value.title,
-        description: this.taskForm.value.description,
-        dueDate: this.taskForm.value.dueDate,
-        priority: this.priority,
-        category: this.taskForm.value.category,
-        assignedTo: this.selectedUsers.map(userId => ({ user: userId })),
-        subTask: this.subtasks,
-        status: 'todo'
-      };
-
-      try {
-        await this.taskService.createTask(newTask);
-        console.log('Task created successfully');
-        this.clearForm();
-        // Hier könntest du eine Erfolgsmeldung anzeigen
-      } catch (error) {
-        console.error('Error creating task:', error);
-        // Hier könntest du eine Fehlermeldung anzeigen
-      }
-    } else {
-      this.taskForm.markAllAsTouched();
-    }
-  }
-}

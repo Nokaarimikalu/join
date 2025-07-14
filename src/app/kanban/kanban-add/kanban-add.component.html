@@ -1,116 +1,132 @@
-<div class="kanban-add-container">
+<div class="main-content">
     <div class="nav-area"><app-nav-footer></app-nav-footer></div>
     <div class="main-content-input">
         <app-header></app-header>
         <section>
             <div class="content">
-                <form class="kanban-form" [formGroup]="taskForm" (ngSubmit)="createTask()">
+                <form class="kanban-form">
                     <h1>Add Task</h1>
-                    
-                    <!-- Title Field -->
                     <div class="form-title div-cont">
-                        <label>Title<span class="required-asterisk">*</span></label>
-                        <input formControlName="title" placeholder="Enter a title" type="text" />
-                        <div *ngIf="taskForm.get('title')?.invalid && taskForm.get('title')?.touched" class="error-message">
-                            Title is required
-                        </div>
+                        <label> Title<span class="required-asterisk">*</span> </label>
+                        <input [(ngModel)]="copyDummyTasks[currentIndex].title" placeholder="Enter a title"
+                            type="text" />
                     </div>
-                    
-                    <!-- Description Field -->
                     <div class="form-description div-cont">
-                        <label>Description</label>
-                        <textarea formControlName="description" placeholder="Enter a Description"></textarea>
+                        <label> Description<span class="required-asterisk">*</span> </label>
+                        <textarea [(ngModel)]="copyDummyTasks[currentIndex].description"
+                            placeholder="Enter a Description " name="" id=""></textarea>
                     </div>
-                    
-                    <!-- Due Date Field -->
                     <div class="form-date div-cont">
-                        <label>Due date<span class="required-asterisk">*</span></label>
-                        <input formControlName="dueDate" type="date" />
-                        <div *ngIf="taskForm.get('dueDate')?.invalid && taskForm.get('dueDate')?.touched" class="error-message">
-                            Due date is required
-                        </div>
+                        <label> Due date<span class="required-asterisk">*</span> </label>
+                        <input [(ngModel)]="copyDummyTasks[currentIndex].dueDate" type="date" />
                     </div>
+                    <label class="form-label">
+                        This field is required<span class="required-asterisk">*</span>
+                    </label>
                 </form>
 
                 <div class="line"></div>
-                
-                <!-- Right Side Panel -->
                 <div class="right-addtask">
-                    <!-- Priority Selection -->
                     <div class="kanban-addtask-priority">
                         <p>Priority</p>
                         <div class="priority-buttons">
-                            <button type="button" [class.active]="priority === 'urgent'" (click)="setPriority('urgent')">
+                            <button (click)="changeToUrgent(); debugPriority()"
+                                [disabled]="copyDummyTasks[currentIndex].priority === 'Urgent'" [class.active-urgent]="
+                  copyDummyTasks[currentIndex].priority === 'Urgent'
+                ">
                                 <span>Urgent</span>
-                                <img src="assets/img/kanban-edit-overlay/urgent-arrow.svg" alt="Urgent" />
+                                @if(copyDummyTasks[currentIndex].priority !== 'Urgent'){
+                                <img src="assets/img/kanban-edit-overlay/urgent-arrow.svg" alt="" />
+                                }@else {
+                                <img src="assets/img/kanban-edit-overlay/white-urgent.svg" alt="" />
+                                }
                             </button>
-                            <button type="button" [class.active]="priority === 'medium'" (click)="setPriority('medium')">
+
+                            <button (click)="changeToMedium(); debugPriority()"
+                                [disabled]="copyDummyTasks[currentIndex].priority === 'Medium'" [class.active-medium]="
+                  copyDummyTasks[currentIndex].priority === 'Medium'
+                ">
                                 <span>Medium</span>
-                                <img src="assets/img/kanban-edit-overlay/medium-arrow.svg" alt="Medium" />
+                                @if(copyDummyTasks[currentIndex].priority !== 'Medium'){
+                                <img src="assets/img/kanban-edit-overlay/medium-arrow.svg" alt="" />
+                                }@else {
+                                <img src="assets/img/kanban-edit-overlay/white-medium.svg" alt="" />
+                                }
                             </button>
-                            <button type="button" [class.active]="priority === 'low'" (click)="setPriority('low')">
+
+                            <button (click)="changeToLow(); debugPriority()"
+                                [disabled]="copyDummyTasks[currentIndex].priority === 'Low'" [class.active-low]="
+                  copyDummyTasks[currentIndex].priority === 'Low'
+                ">
                                 <span>Low</span>
-                                <img src="assets/img/kanban-edit-overlay/low-arrow.svg" alt="Low" />
+                                @if(copyDummyTasks[currentIndex].priority !== 'Low'){
+                                <img src="assets/img/kanban-edit-overlay/low-arrow.svg" alt="" />
+                                }@else{
+                                <img src="assets/img/kanban-edit-overlay/white-low.svg" alt="" />
+                                }
                             </button>
                         </div>
                     </div>
-                    
-                    <!-- Assigned To Section -->
                     <div class="kanban-assigned-to">
                         <span class="assigned-span">Assigned to</span>
                         <div class="all-user-container">
-                            <div class="select-to-assign" (click)="toggleUserDropdown()">
-                                <span>Select contacts ({{selectedUsers.length}})</span>
-                                <img src="assets/img/kanban-edit-overlay/arrow-down.svg" alt="Select users" />
+                            <select class="select-to-assign" required name="name" id="" multiple>
+                                @for (user of overlayState.contactList; track $index) {
+                                <option value="$index + 1">
+                                    {{ user.firstName }} {{ user.lastName }}
+                                </option>
+                                }
+                            </select>
+                            <div class="list-of-members">
+                                <div class="kanban-overlay-subtask">
+                                    <span class="subtask-span">Subtask</span>
+                                    <div class="subtaskfield" (click)="$event.stopPropagation();">
+                        <input [(ngModel)]="subtaskString" type="text"(focus)="isInputFocused = true" >
+                        @if(!isInputFocused){
+                            <div class="add">
+                                <img src="assets/img/kanban-edit-overlay/plus-zichen.svg" alt=""/>
                             </div>
+                        }@else {
+                            <div class="submit-cancel">
+                                <button (click)="emptySubtask()">
+                                    <img  src="assets/img/kanban-edit-overlay/exit-subtask.svg" alt="">
+                                </button>
+                                
+                                <div class="grey-line"></div>
+                                <button (click)="pushToSubtask()">
+                                    <img  src="assets/img/kanban-edit-overlay/checkmark-subtask.svg" alt="">
+                                </button>
+                            </div>
+                        }
+                    </div>
+                    <div class="each-sub-task">
+                        @for (item of dummyTasks[currentIndex].subTask; track $index) {
+                            @if (isListClicked === 'list') {
+                                <li (dblclick)="isListClicked = 'activateTextarea'">{{ dummyTasks[currentIndex].subTask[$index]}}</li>
+                            }@else {
+                                
+                            }
                             
-                            <!-- User Dropdown -->
-                            <div class="list-of-members" *ngIf="isUserDropdownOpen">
-                                <div *ngFor="let user of users" class="user-item" (click)="toggleUserSelection(user.id)">
-                                    <input type="checkbox" [checked]="isUserSelected(user.id)" (click)="$event.stopPropagation()">
-                                    <span>{{user.name}}</span>
+                        }
+                    </div>
+                </div>
+
+                                <div class="confirm-clear-add-button">
+                                    <button class="clear" (click)="emptySubtask()">
+                                        Clear
+                                        <svg width="32" height="32" viewBox="0 0 32 32" fill="currentColor"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M16 17.4L11.1 22.3C10.9167 22.4834 10.6834 22.575 10.4 22.575C10.1167 22.575 9.88338 22.4834 9.70005 22.3C9.51672 22.1167 9.42505 21.8834 9.42505 21.6C9.42505 21.3167 9.51672 21.0834 9.70005 20.9L14.6 16L9.70005 11.1C9.51672 10.9167 9.42505 10.6834 9.42505 10.4C9.42505 10.1167 9.51672 9.88338 9.70005 9.70005C9.88338 9.51672 10.1167 9.42505 10.4 9.42505C10.6834 9.42505 10.9167 9.51672 11.1 9.70005L16 14.6L20.9 9.70005C21.0834 9.51672 21.3167 9.42505 21.6 9.42505C21.8834 9.42505 22.1167 9.51672 22.3 9.70005C22.4834 9.88338 22.575 10.1167 22.575 10.4C22.575 10.6834 22.4834 10.9167 22.3 11.1L17.4 16L22.3 20.9C22.4834 21.0834 22.575 21.3167 22.575 21.6C22.575 21.8834 22.4834 22.1167 22.3 22.3C22.1167 22.4834 21.8834 22.575 21.6 22.575C21.3167 22.575 21.0834 22.4834 20.9 22.3L16 17.4Z"
+                                                fill="currentColor" />
+                                        </svg>
+                                    </button>
+                                    <button class="create-task" (click)="pushToSubtask()">
+                                        Create Task
+                                        <img src="assets/img/add-contacts/check.svg" alt="Create Task" />
+                                    </button>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Category Field - Neu positioniert -->
-                    <div class="form-category div-cont">
-                        <label>Category</label>
-                        <input formControlName="category" placeholder="Enter a category" type="text" />
-                    </div>
-                    
-                    <!-- Subtasks Section -->
-                    <div class="kanban-overlay-subtask">
-                        <span class="subtask-span">Subtask</span>
-                        <div class="subtaskfield">
-                            <input [(ngModel)]="newSubtask" placeholder="Add new subtask" 
-                                   (keyup.enter)="addSubtask()" [ngModelOptions]="{standalone: true}"/>
-                            <img src="assets/img/kanban-edit-overlay/plus-zichen.svg" alt="Add subtask" (click)="addSubtask()"/>
-                        </div>
-                        
-                        <!-- Subtasks List -->
-                        <div *ngFor="let subtask of subtasks; let i = index" class="subtask-item">
-                            <span>{{subtask}}</span>
-                            <button type="button" (click)="removeSubtask(i)">
-                                <svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor">
-                                    <path d="M16 17.4L11.1 22.3C10.9167 22.4834 10.6834 22.575 10.4 22.575C10.1167 22.575 9.88338 22.4834 9.70005 22.3C9.51672 22.1167 9.42505 21.8834 9.42505 21.6C9.42505 21.3167 9.51672 21.0834 9.70005 20.9L14.6 16L9.70005 11.1C9.51672 10.9167 9.42505 10.6834 9.42505 10.4C9.42505 10.1167 9.51672 9.88338 9.70005 9.70005C9.88338 9.51672 10.1167 9.42505 10.4 9.42505C10.6834 9.42505 10.9167 9.51672 11.1 9.70005L16 14.6L20.9 9.70005C21.0834 9.51672 21.3167 9.42505 21.6 9.42505C21.8834 9.42505 22.1167 9.51672 22.3 9.70005C22.4834 9.88338 22.575 10.1167 22.575 10.4C22.575 10.6834 22.4834 10.9167 22.3 11.1L17.4 16L22.3 20.9C22.4834 21.0834 22.575 21.3167 22.575 21.6C22.575 21.8834 22.4834 22.1167 22.3 22.3C22.1167 22.4834 21.8834 22.575 21.6 22.575C21.3167 22.575 21.0834 22.4834 20.9 22.3L16 17.4Z"/>
-                                </svg>
-                            </button>
-                        </div>
-                        
-                        <!-- Action Buttons -->
-                        <div class="action-buttons">
-                            <button type="button" class="clear-btn" (click)="clearForm()">
-                                Clear
-                                <svg width="32" height="32" viewBox="0 0 32 32" fill="currentColor">
-                                    <path d="M16 17.4L11.1 22.3C10.9167 22.4834 10.6834 22.575 10.4 22.575C10.1167 22.575 9.88338 22.4834 9.70005 22.3C9.51672 22.1167 9.42505 21.8834 9.42505 21.6C9.42505 21.3167 9.51672 21.0834 9.70005 20.9L14.6 16L9.70005 11.1C9.51672 10.9167 9.42505 10.6834 9.42505 10.4C9.42505 10.1167 9.51672 9.88338 9.70005 9.70005C9.88338 9.51672 10.1167 9.42505 10.4 9.42505C10.6834 9.42505 10.9167 9.51672 11.1 9.70005L16 14.6L20.9 9.70005C21.0834 9.51672 21.3167 9.42505 21.6 9.42505C21.8834 9.42505 22.1167 9.51672 22.3 9.70005C22.4834 9.88338 22.575 10.1167 22.575 10.4C22.575 10.6834 22.4834 10.9167 22.3 11.1L17.4 16L22.3 20.9C22.4834 21.0834 22.575 21.3167 22.575 21.6C22.575 21.8834 22.4834 22.1167 22.3 22.3C22.1167 22.4834 21.8834 22.575 21.6 22.575C21.3167 22.575 21.0834 22.4834 20.9 22.3L16 17.4Z"/>
-                                </svg>
-                            </button>
-                            <button type="submit" class="create-btn" [disabled]="!taskForm.valid">
-                                Create Task
-                                <img src="assets/img/add-contacts/check.svg" alt="Create task" />
-                            </button>
                         </div>
                     </div>
                 </div>
