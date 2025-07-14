@@ -123,7 +123,7 @@ selectedTask: TaskItem | null = null;
   },
   {
     id: '8',
-    title: 'Benutzerhandbuch erstellen',
+    title: 'Handbuch erstellen',
     category: 'Dokumentation',
     description: 'Anleitung für Endnutzer schreiben',
     dueDate: '2025-07-22',
