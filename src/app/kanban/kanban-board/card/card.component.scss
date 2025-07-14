@@ -2,6 +2,12 @@ section {
     margin-top: 20px;
     display: flex;
     flex-direction: column;
+
+    @media (max-width: 965px) {
+        flex-direction: unset;
+
+    }
+
 }
 
 .testcontainer {
@@ -22,6 +28,19 @@ section {
     box-shadow: 0 6px 0 rgba(0, 0, 0, 0.02);
     transition: ease-in-out 0.2s;
 
+    @media (max-width: 965px) {
+        width: 300px;
+        align-items: start;
+    }
+
+        @media (max-width: 358px) {
+        width: 250px;
+        align-items: start;
+    }
+
+
+
+
     &:hover {
         box-shadow: 0 0 6px rgba(42, 54, 71, 0.3);
     }
@@ -40,6 +59,10 @@ section {
     .description {
         color: rgb(143, 143, 143);
         font-weight: 500;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 100%;
     }
 
     .user-priority {
@@ -76,11 +99,6 @@ section {
         background-position: center;
     }
 
-    .description {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
 }
 
 .management {
@@ -116,14 +134,16 @@ section {
     border: solid 2px rgb(255, 255, 255);
     margin-left: -8px;
 }
-.user-content{
+
+.user-content {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width: 100%;
 }
 
 
-.user-area{
+.user-area {
     display: flex;
     align-items: center;
     gap: -20px;

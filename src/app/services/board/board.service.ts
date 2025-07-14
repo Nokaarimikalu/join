@@ -59,7 +59,7 @@ selectedTask: TaskItem | null = null;
       { text: 'Mockups aktualisieren', completed: true },
       { text: 'Feedback einarbeiten', completed: true }
     ],
-    status: 'await feedback'
+    status: 'to do'
   },
   {
     id: '4',
