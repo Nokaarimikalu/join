@@ -10,15 +10,18 @@ import { OverlayState } from '../../services/contacts/overlayState.service';
     styleUrl: './kanban-edit.component.scss',
 })
 export class KanbanEditComponent {
-    
-    isInputFocused:boolean = false;
+    isInputFocused: boolean = false;
 
-    isListClicked:string = 'list';
+    isListClicked: string = 'list';
 
-    subtaskString:string = '';
+    subtaskString: string = '';
 
-    currentIndex:number = 0;
-//----------------------------------------------------------------------------------
+    currentIndex: number = 0;
+
+    editingSubtaskValue: string = '';
+    editingSubtaskIndex: number | null = null;
+
+    //----------------------------------------------------------------------------------
     // dummy Daten solange Firebase nicht eingerichtet wurde
     dummyTasks: TaskItem[] = [
         {
@@ -82,13 +85,11 @@ export class KanbanEditComponent {
     ];
     // copy dummyDaten
     copyDummyTasks: TaskItem[] = JSON.parse(JSON.stringify(this.dummyTasks));
-//---------------------------------------------------------------------------------------------
-
+    //---------------------------------------------------------------------------------------------
 
     constructor(public overlayState: OverlayState) {}
 
-
-//------------------------------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------
     changeToUrgent() {
         this.copyDummyTasks[this.currentIndex].priority = 'Urgent';
     }
@@ -98,11 +99,7 @@ export class KanbanEditComponent {
     changeToLow() {
         this.copyDummyTasks[this.currentIndex].priority = 'Low';
     }
-//--------------------------------------------------------------------------------
-
-
-
-
+    //--------------------------------------------------------------------------------
 
     debugPriority() {
         console.log(this.copyDummyTasks[this.currentIndex].priority);
@@ -122,46 +119,63 @@ export class KanbanEditComponent {
 
     pushToSubtask() {
         if (this.subtaskString.trim() === '') {
-         return; // Leere Eingabe ignorieren
+            return; // Leere Eingabe ignorieren
         }
-        
-        const currentSubtasks = this.dummyTasks[this.currentIndex].subTask;
+
+        const currentSubtasks = this.copyDummyTasks[this.currentIndex].subTask;
         const isAlreadyExists = currentSubtasks.some(
-            task => task.toLowerCase() === this.subtaskString.toLowerCase().trim()
+            (task) =>
+                task.toLowerCase() === this.subtaskString.toLowerCase().trim()
         );
 
-        //trim() entfernt die " "
-        
         if (!isAlreadyExists) {
             currentSubtasks.push(this.subtaskString.trim());
             this.subtaskString = '';
             this.isInputFocused = false;
         } else {
-            // Optional: Feedback an den Benutzer (z. B. Toast, Alert, Console)
             console.warn('Dieser Eintrag existiert bereits!');
-            // this.showError = true; // Falls du eine Fehlermeldung anzeigen willst
         }
     }
 
     emptySubtask() {
         this.subtaskString = '';
-        this.isInputFocused = false
+        this.isInputFocused = false;
     }
 
     confirmChanges() {
         // muss mit json usw weil sonst die Buttons net gehen ??
-        this.dummyTasks[this.currentIndex] =  JSON.parse(JSON.stringify(this.copyDummyTasks[this.currentIndex]));
+        this.dummyTasks[this.currentIndex] = JSON.parse(
+            JSON.stringify(this.copyDummyTasks[this.currentIndex])
+        );
     }
     resetChanges() {
         // muss mit json usw weil sonst die Buttons net gehen ??
-        this.copyDummyTasks[this.currentIndex] = JSON.parse(JSON.stringify(this.dummyTasks[this.currentIndex]));
+        this.copyDummyTasks[this.currentIndex] = JSON.parse(
+            JSON.stringify(this.dummyTasks[this.currentIndex])
+        );
     }
 
     handleBackdropClick(event: MouseEvent) {
         this.resetChanges();
     }
 
-    subtaskTest(event: MouseEvent){
-        this.isInputFocused = false
+    subtaskTest(event: MouseEvent) {
+        this.isInputFocused = false;
+    }
+
+    startEditingSubtask(index: number) {
+        this.editingSubtaskIndex = index;
+        this.editingSubtaskValue = this.copyDummyTasks[this.currentIndex].subTask[index];
+    }
+
+    saveEditingSubtask(index: number) {
+        if (this.editingSubtaskValue.trim() !== '') {
+            this.copyDummyTasks[this.currentIndex].subTask[index] = this.editingSubtaskValue.trim();
+        }
+        this.editingSubtaskIndex = null;
+    }
+
+    cancelEditingSubtask() {
+        this.editingSubtaskIndex = null;
     }
 }
