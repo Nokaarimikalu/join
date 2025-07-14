@@ -13,6 +13,8 @@ export class KanbanEditComponent {
     
     isInputFocused:boolean = false;
 
+    isListClicked:string = 'list';
+
     subtaskString:string = '';
 
     currentIndex:number = 0;
@@ -119,16 +121,31 @@ export class KanbanEditComponent {
     }
 
     pushToSubtask() {
-        console.log(this.dummyTasks[this.currentIndex].subTask);
-        if (this.subtaskString !== '') {
-            this.dummyTasks[this.currentIndex].subTask.push(this.subtaskString);
+        if (this.subtaskString.trim() === '') {
+         return; // Leere Eingabe ignorieren
+        }
+        
+        const currentSubtasks = this.dummyTasks[this.currentIndex].subTask;
+        const isAlreadyExists = currentSubtasks.some(
+            task => task.toLowerCase() === this.subtaskString.toLowerCase().trim()
+        );
+
+        //trim() entfernt die " "
+        
+        if (!isAlreadyExists) {
+            currentSubtasks.push(this.subtaskString.trim());
+            this.subtaskString = '';
+            this.isInputFocused = false;
         } else {
-            return;
+            // Optional: Feedback an den Benutzer (z. B. Toast, Alert, Console)
+            console.warn('Dieser Eintrag existiert bereits!');
+            // this.showError = true; // Falls du eine Fehlermeldung anzeigen willst
         }
     }
 
     emptySubtask() {
         this.subtaskString = '';
+        this.isInputFocused = false
     }
 
     confirmChanges() {
@@ -142,5 +159,9 @@ export class KanbanEditComponent {
 
     handleBackdropClick(event: MouseEvent) {
         this.resetChanges();
+    }
+
+    subtaskTest(event: MouseEvent){
+        this.isInputFocused = false
     }
 }
