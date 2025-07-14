@@ -7,7 +7,7 @@ import { TaskItem, TaskItemBoard } from "../../shared/interface/task.interface";
 export class BoardService {
   
   fullCardActive: boolean = false;
-selectedTask: TaskItem | null = null;
+selectedTask: TaskItemBoard | null = null;
 
   constructor() {
 
@@ -168,7 +168,7 @@ selectedTask: TaskItem | null = null;
   }
 ];
 
-  openFullCard(task: TaskItem) {
+  openFullCard(task: TaskItemBoard) {
     this.fullCardActive = !this.fullCardActive;
     this.selectedTask = task;
   }

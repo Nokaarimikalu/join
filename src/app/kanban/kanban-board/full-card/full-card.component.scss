@@ -262,7 +262,6 @@ section {
     }
   }
 
-
   img {
     width: 32px;
     height: 32px;
@@ -278,3 +277,28 @@ section {
 h1 {
   font-size: 36px;
 }
+
+.subtask-priority{
+  display: flex;
+  flex-direction: column;
+
+  .subtask{
+    display: flex;
+    gap: 20px;
+
+    .checkbox{
+      background: url('../../../../../public/assets/img/kanban-board/fullCardCheckboxEmpty.png');
+      width: 32px;
+      height: 32px;
+      background-repeat: no-repeat;
+    }
+
+      .checkbox-active{
+      background: url('../../../../../public/assets/img/kanban-board/fullCardCheckboxChecked.png');
+      width: 32px;
+      height: 32px;
+      background-repeat: no-repeat;
+    }
+  }
+}
+
