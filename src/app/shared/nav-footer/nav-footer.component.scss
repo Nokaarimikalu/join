@@ -37,35 +37,39 @@ section {
                 align-items: flex-start;
                 color: rgba($color: #ffffff, $alpha: 0.5);
 
-                li {
+                a {
+                    color: white;
+                    text-align: center;
                     display: flex;
-                    justify-content: flex-start;
                     align-items: center;
-                    font-size: 1rem;
-                    font-weight: lighter;
-                    padding: 0.3em;
                     width: 100%;
 
-                    margin: 0.6em 0;
-
-                    a {
-                        color: white;
-                        text-align: center;
+                    li {
                         display: flex;
+                        justify-content: flex-start;
                         align-items: center;
+                        font-size: 1rem;
+                        font-weight: lighter;
+                        padding: 0.3em;
+                        width: 100%;
+
+                        margin: 0.6em 0;
+
+                        img {
+                            margin-right: 0.8em;
+                            margin-left: 3em;
+                            opacity: 0.5;
+                        }
                     }
 
                     &:hover {
                         cursor: pointer;
                         background: #2a3d59;
                     }
-
-                    img {
-                        margin-right: 0.8em;
-                        margin-left: 3em;
-                        opacity: 0.5;
-                    }
                 }
+
+
+
 
                 .active {
                     color: #ffffff;
