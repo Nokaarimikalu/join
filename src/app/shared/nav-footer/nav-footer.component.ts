@@ -22,12 +22,12 @@ export class NavFooterComponent implements OnInit {
     );
   }
 
-  setActiveBaseOnRoute() {
+  setActiveBaseOnRoute():void {
     const path = this.router.url.split('/')[1];
     this.toggleActive(path);
   }
 
-  toggleActive(state:string){
+  toggleActive(state:string):void{
     const activeElements = document.querySelectorAll('.active');
     activeElements.forEach(element => {
       element.classList.remove('active');
@@ -49,7 +49,7 @@ export class NavFooterComponent implements OnInit {
         break;
     }
   }
-  runCase(path:string){
+  runCase(path:string):void{
     const currentElements = document.querySelectorAll(path);
         currentElements?.forEach((element: { classList: { add: (arg0: string) => void; }; }) => {
         element.classList.add('active');});
