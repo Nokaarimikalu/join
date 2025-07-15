@@ -50,6 +50,8 @@ getTasks(){
 
 async addTasks(task: TaskItemBoard){
   const docRef = await addDoc(collection(this.firestore, 'taskItemBoard'), task);
+  console.log(docRef);
+  
 }
 
   openFullCard(task: TaskItemBoard) {

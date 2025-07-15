@@ -11,10 +11,9 @@ import { TaskItemBoard } from '../../shared/interface/task.interface';
   selector: 'app-kanban-add',
   imports: [RouterLink, HeaderComponent, NavFooterComponent, NavFooterMobileComponent, FormsModule],
   templateUrl: './kanban-add.component.html',
-  styleUrl: './kanban-add.component.scss',
+  styleUrl: './kanban-add.component.scss'
 })
 export class KanbanAddComponent {
-  isInputFocused: boolean = false;
 
   taskList: TaskItemBoard = {
     id: '',

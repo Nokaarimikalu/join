@@ -10,19 +10,19 @@
                         <label>
                             Title<span class="required-asterisk">*</span>
                         </label>
-                        <input [(ngModel)]="taskList.title" placeholder="Enter a title" type="text" />
+                        <input [(ngModel)]="taskList.title" placeholder="Enter a title" type="text" name="title"/>
                     </div>
                     <div class="form-description div-cont">
                         <label>
                             Description<span class="required-asterisk">*</span>
                         </label>
-                        <textarea [(ngModel)]="taskList.description" placeholder="Enter a Description " name="" id=""></textarea>
+                        <textarea [(ngModel)]="taskList.description" placeholder="Enter a Description " name="description" id=""></textarea>
                     </div>
                     <div class="form-date div-cont">
                         <label>
                             Due date<span class="required-asterisk">*</span>
                         </label>
-                        <input [(ngModel)]="taskList.dueDate" type="date" />
+                        <input [(ngModel)]="taskList.dueDate" type="date" name="dueDate" />
                     </div>
                     <label class="form-label">
                         This field is required<span class="required-asterisk">*</span>
@@ -74,7 +74,7 @@
                                                     fill="currentColor" />
                                             </svg>
                                         </button>
-                                        <button class="create-task">
+                                        <button class="create-task" (click)="boardService.addTasks(taskList)">
                                             Create Task
                                             <img src="assets/img/add-contacts/check.svg" alt="Create Task" />
                                         </button>
