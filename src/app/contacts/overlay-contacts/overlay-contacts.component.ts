@@ -28,7 +28,7 @@ export class OverlayContactsComponent {
 	toggleOverlay() {
 		this.overlayState.toggleOverlay();
 	}
-	
+
 	resetNewContactInput() {
 		this.contactList = {
 			firstName: '',
@@ -45,10 +45,10 @@ export class OverlayContactsComponent {
 		this.contactList.firstName = this.splittedName[0];
 		this.contactList.lastName = this.splittedName[1];
 		this.contactList.initials =
-			this.contactList.firstName.charAt(0).toUpperCase() +
-			this.contactList.lastName.charAt(0).toUpperCase();
-			this.contactList.color = this.overlayState.getRandomColor();
+		this.contactList.firstName.charAt(0).toUpperCase() +
+		this.contactList.lastName.charAt(0).toUpperCase();
+		this.contactList.color = this.overlayState.getRandomColor();
 	}
 
-	
+
 }
