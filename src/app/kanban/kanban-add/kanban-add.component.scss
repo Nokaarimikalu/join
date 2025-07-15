@@ -144,7 +144,7 @@ section {
             .priority-buttons {
                 display: flex;
                 justify-content: space-between;
-                margin-bottom: 8em;
+                margin-bottom: 4em;
 
                 .active-urgent {
                     background-color: #ff3d00;
@@ -211,22 +211,43 @@ section {
                         border: 1px #29abe2 solid;
                     }
                 }
+            }
+        }
 
-                // .select-to-assign {
-                //   display: flex;
-                //   align-items: center;
-                //   justify-content: space-between;
-                //   background-color: white;
-                //   border: 2px rgba(0, 0, 0, 0.049) solid;
-                //   padding: 1em;
-                //   border-radius: 10px;
-                //   height: 48px;
-                //   font-size: 16px;
+        .category-dropdown {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
 
-                //   &:hover {
-                //     border: 2px rgba(0, 0, 0, 0.694) solid;
-                //   }
-                // }
+            .category-span {
+                font-size: 16px;
+                color: #42526e;
+                display: block;
+            }
+
+            select {
+                border: 2px rgba(0, 0, 0, 0.346) solid;
+                width: 100%;
+                border-radius: 10px;
+                height: 48px;
+                font-size: 16px;
+                overflow-x: hidden;
+                color: rgb(0, 0, 0);
+
+                .select-category {
+                    width: 100%;
+                    background: white;
+                    border-radius: 10px;
+                    padding: 12px;
+                }
+
+                &:hover {
+                    border: 2px rgba(0, 0, 0, 0.694) solid;
+                }
+
+                &:focus {
+                    border: 1px #29abe2 solid;
+                }
             }
         }
 
@@ -377,4 +398,26 @@ input[type="number"] {
 
 .display {
     display: flex;
+}
+
+.mat-mdc-option:focus.mdc-list-item,
+.mat-mdc-option.mat-mdc-option-active.mdc-list-item {
+    display: flex;
+    flex-direction: row-reverse;
+    background-color: #2a3647;
+    color: white;
+
+    &:hover {
+        background-color: #091931;
+    }
+}
+
+.mat-mdc-option.mdc-list-item {
+    display: flex;
+    flex-direction: row-reverse;
+    background: white;
+
+    &:hover {
+        background: #eeeeee;
+    }
 }
