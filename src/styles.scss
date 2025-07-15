@@ -1,3 +1,29 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.dev/guide/theming
+@use '@angular/material' as mat;
+
+html {
+
+    .mat-pseudo-checkbox-full.mat-pseudo-checkbox-checked,
+    .mat-pseudo-checkbox-full.mat-pseudo-checkbox-indeterminate {
+        border-color: #091931;
+        background-color: white;
+        color: #091931;
+    }
+
+    .mat-mdc-option:focus.mdc-list-item,
+    .mat-mdc-option.mat-mdc-option-active.mdc-list-item {
+
+        .mat-pseudo-checkbox-full.mat-pseudo-checkbox-checked,
+        .mat-pseudo-checkbox-full.mat-pseudo-checkbox-indeterminate {
+            background-color: #091931;
+            border-color: white;
+            color: white;
+        }
+
+    }
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -169,4 +195,14 @@ input[type="number"]::-webkit-outer-spin-button {
 
 input[type="number"] {
     appearance: textfield;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
 }

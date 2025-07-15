@@ -2,10 +2,12 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TaskItem } from '../../shared/interface/task.interface';
 import { OverlayState } from '../../services/contacts/overlayState.service';
+import { NgModule } from '@angular/core';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
     selector: 'app-kanban-edit',
-    imports: [FormsModule],
+    imports: [FormsModule, MatSelectModule],
     templateUrl: './kanban-edit.component.html',
     styleUrl: './kanban-edit.component.scss',
 })

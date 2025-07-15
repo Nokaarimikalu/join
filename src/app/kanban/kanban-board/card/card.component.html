@@ -8,7 +8,14 @@
       {{task.description}}
     </div>
 
-    <div class="subtask">{{task.subTask}}</div>
+    <div class="subtask-progress-row">
+      <div class="subtask-progress-bar">
+        <div class="subtask-progress-bar-fill" [style.width.%]="subtaskProgress"></div>
+      </div>
+      <div class="subtask-progress-label">
+        {{completedSubtasks}}/{{totalSubtasks}} Subtasks
+      </div>
+    </div>
     
     <div class="user-content">
       <div class="user-area">

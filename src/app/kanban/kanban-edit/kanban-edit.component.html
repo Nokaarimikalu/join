@@ -61,13 +61,13 @@
                 <div class="kanban-assigned-to">
                     <span class="assigned-span">Assigned to</span>
                     <div class="all-user-container">
-                        <select class="select-to-assign"  required name="name" id="" multiple>
+                        <mat-select panelClass="select-to-assign"  required name="name" id="" multiple>
                             @for (user of overlayState.contactList; track $index) {
-                                <option value="$index + 1">
-                                    {{user.firstName}} {{user.lastName}}
-                                </option>
+                                <mat-option id={{$index}} value="$index + 1">
+                                    {{user.initials}} {{user.firstName}} {{user.lastName}}
+                                </mat-option>
                             }
-                        </select>
+                        </mat-select>
                     </div>
                 </div>
 
