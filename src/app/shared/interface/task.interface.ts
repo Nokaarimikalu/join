@@ -21,7 +21,12 @@ export interface TaskItemBoard {
   dueDate?: string;
   priority:string;
   assignedTo?: {
-    user: string;
+    firstName: string;
+      lastName: string;
+      email: string;
+      phone: string;
+      color: string;
+      initials?: string;
   }[];  
   subTask?:string[];
   subTaskFillTest: { text: string, completed: boolean }[]
