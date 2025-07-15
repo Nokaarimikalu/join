@@ -9,31 +9,32 @@
                         <form class="kanban-form">
                             <h1>Add Task</h1>
                             <div class="form-title div-cont">
-                                <label>
+                                <label class="form-label">
                                     Title<span class="required-asterisk">*</span>
                                 </label>
                                 <input [(ngModel)]="selectedContacts[currentIndex].title" name="title"
                                     placeholder="Enter a title" type="text" />
                             </div>
                             <div class="form-description div-cont">
-                                <label>
+                                <label class="form-label">
                                     Description<span class="required-asterisk">*</span>
                                 </label>
                                 <textarea placeholder="Enter a Description " name="" id=""></textarea>
                             </div>
                             <div class="form-date div-cont">
-                                <label>
+                                <label class="form-label">
                                     Due date<span class="required-asterisk">*</span>
                                 </label>
                                 <input type="date" />
                             </div>
-                            
-                        </form>
-                    </div>
-                </div>
-                <label class="form-label">
+                            <label class="form-label required-label">
                                 This field is required<span class="required-asterisk">*</span>
                             </label>
+                        </form>
+                        
+                    </div>
+                </div>
+                
                 <div class="line"></div>
 
 
@@ -108,6 +109,9 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="user-feedback animate-overlay">
+                    <img src="assets/img/kanban-add/Frame 73.svg" alt="">
                 </div>
             </div>
         </section>

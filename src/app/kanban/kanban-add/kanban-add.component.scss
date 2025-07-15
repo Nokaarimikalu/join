@@ -23,14 +23,9 @@ section {
   width: 100%;
   height: 92dvh;
 
-  .form-label {
-    position: absolute;
-    font-size: 1.6em;
-    margin-bottom: 5em;
-    left: 1.5em;
-    bottom: 0;
-  }
 
+
+// ----------- Left Side ----------
   .left-addtask {
     width: 49%;
     display: flex;
@@ -49,19 +44,26 @@ section {
         flex-direction: column;
         width: 100%;
         gap: 30px;
+        bottom: 2.5em;
 
         h1 {
+          bottom: 1.5em;
           font-size: 6em;
         }
 
-        label {
+        .form-label {
           font-size: 1.6em;
-          margin-bottom: 0.3em;
 
           .required-asterisk {
             color: red;
             margin-right: 1em;
           }
+        }
+
+
+        .required-label {
+          font-size: 1.6em;
+          top: 10em;
         }
 
         .div-cont {
@@ -97,16 +99,34 @@ section {
   }
 }
 
-.grey-line {
+.line {
+  top: 35dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 2px;
-  height: 24px;
-  background-color: rgba(196, 196, 196, 0.568);
+  height: 30dvh;
+  background-color: rgba(0, 0, 0, 0.049);
   margin: 0px 2px;
 }
 
+
+.user-feedback{
+  z-index: 4;
+  position: fixed;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  top: 50%;
+  left: 50%;
+  animation: fade-in-bottom-overlay-viewport 2s ease-in-out;
+}
+
+
+
+// ----------- Right Side ----------
 .right-addtask {
   width: 49%;
-  _height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -124,14 +144,13 @@ section {
       flex-direction: column;
 
       p {
-        font-size: 18px;
-        margin-bottom: 0.4em;
+        font-size: 1.6em;
       }
 
       .priority-buttons {
         display: flex;
         justify-content: space-between;
-        margin-bottom: 4em;
+        margin-bottom: 8em;
 
         .active-urgent {
           background-color: #ff3d00;
@@ -174,7 +193,6 @@ section {
 
       .assigned-span {
         font-size: 1.6em;
-        padding-bottom: 0.4em;
       }
 
       .all-user-container {
@@ -273,6 +291,8 @@ section {
   }
 }
 
+
+// -------- Other Components ----------
 .contact-list-content {
   display: flex;
   height: 90%;
