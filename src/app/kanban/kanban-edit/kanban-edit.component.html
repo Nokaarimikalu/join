@@ -64,7 +64,7 @@
                         <mat-select panelClass="select-to-assign"  required name="name" id="" multiple>
                             @for (user of overlayState.contactList; track $index) {
                                 <mat-option id={{$index}} value="$index + 1">
-                                    {{user.firstName}} {{user.lastName}}
+                                    {{user.initials}} {{user.firstName}} {{user.lastName}}
                                 </mat-option>
                             }
                         </mat-select>
