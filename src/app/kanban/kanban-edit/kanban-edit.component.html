@@ -1,5 +1,5 @@
 <section class="dimmed-background" (click)="handleBackdropClick($event)">
-    <div class="overlay-kanban-edit" (click)="$event.stopPropagation() ;subtaskTest($event) ">
+    <div class="overlay-kanban-edit" (click)="$event.stopPropagation() ;subtaskTest($event); closeEditingSubtaskOnOverlay($event)">
         <div class="close-button" (click)="boardService.toggleEditOverlay()">
             <img src="assets/img/add-contacts/Vector.svg"  alt="" />
         </div>
@@ -95,10 +95,10 @@
                     <div class="each-sub-task">
                         @for (subtask of task.subTaskFillTest; track $index) {
                             @if (editingSubtaskIndex === $index) {
-                                <li>
+                                <li (click)="$event.stopPropagation()">
                                     <textarea [(ngModel)]="editingSubtaskValue"></textarea>
-                                    <button (click)="saveEditingSubtask($index)">s</button>
-                                    <button (click)="cancelEditingSubtask()">x</button>
+                                    <button (click)="saveEditingSubtask($index); $event.stopPropagation()">s</button>
+                                    <button (click)="cancelEditingSubtask(); $event.stopPropagation()">x</button>
                                 </li>
                             }@else {
                                 <li (dblclick)="startEditingSubtask($index)">
