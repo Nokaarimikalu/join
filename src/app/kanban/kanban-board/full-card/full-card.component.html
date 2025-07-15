@@ -29,8 +29,8 @@
       <div class="user-priority">
         @for (user of task.assignedTo; track $index) {
         <div class="user-details">
-          <div class="user initials">{{ user.user.slice(0, 2).toLocaleUpperCase()}} </div>
-          <div class="user-name">{{user.user}}</div>
+          <div class="user initials" [style.background]= user.color>{{ user.initials}} </div>
+          <div class="user-name">{{user.firstName}}{{user.lastName}}</div>
         </div>
 
         }
@@ -55,35 +55,6 @@
       </div>
     </div>
 
-
-
-
-
-
-    <!--     <div class="input-assigned-to">
-      <span>Subtasks:</span>
-      <div class="subtask-priority">
-        @for (subtasks of task.subTaskFillTest; track $index) {
-          @switch (true) {
-            @case (subtasks.completed) {
-              <div class="subtask">
-                  <div (click)="subtasks.completed; debug()" class="checkbox"></div> {{subtasks.text}}
-              </div>
-                } @case(!subtasks.completed) {
-            }
-          }
-        }
-      </div>
-    </div>
- -->
-    <!--             <div class="input-assigned-to">
-      <span>Subtasks:</span>
-      <div class="user-priority">
-        <input type="checkbox" [(ngModel)]="task.subTask">
-      </div>
-    </div>
--->
-
     <div class="edit-delete-area">
 
       <div class="delete-container">
@@ -93,11 +64,15 @@
 
       <div class="hyphen"></div>
 
-      <div class="edit-container">
+      <div class="edit-container"  (click)="boardService.toggleEditOverlay()">
         <div class="edit"></div>
         <p>Edit</p>
       </div>
 
     </div>
   </div>
+
+    @if (boardService.editOverlayActive == true) {
+  <app-kanban-edit [task]="task"></app-kanban-edit>
+  }
 </section>

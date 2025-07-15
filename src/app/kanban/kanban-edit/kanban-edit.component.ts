@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { TaskItem } from '../../shared/interface/task.interface';
+import { TaskItem, TaskItemBoard } from '../../shared/interface/task.interface';
 import { OverlayState } from '../../services/contacts/overlayState.service';
 import { NgModule } from '@angular/core';
 import { MatSelectModule } from '@angular/material/select';
+import { BoardService } from '../../services/board/board.service';
 
 @Component({
     selector: 'app-kanban-edit',
@@ -12,6 +13,10 @@ import { MatSelectModule } from '@angular/material/select';
     styleUrl: './kanban-edit.component.scss',
 })
 export class KanbanEditComponent {
+
+@Input() task!: TaskItemBoard;
+
+
     isInputFocused: boolean = false;
 
     isListClicked: string = 'list';
@@ -89,24 +94,24 @@ export class KanbanEditComponent {
     copyDummyTasks: TaskItem[] = JSON.parse(JSON.stringify(this.dummyTasks));
     //---------------------------------------------------------------------------------------------
 
-    constructor(public overlayState: OverlayState) {}
+    constructor(public overlayState: OverlayState, public boardService: BoardService) {}
 
     //------------------------------------------------------------------------------------------
     changeToUrgent() {
-        this.copyDummyTasks[this.currentIndex].priority = 'Urgent';
+        this.task.priority = 'Urgent';
     }
     changeToMedium() {
-        this.copyDummyTasks[this.currentIndex].priority = 'Medium';
+        this.task.priority = 'Medium';
     }
     changeToLow() {
-        this.copyDummyTasks[this.currentIndex].priority = 'Low';
+        this.task.priority = 'Low';
     }
     //--------------------------------------------------------------------------------
 
     debugPriority() {
-        console.log(this.copyDummyTasks[this.currentIndex].priority);
+        console.log(this.task.priority);
         console.log('oben ist referenz');
-        console.log(this.dummyTasks[this.currentIndex].priority);
+        console.log(this.task.priority);
     }
 
     nextTask() {
@@ -150,6 +155,7 @@ export class KanbanEditComponent {
             JSON.stringify(this.copyDummyTasks[this.currentIndex])
         );
     }
+    
     resetChanges() {
         // muss mit json usw weil sonst die Buttons net gehen ??
         this.copyDummyTasks[this.currentIndex] = JSON.parse(

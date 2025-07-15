@@ -20,9 +20,10 @@ export interface TaskItemBoard {
   description?: string;
   dueDate?: string;
   priority:string;
-  assignedTo?: {
-    user: string;
-  }[];  
-  subTask:string[];
-  subTaskFillTest: { text: string, completed: boolean }[]
+  assignedTo?: {initials:string, firstName:string, lastName:string, color:string, email:string, phone:string}[];  
+  subTask?:string[];
+  subTaskFillTest: {
+    text: string;
+    completed: boolean;
+  }[];
 }

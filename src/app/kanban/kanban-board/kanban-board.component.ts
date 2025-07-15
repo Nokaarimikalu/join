@@ -20,18 +20,21 @@ export class KanbanBoardComponent {
   scrollLeftMobile: number = 0;
   containerMobile?: HTMLElement;
   searchValue: string = "";
+  taskData: TaskItemBoard[] = [];
 
   constructor(public boardService: BoardService) {
+    this.taskData = this.boardService.taskList;
+    
   }
 
   filterTaskStatus(status: string) {
-    return this.boardService.dummyTasks.filter(task => task.status === status); // returns filtered status used for filtering right kanban column 
+    return this.boardService.taskList.filter(task => task.status === status); // returns filtered status used for filtering right kanban column 
   }
 
   searchTasks() {
     const searchInputRef = document.querySelector('.searchTitle') as HTMLInputElement; // without HTMLInputElement ts .value is not working (because of querySelector!)
     this.searchValue = searchInputRef?.value
-    return this.boardService.dummyTasks.filter(task => task.title?.toLocaleLowerCase() === searchInputRef?.value); // ?.value because no start value 
+    return this.boardService.taskList.filter(task => task.title?.toLocaleLowerCase() === searchInputRef?.value); // ?.value because no start value 
   }
 
   tasksSearchAndStatus(status: string, searchValue: string) {
@@ -42,7 +45,7 @@ export class KanbanBoardComponent {
   drop(event: CdkDragDrop<TaskItemBoard[]>) {
     const prevStatus = event.previousContainer.id;
     const newStatus = event.container.id;
-    const tasks = this.boardService.dummyTasks;
+    const tasks = this.boardService.taskList;
     const targetTasks = tasks.filter(t => t.status === newStatus);
     if (prevStatus === newStatus) {
       moveItemInArray(targetTasks, event.previousIndex, event.currentIndex);
@@ -53,15 +56,13 @@ export class KanbanBoardComponent {
         const updated = tasks.filter(t => t.status !== newStatus);
         const newTargetTasks = tasks.filter(t => t.status === newStatus && t.id !== movedTask.id);
         newTargetTasks.splice(event.currentIndex, 0, movedTask);
-        this.boardService.dummyTasks = [...updated, ...newTargetTasks];
+        this.boardService.taskList = [...updated, ...newTargetTasks];
         return;
       }
     }
     const others = tasks.filter(t => t.status !== newStatus); // sort in the same task column 
-    this.boardService.dummyTasks = [...others, ...targetTasks];
+    this.boardService.taskList = [...others, ...targetTasks];
   }
-
-
 
   startDragMobile(e: MouseEvent | TouchEvent) {
     this.containerMobile = (e.currentTarget as HTMLElement).parentElement!;
