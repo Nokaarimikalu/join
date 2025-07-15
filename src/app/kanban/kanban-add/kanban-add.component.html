@@ -78,19 +78,25 @@
                         <div class="kanban-assigned-to">
                             <span class="assigned-span">Assigned to</span>
                             <div class="all-user-container">
-                                <div class="select-to-assign">
-                                    <span>Select contacts to assign</span>
-                                    <img src="assets/img/kanban-edit-overlay/arrow-down.svg" alt="select User" />
-                                </div>
+                                 <mat-select panelClass="select-to-assign"  required name="name" id="" multiple>
+                            @for (user of overlayState.contactList; track $index) {
+                                <mat-option id={{$index}} value="$index + 1">
+                                    {{user.initials}} {{user.firstName}} {{user.lastName}}
+                                </mat-option>
+                            }
+                        </mat-select>
+                            </div>
                                 <div class="list-of-members">
                                     <div class="kanban-overlay-subtask">
                                         <span class="subtask-span">Subtask</span>
                                         <div class="subtaskfield">
                                             Add new subtask
                                             <img src="assets/img/kanban-edit-overlay/plus-zichen.svg" alt="Add new" />
+                                             
                                         </div>
+                                         
                                         <div class="each-sub-task">
-                                            <button class="clear">
+                                            <button class="clear" (click)="clearSubtask()">
                                                 Clear
                                                 <svg width="32" height="32" viewBox="0 0 32 32" fill="currentColor"
                                                     xmlns="http://www.w3.org/2000/svg">
@@ -106,7 +112,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>

@@ -6,16 +6,18 @@ import { NavFooterMobileComponent } from '../../shared/nav-footer-mobile/nav-foo
 import { OverlayState } from '../../services/contacts/overlayState.service';
 import { FormsModule } from '@angular/forms';
 import { TaskItem } from '../../shared/interface/task.interface';
-import { NgFor } from '@angular/common';
+import { MatSelectModule } from '@angular/material/select';
+
+
 
 @Component({
   selector: 'app-kanban-add',
   imports: [
     FormsModule,
-    NgFor,
     HeaderComponent,
     NavFooterComponent,
     NavFooterMobileComponent,
+    MatSelectModule
   ],
   templateUrl: './kanban-add.component.html',
   styleUrl: './kanban-add.component.scss',
@@ -174,6 +176,11 @@ export class KanbanAddComponent {
   }
 
   subtaskTest(event: MouseEvent) {
+    this.isInputFocused = false;
+  }
+
+  clearSubtask() {
+    this.selectedContacts[this.currentIndex].subTask = [];
     this.isInputFocused = false;
   }
 
