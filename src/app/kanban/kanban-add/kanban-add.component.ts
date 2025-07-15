@@ -120,15 +120,6 @@ export class KanbanAddComponent {
     
   }
 
-  nextTask() {
-    this.currentIndex = (this.currentIndex + 1) % this.selectedContacts.length;
-  }
-
-  prevTask() {
-    this.currentIndex =
-      (this.currentIndex - 1 + this.selectedContacts.length) %
-      this.selectedContacts.length;
-  }
 
   pushToSubtask() {
     if (this.subtaskString.trim() === '') {
