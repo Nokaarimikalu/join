@@ -1,5 +1,5 @@
 <section class="dimmed-background" (click)="handleBackdropClick($event)">
-    <div class="overlay-kanban-edit" (click)="$event.stopPropagation() ;subtaskTest($event) ">
+    <div class="overlay-kanban-edit" (click)="closeEditingSubtaskOnOverlay($event)">
         <div class="close-button">
             <img src="assets/img/add-contacts/Vector.svg"  alt="" />
         </div>
@@ -64,7 +64,7 @@
                         <mat-select panelClass="select-to-assign"  required name="name" id="" multiple>
                             @for (user of overlayState.contactList; track $index) {
                                 <mat-option id={{$index}} value="$index + 1">
-                                    {{user.firstName}} {{user.lastName}}
+                                    {{user.initials}} {{user.firstName}} {{user.lastName}}
                                 </mat-option>
                             }
                         </mat-select>
@@ -95,10 +95,10 @@
                     <div class="each-sub-task">
                         @for (item of copyDummyTasks[currentIndex].subTask; track $index) {
                             @if (editingSubtaskIndex === $index) {
-                                <li>
+                                <li (click)="$event.stopPropagation()">
                                     <textarea [(ngModel)]="editingSubtaskValue"></textarea>
-                                    <button (click)="saveEditingSubtask($index)">s</button>
-                                    <button (click)="cancelEditingSubtask()">x</button>
+                                    <button (click)="saveEditingSubtask($index); $event.stopPropagation()">s</button>
+                                    <button (click)="cancelEditingSubtask(); $event.stopPropagation()">x</button>
                                 </li>
                             }@else {
                                 <li (dblclick)="startEditingSubtask($index)">

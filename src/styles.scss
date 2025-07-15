@@ -3,10 +3,25 @@
 @use '@angular/material' as mat;
 
 html {
-    @include mat.theme((color: (theme-type: light,
-            ),
-            density: 0,
-        ));
+
+    .mat-pseudo-checkbox-full.mat-pseudo-checkbox-checked,
+    .mat-pseudo-checkbox-full.mat-pseudo-checkbox-indeterminate {
+        border-color: #091931;
+        background-color: white;
+        color: #091931;
+    }
+
+    .mat-mdc-option:focus.mdc-list-item,
+    .mat-mdc-option.mat-mdc-option-active.mdc-list-item {
+
+        .mat-pseudo-checkbox-full.mat-pseudo-checkbox-checked,
+        .mat-pseudo-checkbox-full.mat-pseudo-checkbox-indeterminate {
+            background-color: #091931;
+            border-color: white;
+            color: white;
+        }
+
+    }
 }
 
 * {
