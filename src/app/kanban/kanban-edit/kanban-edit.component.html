@@ -16,7 +16,7 @@
                     </div>
                     <div class="form-description kanban-div">
                         <span>Description</span>
-                        <textarea [(ngModel)]="task.description" name="taskDescription"placeholder="Enter a Description "></textarea>
+                        <textarea [(ngModel)]="task.description" name="taskDescription" placeholder="Enter a Description "></textarea>
                     </div>
                     <div class="form-date kanban-div">
                         <span>Due date</span>
@@ -28,7 +28,7 @@
                     <p>Priority</p>
                     <div class="prioity-buttons">
 
-                        <button (click)="changeToUrgent();debugPriority()" [disabled]="task.priority === 'Urgent'"  [class.active-urgent]="task.priority === 'Urgent'">
+                        <button (click)="changeToUrgent()" [disabled]="task.priority === 'Urgent'"  [class.active-urgent]="task.priority === 'Urgent'">
                             <span>Urgent</span>
                             @if(task.priority !== 'Urgent'){
                                 <img src="assets/img/kanban-edit-overlay/urgent-arrow.svg"alt=""/>
@@ -37,7 +37,7 @@
                             }
                         </button>
 
-                        <button (click)="changeToMedium();debugPriority()" [disabled]="task.priority === 'Medium'"   [class.active-medium]="task.priority === 'Medium'">
+                        <button (click)="changeToMedium()" [disabled]="task.priority === 'Medium'"   [class.active-medium]="task.priority === 'Medium'">
                             <span>Medium</span>
                             @if(task.priority !== 'Medium'){
                                 <img src="assets/img/kanban-edit-overlay/medium-arrow.svg"alt=""/>
@@ -46,7 +46,7 @@
                             }
                         </button>
 
-                        <button (click)="changeToLow(); debugPriority()" [disabled]="task.priority === 'Low'" [class.active-low]="task.priority === 'Low'">
+                        <button (click)="changeToLow()" [disabled]="task.priority === 'Low'" [class.active-low]="task.priority === 'Low'">
                             <span>Low</span>
                             @if(task.priority !== 'Low'){
                                 <img src="assets/img/kanban-edit-overlay/low-arrow.svg" alt=""/>
@@ -61,12 +61,12 @@
                 <div class="kanban-assigned-to">
                     <span class="assigned-span">Assigned to</span>
                     <div class="all-user-container">
-                        <mat-select panelClass="select-to-assign"  required name="name" id="" multiple>
+                        <mat-select [(value)]="selectedUser"  panelClass="select-to-assign"  required name="name" id="" multiple>
                             @for (user of overlayState.contactList; track $index) {
                                 <mat-option id={{$index}} value="$index + 1">
                                     {{user.initials}} {{user.firstName}} {{user.lastName}}
                                 </mat-option>
-                            }
+                            } 
                         </mat-select>
                     </div>
                 </div>
@@ -86,14 +86,14 @@
                                 </button>
                                 
                                 <div class="grey-line"></div>
-                                <button (click)="pushToSubtask()">
+                                <button (click)="pushToSubtask()">PUSH
                                     <img  src="assets/img/kanban-edit-overlay/checkmark-subtask.svg" alt="">
                                 </button>
                             </div>
                         }
                     </div>
                     <div class="each-sub-task">
-                        @for (item of task.subTask; track $index) {
+                        @for (subtask of task.subTaskFillTest; track $index) {
                             @if (editingSubtaskIndex === $index) {
                                 <li>
                                     <textarea [(ngModel)]="editingSubtaskValue"></textarea>
@@ -102,7 +102,7 @@
                                 </li>
                             }@else {
                                 <li (dblclick)="startEditingSubtask($index)">
-                                    <!-- {{ this.task.subTaskFillTest[$index].text}} -->
+                                    {{ subtask.text }}
                                 </li>
                             }
                         }
