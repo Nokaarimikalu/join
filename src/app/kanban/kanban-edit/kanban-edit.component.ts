@@ -178,4 +178,10 @@ export class KanbanEditComponent {
     cancelEditingSubtask() {
         this.editingSubtaskIndex = null;
     }
+
+    closeEditingSubtaskOnOverlay(event: MouseEvent) {
+        if (this.editingSubtaskIndex !== null) {
+            this.cancelEditingSubtask();
+        }
+    }
 }

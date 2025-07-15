@@ -177,6 +177,7 @@
                 .kanban-overlay-subtask {
                     width: 100%;
                     padding-top: 3em;
+                    height: 30em;
 
                     span {
                         font-size: 16px;
@@ -191,48 +192,86 @@
                         border-radius: 10px;
                         width: 100%;
                         height: 48px;
-                        input{
+
+                        input {
                             width: 100%;
                             padding: 1em;
                             height: 100%;
                             border: transparent;
                             font-size: 16px;
                             background-color: transparent;
-                            &:focus{
+
+                            &:focus {
                                 border-radius: 10px;
                             }
                         }
-                        .add,.submit-cancel{
+
+                        .add,
+                        .submit-cancel {
                             display: flex;
                             align-items: center;
                             position: absolute;
                             right: 1em;
                             cursor: pointer;
                         }
-                        .add{
-                            z-index: -10;
+
+                        .add {
+                            z-index: 10;
                             height: 100%;
-                            img{
-                            &:hover{
-                                background-color: rgba(0, 0, 0, 0.091);
-                                border-radius: 50px;
-                            }
+
+                            img {
+                                &:hover {
+                                    background-color: rgba(0, 0, 0, 0.091);
+                                    border-radius: 50px;
+                                }
                             }
                         }
-                        .submit-cancel{
-                            z-index: 1000;
-                            img{
-                                z-index: -10;
-                            &:hover{
-                                background-color: rgba(0, 0, 0, 0.091);
-                                border-radius: 50px;
+
+                        .submit-cancel {
+                            button {
+                                background-color: transparent;
+                                border: transparent;
                             }
-                            }
-                            .grey-line{
+
+                            // img {
+                            //     &:hover {
+                            //         background-color: rgba(0, 0, 0, 0.091);
+                            //         border-radius: 50px;
+                            //     }
+                            // }
+
+                            .grey-line {
                                 width: 2px;
                                 height: 24px;
                                 background-color: rgba(128, 128, 128, 0.41);
                                 margin: 0px 2px;
+                            }
+                        }
+                    }
+
+                    .each-sub-task {
+                        padding-top: 2em;
+
+                        li {
+                            font-size: 16px;
+                        }
+
+                        textarea {
+                            height: 25px;
+                            width: calc(100% - 4em); // Platz für Buttons rechts
+                            background: transparent;
+                            border: none;
+                            border-bottom: 2px solid #29ABE2;
+                            resize: none;
+                            font-size: 16px;
+                            color: #333;
+                            outline: none;
+                            margin-top: 1em; // Abstand zum oberen li
+                            padding-bottom: 4px; // Text unten halten
+                            vertical-align: bottom; // falls nötig
+
+                            &:focus {
+                                border-bottom: 2px solid #29ABE2;
                             }
                         }
                     }
