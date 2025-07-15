@@ -55,35 +55,6 @@
       </div>
     </div>
 
-
-
-
-
-
-    <!--     <div class="input-assigned-to">
-      <span>Subtasks:</span>
-      <div class="subtask-priority">
-        @for (subtasks of task.subTaskFillTest; track $index) {
-          @switch (true) {
-            @case (subtasks.completed) {
-              <div class="subtask">
-                  <div (click)="subtasks.completed; debug()" class="checkbox"></div> {{subtasks.text}}
-              </div>
-                } @case(!subtasks.completed) {
-            }
-          }
-        }
-      </div>
-    </div>
- -->
-    <!--             <div class="input-assigned-to">
-      <span>Subtasks:</span>
-      <div class="user-priority">
-        <input type="checkbox" [(ngModel)]="task.subTask">
-      </div>
-    </div>
--->
-
     <div class="edit-delete-area">
 
       <div class="delete-container">
@@ -100,4 +71,6 @@
 
     </div>
   </div>
+
+  <app-kanban-edit [task]="task"></app-kanban-edit>
 </section>

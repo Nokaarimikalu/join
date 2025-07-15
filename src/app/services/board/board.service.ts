@@ -179,11 +179,11 @@ selectedTask: TaskItemBoard | null = null;
 
 
  */
-updateTaskStatus(taskId: string, newStatus: string) {
+/* updateTaskStatus(taskId: string, newStatus: string) {
   const task = this.dummyTasks.find(t => t.id === taskId);
   if (task) {
     task.status = newStatus;
   }
-}
+} */
 
 }

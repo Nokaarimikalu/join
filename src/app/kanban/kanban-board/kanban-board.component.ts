@@ -61,8 +61,6 @@ export class KanbanBoardComponent {
     this.boardService.dummyTasks = [...others, ...targetTasks];
   }
 
-
-
   startDragMobile(e: MouseEvent | TouchEvent) {
     this.containerMobile = (e.currentTarget as HTMLElement).parentElement!;
     this.isDraggingMobile = true;
