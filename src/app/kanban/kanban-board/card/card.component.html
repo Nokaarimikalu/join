@@ -1,6 +1,6 @@
 <section>
   <div class="testcontainer">
-    <div class="category {{task.category?.toLocaleLowerCase()}}">{{task.category}}</div>
+    <div class="category {{task.category?.toLowerCase()?.replace(' ', '-')}}">{{task.category}}</div>
     <div class="tite">
       <h4>{{task.title}}</h4>
     </div>
