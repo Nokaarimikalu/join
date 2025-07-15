@@ -1,6 +1,6 @@
 section {
   z-index: 5;
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .full-card-container {
@@ -11,12 +11,22 @@ section {
   padding: 25px;
   border-radius: 20px;
   background-color: rgb(255, 255, 255);
-  height: 870px;
+  height: auto;
   display: flex;
   flex-direction: column;
   gap: 45px;
   box-shadow: 0 6px 0 rgba(0, 0, 0, 0.02);
   transition: ease-in-out 0.2s;
+  overflow-y: auto;
+
+  @media (max-width: 965px) {
+    width: auto;
+  }
+
+    @media (max-width: 474px) {
+    width: auto;
+    height: 744px;
+  }
 
   &:hover {
     box-shadow: 0 0 6px rgba(42, 54, 71, 0.3);
@@ -107,8 +117,12 @@ section {
 
   span {
     width: 150px;
-
     color: rgb(138, 138, 138);
+
+    @media (max-width: 965px) {
+      color: #42526E;
+      font-weight: bold;
+    }
   }
 }
 
@@ -208,7 +222,8 @@ section {
       display: flex;
       align-items: center;
     }
-        &:hover {
+
+    &:hover {
       color: #29abe2;
 
       .edit {
@@ -216,12 +231,14 @@ section {
         background-position: center;
         background-repeat: no-repeat;
       }
+    }
   }
-  }
+
   .delete-container {
     cursor: pointer;
     display: flex;
     align-items: center;
+
     .delete {
       background: url('../../../../../public/assets/img/kanban-board/fullCardDeleteButton.png');
       width: 32px;
@@ -232,6 +249,7 @@ section {
       display: flex;
       align-items: center;
     }
+
     &:hover {
       color: #29abe2;
 
@@ -244,7 +262,6 @@ section {
     }
   }
 
-
   img {
     width: 32px;
     height: 32px;
@@ -256,3 +273,32 @@ section {
     background-color: rgba(0, 0, 0, 0.178);
   }
 }
+
+h1 {
+  font-size: 36px;
+}
+
+.subtask-priority{
+  display: flex;
+  flex-direction: column;
+
+  .subtask{
+    display: flex;
+    gap: 20px;
+
+    .checkbox{
+      background: url('../../../../../public/assets/img/kanban-board/fullCardCheckboxEmpty.png');
+      width: 32px;
+      height: 32px;
+      background-repeat: no-repeat;
+    }
+
+      .checkbox-active{
+      background: url('../../../../../public/assets/img/kanban-board/fullCardCheckboxChecked.png');
+      width: 32px;
+      height: 32px;
+      background-repeat: no-repeat;
+    }
+  }
+}
+

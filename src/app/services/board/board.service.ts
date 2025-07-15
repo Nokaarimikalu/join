@@ -9,8 +9,9 @@ export class BoardService implements OnDestroy{
   firestore: Firestore = inject(Firestore);
   unsubscribe: () => void; 
   fullCardActive: boolean = false;
-selectedTask: TaskItem | null = null;
-taskList: TaskItemBoard[] = [];
+  selectedTask: TaskItemBoard | null = null;
+  editOverlayActive: boolean = false;
+  taskList: TaskItemBoard[] = [];
 
 constructor() {
     this.unsubscribe = onSnapshot(collection(this.firestore, 'taskItemBoard'), (task) => {
@@ -91,7 +92,7 @@ getTasks(){
       { text: 'Mockups aktualisieren', completed: true },
       { text: 'Feedback einarbeiten', completed: true }
     ],
-    status: 'await feedback'
+    status: 'to do'
   },
   {
     id: '4',
@@ -200,7 +201,7 @@ getTasks(){
   }
 ];
 
-  openFullCard(task: TaskItem) {
+  openFullCard(task: TaskItemBoard) {
     this.fullCardActive = !this.fullCardActive;
     this.selectedTask = task;
   }
@@ -211,11 +212,14 @@ getTasks(){
 
 
  */
-updateTaskStatus(taskId: string, newStatus: string) {
+/* updateTaskStatus(taskId: string, newStatus: string) {
   const task = this.dummyTasks.find(t => t.id === taskId);
   if (task) {
     task.status = newStatus;
   }
-}
+} */
 
+  toggleEditOverlay() {
+    this.editOverlayActive = !this.editOverlayActive;
+  }
 }

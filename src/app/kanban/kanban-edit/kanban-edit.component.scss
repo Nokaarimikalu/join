@@ -24,6 +24,7 @@
         animation: fade-in-left-overlay 0.5s ease-in-out;
 
         .close-button {
+            z-index: 5;
             display: flex;
             align-items: center;
             justify-content: center;

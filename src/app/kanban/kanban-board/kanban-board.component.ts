@@ -15,6 +15,10 @@ import { CdkDragDrop, DragDropModule, moveItemInArray, transferArrayItem } from 
 })
 export class KanbanBoardComponent {
 
+  isDraggingMobile: boolean = false;
+  startXMobile: number = 0;
+  scrollLeftMobile: number = 0;
+  containerMobile?: HTMLElement;
   searchValue: string = "";
 
   constructor(public boardService: BoardService) {
@@ -36,27 +40,44 @@ export class KanbanBoardComponent {
   }
 
   drop(event: CdkDragDrop<TaskItemBoard[]>) {
-    console.log('Source ID:', event.previousContainer.id);
-    console.log('Target ID:', event.container.id);
-    if (event.previousContainer === event.container) {
-      
-      const filteredTasks = this.boardService.dummyTasks.filter(t => t.status === event.container.id);
-      moveItemInArray(filteredTasks, event.previousIndex, event.currentIndex);
-
-      const otherTasks = this.boardService.dummyTasks.filter(
-        t => t.status !== event.container.id
-      );
-      this.boardService.dummyTasks = [...otherTasks, ...filteredTasks];
+    const prevStatus = event.previousContainer.id;
+    const newStatus = event.container.id;
+    const tasks = this.boardService.dummyTasks;
+    const targetTasks = tasks.filter(t => t.status === newStatus);
+    if (prevStatus === newStatus) {
+      moveItemInArray(targetTasks, event.previousIndex, event.currentIndex);
     } else {
-      const movedTask = { ...event.item.data };
-      movedTask.status = event.container.id;
-
-      this.boardService.dummyTasks = this.boardService.dummyTasks.filter(
-        t => t.id !== movedTask.id
-      );
-
-      this.boardService.dummyTasks = [...this.boardService.dummyTasks, movedTask];
+      const movedTask = tasks.find(t => t.id === event.item.data.id); // grouping status and sorting the dragged task in the correct position of the new column task
+      if (movedTask) {
+        movedTask.status = newStatus;
+        const updated = tasks.filter(t => t.status !== newStatus);
+        const newTargetTasks = tasks.filter(t => t.status === newStatus && t.id !== movedTask.id);
+        newTargetTasks.splice(event.currentIndex, 0, movedTask);
+        this.boardService.dummyTasks = [...updated, ...newTargetTasks];
+        return;
+      }
     }
+    const others = tasks.filter(t => t.status !== newStatus); // sort in the same task column 
+    this.boardService.dummyTasks = [...others, ...targetTasks];
+  }
+
+  startDragMobile(e: MouseEvent | TouchEvent) {
+    this.containerMobile = (e.currentTarget as HTMLElement).parentElement!;
+    this.isDraggingMobile = true;
+    this.startXMobile = ('pageX' in e ? e.pageX : e.touches[0].pageX) - this.containerMobile.offsetLeft;
+    this.scrollLeftMobile = this.containerMobile.scrollLeft;
+  }
+
+  onDragMobile(e: MouseEvent | TouchEvent) {
+    if (!this.isDraggingMobile || !this.containerMobile) return;
+    e.preventDefault();
+    const x = ('pageX' in e ? e.pageX : e.touches[0].pageX) - this.containerMobile.offsetLeft;
+    const walk = (x - this.startXMobile) * 2;
+    this.containerMobile.scrollLeft = this.scrollLeftMobile - walk;
+  }
+
+  endDragMobile() {
+    this.isDraggingMobile = false;
   }
 }
 

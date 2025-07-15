@@ -25,7 +25,7 @@
     </div>
 
     <div class="input-assigned-to">
-      <span>Assignet To:</span>
+      <span>Assigned To:</span>
       <div class="user-priority">
         @for (user of task.assignedTo; track $index) {
         <div class="user-details">
@@ -41,30 +41,38 @@
     <div class="input-assigned-to">
       <span>Subtasks:</span>
       <div class="subtask-priority">
-        <div class="subtask">{{task.subTask}}</div>
+        @for (subtasks of task.subTaskFillTest; track $index) {
+          @if (subtasks.completed == true) {
+            <div class="subtask">
+              <div (click)="toggleCheckbox($index)" class="checkbox-active"></div> {{subtasks.text}}
+            </div>
+            } @else {
+            <div class="subtask">
+              <div (click)="toggleCheckbox($index)" class="checkbox"></div> {{subtasks.text}}
+            </div>
+          }
+        }
       </div>
     </div>
 
-    <!--             <div class="input-assigned-to">
-      <span>Subtasks:</span>
-      <div class="user-priority">
-        <input type="checkbox" [(ngModel)]="task.subTask">
+    <div class="edit-delete-area">
+
+      <div class="delete-container">
+        <div class="delete"></div>
+        <p>Delete</p>
       </div>
+
+      <div class="hyphen"></div>
+
+      <div class="edit-container"  (click)="boardService.toggleEditOverlay()">
+        <div class="edit"></div>
+        <p>Edit</p>
+      </div>
+
     </div>
--->
-
-<div class="edit-delete-area">
-
-  <div class="delete-container">
-  <div class="delete"></div> <p>Delete</p>
   </div>
 
-  <div class="hyphen"></div>
-
-  <div class="edit-container">
-  <div class="edit"></div> <p>Edit</p>
-  </div>
-
-</div>
-  </div>
+    @if (boardService.editOverlayActive == true) {
+  <app-kanban-edit [task]="task"></app-kanban-edit>
+  }
 </section>
