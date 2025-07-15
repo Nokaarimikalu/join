@@ -7,7 +7,7 @@ import { TaskItem, TaskItemBoard } from "../../shared/interface/task.interface";
 export class BoardService {
   
   fullCardActive: boolean = false;
-selectedTask: TaskItem | null = null;
+selectedTask: TaskItemBoard | null = null;
 
   constructor() {
 
@@ -59,7 +59,7 @@ selectedTask: TaskItem | null = null;
       { text: 'Mockups aktualisieren', completed: true },
       { text: 'Feedback einarbeiten', completed: true }
     ],
-    status: 'await feedback'
+    status: 'to do'
   },
   {
     id: '4',
@@ -123,7 +123,7 @@ selectedTask: TaskItem | null = null;
   },
   {
     id: '8',
-    title: 'Benutzerhandbuch erstellen',
+    title: 'Handbuch erstellen',
     category: 'Dokumentation',
     description: 'Anleitung für Endnutzer schreiben',
     dueDate: '2025-07-22',
@@ -168,7 +168,7 @@ selectedTask: TaskItem | null = null;
   }
 ];
 
-  openFullCard(task: TaskItem) {
+  openFullCard(task: TaskItemBoard) {
     this.fullCardActive = !this.fullCardActive;
     this.selectedTask = task;
   }

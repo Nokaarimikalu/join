@@ -1,3 +1,14 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.dev/guide/theming
+@use '@angular/material' as mat;
+
+html {
+    @include mat.theme((color: (theme-type: light,
+            ),
+            density: 0,
+        ));
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -169,4 +180,14 @@ input[type="number"]::-webkit-outer-spin-button {
 
 input[type="number"] {
     appearance: textfield;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
 }

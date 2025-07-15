@@ -15,6 +15,10 @@ import { CdkDragDrop, DragDropModule, moveItemInArray, transferArrayItem } from 
 })
 export class KanbanBoardComponent {
 
+  isDraggingMobile: boolean = false;
+  startXMobile: number = 0;
+  scrollLeftMobile: number = 0;
+  containerMobile?: HTMLElement;
   searchValue: string = "";
 
   constructor(public boardService: BoardService) {
@@ -39,7 +43,7 @@ export class KanbanBoardComponent {
     console.log('Source ID:', event.previousContainer.id);
     console.log('Target ID:', event.container.id);
     if (event.previousContainer === event.container) {
-      
+
       const filteredTasks = this.boardService.dummyTasks.filter(t => t.status === event.container.id);
       moveItemInArray(filteredTasks, event.previousIndex, event.currentIndex);
 
@@ -57,6 +61,27 @@ export class KanbanBoardComponent {
 
       this.boardService.dummyTasks = [...this.boardService.dummyTasks, movedTask];
     }
+  }
+
+
+
+  startDragMobile(e: MouseEvent | TouchEvent) {
+    this.containerMobile = (e.currentTarget as HTMLElement).parentElement!;
+    this.isDraggingMobile = true;
+    this.startXMobile = ('pageX' in e ? e.pageX : e.touches[0].pageX) - this.containerMobile.offsetLeft;
+    this.scrollLeftMobile = this.containerMobile.scrollLeft;
+  }
+
+  onDragMobile(e: MouseEvent | TouchEvent) {
+    if (!this.isDraggingMobile || !this.containerMobile) return;
+    e.preventDefault();
+    const x = ('pageX' in e ? e.pageX : e.touches[0].pageX) - this.containerMobile.offsetLeft;
+    const walk = (x - this.startXMobile) * 2;
+    this.containerMobile.scrollLeft = this.scrollLeftMobile - walk;
+  }
+
+  endDragMobile() {
+    this.isDraggingMobile = false;
   }
 }
 

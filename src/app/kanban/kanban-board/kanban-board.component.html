@@ -11,18 +11,33 @@
         <button class="add-task-button">Add task +</button>
       </div>
     </div>
+
+    <div class="headline-area-mobile">
+      <div class="mobileDiv">
+        <h1>Board</h1>
+        <button class="add-task-button">+</button>
+
+      </div>
+
+      <div class="search-input">
+        <input type="text" placeholder="Find Task" class="searchTitle" name="searchTitle" (keyup)="searchTasks()">
+        <button class="search-button" (click)="searchTasks()">
+          <div class="hyphen"></div>
+          <img src="../../../../assets/img/kanban-board/search.png" alt="Search" width="20">
+        </button>
+      </div>
+    </div>
+
+
     <div class="board">
 
       <div class="task-column">
         <div class="add-area">
           <h3>To do</h3> <button class="small-add-task-button">+</button>
         </div>
-        
+
         <div class="task-columns" cdkDropList [cdkDropListData]="tasksSearchAndStatus('to do', searchValue)"
-          (cdkDropListDropped)="drop($event)" id="to do"> 
-
-
-
+          (cdkDropListDropped)="drop($event)" id="to do">
           @if (tasksSearchAndStatus('to do', searchValue).length === 0)
           {
           <div class="no-task-place-holder">
@@ -30,7 +45,13 @@
           </div>
           } @else {
           @for (task of tasksSearchAndStatus('to do', searchValue); track $index) {
-          <app-card [cdkDragData]="task" [task]="task" (click)="boardService.openFullCard(task) " cdkDrag></app-card>
+          <app-card id="card-desktop" [cdkDragData]="task" [task]="task" (click)="boardService.openFullCard(task) "
+            cdkDrag></app-card>
+          <app-card class="card-mobile" (mousedown)="startDragMobile($event)" (touchstart)="startDragMobile($event)"
+            (mousemove)="onDragMobile($event)" (touchmove)="onDragMobile($event)" (mouseup)="endDragMobile()"
+            (mouseleave)="endDragMobile()" (touchend)="endDragMobile()" [task]="task"
+            (click)="!isDraggingMobile && boardService.openFullCard(task)"></app-card>
+
           }
           }
         </div>
@@ -46,7 +67,12 @@
           <div class="no-task-place-holder">No tasks to do</div>
           } @else {
           @for (task of tasksSearchAndStatus('in progress', searchValue); track $index) {
-          <app-card [cdkDragData]="task" [task]="task" (click)="boardService.openFullCard(task)" cdkDrag></app-card>
+          <app-card id="card-desktop" [cdkDragData]="task" [task]="task" (click)="boardService.openFullCard(task) "
+            cdkDrag></app-card>
+          <app-card class="card-mobile" (mousedown)="startDragMobile($event)" (touchstart)="startDragMobile($event)"
+            (mousemove)="onDragMobile($event)" (touchmove)="onDragMobile($event)" (mouseup)="endDragMobile()"
+            (mouseleave)="endDragMobile()" (touchend)="endDragMobile()" [task]="task"
+            (click)="!isDraggingMobile && boardService.openFullCard(task)"></app-card>
           }
           }
         </div>
@@ -62,7 +88,12 @@
           <div class="no-task-place-holder">No tasks to do</div>
           } @else {
           @for (task of tasksSearchAndStatus('await feedback', searchValue); track $index) {
-          <app-card [cdkDragData]="task" [task]="task" (click)="boardService.openFullCard(task)" cdkDrag></app-card>
+          <app-card id="card-desktop" [cdkDragData]="task" [task]="task" (click)="boardService.openFullCard(task) "
+            cdkDrag></app-card>
+          <app-card class="card-mobile" (mousedown)="startDragMobile($event)" (touchstart)="startDragMobile($event)"
+            (mousemove)="onDragMobile($event)" (touchmove)="onDragMobile($event)" (mouseup)="endDragMobile()"
+            (mouseleave)="endDragMobile()" (touchend)="endDragMobile()" [task]="task"
+            (click)="!isDraggingMobile && boardService.openFullCard(task)"></app-card>
           }
           }
         </div>
@@ -78,7 +109,12 @@
           <div class="no-task-place-holder">No tasks to do</div>
           } @else {
           @for (task of tasksSearchAndStatus('done', searchValue); track $index) {
-          <app-card [cdkDragData]="task" [task]="task" (click)="boardService.openFullCard(task)" cdkDrag></app-card>
+          <app-card id="card-desktop" [cdkDragData]="task" [task]="task" (click)="boardService.openFullCard(task) "
+            cdkDrag></app-card>
+          <app-card class="card-mobile" (mousedown)="startDragMobile($event)" (touchstart)="startDragMobile($event)"
+            (mousemove)="onDragMobile($event)" (touchmove)="onDragMobile($event)" (mouseup)="endDragMobile()"
+            (mouseleave)="endDragMobile()" (touchend)="endDragMobile()" [task]="task"
+            (click)="!isDraggingMobile && boardService.openFullCard(task)"></app-card>
           }
           }
         </div>
