@@ -34,17 +34,17 @@
                     <div class="kanban-addtask-priority">
                         <p>Priority</p>
                         <div class="priority-buttons">
-                            <button>
+                            <button (click)="changeToUrgent()">
                                 <span>Urgent</span>
                                 <img src="assets/img/kanban-edit-overlay/urgent-arrow.svg" alt="" />
                             </button>
 
-                            <button>
+                            <button (click)="changeToMedium()">
                                 <span>Medium</span>
                                 <img src="assets/img/kanban-edit-overlay/medium-arrow.svg" alt="" />
                             </button>
 
-                            <button>
+                            <button (click)="changeToLow()">
                                 <span>Low</span>
                                 <img src="assets/img/kanban-edit-overlay/low-arrow.svg" alt="" />
                             </button>
@@ -52,7 +52,7 @@
                         <!-- Assigned-to-Dropdown -->
                         <div class="kanban-assigned-to">
                             <span class="assigned-span">Assigned to</span>
-                            <div class="all-user-container">
+                             <div class="all-user-container">
                                 <mat-select panelClass="select-to-assign" required name="name" id="" multiple>
                                     @for (user of overlayState.contactList; track $index) {
                                     <mat-option id={{$index}} value="$index + 1">
@@ -64,9 +64,13 @@
                             <!-- Category-Dropdown -->
                             <div class="category-dropdown">
                                 <label class="form-label">Category<span class="required-asterisk">*</span></label>
-                                <select panelClass="select-category" name="category">
-                                    <option value="Technical Task">Technical Task</option>
-                                    <option value="User Story">User Story</option>
+                                <select [(ngModel)]="taskList.category" panelClass="select-category" name="category">
+                                    <option  value="Management">Management</option>
+                                    <option  value="Technical">Technical</option>
+                                    <option  value="Technical">Developement</option>
+                                    <option  value="Technical">Design</option>
+                                    <option  value="Technical">Documentation</option>
+                                    <option value="user story">User Story</option>
                                 </select>
                             </div>
 
@@ -77,11 +81,9 @@
                                     <div class="subtaskfield">
                                         Add new subtask
                                         <img src="assets/img/kanban-edit-overlay/plus-zichen.svg" alt="Add new" />
-
                                     </div>
-
                                     <div class="each-sub-task">
-                                        <button class="clear" (click)="">
+                                        <button class="clear">
                                             Clear
                                             <svg width="32" height="32" viewBox="0 0 32 32" fill="currentColor"
                                                 xmlns="http://www.w3.org/2000/svg">

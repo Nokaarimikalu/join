@@ -20,13 +20,13 @@ export class KanbanAddComponent {
 
   taskList: TaskItemBoard = {
     id: '',
-    status: '',
+    status: 'to do',
     title: '',
     description: '',
     dueDate: '',
     priority: '',
     assignedTo: [],
-    subTaskFillTest: []
+    subTaskFillTest: [{text: '', completed: false}]
   };
 
   constructor(public boardService: BoardService, public overlayState: OverlayState) {}
@@ -43,16 +43,18 @@ export class KanbanAddComponent {
     this.isInputFocused = false;
   } */
 
-/*   changeToUrgent() {
-    this.selectedContacts[this.currentIndex].priority = 'Urgent';
+changeToUrgent() {
+    this.taskList.priority = 'Urgent';
   }
+
   changeToMedium() {
-    this.selectedContacts[this.currentIndex].priority = 'Medium';
+    this.taskList.priority = 'Medium';
   }
+  
   changeToLow() {
-    this.selectedContacts[this.currentIndex].priority = 'Low';
+    this.taskList.priority = 'Low';
   }
- */
+
 
 /*   pushToSubtask() {
     if (this.subtaskString.trim() === '') {
