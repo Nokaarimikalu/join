@@ -4,6 +4,7 @@ import { TaskItem, TaskItemBoard } from '../../shared/interface/task.interface';
 import { OverlayState } from '../../services/contacts/overlayState.service';
 import { NgModule } from '@angular/core';
 import { MatSelectModule } from '@angular/material/select';
+import { BoardService } from '../../services/board/board.service';
 
 @Component({
     selector: 'app-kanban-edit',
@@ -93,7 +94,7 @@ export class KanbanEditComponent {
     copyDummyTasks: TaskItem[] = JSON.parse(JSON.stringify(this.dummyTasks));
     //---------------------------------------------------------------------------------------------
 
-    constructor(public overlayState: OverlayState) {}
+    constructor(public overlayState: OverlayState, public boardService: BoardService) {}
 
     //------------------------------------------------------------------------------------------
     changeToUrgent() {
@@ -154,6 +155,7 @@ export class KanbanEditComponent {
             JSON.stringify(this.copyDummyTasks[this.currentIndex])
         );
     }
+    
     resetChanges() {
         // muss mit json usw weil sonst die Buttons net gehen ??
         this.copyDummyTasks[this.currentIndex] = JSON.parse(

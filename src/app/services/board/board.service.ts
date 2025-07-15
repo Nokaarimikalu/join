@@ -7,7 +7,8 @@ import { TaskItem, TaskItemBoard } from "../../shared/interface/task.interface";
 export class BoardService {
   
   fullCardActive: boolean = false;
-selectedTask: TaskItemBoard | null = null;
+  selectedTask: TaskItemBoard | null = null;
+  editOverlayActive: boolean = false;
 
   constructor() {
 
@@ -186,4 +187,7 @@ selectedTask: TaskItemBoard | null = null;
   }
 } */
 
+  toggleEditOverlay() {
+    this.editOverlayActive = !this.editOverlayActive;
+  }
 }

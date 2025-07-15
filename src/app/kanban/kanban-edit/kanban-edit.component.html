@@ -1,6 +1,6 @@
 <section class="dimmed-background" (click)="handleBackdropClick($event)">
     <div class="overlay-kanban-edit" (click)="$event.stopPropagation() ;subtaskTest($event) ">
-        <div class="close-button">
+        <div class="close-button" (click)="boardService.toggleEditOverlay()">
             <img src="assets/img/add-contacts/Vector.svg"  alt="" />
         </div>
         <div class="testzwecken">

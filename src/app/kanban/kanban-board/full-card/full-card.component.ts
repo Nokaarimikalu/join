@@ -13,15 +13,20 @@ import { KanbanEditComponent } from '../../kanban-edit/kanban-edit.component';
   styleUrl: './full-card.component.scss'
 })
 
+
 export class FullCardComponent {
 
   checkboxActive: boolean = false;
 
   constructor(public boardService: BoardService) {
   }
+
+
   @Input() task!: TaskItemBoard;
 
   toggleCheckbox(subtaskIndex: number) {
     this.task.subTaskFillTest[subtaskIndex].completed = !this.task.subTaskFillTest[subtaskIndex].completed;
   }
+
+
 }
