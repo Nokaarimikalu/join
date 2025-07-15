@@ -24,9 +24,8 @@ export class CardComponent {
         this.task = updatedTask;
       }
     }
-    console.log(this.task);
   }
-
+  
   get completedSubtasks(): number {
     if (!this.task.subTaskFillTest) return 0;
     return this.task.subTaskFillTest.filter((s: any) => s.completed).length;
