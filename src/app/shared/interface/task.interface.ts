@@ -23,6 +23,6 @@ export interface TaskItemBoard {
   assignedTo?: {
     user: string;
   }[];  
-  subTask:string[];
+  subTask?:string[];
   subTaskFillTest: { text: string, completed: boolean }[]
 }
