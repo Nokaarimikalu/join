@@ -61,9 +61,9 @@
                 <div class="kanban-assigned-to">
                     <span class="assigned-span">Assigned to</span>
                     <div class="all-user-container">
-                        <mat-select [(value)]="selectedUser"  panelClass="select-to-assign"  required name="name" id="" multiple>
+                        <mat-select [(ngModel)]="task.assignedTo" panelClass="select-to-assign"  required name="name" id="" multiple>
                             @for (user of overlayState.contactList; track $index) {
-                                <mat-option id={{$index}} value="$index + 1">
+                                <mat-option id={{$index}} [value]="user">
                                     {{user.initials}} {{user.firstName}} {{user.lastName}}
                                 </mat-option>
                             } 

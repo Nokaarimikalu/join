@@ -160,15 +160,10 @@ export class KanbanEditComponent {
                 description: this.task.description,
                 dueDate: this.task.dueDate,
                 priority: this.task.priority,
-                assignedTo: this.selectedUser.map(user => ({
-                    initials: user.initials,
-                    firstName: user.firstName,
-                    lastName: user.lastName,
-                    color: user.color,
-                    email: user.email,
-                    phone: user.phone
-                })), status: this.task.status
-            };
+                assignedTo: this.task.assignedTo, 
+                status: this.task.status,
+                subTaskFillTest: this.task.subTaskFillTest
+            };console.log(this.task.subTaskFillTest);
             if (typeof this.task.subTaskFillTest !== 'undefined') {
                 updatedTask.subTaskFillTest = this.task.subTask;
             }
