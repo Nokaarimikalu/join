@@ -214,8 +214,4 @@ export class KanbanEditComponent {
             this.cancelEditingSubtask();
         }
     }
-
-    compareWithFn(a: any, b: any): boolean {
-  return a?.id === b?.id; 
-}
 }

@@ -249,8 +249,8 @@ section {
     }
 }
 
-
 app-full-card {
+    animation: fade-in-left-fullcard 1s ease-in-out;
     border-radius: 20px;
     position: fixed;
     top: 50%;

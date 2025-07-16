@@ -139,6 +139,18 @@ button {
     }
 }
 
+@keyframes fade-in-left-fullcard {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) translateX(500px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) translateX(0);
+    }
+}
+
 @keyframes fade-in-left-overlay-viewport {
     0% {
         opacity: 0;
