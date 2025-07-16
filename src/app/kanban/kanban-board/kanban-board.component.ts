@@ -91,5 +91,3 @@ export class KanbanBoardComponent {
     this.isDraggingMobile = false;
   }
 }
-
-

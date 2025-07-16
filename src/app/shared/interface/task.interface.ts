@@ -13,7 +13,7 @@ export interface TaskItem {
 }
 
 export interface TaskItemBoard {
-  id?: string;
+  id: string;
   status?: string;
   category?: string;
   title: string;
