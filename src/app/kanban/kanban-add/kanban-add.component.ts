@@ -17,6 +17,8 @@ import { OverlayState } from '../../services/contacts/overlayState.service';
   styleUrl: './kanban-add.component.scss'
 })
 export class KanbanAddComponent {
+  isInputFocused: boolean = false;
+  currentIndex: number = 0;
 
   taskList: TaskItemBoard = {
     id: '',
@@ -24,7 +26,7 @@ export class KanbanAddComponent {
     title: '',
     description: '',
     dueDate: '',
-    priority: '',
+    priority: 'Medium',
     assignedTo: [{initials:'', firstName:'', lastName:'', color:'', email:'', phone:''}],
     subTaskFillTest: [{text: '', completed: false}]
   };
@@ -38,10 +40,10 @@ export class KanbanAddComponent {
     }
   }
 
-/*     clearSubtask() {
-    this.tas[this.currentIndex].subTask = [];
+    clearSubtask() {
+    this.taskList.subTaskFillTest = [];
     this.isInputFocused = false;
-  } */
+  } 
 
 changeToUrgent() {
     this.taskList.priority = 'Urgent';
@@ -56,29 +58,7 @@ changeToUrgent() {
   }
 
 
-/*   pushToSubtask() {
-    if (this.subtaskString.trim() === '') {
-      return; // Leere Eingabe ignorieren
-    }
 
-    const currentSubtasks = this.selectedContacts[this.currentIndex].subTask;
-    const isAlreadyExists = currentSubtasks.some(
-      (task) => task.toLowerCase() === this.subtaskString.toLowerCase().trim()
-    );
-
-    //trim() entfernt die " "
-
-    if (!isAlreadyExists) {
-      currentSubtasks.push(this.subtaskString.trim());
-      this.subtaskString = '';
-      this.isInputFocused = false;
-    } else {
-      // Optional: Feedback an den Benutzer (z. B. Toast, Alert, Console)
-      console.warn('Dieser Eintrag existiert bereits!');
-      // this.showError = true; // Falls du eine Fehlermeldung anzeigen willst
-    }
-  }
- */
   toggleFullCard() {
     this.boardService.fullCardActive = !this.boardService.fullCardActive;
   }
