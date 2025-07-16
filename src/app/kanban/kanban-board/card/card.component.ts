@@ -14,8 +14,18 @@ import { CdkDrag } from '@angular/cdk/drag-drop';
 export class CardComponent {
   constructor(public boardService: BoardService) {}
 
-  @Input() task!: TaskItemBoard; 
-
+  @Input() task!: TaskItemBoard;
+  ngOnInit() {
+    if (this.boardService.taskList && this.task) {
+      const updatedTask = this.boardService.taskList.find(
+        (t: TaskItemBoard) => t.id === this.task.id
+      );
+      if (updatedTask) {
+        this.task = updatedTask;
+      }
+    }
+  }
+  
   get completedSubtasks(): number {
     if (!this.task.subTaskFillTest) return 0;
     return this.task.subTaskFillTest.filter((s: any) => s.completed).length;

@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { TaskItem } from '../../shared/interface/task.interface';
+import { TaskItem, TaskItemBoard } from '../../shared/interface/task.interface';
 import { OverlayState } from '../../services/contacts/overlayState.service';
 import { NgModule } from '@angular/core';
 import { MatSelectModule } from '@angular/material/select';
+import { BoardService } from '../../services/board/board.service';
+import { ContactList } from '../../shared/interface/contact-list.interface';
 
 @Component({
     selector: 'app-kanban-edit',
@@ -12,6 +14,12 @@ import { MatSelectModule } from '@angular/material/select';
     styleUrl: './kanban-edit.component.scss',
 })
 export class KanbanEditComponent {
+
+    @Input() task!: TaskItemBoard;
+
+    selectedUser: ContactList[] = [];
+
+
     isInputFocused: boolean = false;
 
     isListClicked: string = 'list';
@@ -89,24 +97,24 @@ export class KanbanEditComponent {
     copyDummyTasks: TaskItem[] = JSON.parse(JSON.stringify(this.dummyTasks));
     //---------------------------------------------------------------------------------------------
 
-    constructor(public overlayState: OverlayState) {}
+    constructor(public overlayState: OverlayState, public boardService: BoardService) { }
 
     //------------------------------------------------------------------------------------------
     changeToUrgent() {
-        this.copyDummyTasks[this.currentIndex].priority = 'Urgent';
+        this.task.priority = 'Urgent';
     }
     changeToMedium() {
-        this.copyDummyTasks[this.currentIndex].priority = 'Medium';
+        this.task.priority = 'Medium';
     }
     changeToLow() {
-        this.copyDummyTasks[this.currentIndex].priority = 'Low';
+        this.task.priority = 'Low';
     }
     //--------------------------------------------------------------------------------
 
     debugPriority() {
-        console.log(this.copyDummyTasks[this.currentIndex].priority);
+        console.log(this.task.priority);
         console.log('oben ist referenz');
-        console.log(this.dummyTasks[this.currentIndex].priority);
+        console.log(this.task.priority);
     }
 
     nextTask() {
@@ -120,23 +128,20 @@ export class KanbanEditComponent {
     }
 
     pushToSubtask() {
-        if (this.subtaskString.trim() === '') {
-            return; // Leere Eingabe ignorieren
+        if (this.subtaskString.trim() === '') return;
+
+        if (!this.task.subTaskFillTest) {
+            this.task.subTaskFillTest = [];
         }
 
-        const currentSubtasks = this.copyDummyTasks[this.currentIndex].subTask;
-        const isAlreadyExists = currentSubtasks.some(
-            (task) =>
-                task.toLowerCase() === this.subtaskString.toLowerCase().trim()
-        );
+        const newSubtask = {
+            text: this.subtaskString.trim(),
+            completed: false
+        };
 
-        if (!isAlreadyExists) {
-            currentSubtasks.push(this.subtaskString.trim());
-            this.subtaskString = '';
-            this.isInputFocused = false;
-        } else {
-            console.warn('Dieser Eintrag existiert bereits!');
-        }
+        this.task.subTaskFillTest.push(newSubtask);
+        this.subtaskString = '';
+        this.isInputFocused = false;
     }
 
     emptySubtask() {
@@ -144,12 +149,40 @@ export class KanbanEditComponent {
         this.isInputFocused = false;
     }
 
-    confirmChanges() {
-        // muss mit json usw weil sonst die Buttons net gehen ??
-        this.dummyTasks[this.currentIndex] = JSON.parse(
-            JSON.stringify(this.copyDummyTasks[this.currentIndex])
-        );
+    // Update the current task in Firestore with all fields
+    async confirmChanges() {
+        if (!this.task || !this.task.id) return;
+        try {
+            // Prepare the updated task object, only include defined fields
+            const updatedTask: any = {
+                title: this.task.title,
+                category: this.task.category,
+                description: this.task.description,
+                dueDate: this.task.dueDate,
+                priority: this.task.priority,
+                assignedTo: this.selectedUser.map(user => ({
+                    initials: user.initials,
+                    firstName: user.firstName,
+                    lastName: user.lastName,
+                    color: user.color,
+                    email: user.email,
+                    phone: user.phone
+                })), status: this.task.status
+            };
+            if (typeof this.task.subTaskFillTest !== 'undefined') {
+                updatedTask.subTaskFillTest = this.task.subTask;
+            }
+            if (typeof this.task.subTaskFillTest !== 'undefined') {
+                updatedTask.subTaskFillTest = this.task.subTaskFillTest;
+            }
+            const { doc, updateDoc } = await import('@angular/fire/firestore');
+            const taskDoc = doc(this.boardService.firestore, 'taskItemBoard', this.task.id);
+            await updateDoc(taskDoc, updatedTask);
+        } catch (error) {
+            console.error('Fehler beim Aktualisieren der Aufgabe in Firestore:', error);
+        }
     }
+
     resetChanges() {
         // muss mit json usw weil sonst die Buttons net gehen ??
         this.copyDummyTasks[this.currentIndex] = JSON.parse(

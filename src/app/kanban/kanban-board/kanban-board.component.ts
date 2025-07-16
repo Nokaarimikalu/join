@@ -4,6 +4,7 @@ import { BoardService } from '../../services/board/board.service';
 import { TaskItem, TaskItemBoard } from '../../shared/interface/task.interface';
 import { FullCardComponent } from './full-card/full-card.component';
 import { CdkDragDrop, DragDropModule, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { doc, updateDoc } from '@angular/fire/firestore';
 
 
 
@@ -20,18 +21,21 @@ export class KanbanBoardComponent {
   scrollLeftMobile: number = 0;
   containerMobile?: HTMLElement;
   searchValue: string = "";
+  taskData: TaskItemBoard[] = [];
 
   constructor(public boardService: BoardService) {
+    this.taskData = this.boardService.taskList;
+    
   }
 
   filterTaskStatus(status: string) {
-    return this.boardService.dummyTasks.filter(task => task.status === status); // returns filtered status used for filtering right kanban column 
+    return this.boardService.taskList.filter(task => task.status === status); // returns filtered status used for filtering right kanban column 
   }
 
   searchTasks() {
     const searchInputRef = document.querySelector('.searchTitle') as HTMLInputElement; // without HTMLInputElement ts .value is not working (because of querySelector!)
     this.searchValue = searchInputRef?.value
-    return this.boardService.dummyTasks.filter(task => task.title?.toLocaleLowerCase() === searchInputRef?.value); // ?.value because no start value 
+    return this.boardService.taskList.filter(task => task.title?.toLocaleLowerCase() === searchInputRef?.value); // ?.value because no start value 
   }
 
   tasksSearchAndStatus(status: string, searchValue: string) {
@@ -39,29 +43,30 @@ export class KanbanBoardComponent {
     return filteredStatus.filter(task => task.title?.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase())); // ?.value because no start value 
   }
 
-  drop(event: CdkDragDrop<TaskItemBoard[]>) {
+  async drop(event: CdkDragDrop<TaskItemBoard[]>) {
     const prevStatus = event.previousContainer.id;
     const newStatus = event.container.id;
-    const tasks = this.boardService.dummyTasks;
+    const tasks = this.boardService.taskList;
     const targetTasks = tasks.filter(t => t.status === newStatus);
     if (prevStatus === newStatus) {
       moveItemInArray(targetTasks, event.previousIndex, event.currentIndex);
     } else {
-      const movedTask = tasks.find(t => t.id === event.item.data.id); // grouping status and sorting the dragged task in the correct position of the new column task
+      const movedTask = tasks.find(t => t.id === event.item.data.id);
       if (movedTask) {
         movedTask.status = newStatus;
+        const firestore = this.boardService.firestore;
+        const taskRef = doc(firestore, 'taskItemBoard', movedTask.id);
+        await updateDoc(taskRef, { status: newStatus });
         const updated = tasks.filter(t => t.status !== newStatus);
         const newTargetTasks = tasks.filter(t => t.status === newStatus && t.id !== movedTask.id);
         newTargetTasks.splice(event.currentIndex, 0, movedTask);
-        this.boardService.dummyTasks = [...updated, ...newTargetTasks];
+        this.boardService.taskList = [...updated, ...newTargetTasks];
         return;
       }
     }
-    const others = tasks.filter(t => t.status !== newStatus); // sort in the same task column 
-    this.boardService.dummyTasks = [...others, ...targetTasks];
+    const others = tasks.filter(t => t.status !== newStatus);
+    this.boardService.taskList = [...others, ...targetTasks];
   }
-
-
 
   startDragMobile(e: MouseEvent | TouchEvent) {
     this.containerMobile = (e.currentTarget as HTMLElement).parentElement!;
