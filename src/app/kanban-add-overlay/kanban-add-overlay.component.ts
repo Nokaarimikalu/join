@@ -1,8 +1,9 @@
-import { Component, NgModule } from '@angular/core';
+import { Component, NgModule, Input} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { OverlayState } from '../services/contacts/overlayState.service';
-import { TaskItem } from '../shared/interface/task.interface';
+import { TaskItemBoard } from '../shared/interface/task.interface';
+import { BoardService } from '../services/board/board.service';
 
 @Component({
     selector: 'app-kanban-add-overlay',
@@ -13,102 +14,55 @@ import { TaskItem } from '../shared/interface/task.interface';
 export class KanbanAddOverlayComponent {
     isInputFocused: boolean = false;
 
-    isListClicked: string = 'list';
-
-    subtaskString: string = '';
-
     currentIndex: number = 0;
 
-    selectedContacts: TaskItem[] = [
-        {
-            id: '',
-            title: '',
-            category: '',
-            description: '',
-            dueDate: '',
-            priority: 'Medium',
-            assignedTo: [{ user: '' }],
-            subTask: [],
-        },
-    ];
-    // Overlay State Service
-    constructor(public overlayState: OverlayState) {}
+    taskList: TaskItemBoard = {
+        id: '',
+        status: 'to do',
+        title: '',
+        description: '',
+        dueDate: '',
+        priority: 'Medium',
+        assignedTo: [{initials:'', firstName:'', lastName:'', color:'', email:'', phone:''}],
+        subTaskFillTest: [{text: '', completed: false}]
+      };
+    
+      constructor(public boardService: BoardService, public overlayState: OverlayState) {}
 
-    // Priority Functions
+      @Input() task!: TaskItemBoard;
+    
+      addTask() {
+        if (this.boardService.selectedTask) {
+          this.boardService.addTasks(this.boardService.selectedTask);
+          this.boardService.selectedTask = null;
+        }
+      }
+    
+        clearSubtask() {
+        this.taskList.subTaskFillTest = [];
+        this.isInputFocused = false;
+      } 
+    
     changeToUrgent() {
-        this.selectedContacts[this.currentIndex].priority = 'Urgent';
-    }
+        this.taskList.priority = 'Urgent';
+      }
+    
+      changeToMedium() {
+        this.taskList.priority = 'Medium';
+      }
+      
+      changeToLow() {
+        this.taskList.priority = 'Low';
+      }
+    
+    
+    
+      toggleFullCard() {
+        this.boardService.fullCardActive = !this.boardService.fullCardActive;
+      }
 
-    changeToMedium() {
-        this.selectedContacts[this.currentIndex].priority = 'Medium';
-    }
-
-    changeToLow() {
-        this.selectedContacts[this.currentIndex].priority = 'Low';
-    }
-
-    // Subtask Management
-    pushToSubtask() {
-        if (this.subtaskString.trim() === '') {
-            return; // Leere Eingabe ignorieren
-        }
-
-        const currentSubtasks =
-            this.selectedContacts[this.currentIndex].subTask;
-        const isAlreadyExists = currentSubtasks.some(
-            (task) =>
-                task.toLowerCase() === this.subtaskString.toLowerCase().trim()
-        );
-
-        //trim() entfernt die " "
-
-        if (!isAlreadyExists) {
-            currentSubtasks.push(this.subtaskString.trim());
-            this.subtaskString = '';
-            this.isInputFocused = false;
-        } else {
-            // Optional: Feedback an den Benutzer (z. B. Toast, Alert, Console)
-            console.warn('Dieser Eintrag existiert bereits!');
-            // this.showError = true; // Falls du eine Fehlermeldung anzeigen willst
-        }
-    }
-
-    emptySubtask() {
-        this.subtaskString = '';
-        this.isInputFocused = false;
-    }
-
-    confirmChanges() {
-        this.selectedContacts[this.currentIndex] = JSON.parse(
-            JSON.stringify(this.selectedContacts[this.currentIndex])
-        );
-    }
-    resetChanges() {
-        this.selectedContacts[this.currentIndex] = JSON.parse(
-            JSON.stringify(this.selectedContacts[this.currentIndex])
-        );
-    }
-
-    handleBackdropClick(event: MouseEvent) {
-        this.resetChanges();
-    }
-
-    subtaskTest(event: MouseEvent) {
-        this.isInputFocused = false;
-    }
-
-    clearSubtask() {
-        this.selectedContacts[this.currentIndex].subTask = [];
-        this.isInputFocused = false;
-    }
-
-    editSubtask(index: number) {
-        // Logik zum Bearbeiten des Subtasks
-        this.isListClicked = 'activateTextarea';
-    }
-
-    deleteSubtask(index: number) {
-        // Logik zum Löschen des Subtasks
-        this.selectedContacts[this.currentIndex].subTask.splice(index, 1);
-    }
+      toggleCheckbox(subtaskIndex: number) {
+    this.task.subTaskFillTest[subtaskIndex].completed = !this.task.subTaskFillTest[subtaskIndex].completed;
+  }
+    
 }
