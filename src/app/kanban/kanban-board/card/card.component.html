@@ -19,9 +19,12 @@
     
     <div class="user-content">
       <div class="user-area">
-<!--         @for (user of task.assignedTo; track $index) {
-        <div class="user initials">{{ user.user.slice(0, 2).toLocaleUpperCase()}}</div>
-        } -->
+        @for (user of task.assignedTo; track $index) {
+        <div class="user-details">
+          <div class="user initials" [style.background]= user.color>{{ user.initials}} </div>
+        </div>
+
+        }
       </div>
 
       <div class="user-priority">

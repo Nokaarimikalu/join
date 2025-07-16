@@ -111,7 +111,7 @@
             </div>
             
             <div class="confirm-edit-button">
-                <button (click)="confirmChanges()">
+                <button (click)="confirmChanges(); boardService.toggleEditOverlay()">
                     <span>Ok</span>
                     <img src="assets/img/add-contacts/check.svg" alt="" />
                 </button>

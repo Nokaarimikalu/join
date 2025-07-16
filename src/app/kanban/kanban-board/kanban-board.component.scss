@@ -218,6 +218,10 @@ section {
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
     }
 
+    app-kanban-edit{
+        z-index: 20;
+    }
+
     app-card {
         width: 100%;
 
