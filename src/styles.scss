@@ -174,12 +174,12 @@ button {
 @keyframes fade-in-left-overlay {
     0% {
         opacity: 0;
-        transform: translate(calc(-50% + 50em), -50%);
+        transform: translate(100%, 0%);
     }
 
     100% {
         opacity: 1;
-        transform: translate(-50%, -50%);
+        transform: translate(0%, 0%);
     }
 }
 
