@@ -119,28 +119,6 @@ section {
     justify-content: center;
     align-items: center;
 
-    .close-button {
-        position: relative;
-        left: 8em;
-        bottom: 2.5em;
-        font-weight: 600;
-        gap: 1em;
-        cursor: pointer;
-        border: none;
-        border-radius: 30px;
-        font-size: 21px;
-        color: rgb(95, 95, 95);
-        width: 32px;
-        height: 32px;
-        background: url("../../../public/assets/img/kanban-board/fullCardCloseButton.png");
-        background-repeat: none;
-        background-position: center;
-        transition: ease-in-out 0.15s;
-
-        &:hover {
-            background-color: rgb(230, 230, 230);
-        }
-    }
 
     .right-content-wrapper {
         display: flex;
@@ -513,3 +491,27 @@ input[type="number"] {
         margin-right: 1em;
     }
 }
+
+
+    .close-button {
+        position: absolute;
+        z-index: 2;
+        font-weight: 600;
+        top: 19px;
+        right: 35px;
+        cursor: pointer;
+        border: none;
+        border-radius: 30px;
+        font-size: 21px;
+        color: rgb(95, 95, 95);
+        width: 32px;
+        height: 32px;
+        background: url("../../../public/assets/img/kanban-board/fullCardCloseButton.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        transition: ease-in-out 0.15s;
+
+        &:hover {
+            background-color: rgb(230, 230, 230);
+        }
+    }
