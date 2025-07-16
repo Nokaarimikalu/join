@@ -109,6 +109,9 @@
 											<input [(ngModel)]="subtaskInput.text" type="text" class="input-subtask" placeholder="Add new subtask">
                                         }
                                     </div>
+                                    <label class="form-label-r required-label">
+                                        <span class="required-asterisk">*</span>This field is required
+                                    </label>
 
                                     <div class="each-sub-task">
                                         <button class="clear" (click)="clearSubtask()">
@@ -124,6 +127,7 @@
                                             Create Task
                                             <img src="assets/img/add-contacts/check.svg" alt="Create Task" />
                                         </button>
+                                        
                                     </div>
                                 </div>
                             </div>

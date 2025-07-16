@@ -272,6 +272,14 @@ app-full-card {
     background: white;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
+@media(max-width:700px){
+    app-full-card{
+        width: 90%;
+        @media(max-width:420px){
+            width: 95%;
+        }
+    }
+}
 
 .small-add-task-button {
     font-weight: normal;
