@@ -3,6 +3,10 @@
         <div class="close-button" (click)="boardService.toggleEditOverlay()">
             <img src="assets/img/add-contacts/Vector.svg"  alt="" />
         </div>
+        <div class="testzwecken">
+            <button class="prev" (click)="prevTask()">Prev</button>
+            <button class="next" (click)="prevTask()">Next</button>
+        </div>
         <div class="overlay-content-wrapper">
             <div class="content-in-overlay">
                 <form class="kanban-overlay-form">
@@ -57,18 +61,20 @@
                 <div class="kanban-assigned-to">
                     <span class="assigned-span">Assigned to</span>
                     <div class="all-user-container">
-@if (task.assignedTo) {
-  <mat-select [(ngModel)]="task.assignedTo" panelClass="select-to-assign" required name="assignedUsers" multiple>
-    @for (user of overlayState.contactList; track user.id) {
-      <mat-option [value]="user" [attr.aria-checked]="task.assignedTo.includes(user)">
-        <div class="option-text">
-          <div class="select-initials" [style.background]="user.color">{{user.initials}}</div>
-          <div>{{user.firstName}} {{user.lastName}}</div>
-        </div>
-      </mat-option>
-    }
-  </mat-select>
-}
+                        <mat-select [(ngModel)]="task.assignedTo" panelClass="select-to-assign"  required name="name" id="" multiple>
+                            @for (assigned of task.assignedTo; track $index) {
+                                <mat-option id={{$index}} [value]="assigned" aria-checked="true">
+                                    <div class="option-text"><div class="select-initials" [style.background]="assigned.color">{{assigned.initials}}</div> <div>{{assigned.firstName}} {{assigned.lastName}}</div></div>
+                                </mat-option>
+                            }
+                            @for (user of overlayState.contactList; track $index) {
+                                @if (!isUserAssigned(user)) {
+                                <mat-option id={{$index}} [value]="user">
+                                    <div class="option-text"><div class="select-initials" [style.background]="user.color">{{user.initials}}</div> <div>{{user.firstName}} {{user.lastName}}</div></div>
+                                </mat-option>
+                                }
+                            } 
+                        </mat-select>
                     </div>
                 </div>
 
