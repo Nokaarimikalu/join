@@ -84,4 +84,5 @@ export class BoardService implements OnDestroy {
     async deleteTask(task: TaskItemBoard) {
     if (!task.id) return; //if no task.id is generated from firebase return otherwise kanban board will crash and no input in card and fullcard will beshown
     await deleteDoc(doc(this.firestore, 'taskItemBoard', task.id))  }
+    
 }

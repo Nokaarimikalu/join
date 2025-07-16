@@ -249,6 +249,16 @@ section {
     }
 }
 
+app-kanban-add-overlay{
+    width: 100%;
+    z-index: 10;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 1000px;
+}
+
 app-full-card {
     animation: fade-in-left-fullcard 1s ease-in-out;
     border-radius: 20px;

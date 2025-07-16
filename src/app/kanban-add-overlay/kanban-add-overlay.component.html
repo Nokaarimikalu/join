@@ -4,6 +4,7 @@
             <div class="left-content-wrapper">
                 <form class="kanban-form" #addTaskForm="ngForm">
                     <h1>Add Task</h1>
+                    <div class="left-side-content">
                     <div class="form-title div-cont">
                         <label class="form-label">
                             Title<span class="required-asterisk">*</span>
@@ -23,15 +24,18 @@
                         </label>
                         <input [(ngModel)]="taskList.dueDate" type="date" name="dueDate" />
                     </div>
-                    <label class="form-label required-label">
-                        <span class="required-asterisk">*</span>This field is required
-                    </label>
+
+                    </div>
+
                 </form>
 
             </div>
+                                <label class="form-label required-label">
+                        <span class="required-asterisk">*</span>This field is required
+                    </label>
         </div>
 
-        <div class="line"></div>
+        <div class="line"> <div class="hyphen"></div></div>
 
 
         <!-- Right Side of kanban Add -->

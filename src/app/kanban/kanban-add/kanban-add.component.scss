@@ -43,11 +43,11 @@ section {
                 flex-direction: column;
                 width: 100%;
                 gap: 30px;
-                bottom: 2.5em;
+                bottom: 7.5em;
 
                 h1 {
-                    bottom: 1.5em;
-                    font-size: 6em;
+/*                     bottom: 1.5em;
+ */                    font-size: 6em;
                 }
 
                 .form-label {
@@ -61,8 +61,8 @@ section {
 
                 .required-label {
                     font-size: 1.6em;
-                    top: 10em;
-                }
+/*                     top: 10em;
+ */                }
 
                 .div-cont {
                     display: flex;
@@ -144,6 +144,7 @@ section {
 
             .priority-buttons {
                 display: flex;
+                flex-wrap: wrap;
                 justify-content: space-between;
                 margin-bottom: 4em;
 
