@@ -34,14 +34,12 @@ section {
                 flex-direction: column;
                 justify-content: space-between;
                 width: 100%;
-                height: 76%;
+                height: 66%;
                 bottom: 13.5em;
 
                 h1 {
                     font-size: 6em;
                 }
-
-
 
                 .required-label {
                     font-size: 1.6em;
@@ -88,7 +86,6 @@ section {
     width: 2px;
     height: 100%;
 
-
     .hyphen {
         display: flex;
         align-items: center;
@@ -118,7 +115,6 @@ section {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
 
     .right-content-wrapper {
         display: flex;

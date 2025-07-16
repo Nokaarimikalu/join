@@ -11,6 +11,8 @@ export class BoardService implements OnDestroy {
 
   unsubscribe: () => void;
 
+  taskcolumnStatus: string = '';
+
   addCardActive:boolean = false;
 
   fullCardActive: boolean = false;
@@ -86,6 +88,11 @@ export class BoardService implements OnDestroy {
 
     toggleAddOverlay() {
     this.addCardActive = !this.addCardActive;
+  }
+
+    toggleAddOverlayColumn(status: string) {
+    this.addCardActive = !this.addCardActive;
+    this.taskcolumnStatus = status;
   }
 
 

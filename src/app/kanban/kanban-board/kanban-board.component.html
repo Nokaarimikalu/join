@@ -53,7 +53,7 @@
 
       <div class="task-column">
         <div class="add-area">
-          <h3>In progress</h3> <button class="small-add-task-button" (click)="boardService.toggleAddOverlay()">+</button>
+          <h3>In progress</h3> <button class="small-add-task-button" (click)=" boardService.toggleAddOverlayColumn('in progress')">+</button>
         </div>
         <div class="task-columns" cdkDropList [cdkDropListData]="tasksSearchAndStatus('in progress', searchValue)"
           [cdkDropListConnectedTo]="['to do', 'await feedback', 'done']" (cdkDropListDropped)="drop($event)"
@@ -75,7 +75,7 @@
 
       <div class="task-column">
         <div class="add-area">
-          <h3>Await feedback</h3> <button class="small-add-task-button">+</button>
+          <h3>Await feedback</h3> <button class="small-add-task-button" (click)=" boardService.toggleAddOverlayColumn('await feedback')">+</button>
         </div>
         <div class="task-columns" cdkDropList [cdkDropListData]="tasksSearchAndStatus('await feedback', searchValue)"
           [cdkDropListConnectedTo]="['to do', 'in progress', 'done']" (cdkDropListDropped)="drop($event)"
@@ -97,7 +97,7 @@
 
       <div class="task-column">
         <div class="add-area">
-          <h3>Done</h3> <button class="small-add-task-button">+</button>
+          <h3>Done</h3> <button class="small-add-task-button" (click)=" boardService.toggleAddOverlayColumn('done')">+</button>
         </div>
         <div class="task-columns" cdkDropList [cdkDropListData]="tasksSearchAndStatus('done', searchValue)"
           [cdkDropListConnectedTo]="['to do', 'in progress', 'await feedback']" (cdkDropListDropped)="drop($event)"

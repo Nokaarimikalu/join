@@ -18,18 +18,20 @@ export class KanbanAddOverlayComponent {
 
     subtaskString: string = '';
 
-    taskList: TaskItemBoard = {
-        id: '',
-        status: 'to do',
-        title: '',
-        description: '',
-        dueDate: '',
-        priority: 'Medium',
-        assignedTo: [{initials:'', firstName:'', lastName:'', color:'', email:'', phone:''}],
-        subTaskFillTest: [{text: '', completed: false}]
-      };
-    
-      constructor(public boardService: BoardService, public overlayState: OverlayState) {}
+    taskList: TaskItemBoard;
+
+    constructor(public boardService: BoardService, public overlayState: OverlayState) {
+        this.taskList = {
+            id: '',
+            status: this.boardService.taskcolumnStatus || 'to do',
+            title: '',
+            description: '',
+            dueDate: '',
+            priority: 'Medium',
+            assignedTo: [],  // Leeres Array statt Dummy-Objekt
+            subTaskFillTest: []  // Leeres Array statt Dummy-Objekt
+        };
+    }
 
       @Input() task!: TaskItemBoard;
     

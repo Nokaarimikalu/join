@@ -9,8 +9,6 @@ import { KanbanEditComponent } from '../kanban-edit/kanban-edit.component';
 import { KanbanAddOverlayComponent } from '../../kanban-add-overlay/kanban-add-overlay.component';
 
 
-
-
 @Component({
   selector: 'app-kanban-board',
   imports: [CardComponent, FullCardComponent, DragDropModule, KanbanEditComponent, KanbanAddOverlayComponent],
