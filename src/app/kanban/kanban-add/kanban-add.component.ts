@@ -8,11 +8,12 @@ import { BoardService } from '../../services/board/board.service';
 import { TaskItemBoard } from '../../shared/interface/task.interface';
 import { MatSelectModule } from '@angular/material/select';
 import { OverlayState } from '../../services/contacts/overlayState.service';
+import { KanbanAddOverlayComponent } from '../../kanban-add-overlay/kanban-add-overlay.component';
 
 
 @Component({
   selector: 'app-kanban-add',
-  imports: [ HeaderComponent, NavFooterComponent, NavFooterMobileComponent, FormsModule, MatSelectModule],
+  imports: [ HeaderComponent, NavFooterComponent, NavFooterMobileComponent, FormsModule, MatSelectModule, KanbanAddOverlayComponent],
   templateUrl: './kanban-add.component.html',
   styleUrl: './kanban-add.component.scss'
 })
@@ -27,7 +28,6 @@ export class KanbanAddComponent {
     description: '',
     dueDate: '',
     priority: 'Medium',
-    category: '',
     assignedTo: [{initials:'', firstName:'', lastName:'', color:'', email:'', phone:''}],
     subTaskFillTest: [{text: '', completed: false}]
   };

@@ -6,12 +6,14 @@ import { FullCardComponent } from './full-card/full-card.component';
 import { CdkDragDrop, DragDropModule, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { doc, updateDoc } from '@angular/fire/firestore';
 import { KanbanEditComponent } from '../kanban-edit/kanban-edit.component';
+import { KanbanAddOverlayComponent } from '../../kanban-add-overlay/kanban-add-overlay.component';
+
 
 
 
 @Component({
   selector: 'app-kanban-board',
-  imports: [CardComponent, FullCardComponent, DragDropModule, KanbanEditComponent],
+  imports: [CardComponent, FullCardComponent, DragDropModule, KanbanEditComponent, KanbanAddOverlayComponent],
   templateUrl: './kanban-board.component.html',
   styleUrl: './kanban-board.component.scss'
 })

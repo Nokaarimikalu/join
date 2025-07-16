@@ -16,6 +16,8 @@ export class KanbanAddOverlayComponent {
 
     currentIndex: number = 0;
 
+    subtaskString: string = '';
+
     taskList: TaskItemBoard = {
         id: '',
         status: 'to do',
@@ -38,10 +40,10 @@ export class KanbanAddOverlayComponent {
         }
       }
     
-        clearSubtask() {
-        this.taskList.subTaskFillTest = [];
-        this.isInputFocused = false;
-      } 
+      //   clearSubtask() {
+      //   this.taskList.subTaskFillTest = [];
+      //   this.isInputFocused = false;
+      // } 
     
     changeToUrgent() {
         this.taskList.priority = 'Urgent';
@@ -56,13 +58,33 @@ export class KanbanAddOverlayComponent {
       }
     
     
-    
+    pushToSubtask() {
+        if (this.subtaskString.trim() === '') return;
+
+        if (!this.taskList.subTaskFillTest) {
+            this.taskList.subTaskFillTest = [];
+        }
+
+        const newSubtask = {
+            text: this.subtaskString.trim(),
+            completed: false
+        };
+
+        this.taskList.subTaskFillTest.push(newSubtask);
+        this.subtaskString = '';
+        this.isInputFocused = false;
+    }
+
+    emptySubtask() {
+        this.subtaskString = '';
+        this.isInputFocused = false;
+    }
       toggleFullCard() {
         this.boardService.fullCardActive = !this.boardService.fullCardActive;
       }
 
       toggleCheckbox(subtaskIndex: number) {
-    this.task.subTaskFillTest[subtaskIndex].completed = !this.task.subTaskFillTest[subtaskIndex].completed;
+    this.taskList.subTaskFillTest[subtaskIndex].completed = !this.taskList.subTaskFillTest[subtaskIndex].completed;
   }
     
 }

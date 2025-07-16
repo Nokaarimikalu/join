@@ -6,12 +6,21 @@ import { TaskItem, TaskItemBoard } from "../../shared/interface/task.interface";
   providedIn: 'root'
 })
 export class BoardService implements OnDestroy {
+
   firestore: Firestore = inject(Firestore);
+
   unsubscribe: () => void;
+
+  addCardActive:boolean = true;
+
   fullCardActive: boolean = false;
+
   selectedTask: TaskItemBoard | null = null;
+
   editOverlayActive: boolean = false;
+
   taskData = this.getTasks();
+
   taskList: TaskItemBoard[] = [];
 
   constructor() {
@@ -74,6 +83,11 @@ export class BoardService implements OnDestroy {
   toggleEditOverlay() {
     this.editOverlayActive = !this.editOverlayActive;
   }
+
+    toggleAddOverlay() {
+    this.editOverlayActive = !this.editOverlayActive;
+  }
+
 
   async updateTaskFullcard(task: TaskItemBoard) {
     if (!task.id) return; //if no task.id is generated from firebase return otherwise kanban board will crash and no input in card and fullcard will beshown

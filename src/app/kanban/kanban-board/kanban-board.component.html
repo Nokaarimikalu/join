@@ -99,5 +99,9 @@
   <app-full-card [task]="boardService.selectedTask"></app-full-card>
   }
 
+    @if (boardService.addCardActive) {
+  <app-kanban-add-overlay></app-kanban-add-overlay>
+  }
+
 
 </section>
