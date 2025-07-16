@@ -12,7 +12,7 @@ import { OverlayState } from '../../services/contacts/overlayState.service';
 
 @Component({
   selector: 'app-kanban-add',
-  imports: [RouterLink, HeaderComponent, NavFooterComponent, NavFooterMobileComponent, FormsModule, MatSelectModule],
+  imports: [ HeaderComponent, NavFooterComponent, NavFooterMobileComponent, FormsModule, MatSelectModule],
   templateUrl: './kanban-add.component.html',
   styleUrl: './kanban-add.component.scss'
 })
