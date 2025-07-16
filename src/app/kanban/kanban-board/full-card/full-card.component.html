@@ -57,7 +57,7 @@
 
     <div class="edit-delete-area">
 
-      <div class="delete-container">
+      <div class="delete-container" (click)="boardService.deleteTask(task); boardService.openFullCard(task)">
         <div class="delete"></div>
         <p>Delete</p>
       </div>
