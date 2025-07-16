@@ -80,4 +80,8 @@ export class BoardService implements OnDestroy {
     const taskRef = doc(this.firestore, 'taskItemBoard', task.id); //create  reference  from specific id 
     await updateDoc(taskRef, {subTaskFillTest: task.subTaskFillTest}); //update only the specific subtask array in documentd (ref with task.id)
   }
+
+    async deleteTask(task: TaskItemBoard) {
+    if (!task.id) return; //if no task.id is generated from firebase return otherwise kanban board will crash and no input in card and fullcard will beshown
+    await deleteDoc(doc(this.firestore, 'taskItemBoard', task.id))  }
 }

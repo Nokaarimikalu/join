@@ -57,21 +57,18 @@
                 <div class="kanban-assigned-to">
                     <span class="assigned-span">Assigned to</span>
                     <div class="all-user-container">
-                        <mat-select [(ngModel)]="task.assignedTo" panelClass="select-to-assign"  required name="name" id="" multiple>
-                            @for (user of overlayState.contactList; track $index) {
-                                @if (task.assignedTo.includes(user)) {
-                                
-                                <mat-option id={{$index}} [value]="user" aria-checked="true">
-                                    <div class="option-text"><div class="select-initials" [style.background]="user.color">{{user.initials}}</div> <div>{{user.firstName}} {{user.lastName}}</div></div>
-                                </mat-option>
-                                }
-                                @else{
-                                <mat-option id={{$index}} [value]="user">
-                                    <div class="option-text"><div class="select-initials" [style.background]="user.color">{{user.initials}}</div> <div>{{user.firstName}} {{user.lastName}}</div></div>
-                                </mat-option>
-                                }
-                            } 
-                        </mat-select>
+@if (task.assignedTo) {
+  <mat-select [(ngModel)]="task.assignedTo" panelClass="select-to-assign" required name="assignedUsers" multiple>
+    @for (user of overlayState.contactList; track user.id) {
+      <mat-option [value]="user" [attr.aria-checked]="task.assignedTo.includes(user)">
+        <div class="option-text">
+          <div class="select-initials" [style.background]="user.color">{{user.initials}}</div>
+          <div>{{user.firstName}} {{user.lastName}}</div>
+        </div>
+      </mat-option>
+    }
+  </mat-select>
+}
                     </div>
                 </div>
 
