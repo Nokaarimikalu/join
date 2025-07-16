@@ -1,7 +1,7 @@
 <section>
   <div class="full-card-container">
     <div class="category-area">
-      <div class="category {{task.category?.toLocaleLowerCase()}}">{{task.category}}</div>
+      <div class="category {{task.category?.toLocaleLowerCase()?.replace(' ', '-')}}">{{task.category}}</div>
       <button class="close-button" (click)="boardService.openFullCard(task)"></button>
     </div>
 
@@ -44,7 +44,7 @@
         @for (subtasks of task.subTaskFillTest; track $index) {
           @if (subtasks.completed == true) {
             <div class="subtask">
-              <div (click)="toggleCheckbox($index)" class="checkbox-active"></div> {{subtasks.text}}
+              <div (click)="toggleCheckbox($index)" class="checkbox-active"></div> {{subtasks.text}} 
             </div>
             } @else {
             <div class="subtask">

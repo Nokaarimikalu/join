@@ -16,7 +16,7 @@ export interface TaskItemBoard {
   id?: string;
   status?: string;
   category?: string;
-  title?: string;
+  title: string;
   description?: string;
   dueDate?: string;
   priority:string;

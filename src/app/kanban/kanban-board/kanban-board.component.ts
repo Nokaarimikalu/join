@@ -4,16 +4,21 @@ import { BoardService } from '../../services/board/board.service';
 import { TaskItem, TaskItemBoard } from '../../shared/interface/task.interface';
 import { FullCardComponent } from './full-card/full-card.component';
 import { CdkDragDrop, DragDropModule, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { doc, updateDoc } from '@angular/fire/firestore';
+import { KanbanEditComponent } from '../kanban-edit/kanban-edit.component';
 
 
 
 @Component({
   selector: 'app-kanban-board',
-  imports: [CardComponent, FullCardComponent, DragDropModule],
+  imports: [CardComponent, FullCardComponent, DragDropModule, KanbanEditComponent],
   templateUrl: './kanban-board.component.html',
   styleUrl: './kanban-board.component.scss'
 })
 export class KanbanBoardComponent {
+
+    @Input() task!: TaskItemBoard;
+
 
   isDraggingMobile: boolean = false;
   startXMobile: number = 0;
@@ -42,7 +47,7 @@ export class KanbanBoardComponent {
     return filteredStatus.filter(task => task.title?.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase())); // ?.value because no start value 
   }
 
-  drop(event: CdkDragDrop<TaskItemBoard[]>) {
+  async drop(event: CdkDragDrop<TaskItemBoard[]>) {
     const prevStatus = event.previousContainer.id;
     const newStatus = event.container.id;
     const tasks = this.boardService.taskList;
@@ -50,9 +55,12 @@ export class KanbanBoardComponent {
     if (prevStatus === newStatus) {
       moveItemInArray(targetTasks, event.previousIndex, event.currentIndex);
     } else {
-      const movedTask = tasks.find(t => t.id === event.item.data.id); // grouping status and sorting the dragged task in the correct position of the new column task
+      const movedTask = tasks.find(t => t.id === event.item.data.id);
       if (movedTask) {
         movedTask.status = newStatus;
+        const firestore = this.boardService.firestore;
+        const taskRef = doc(firestore, 'taskItemBoard', movedTask.id);
+        await updateDoc(taskRef, { status: newStatus });
         const updated = tasks.filter(t => t.status !== newStatus);
         const newTargetTasks = tasks.filter(t => t.status === newStatus && t.id !== movedTask.id);
         newTargetTasks.splice(event.currentIndex, 0, movedTask);
@@ -60,7 +68,7 @@ export class KanbanBoardComponent {
         return;
       }
     }
-    const others = tasks.filter(t => t.status !== newStatus); // sort in the same task column 
+    const others = tasks.filter(t => t.status !== newStatus);
     this.boardService.taskList = [...others, ...targetTasks];
   }
 
