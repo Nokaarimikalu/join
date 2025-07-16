@@ -5,7 +5,7 @@ import { NavFooterComponent } from '../../shared/nav-footer/nav-footer.component
 import { NavFooterMobileComponent } from '../../shared/nav-footer-mobile/nav-footer-mobile.component';
 import { OverlayState } from '../../services/contacts/overlayState.service';
 import { FormsModule } from '@angular/forms';
-import { TaskItem } from '../../shared/interface/task.interface';
+import { TaskItem, TaskItemBoard } from '../../shared/interface/task.interface';
 import { MatSelectModule } from '@angular/material/select';
 
 
@@ -31,16 +31,25 @@ export class KanbanAddComponent {
 
   currentIndex: number = 0;
 
-  selectedContacts: TaskItem[] = [
+  selectedContacts: TaskItemBoard[] = [
     {
-      id: '',
       title: '',
       category: '',
       description: '',
       dueDate: '',
       priority: 'Medium',
-      assignedTo: [{ user: '' }],
-      subTask: [],
+      assignedTo: [{
+        initials: '',
+        firstName: '',
+        lastName: '',
+        color: '',
+        email: '',
+        phone: ''
+      }],
+      subTaskFillTest: [{
+        text: '',
+        completed: false
+      }],
     },
   ];
 
@@ -114,10 +123,7 @@ export class KanbanAddComponent {
   }
 
   debug() {
-    console.log();
-    
-    
-    
+    console.log(this.selectedContacts);
   }
 
   nextTask() {
@@ -130,28 +136,28 @@ export class KanbanAddComponent {
       this.selectedContacts.length;
   }
 
-  pushToSubtask() {
-    if (this.subtaskString.trim() === '') {
-      return; // Leere Eingabe ignorieren
-    }
+  // pushToSubtask() {
+  //   if (this.subtaskString.trim() === '') {
+  //     return; // Leere Eingabe ignorieren
+  //   }
 
-    const currentSubtasks = this.selectedContacts[this.currentIndex].subTask;
-    const isAlreadyExists = currentSubtasks.some(
-      (task) => task.toLowerCase() === this.subtaskString.toLowerCase().trim()
-    );
+  //   const currentSubtasks = this.selectedContacts[this.currentIndex].subTask;
+  //   const isAlreadyExists = currentSubtasks.some(
+  //     (task) => task.toLowerCase() === this.subtaskString.toLowerCase().trim()
+  //   );
 
-    //trim() entfernt die " "
+  //   //trim() entfernt die " "
 
-    if (!isAlreadyExists) {
-      currentSubtasks.push(this.subtaskString.trim());
-      this.subtaskString = '';
-      this.isInputFocused = false;
-    } else {
-      // Optional: Feedback an den Benutzer (z. B. Toast, Alert, Console)
-      console.warn('Dieser Eintrag existiert bereits!');
-      // this.showError = true; // Falls du eine Fehlermeldung anzeigen willst
-    }
-  }
+  //   if (!isAlreadyExists) {
+  //     currentSubtasks.push(this.subtaskString.trim());
+  //     this.subtaskString = '';
+  //     this.isInputFocused = false;
+  //   } else {
+  //     // Optional: Feedback an den Benutzer (z. B. Toast, Alert, Console)
+  //     console.warn('Dieser Eintrag existiert bereits!');
+  //     // this.showError = true; // Falls du eine Fehlermeldung anzeigen willst
+  //   }
+  // }
 
   emptySubtask() {
     this.subtaskString = '';
@@ -189,8 +195,8 @@ export class KanbanAddComponent {
     this.isListClicked = 'activateTextarea';
   }
 
-  deleteSubtask(index: number) {
-    // Logik zum Löschen des Subtasks
-    this.selectedContacts[this.currentIndex].subTask.splice(index, 1);
-  }
+  // deleteSubtask(index: number) {
+  //   // Logik zum Löschen des Subtasks
+  //   this.selectedContacts[this.currentIndex].subTask.splice(index, 1);
+  // }
 }
