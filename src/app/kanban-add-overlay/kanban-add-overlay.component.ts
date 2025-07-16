@@ -28,8 +28,8 @@ export class KanbanAddOverlayComponent {
             description: '',
             dueDate: '',
             priority: 'Medium',
-            assignedTo: [],  // Leeres Array statt Dummy-Objekt
-            subTaskFillTest: []  // Leeres Array statt Dummy-Objekt
+            assignedTo: [{initials:'', firstName:'', lastName:'', color:'', email:'', phone:''}],
+            subTaskFillTest: [{text: '', completed: false}] 
         };
     }
 
