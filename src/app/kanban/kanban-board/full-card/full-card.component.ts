@@ -24,7 +24,7 @@ export class FullCardComponent {
   @Input() task!: TaskItemBoard;
 
 toggleCheckbox(subtaskIndex: number) {
-    this.task.subTaskFillTest[subtaskIndex].completed = !this.task.subTaskFillTest[subtaskIndex].completed;
-  }
-
+  this.task.subTaskFillTest[subtaskIndex].completed = !this.task.subTaskFillTest[subtaskIndex].completed;
+  this.boardService.updateTaskFullcard(this.task); // Gibt das ganze Task-Objekt mit
+}
 }
