@@ -44,7 +44,7 @@
         @for (subtasks of task.subTaskFillTest; track $index) {
           @if (subtasks.completed == true) {
             <div class="subtask">
-              <div (click)="toggleCheckbox($index)" class="checkbox-active"></div> {{subtasks.text}}
+              <div (click)="toggleCheckbox($index)" class="checkbox-active"></div> {{subtasks.text}} 
             </div>
             } @else {
             <div class="subtask">

@@ -25,7 +25,7 @@ export class KanbanAddComponent {
     description: '',
     dueDate: '',
     priority: '',
-    assignedTo: [],
+    assignedTo: [{initials:'', firstName:'', lastName:'', color:'', email:'', phone:''}],
     subTaskFillTest: [{text: '', completed: false}]
   };
 

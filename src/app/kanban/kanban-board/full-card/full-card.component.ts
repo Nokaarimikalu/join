@@ -21,12 +21,10 @@ export class FullCardComponent {
   constructor(public boardService: BoardService) {
   }
 
-
   @Input() task!: TaskItemBoard;
 
-  toggleCheckbox(subtaskIndex: number) {
+toggleCheckbox(subtaskIndex: number) {
     this.task.subTaskFillTest[subtaskIndex].completed = !this.task.subTaskFillTest[subtaskIndex].completed;
   }
-
 
 }

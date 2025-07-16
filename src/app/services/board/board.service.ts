@@ -40,7 +40,7 @@ setTaskObject(id:string, obj: any):TaskItemBoard{
     dueDate: obj.dueDate,
     priority: obj.priority,
     assignedTo: obj.assignedTo ,
-    subTaskFillTest: obj.subTask
+    subTaskFillTest: obj.subTaskFillTest
   }
 }
 
