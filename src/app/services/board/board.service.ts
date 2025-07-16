@@ -11,7 +11,7 @@ export class BoardService implements OnDestroy {
 
   unsubscribe: () => void;
 
-  addCardActive:boolean = true;
+  addCardActive:boolean = false;
 
   fullCardActive: boolean = false;
 
