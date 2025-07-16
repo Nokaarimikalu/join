@@ -1,53 +1,20 @@
-// .main-content {
-//     display: flex;
-//     height: 100dvh;
-//     overflow-x: hidden;
-
-//     @media (max-width: 965px) {
-//         height: 92dvh;
-//     }
-// }
-
-// .main-content-input {
-//     display: flex;
-//     flex-direction: column;
-//     width: 100%;
-// }
-
 section {
     font-size: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .content {
+    position: relative;
     display: flex;
-    width: 100%;
+    bottom: 87em;
+    width: 70%;
     height: 92dvh;
+    z-index: 6;
+    border-radius: 40px;
+    background-color: rgb(130, 146, 219);
 
-    .close-button {
-        font-weight: 600;
-        gap: 1em;
-        cursor: pointer;
-        border: none;
-        border-radius: 30px;
-        font-size: 21px;
-        color: rgb(95, 95, 95);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 32px;
-        height: 32px;
-        background: url("../../../../../public/assets/img/kanban-board/fullCardCloseButton.png");
-        background-repeat: none;
-        background-position: center;
-        transition: ease-in-out 0.15s;
-
-        &:hover {
-            background-color: rgb(230, 230, 230);
-        }
-    }
-
-
-    
     // ----------- Left Side ----------
     .left-addtask {
         width: 49%;
@@ -150,6 +117,29 @@ section {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    .close-button {
+        position: relative;
+        right: 0;
+        top: 0;
+        font-weight: 600;
+        gap: 1em;
+        cursor: pointer;
+        border: none;
+        border-radius: 30px;
+        font-size: 21px;
+        color: rgb(95, 95, 95);
+        width: 32px;
+        height: 32px;
+        background: url("../../../public/assets/img/kanban-board/fullCardCloseButton.png");
+        background-repeat: none;
+        background-position: center;
+        transition: ease-in-out 0.15s;
+
+        &:hover {
+            background-color: rgb(230, 230, 230);
+        }
+    }
 
     .right-content-wrapper {
         display: flex;
@@ -292,12 +282,16 @@ section {
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                background-color: white;
-                padding: 1em;
-                font-size: 16px;
-                height: 48px;
-                border: 2px solid rgba(0, 0, 0, 0.049);
-                border-radius: 10px;
+                
+
+                .input-subtask {
+                    width: 100%;
+                    font-size: 16px;
+                    padding: 1em;
+                    height: 48px;
+                    border-radius: 10px;
+                    border: 2px solid rgba(0, 0, 0, 0.049);
+                }
             }
         }
 
@@ -448,4 +442,11 @@ input[type="number"] {
     &:hover {
         background: #eeeeee;
     }
+}
+
+.option-text {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
 }
