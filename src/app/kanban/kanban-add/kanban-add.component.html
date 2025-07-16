@@ -6,7 +6,7 @@
             <div class="content">
                 <div class="left-addtask">
                     <div class="left-content-wrapper">
-                        <form class="kanban-form">
+                        <form class="kanban-form"  #addTaskForm="ngForm">
                             <h1>Add Task</h1>
                             <div class="form-title div-cont">
                                 <label class="form-label">
@@ -19,13 +19,13 @@
                                 <label class="form-label">
                                     Description<span class="required-asterisk">*</span>
                                 </label>
-                                <textarea placeholder="Enter a Description " name="" id=""></textarea>
+                                <textarea [(ngModel)]="taskList.description" placeholder="Enter a Description " name="description" id=""></textarea>
                             </div>
                             <div class="form-date div-cont">
                                 <label class="form-label">
                                     Due date<span class="required-asterisk">*</span>
                                 </label>
-                                <input type="date" />
+                                <input [(ngModel)]="taskList.dueDate" type="date" name="dueDate"/>
                             </div>
                             <label class="form-label required-label">
                                 <span class="required-asterisk">*</span>This field is required
@@ -101,9 +101,9 @@
                                 <div class="kanban-overlay-subtask">
                                     <span class="subtask-span">Subtask</span>
                                     <div class="subtaskfield">
-                                        Add new subtask
-                                        <img src="assets/img/kanban-edit-overlay/plus-zichen.svg" alt="Add new" />
-
+                                        @for (subtaskInput of taskList.subTaskFillTest; track $index) {
+											<input [(ngModel)]="subtaskInput.text" type="text" placeholder="Add new subtask">
+                                        }
                                     </div>
 
                                     <div class="each-sub-task">
@@ -116,7 +116,7 @@
                                                     fill="currentColor" />
                                             </svg>
                                         </button>
-                                        <button class="create-task">
+                                        <button class="create-task" (click)="boardService.addTasks(taskList)">
                                             Create Task
                                             <img src="assets/img/add-contacts/check.svg" alt="Create Task" />
                                         </button>
