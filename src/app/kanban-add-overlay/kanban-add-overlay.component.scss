@@ -1,50 +1,19 @@
-// .main-content {
-//     display: flex;
-//     height: 100dvh;
-//     overflow-x: hidden;
-
-//     @media (max-width: 965px) {
-//         height: 92dvh;
-//     }
-// }
-
-// .main-content-input {
-//     display: flex;
-//     flex-direction: column;
-//     width: 100%;
-// }
-
 section {
     font-size: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .content {
-    display: flex;
     width: 100%;
-    height: 92dvh;
+    height: 800px;
+    display: flex;
+    z-index: 15;
+    border-radius: 40px;
+    background-color: white;
+    box-shadow: black 0px 0px 15px 0px;
 
-    .close-button {
-        font-weight: 600;
-        gap: 1em;
-        cursor: pointer;
-        border: none;
-        border-radius: 30px;
-        font-size: 21px;
-        color: rgb(95, 95, 95);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 32px;
-        height: 32px;
-        background: url("../../../../../public/assets/img/kanban-board/fullCardCloseButton.png");
-        background-repeat: none;
-        background-position: center;
-        transition: ease-in-out 0.15s;
-
-        &:hover {
-            background-color: rgb(230, 230, 230);
-        }
-    }
     // ----------- Left Side ----------
     .left-addtask {
         width: 49%;
@@ -56,33 +25,26 @@ section {
         .left-content-wrapper {
             display: flex;
             flex-direction: column;
-            gap: 4em;
+            justify-content: center;
+            height: 80%;
             width: 80%;
 
             .kanban-form {
                 display: flex;
                 flex-direction: column;
+                justify-content: space-between;
                 width: 100%;
-                gap: 30px;
-                bottom: 2.5em;
+                height: 76%;
+                bottom: 13.5em;
 
                 h1 {
-                    bottom: 1.5em;
                     font-size: 6em;
                 }
 
-                .form-label {
-                    font-size: 1.6em;
 
-                    .required-asterisk {
-                        color: red;
-                        margin-right: 1em;
-                    }
-                }
 
                 .required-label {
                     font-size: 1.6em;
-                    top: 10em;
                 }
 
                 .div-cont {
@@ -119,14 +81,23 @@ section {
 }
 
 .line {
-    top: 22dvh;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     width: 2px;
-    height: 50dvh;
-    background-color: rgba(0, 0, 0, 0.049);
-    margin: 0px 2px;
+    height: 100%;
+
+
+    .hyphen {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 50%;
+        background-color: rgba(0, 0, 0, 0.049);
+        margin: 0px 2px;
+    }
 }
 
 .user-feedback {
@@ -147,6 +118,7 @@ section {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
 
     .right-content-wrapper {
         display: flex;
@@ -172,10 +144,12 @@ section {
                     background-color: #ff3d00;
                     color: white;
                 }
+
                 .active-medium {
                     background-color: #ffa800;
                     color: white;
                 }
+
                 .active-low {
                     background-color: #7ae229;
                     color: white;
@@ -217,7 +191,7 @@ section {
                 mat-select {
                     display: flex;
                     align-items: center;
-                    border: 2px rgba(0, 0, 0, 0.346) solid;
+                    border: 2px rgba(0, 0, 0, 0.049) solid;
                     width: 100%;
                     border-radius: 10px;
                     height: 48px;
@@ -251,7 +225,7 @@ section {
             }
 
             select {
-                border: 2px rgba(0, 0, 0, 0.346) solid;
+                border: 2px rgba(0, 0, 0, 0.049) solid;
                 width: 100%;
                 border-radius: 10px;
                 height: 48px;
@@ -289,12 +263,59 @@ section {
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                background-color: white;
-                padding: 1em;
-                font-size: 16px;
-                height: 48px;
                 border: 2px solid rgba(0, 0, 0, 0.049);
                 border-radius: 10px;
+                width: 100%;
+                height: 48px;
+
+                input {
+                    width: 100%;
+                    padding: 1em;
+                    height: 100%;
+                    border: transparent;
+                    font-size: 16px;
+                    background-color: transparent;
+
+                    &:focus {
+                        border-radius: 10px;
+                    }
+                }
+            }
+
+            .add,
+            .submit-cancel {
+                display: flex;
+                align-items: center;
+                position: absolute;
+                right: 1em;
+                cursor: pointer;
+            }
+
+            .add {
+                z-index: 10;
+                height: 100%;
+
+                img {
+                    &:hover {
+                        background-color: rgba(0, 0, 0, 0.091);
+                        border-radius: 50px;
+                    }
+                }
+            }
+
+            .submit-cancel {
+                button {
+                    background-color: transparent;
+                    border: transparent;
+                }
+
+
+                .grey-line {
+                    width: 2px;
+                    height: 24px;
+                    background-color: rgba(128, 128, 128, 0.41);
+                    margin: 0px 2px;
+                }
             }
         }
 
@@ -446,3 +467,51 @@ input[type="number"] {
         background: #eeeeee;
     }
 }
+
+.option-text {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+}
+
+.left-side-content {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.form-label {
+    display: flex;
+    width: 80%;
+    font-size: 1.6em;
+
+    .required-asterisk {
+        color: red;
+        margin-right: 1em;
+    }
+}
+
+
+    .close-button {
+        position: absolute;
+        z-index: 2;
+        font-weight: 600;
+        top: 19px;
+        right: 35px;
+        cursor: pointer;
+        border: none;
+        border-radius: 30px;
+        font-size: 21px;
+        color: rgb(95, 95, 95);
+        width: 32px;
+        height: 32px;
+        background: url("../../../public/assets/img/kanban-board/fullCardCloseButton.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        transition: ease-in-out 0.15s;
+
+        &:hover {
+            background-color: rgb(230, 230, 230);
+        }
+    }

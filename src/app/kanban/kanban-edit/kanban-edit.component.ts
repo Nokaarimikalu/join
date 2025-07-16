@@ -214,4 +214,8 @@ export class KanbanEditComponent {
             this.cancelEditingSubtask();
         }
     }
+
+    isUserAssigned(user: ContactList): boolean {
+        return this.task.assignedTo?.some(assignedUser => assignedUser.email === user.email) || false;
+    }
 }

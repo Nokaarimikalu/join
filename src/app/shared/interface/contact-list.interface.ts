@@ -5,5 +5,5 @@
       email: string;
       phone: string;
       color: string;
-      initials?: string;
+      initials: string;
     }

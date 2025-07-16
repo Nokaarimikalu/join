@@ -6,12 +6,21 @@ import { TaskItem, TaskItemBoard } from "../../shared/interface/task.interface";
   providedIn: 'root'
 })
 export class BoardService implements OnDestroy {
+
   firestore: Firestore = inject(Firestore);
+
   unsubscribe: () => void;
+
+  addCardActive:boolean = false;
+
   fullCardActive: boolean = false;
+
   selectedTask: TaskItemBoard | null = null;
+
   editOverlayActive: boolean = false;
+
   taskData = this.getTasks();
+
   taskList: TaskItemBoard[] = [];
 
   constructor() {
@@ -75,9 +84,18 @@ export class BoardService implements OnDestroy {
     this.editOverlayActive = !this.editOverlayActive;
   }
 
+    toggleAddOverlay() {
+    this.addCardActive = !this.addCardActive;
+  }
+
+
   async updateTaskFullcard(task: TaskItemBoard) {
     if (!task.id) return; //if no task.id is generated from firebase return otherwise kanban board will crash and no input in card and fullcard will beshown
     const taskRef = doc(this.firestore, 'taskItemBoard', task.id); //create  reference  from specific id 
     await updateDoc(taskRef, {subTaskFillTest: task.subTaskFillTest}); //update only the specific subtask array in documentd (ref with task.id)
   }
+
+    async deleteTask(task: TaskItemBoard) {
+    if (!task.id) return; //if no task.id is generated from firebase return otherwise kanban board will crash and no input in card and fullcard will beshown
+    await deleteDoc(doc(this.firestore, 'taskItemBoard', task.id))  }
 }
