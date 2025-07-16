@@ -85,7 +85,7 @@ export class BoardService implements OnDestroy {
   }
 
     toggleAddOverlay() {
-    this.editOverlayActive = !this.editOverlayActive;
+    this.addCardActive = !this.addCardActive;
   }
 
 
