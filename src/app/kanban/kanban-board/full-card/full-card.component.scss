@@ -1,6 +1,7 @@
 section {
   z-index: 5;
   font-size: 16px;
+  height: 800px;
 }
 
 .full-card-container {
@@ -13,6 +14,7 @@ section {
   background-color: rgb(255, 255, 255);
   height: auto;
   display: flex;
+  height: 100%;
   flex-direction: column;
   gap: 45px;
   box-shadow: 0 6px 0 rgba(0, 0, 0, 0.02);
@@ -26,6 +28,7 @@ section {
     @media (max-width: 474px) {
     width: auto;
     height: 744px;
+      gap: 30px;
   }
 
   &:hover {
