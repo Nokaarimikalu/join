@@ -12,7 +12,7 @@
                                 <label class="form-label">
                                     Title<span class="required-asterisk">*</span>
                                 </label>
-                                <input [(ngModel)]="selectedContacts[currentIndex].title" name="title"
+                                <input [(ngModel)]="taskList.title" name="title"
                                     placeholder="Enter a title" type="text" />
                             </div>
                             <div class="form-description div-cont">
@@ -45,9 +45,9 @@
                             <p>Priority</p>
                             <div class="priority-buttons">
                                 <button (click)="changeToUrgent()"
-                                    [class.active-urgent]="selectedContacts[currentIndex].priority === 'Urgent'">
+                                    [class.active-urgent]="taskList.priority === 'Urgent'">
                                     <span>Urgent</span>
-                                    @if(selectedContacts[currentIndex].priority !== 'Urgent'){
+                                    @if(taskList.priority !== 'Urgent'){
                                     <img src="assets/img/kanban-edit-overlay/urgent-arrow.svg" alt="" />
                                     } @else {
                                     <img src="assets/img/kanban-edit-overlay/white-urgent.svg" alt="" />
@@ -55,9 +55,9 @@
                                 </button>
 
                                 <button (click)="changeToMedium()"
-                                    [class.active-medium]="selectedContacts[currentIndex].priority === 'Medium'">
+                                    [class.active-medium]="taskList.priority === 'Medium'">
                                     <span>Medium</span>
-                                    @if(selectedContacts[currentIndex].priority !== 'Medium'){
+                                    @if(taskList.priority !== 'Medium'){
                                     <img src="assets/img/kanban-edit-overlay/medium-arrow.svg" alt="" />
                                     } @else {
                                     <img src="assets/img/kanban-edit-overlay/white-medium.svg" alt="" />
@@ -65,9 +65,9 @@
                                 </button>
 
                                 <button (click)="changeToLow()"
-                                    [class.active-low]="selectedContacts[currentIndex].priority === 'Low'">
+                                    [class.active-low]="taskList.priority === 'Low'">
                                     <span>Low</span>
-                                    @if(selectedContacts[currentIndex].priority !== 'Low'){
+                                    @if(taskList.priority !== 'Low'){
                                     <img src="assets/img/kanban-edit-overlay/low-arrow.svg" alt="" />
                                     } @else {
                                     <img src="assets/img/kanban-edit-overlay/white-low.svg" alt="" />
@@ -116,7 +116,7 @@
                                                     fill="currentColor" />
                                             </svg>
                                         </button>
-                                        <button class="create-task" (click)="debug()">
+                                        <button class="create-task">
                                             Create Task
                                             <img src="assets/img/add-contacts/check.svg" alt="Create Task" />
                                         </button>
