@@ -64,7 +64,7 @@
                         <mat-select [(ngModel)]="task.assignedTo" panelClass="select-to-assign"  required name="name" id="" multiple>
                             @for (user of overlayState.contactList; track $index) {
                                 <mat-option id={{$index}} [value]="user">
-                                    {{user.initials}} {{user.firstName}} {{user.lastName}}
+                                    <div class="option-text"><div class="select-initials" [style.background]="user.color">{{user.initials}}</div> <div>{{user.firstName}} {{user.lastName}}</div></div>
                                 </mat-option>
                             } 
                         </mat-select>
