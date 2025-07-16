@@ -28,9 +28,7 @@ section {
     @media (max-width: 474px) {
     width: auto;
     height: 744px;
-    .edit-delete-area{
-      padding-top: 20px;
-    }
+      gap: 30px;
   }
 
   &:hover {
@@ -216,7 +214,6 @@ section {
   display: flex;
   align-items: center;
   justify-content: end;
-  padding-top: 140px;
   gap: 10px;
 
   .edit-container {
