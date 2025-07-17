@@ -2,7 +2,7 @@
   <div class="testcontainer">
     <div class="category-moveto">
     <div class="category {{task.category?.toLowerCase()?.replace(' ', '-')}}">{{task.category}} </div>
-<div class="move-to-mobile"> <img src="../../../../../assets/img/kanban-board/mobileMoveToButton.png" alt=""></div>
+<div class="move-to-mobile" (click)="debug()"> <img src="../../../../../assets/img/kanban-board/mobileMoveToButton.png" alt=""></div>
     </div>
     <div class="tite">
       <h4>{{task.title}}</h4>

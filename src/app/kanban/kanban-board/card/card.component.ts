@@ -40,4 +40,9 @@ export class CardComponent {
     if (this.totalSubtasks === 0) return 0;
     return (this.completedSubtasks / this.totalSubtasks) * 100;
   }
+
+  debug(){
+    console.log('hallo');
+    
+  }
 }
