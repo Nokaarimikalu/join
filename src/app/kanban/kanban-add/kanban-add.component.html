@@ -7,35 +7,41 @@
                 <div class="left-addtask">
                     <div class="left-content-wrapper">
                         <form class="kanban-form" #addTaskForm="ngForm">
-                            <h1>Add Task</h1>
-                            <div class="form-title div-cont">
-                                <label class="form-label">
-                                    Title<span class="required-asterisk">*</span>
-                                </label>
-                                <input [(ngModel)]="taskList.title" name="title" placeholder="Enter a title" type="text"
-                                    required #title="ngModel" [class.errorborder]="!title.valid && title.touched" />
-                            </div>
-                            <div class="invalid-input">
-                                @if (!title.valid && title.touched) {
-                                <div>Example: Title example</div>
-                                }
-                            </div>
-                            <div class="form-description div-cont">
-                                <span>Description</span>
-                                <textarea [(ngModel)]="taskList.description" placeholder="Enter a Description "
-                                    name="description" id=""></textarea>
-                            </div>
-                            <div class="form-date div-cont">
-                                <label class="form-label">
-                                    Due date<span class="required-asterisk">*</span>
-                                </label>
-                                <input [(ngModel)]="taskList.dueDate" type="date" name="dueDate" required
-                                    #dueDate="ngModel" [class.errorborder]="!dueDate.valid && dueDate.touched" />
-                            </div>
-                            <div class="invalid-input">
-                                @if (!dueDate.valid && dueDate.touched) {
-                                <div>Example: Date example</div>
-                                }
+                            <div class="without-required">
+                                <h1>Add Task</h1>
+
+                                <div class="form-input-content">
+<div class="form-title div-cont">
+                                    <label class="form-label">
+                                        Title<span class="required-asterisk">*</span>
+                                    </label>
+                                    <input [(ngModel)]="taskList.title" name="title" placeholder="Enter a title" type="text"
+                                        required #title="ngModel" [class.errorborder]="!title.valid && title.touched" />
+                                </div>
+                                <div class="invalid-input">
+                                    @if (!title.valid && title.touched) {
+                                    <div>Example: Title example</div>
+                                    }
+                                </div>
+                                <div class="form-description div-cont">
+                                    <span>Description</span>
+                                    <textarea [(ngModel)]="taskList.description" placeholder="Enter a Description "
+                                        name="description" id=""></textarea>
+                                </div>
+                                <div class="form-date div-cont">
+                                    <label class="form-label">
+                                        Due date<span class="required-asterisk">*</span>
+                                    </label>
+                                    <input [(ngModel)]="taskList.dueDate" type="date" name="dueDate" required
+                                        #dueDate="ngModel" [class.errorborder]="!dueDate.valid && dueDate.touched" />
+                                </div>
+                                <div class="invalid-input">
+                                    @if (!dueDate.valid && dueDate.touched) {
+                                    <div>Example: Date example</div>
+                                    }
+                                </div>
+                                </div>
+                                
                             </div>
                             <label class="form-label required-label">
                                 <span class="required-asterisk">*</span>This field is required
