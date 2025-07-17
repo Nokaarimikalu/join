@@ -97,6 +97,17 @@
 							</mat-option>
 							}
 						</mat-select>
+
+					</div>
+					<div class="already-assigned">
+						@for (assigned of taskList.assignedTo?.slice(0, 3) || [];; track $index) {
+						<div id={{$index}} class="select-initials" [style.background]="assigned.color">
+							{{assigned.initials}}
+						</div>
+						}
+						@if ((taskList.assignedTo?.length || 0) > 3) {
+						<div class="more-users">+{{ (taskList.assignedTo?.length || 0) - 3 }}</div>
+						}
 					</div>
 				</div>
 				<!-- Category-Dropdown -->

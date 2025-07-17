@@ -18,11 +18,11 @@
                                         <input [(ngModel)]="taskList.title" name="title" placeholder="Enter a title"
                                             type="text" required #title="ngModel"
                                             [class.errorborder]="!title.valid && title.touched" />
-                                            <div class="invalid-input">
-                                                @if (!title.valid && title.touched) {
-                                                    <div>This Headline is required</div>
-                                                }
-                                            </div>
+                                        <div class="invalid-input">
+                                            @if (!title.valid && title.touched) {
+                                            <div>This Headline is required</div>
+                                            }
+                                        </div>
                                     </div>
                                     <div class="form-description div-cont">
                                         <span>Description</span>
@@ -35,10 +35,10 @@
                                         </label>
                                         <input [(ngModel)]="taskList.dueDate" type="date" name="dueDate" required
                                             #dueDate="ngModel"
-                                            [class.errorborder]="!dueDate.valid && dueDate.touched"/>
+                                            [class.errorborder]="!dueDate.valid && dueDate.touched" />
                                         <div class="invalid-input">
                                             @if (!dueDate.valid && dueDate.touched) {
-                                                <div>This Field is required</div>
+                                            <div>This Field is required</div>
                                             }
                                         </div>
                                     </div>
@@ -55,7 +55,7 @@
                 <div class="middle-content">
                     <div class="line"></div>
                 </div>
-                
+
 
                 <!-- Right AddTask -->
                 <div class="right-addtask">
@@ -91,7 +91,7 @@
                                 </button>
                             </div>
                         </div>
-                        
+
                         <!-- Assigned-to-Dropdown -->
                         <div class="kanban-assigned-to">
                             <span class="assigned-span">Assigned to</span>
@@ -108,10 +108,24 @@
                                     </mat-option>
                                     }
                                 </mat-select>
+
+                                <div class="already-assigned">
+                                    @for (assigned of taskList.assignedTo?.slice(0, 3) || [];; track $index) {
+                                    <div id={{$index}} class="select-initials" [style.background]="assigned.color">
+                                        {{assigned.initials}}
+                                    </div>
+                                    }
+                                    @if ((taskList.assignedTo?.length || 0) > 3) {
+                                    <div class="more-users">+{{ (taskList.assignedTo?.length || 0) - 3 }}</div>
+                                    }
+                                </div>
+                                
                             </div>
+
                             <!-- Category-Dropdown -->
                             <div class="category-dropdown">
-                                <label class="form-label-category">Category<span class="required-asterisk">*</span></label>
+                                <label class="form-label-category">Category<span
+                                        class="required-asterisk">*</span></label>
                                 <select [(ngModel)]="taskList.category" panelClass="select-category" name="category"
                                     required #category="ngModel"
                                     [class.errorborder]="!category.valid && category.touched">
@@ -151,10 +165,11 @@
                                         }
                                     </div>
                                 </div>
-                                <label class="form-label-mobile"><span class="required-asterisk">*</span>This field is required</label>
+                                <label class="form-label-mobile"><span class="required-asterisk">*</span>This field is
+                                    required</label>
                             </div>
                         </div>
-                        
+
                         <!-- each-sub-task -->
                         <div class="each-sub-task">
                             <button class="clear" (click)="resetForm()">
@@ -166,8 +181,7 @@
                                         fill="currentColor" />
                                 </svg>
                             </button>
-                            <button class="create-task" 
-                                (click)="boardService.addTasks(taskList)">
+                            <button class="create-task" (click)="boardService.addTasks(taskList)">
                                 Create Task
                                 <img src="assets/img/add-contacts/check.svg" alt="Create Task" />
                             </button>
@@ -181,5 +195,7 @@
         </section>
     </div>
 </div>
-<div class="createdTask" > <p>Task added to board </p><img src="assets/img/kanban-board/taskAddedIcon.png"></div>
+<div class="createdTask">
+    <p>Task added to board </p><img src="assets/img/kanban-board/taskAddedIcon.png">
+</div>
 <app-nav-footer-mobile></app-nav-footer-mobile>
