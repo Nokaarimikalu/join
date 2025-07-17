@@ -3,6 +3,7 @@
     height: 100dvh;
     overflow-x: hidden;
 
+
     @media (max-width: 965px) {
         height: 92dvh;
     }
@@ -16,6 +17,7 @@
 
 section {
     font-size: 10px;
+    max-width: (1920px - 230px);
 
     @media(max-width:1280px) {
         font-size: 9px;
