@@ -97,7 +97,7 @@
 
       <div class="task-column">
         <div class="add-area">
-          <h3>Done</h3> <button class="small-add-task-button" (click)=" boardService.toggleAddOverlayColumn('done')">+</button>
+          <h3>Done</h3>
         </div>
         <div class="task-columns" cdkDropList [cdkDropListData]="tasksSearchAndStatus('done', searchValue)"
           [cdkDropListConnectedTo]="['to do', 'in progress', 'await feedback']" (cdkDropListDropped)="drop($event)"
