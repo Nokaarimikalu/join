@@ -79,9 +79,9 @@
                         <div class="kanban-assigned-to">
                             <span class="assigned-span">Assigned to</span>
                             <div class="all-user-container">
-                                <mat-select panelClass="select-to-assign" required name="name" id="" multiple>
+                                <mat-select [(ngModel)]="taskList.assignedTo" panelClass="select-to-assign" required name="name" id="" multiple>
                                     @for (user of overlayState.contactList; track $index) {
-                                    <mat-option id={{$index}} value="$index + 1">
+                                    <mat-option id={{$index}} [value]="user">
                                         <div class="option-text"><div class="select-initials" [style.background]="user.color">{{user.initials}}</div> <div>{{user.firstName}} {{user.lastName}}</div></div>
                                     </mat-option>
                                     }
@@ -90,7 +90,7 @@
                             <!-- Category-Dropdown -->
                             <div class="category-dropdown">
                                 <label class="form-label">Category<span class="required-asterisk">*</span></label>
-                                <select panelClass="select-category" name="category">
+                                <select [(ngModel)]="taskList.category" panelClass="select-category" name="category">
                                     <option value="Management">Management</option>
 									<option value="Technical">Technical</option>
 									<option value="Developement">Developement</option>
