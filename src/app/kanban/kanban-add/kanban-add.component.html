@@ -13,7 +13,7 @@
                                     Title<span class="required-asterisk">*</span>
                                 </label>
                                 <input [(ngModel)]="taskList.title" name="title"
-                                    placeholder="Enter a title" type="text" />
+                                    placeholder="Enter a title" type="text" required #title="ngModel" [class.errorborder]="!title.valid && title.touched"/>
                             </div>
                             <div class="form-description div-cont">
                                 <label class="form-label">
@@ -25,8 +25,14 @@
                                 <label class="form-label">
                                     Due date<span class="required-asterisk">*</span>
                                 </label>
-                                <input [(ngModel)]="taskList.dueDate" type="date" name="dueDate"/>
+                                <input [(ngModel)]="taskList.dueDate" type="date" name="dueDate" required #dueDate="ngModel"
+							[class.errorborder]="!dueDate.valid && dueDate.touched"/>
                             </div>
+                            <div class="invalid-input">
+						@if (!dueDate.valid && dueDate.touched) {
+						<div>Example: Date example</div>
+						}
+					</div>
                             <label class="form-label required-label">
                                 <span class="required-asterisk">*</span>This field is required
                             </label>
@@ -90,7 +96,8 @@
                             <!-- Category-Dropdown -->
                             <div class="category-dropdown">
                                 <label class="form-label">Category<span class="required-asterisk">*</span></label>
-                                <select [(ngModel)]="taskList.category" panelClass="select-category" name="category">
+                                <select [(ngModel)]="taskList.category" panelClass="select-category" name="category" required
+							#category="ngModel" [class.errorborder]="!category.valid && category.touched">
                                     <option value="Management">Management</option>
 									<option value="Technical">Technical</option>
 									<option value="Developement">Developement</option>
@@ -99,7 +106,11 @@
 									<option value="User Story">User Story</option>
                                 </select>
                             </div>
-
+                            <div class="invalid-input">
+						@if (!category.valid && category.touched) {
+						<div>Example: Title example</div>
+						}
+					</div>
                             <!-- Subtask Section -->
                             <div class="list-of-members">
                                 <div class="kanban-overlay-subtask">
@@ -120,10 +131,11 @@
                                                     fill="currentColor" />
                                             </svg>
                                         </button>
-                                        <button class="create-task" (click)="boardService.addTasks(taskList)">
-                                            Create Task
-                                            <img src="assets/img/add-contacts/check.svg" alt="Create Task" />
-                                        </button>
+                                        <button class="create-task" [disabled]="!addTaskForm.valid"
+									(click)="boardService.addTasks(taskList); boardService.taskConfirmation()">
+									Create Task
+									<img src="assets/img/add-contacts/check.svg" alt="Create Task" />
+								</button>
                                     </div>
                                 </div>
                             </div>
