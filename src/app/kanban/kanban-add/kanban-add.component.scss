@@ -23,7 +23,6 @@ section {
     width: 100%;
     height: 92dvh;
 
-
     // ----------- Left Side ----------
     .left-addtask {
         width: 49%;
@@ -61,7 +60,7 @@ section {
 
                 .required-label {
                     font-size: 1.6em;
-                    top: 10em;
+                    top: 8em;
                 }
 
                 .div-cont {
@@ -268,15 +267,43 @@ section {
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                
+                border: 2px solid rgba(0, 0, 0, 0.049);
+                border-radius: 10px;
+                width: 100%;
+                height: 48px;
 
-                .input-subtask {
+                .input {
                     width: 100%;
-                    font-size: 16px;
                     padding: 1em;
                     height: 48px;
-                    border-radius: 10px;
-                    border: 2px solid rgba(0, 0, 0, 0.049);
+                    _border: transparent;
+                    font-size: 16px;
+                    background-color: transparent;
+
+                    &:focus {
+                        border-radius: 10px;
+                    }
+                }
+
+                .add,
+                .submit-cancel {
+                    display: flex;
+                    align-items: center;
+                    position: absolute;
+                    right: 1em;
+                    cursor: pointer;
+                }
+
+                .add {
+                    z-index: 10;
+                    height: 100%;
+
+                    img {
+                        &:hover {
+                            background-color: rgba(0, 0, 0, 0.091);
+                            border-radius: 50px;
+                        }
+                    }
                 }
             }
         }
@@ -335,80 +362,78 @@ section {
 }
 
 // -------- Other Components ----------
-    .contact-list-content {
-        display: flex;
-        height: 90%;
+.contact-list-content {
+    display: flex;
+    height: 90%;
+}
+
+.contact-list-component {
+    display: flex;
+    height: auto;
+
+    @media (max-width: 750px) {
+        width: 100%;
     }
 
-    .contact-list-component {
+    @media (min-width: 750px) {
         display: flex;
-        height: auto;
-
-        @media (max-width: 750px) {
-            width: 100%;
-        }
-
-        @media (min-width: 750px) {
-            display: flex;
-        }
     }
+}
 
-    .hidden {
+.hidden {
+    display: none;
+}
+
+.info-screen-component {
+    height: auto;
+    width: 100%;
+
+    @media (max-width: 750px) {
         display: none;
     }
+}
 
-    .info-screen-component {
-        height: auto;
-        width: 100%;
+.app-info-screen-mobile-component {
+    width: 100%;
 
-        @media (max-width: 750px) {
-            display: none;
-        }
-    }
-
-    .app-info-screen-mobile-component {
-        width: 100%;
-
-        @media (min-width: 750px) {
-            display: none;
-        }
-    }
-
-    input[type="number"]::-webkit-inner-spin-button,
-    input[type="number"]::-webkit-outer-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-    }
-
-    input[type="number"] {
-        appearance: textfield;
-    }
-
-    .createdContact {
-        z-index: 4;
-        width: 15em;
-        height: 4em;
-        position: fixed;
-        top: 80%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+    @media (min-width: 750px) {
         display: none;
-        justify-content: center;
-        align-items: center;
-        font-size: 16px;
-        border-radius: 14px;
-        border: 1px solid black;
-        background-color: #2a3647;
-        color: white;
-        box-shadow: 0 4px 0 rgba(0, 0, 0, 0.15);
-        animation: fade-in-left-overlay-viewport 2s ease-in-out;
     }
+}
 
-    .display {
-        display: flex;
-    }
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
 
+input[type="number"] {
+    appearance: textfield;
+}
 
+.createdContact {
+    z-index: 4;
+    width: 15em;
+    height: 4em;
+    position: fixed;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    border-radius: 14px;
+    border: 1px solid black;
+    background-color: #2a3647;
+    color: white;
+    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.15);
+    animation: fade-in-left-overlay-viewport 2s ease-in-out;
+}
+
+.display {
+    display: flex;
+}
 
 .mat-mdc-option:focus.mdc-list-item,
 .mat-mdc-option.mat-mdc-option-active.mdc-list-item {
@@ -416,7 +441,6 @@ section {
     flex-direction: row-reverse;
     background-color: #2a3647;
     color: white;
-
 
     &:hover {
         background-color: #091931;
@@ -452,7 +476,7 @@ section {
 }
 
 .errorborder {
-    border: 2px solid red!important;
+    border: 2px solid red !important;
 }
 
 .invalid-input {

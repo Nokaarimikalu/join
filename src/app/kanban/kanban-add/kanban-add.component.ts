@@ -58,10 +58,7 @@ export class KanbanAddComponent {
     }
   }
 
-    clearSubtask() {
-    this.taskList.subTaskFillTest = [];
-    this.isInputFocused = false;
-  } 
+ 
 
 changeToUrgent() {
     this.taskList.priority = 'Urgent';
@@ -81,4 +78,26 @@ changeToUrgent() {
     this.boardService.fullCardActive = !this.boardService.fullCardActive;
   }
 
+
+  pushToSubtask() {
+        if (this.subtaskString.trim() === '') return;
+
+        if (!this.task.subTaskFillTest) {
+            this.task.subTaskFillTest = [];
+        }
+
+        const newSubtask = {
+            text: this.subtaskString.trim(),
+            completed: false
+        };
+
+        this.task.subTaskFillTest.push(newSubtask);
+        this.subtaskString = '';
+        this.isInputFocused = false;
+    }
+
+    emptySubtask() {
+        this.subtaskString = '';
+        this.isInputFocused = false;
+    }
 }
