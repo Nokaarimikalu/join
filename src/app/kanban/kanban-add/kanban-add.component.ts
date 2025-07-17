@@ -1,9 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input , ViewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { HeaderComponent } from '../../shared/header/header.component';
 import { NavFooterComponent } from '../../shared/nav-footer/nav-footer.component';
 import { NavFooterMobileComponent } from '../../shared/nav-footer-mobile/nav-footer-mobile.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { BoardService } from '../../services/board/board.service';
 import { TaskItemBoard } from '../../shared/interface/task.interface';
 import { MatSelectModule } from '@angular/material/select';
@@ -24,6 +24,9 @@ import { OverlayState } from '../../services/contacts/overlayState.service';
 })
 export class KanbanAddComponent {
 
+    @ViewChild('addTaskForm') addTaskForm!: NgForm;
+
+
     isInputFocused: boolean = false;
     currentIndex: number = 0;
     submitted: boolean = false;
@@ -31,6 +34,8 @@ export class KanbanAddComponent {
 
     editingSubtaskValue: string = '';
     editingSubtaskIndex: number | null = null;
+
+    @Input() task!: TaskItemBoard;
 
     taskList: TaskItemBoard = {
         id: '',
@@ -58,8 +63,6 @@ export class KanbanAddComponent {
             subTaskFillTest: [],
         };
     }
-
-    @Input() task!: TaskItemBoard;
 
     addTask() {
         if (this.boardService.selectedTask) {
@@ -117,10 +120,9 @@ export class KanbanAddComponent {
             category: '',
             subTaskFillTest: []
         };
-
         this.subtaskString = '';
-
         this.isInputFocused = false;
+        this.addTaskForm.reset();
     }
 
 }
