@@ -98,14 +98,6 @@
 							}
 						</mat-select>
 					</div>
-					<div class="already-assigned">
-					@if (taskList.assignedTo != undefined && taskList.assignedTo.length > 0) {
-						@for (assigned of task.assignedTo; track $index) {
-							<p>test</p>
-							<div id={{$index}} class="select-initials" [style.background]="assigned.color">{{assigned.initials}}</div>
-                    	}
-					}
-					</div>
 				</div>
 					<!-- Category-Dropdown -->
 
@@ -159,7 +151,7 @@
 			</div>
 		</div>
 		<div class="user-feedback">
-			<img src="assets/img/kanban-add/Frame 73.svg" alt="">
+			<img src="assets/img/kanban-add/Frame_73.png" alt="">
 		</div>
 	</div>
 </section>
