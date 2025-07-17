@@ -23,8 +23,6 @@ import { OverlayState } from '../../services/contacts/overlayState.service';
 })
 export class KanbanAddComponent {
 
-
-
     isInputFocused: boolean = false;
     currentIndex: number = 0;
     submitted: boolean = false;
