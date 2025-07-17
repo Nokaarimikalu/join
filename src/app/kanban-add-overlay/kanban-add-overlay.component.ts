@@ -31,7 +31,7 @@ export class KanbanAddOverlayComponent {
             description: '',
             dueDate: '',
             priority: 'Medium',
-            assignedTo: [{initials:'', firstName:'', lastName:'', color:'', email:'', phone:''}],
+            assignedTo: [{initials: '', firstName:'', lastName:'', color:'', email:'', phone:''}],
             subTaskFillTest: [{text: '', completed: false}] 
         };
     }

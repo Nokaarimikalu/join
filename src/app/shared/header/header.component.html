@@ -1,17 +1,18 @@
 <section>
     <div id="overlay" class="hidden" (click)="toggleDropDown()"></div>
-    <header>
+    <div class="content">
+        <header>
         <div class="kanban"></div>
         <div class="menu">
             <a routerLink="/help"><div class="help"></div></a>
             <span id="user" (click)="toggleDropDown()">HA</span>
         </div>
-    </header>
-    <div id="drop-down" class="hidden">
-        <a routerLink="/help"><p id="help">Help</p></a>
-                <a routerLink="/legalNotice"><p>Legal Notice</p></a>
-
-        <a routerLink="/privacy"><p>Privacy</p></a>
-        <p>Log out</p>
+        </header>
+        <div id="drop-down" class="hidden">
+            <a routerLink="/help"><p id="help">Help</p></a>
+            <a routerLink="/legalNotice"><p>Legal Notice</p></a>
+            <a routerLink="/privacy"><p>Privacy</p></a>
+            <p>Log out</p>
+        </div>
     </div>
 </section>

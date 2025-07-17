@@ -11,7 +11,7 @@ import { KanbanAddOverlayComponent } from '../../kanban-add-overlay/kanban-add-o
 
 @Component({
   selector: 'app-kanban-board',
-  imports: [CardComponent, FullCardComponent, DragDropModule, KanbanEditComponent, KanbanAddOverlayComponent],
+  imports: [CardComponent, FullCardComponent, DragDropModule, KanbanAddOverlayComponent],
   templateUrl: './kanban-board.component.html',
   styleUrl: './kanban-board.component.scss'
 })

@@ -72,6 +72,9 @@
                             } 
                         </mat-select>
                     </div>
+                    <div class="already-assigned">@for (assigned of task.assignedTo; track $index) {
+                    <div id={{$index}} class="select-initials" [style.background]="assigned.color">{{assigned.initials}}</div>              
+                    }</div>
                 </div>
 
                 <div class="kanban-overlay-subtask">

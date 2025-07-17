@@ -1,122 +1,131 @@
 section {
     font-size: 10px;
     height: 8dvh;
+    background: white;
     box-shadow: 0 0.6em 0.6em -0.2em rgba($color: #000000, $alpha: 0.2);
+    z-index: 10;
 
-
-    header {
+    .content {
         width: 100%;
         max-width: (1920px - 230px);
-        height: 100%;
-        padding: 0em 5em;
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        height: 100%;
 
-        .kanban {
-            font-size: 1.8em;
-            padding-left: 2em;
-
-            &::after {
-                content: "Kanban Project Management Tool";
-            }
-
-            @media (max-width:750px) {
-                padding-left: 0;
-
-                &::after {
-                    background-image: url('./../../../../public/assets/img/header/Logo.png');
-                    background-size: contain;
-                    background-repeat: no-repeat;
-                    display: inline-block;
-                    height: 6dvh;
-                    width: 4em;
-                    content: "";
-                }
-            }
-        }
-
-        .menu {
+        header {
+            width: 100%;
+            height: 100%;
+            padding: 0em 5em;
             display: flex;
             align-items: center;
+            justify-content: space-between;
 
-            .help {
-                background: url('./../../../../public/assets/img/header/help-hover.png');
-                background-size: contain;
-                background-repeat: no-repeat;
-                height: 2.7em;
-                width: 3.6em;
-                margin-right: 0.9em;
+            .kanban {
+                font-size: 1.8em;
+                padding-left: 2em;
 
-                &:hover {
-                    background: url('./../../../../public/assets/img/header/help.png');
-                    background-size: contain;
-                    background-repeat: no-repeat;
-                    cursor: pointer;
+                &::after {
+                    content: "Kanban Project Management Tool";
                 }
 
                 @media (max-width:750px) {
-                    display: none;
+                    padding-left: 0;
+
+                    &::after {
+                        background-image: url('./../../../../public/assets/img/header/Logo.png');
+                        background-size: contain;
+                        background-repeat: no-repeat;
+                        display: inline-block;
+                        height: 6dvh;
+                        width: 4em;
+                        content: "";
+                    }
                 }
             }
 
-            span {
-                height: 49px;
-                width: 49px;
+            .menu {
+                display: flex;
+                align-items: center;
+
+                .help {
+                    background: url('./../../../../public/assets/img/header/help-hover.png');
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    height: 2.7em;
+                    width: 3.6em;
+                    margin-right: 0.9em;
+
+                    &:hover {
+                        background: url('./../../../../public/assets/img/header/help.png');
+                        background-size: contain;
+                        background-repeat: no-repeat;
+                        cursor: pointer;
+                    }
+
+                    @media (max-width:750px) {
+                        display: none;
+                    }
+                }
+
+                span {
+                    height: 49px;
+                    width: 49px;
+                    font-size: 1.6em;
+                    padding: 0.8em 0.6em;
+                    color: #29ABE2;
+                    font-weight: bold;
+                    border: solid black 0.15em;
+                    border-radius: 50%;
+
+                    &:hover {
+                        background: rgba($color: #0C2E62, $alpha: 0.12);
+                        cursor: pointer;
+                    }
+                }
+            }
+
+            @media (max-width:750px) {
+                padding: 1em;
+            }
+        }
+
+        #drop-down {
+            background: #2A3647;
+            z-index: 15;
+            position: absolute;
+            right: 5em;
+            top: 8dvh;
+            border-radius: 2.4em;
+            border-top-right-radius: 0;
+            padding: 1em;
+            animation: fade-in-left 0.75s ease-in-out;
+
+            #help {
+                display: none;
+
+                @media (max-width:750px) {
+                    display: block;
+                }
+            }
+
+            p {
+                padding: 0.8em;
                 font-size: 1.6em;
-                padding: 0.8em 0.6em;
-                color: #29ABE2;
-                font-weight: bold;
-                border: solid black 0.15em;
-                border-radius: 50%;
+                color: rgba($color: #FFFFFF, $alpha: 0.4);
 
                 &:hover {
-                    background: rgba($color: #0C2E62, $alpha: 0.12);
+                    background: #2A3D59;
                     cursor: pointer;
                 }
             }
-        }
-
-        @media (max-width:750px) {
-            padding: 1em;
-        }
-    }
-
-    #drop-down {
-        background: #2A3647;
-        z-index: 15;
-        position: absolute;
-        right: 5em;
-        top: 8dvh;
-        border-radius: 2.4em;
-        border-top-right-radius: 0;
-        padding: 1em;
-        animation: fade-in-left 0.75s ease-in-out;
-
-        #help {
-            display: none;
 
             @media (max-width:750px) {
-                display: block;
+                right: 1em;
             }
-        }
-
-        p {
-            padding: 0.8em;
-            font-size: 1.6em;
-            color: rgba($color: #FFFFFF, $alpha: 0.4);
-
-            &:hover {
-                background: #2A3D59;
-                cursor: pointer;
-            }
-        }
-
-        @media (max-width:750px) {
-            right: 1em;
         }
     }
 }
+
 
 #overlay {
     position: fixed;
