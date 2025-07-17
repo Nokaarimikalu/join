@@ -9,77 +9,98 @@ import { TaskItemBoard } from '../../shared/interface/task.interface';
 import { MatSelectModule } from '@angular/material/select';
 import { OverlayState } from '../../services/contacts/overlayState.service';
 
-
-
 @Component({
-  selector: 'app-kanban-add',
-  imports: [ HeaderComponent, NavFooterComponent, NavFooterMobileComponent, FormsModule, MatSelectModule],
-  templateUrl: './kanban-add.component.html',
-  styleUrl: './kanban-add.component.scss'
+    selector: 'app-kanban-add',
+    imports: [
+        HeaderComponent,
+        NavFooterComponent,
+        NavFooterMobileComponent,
+        FormsModule,
+        MatSelectModule,
+    ],
+    templateUrl: './kanban-add.component.html',
+    styleUrl: './kanban-add.component.scss',
 })
 export class KanbanAddComponent {
-  isInputFocused: boolean = false;
-  currentIndex: number = 0;
-  submitted: boolean = false;
-  subtaskString: string = '';
+    isInputFocused: boolean = false;
+    currentIndex: number = 0;
+    submitted: boolean = false;
+    subtaskString: string = '';
 
-  taskList: TaskItemBoard = {
-    id: '',
-    status: 'to do',
-    title: '',
-    description: '',
-    dueDate: '',
-    priority: 'Medium',
-    assignedTo: [{initials:'', firstName:'', lastName:'', color:'', email:'', phone:''}],
-    subTaskFillTest: [{text: '', completed: false}]
-  };
+    editingSubtaskValue: string = '';
+    editingSubtaskIndex: number | null = null;
 
-  constructor(public boardService: BoardService, public overlayState: OverlayState) {
-    this.taskList = {
+    taskList: TaskItemBoard = {
+        id: '',
+        status: 'to do',
+        title: '',
+        description: '',
+        dueDate: '',
+        priority: 'Medium',
+        assignedTo: [
+            {
+                initials: '',
+                firstName: '',
+                lastName: '',
+                color: '',
+                email: '',
+                phone: '',
+            },
+        ],
+        subTaskFillTest: [{ text: '', completed: false }],
+    };
+
+    constructor(
+        public boardService: BoardService,
+        public overlayState: OverlayState
+    ) {
+        this.taskList = {
             id: '',
             status: this.boardService.taskcolumnStatus || 'to do',
             title: '',
             description: '',
             dueDate: '',
             priority: 'Medium',
-            assignedTo: [{initials:'', firstName:'', lastName:'', color:'', email:'', phone:''}],
-            subTaskFillTest: [{text: '', completed: false}] 
+            assignedTo: [
+                {
+                    initials: '',
+                    firstName: '',
+                    lastName: '',
+                    color: '',
+                    email: '',
+                    phone: '',
+                },
+            ],
+            subTaskFillTest: [{ text: '', completed: false }],
         };
-  }
-
-
-  @Input() task!: TaskItemBoard;
-
-
-  addTask() {
-    if (this.boardService.selectedTask) {
-      this.boardService.addTasks(this.boardService.selectedTask);
-      this.boardService.selectedTask = null;
     }
-  }
 
- 
+    @Input() task!: TaskItemBoard;
 
-changeToUrgent() {
-    this.taskList.priority = 'Urgent';
-  }
+    addTask() {
+        if (this.boardService.selectedTask) {
+            this.boardService.addTasks(this.boardService.selectedTask);
+            this.boardService.selectedTask = null;
+        }
+    }
 
-  changeToMedium() {
-    this.taskList.priority = 'Medium';
-  }
-  
-  changeToLow() {
-    this.taskList.priority = 'Low';
-  }
+    changeToUrgent() {
+        this.taskList.priority = 'Urgent';
+    }
 
+    changeToMedium() {
+        this.taskList.priority = 'Medium';
+    }
 
+    changeToLow() {
+        this.taskList.priority = 'Low';
+    }
 
-  toggleFullCard() {
-    this.boardService.fullCardActive = !this.boardService.fullCardActive;
-  }
+    toggleFullCard() {
+        this.boardService.fullCardActive = !this.boardService.fullCardActive;
+    }
 
-
-  pushToSubtask() {
+    pushToSubtask() {
         if (this.subtaskString.trim() === '') return;
 
         if (!this.task.subTaskFillTest) {
@@ -88,7 +109,7 @@ changeToUrgent() {
 
         const newSubtask = {
             text: this.subtaskString.trim(),
-            completed: false
+            completed: false,
         };
 
         this.task.subTaskFillTest.push(newSubtask);
