@@ -8,7 +8,7 @@
           <div class="hyphen"></div>
           <img src="assets/img/kanban-board/search.png" alt="Search" width="20">
         </button>
-        <button class="add-task-button" (click)="boardService.toggleAddOverlay()">Add task +</button>
+        <button class="add-task-button" (click)="boardService.toggleAddOverlayColumn('to do')">Add task +</button>
       </div>
     </div>
 
@@ -31,7 +31,7 @@
     <div class="board">
       <div class="task-column">
         <div class="add-area">
-          <h3>To do</h3> <button class="small-add-task-button">+</button>
+          <h3>To do</h3> <button class="small-add-task-button" (click)=" boardService.toggleAddOverlayColumn('to do')">+</button>
         </div>
         <div class="task-columns" cdkDropList [cdkDropListData]="tasksSearchAndStatus('to do', searchValue)"
           [cdkDropListConnectedTo]="['in progress', 'await feedback', 'done']" (cdkDropListDropped)="drop($event)"
