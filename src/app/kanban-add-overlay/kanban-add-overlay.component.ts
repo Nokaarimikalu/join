@@ -1,5 +1,5 @@
-import { Component, NgModule, Input} from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, NgModule, Input, ViewChild } from '@angular/core';
+import { FormsModule, NgForm } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { OverlayState } from '../services/contacts/overlayState.service';
 import { TaskItemBoard } from '../shared/interface/task.interface';
@@ -7,7 +7,10 @@ import { BoardService } from '../services/board/board.service';
 
 @Component({
     selector: 'app-kanban-add-overlay',
-    imports: [FormsModule, MatSelectModule],
+    imports: [
+        FormsModule,
+        MatSelectModule,
+    ],
     templateUrl: './kanban-add-overlay.component.html',
     styleUrls: ['./kanban-add-overlay.component.scss'],
 })
@@ -37,7 +40,9 @@ export class KanbanAddOverlayComponent {
     }
 
       @Input() task!: TaskItemBoard;
-    
+
+      @ViewChild('addTaskForm') addTaskForm!: NgForm;
+
       addTask() {
         if (this.boardService.selectedTask) {
           this.boardService.addTasks(this.boardService.selectedTask);
@@ -66,9 +71,8 @@ export class KanbanAddOverlayComponent {
       }
     
     
-      resetForm() {
-  // Setze taskList auf Standardwerte
-  this.taskList = {
+  resetForm() {
+    this.taskList = {
     id: '',
     title: '',
     description: '',
@@ -78,6 +82,9 @@ export class KanbanAddOverlayComponent {
     category: '',
     subTaskFillTest: []
   };
+    this.subtaskString = '';
+    this.isInputFocused = false;
+    this.addTaskForm.reset();
 
   // Leere das Subtask-Eingabefeld
   this.subtaskString = '';

@@ -164,7 +164,7 @@
 										fill="currentColor" />
 								</svg>
 							</button>
-							<button class="create-task" [disabled]="!addTaskForm.valid"
+							<button class="create-task" 
 								(click)="boardService.addTasks(taskList); boardService.taskConfirmation()">
 								Create Task
 								<img src="assets/img/add-contacts/check.svg" alt="Create Task" />
