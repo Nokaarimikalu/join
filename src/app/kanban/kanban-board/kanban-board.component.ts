@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ElementRef, ViewChild } from '@angular/core';
 import { CardComponent } from './card/card.component';
 import { BoardService } from '../../services/board/board.service';
 import { TaskItem, TaskItemBoard } from '../../shared/interface/task.interface';
@@ -17,7 +17,10 @@ import { KanbanAddOverlayComponent } from '../../kanban-add-overlay/kanban-add-o
 })
 export class KanbanBoardComponent {
 
-    @Input() task!: TaskItemBoard;
+  @Input() task!: TaskItemBoard;
+
+  @ViewChild('searchInput') searchInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('searchInputMobile') searchInputMobile!: ElementRef<HTMLInputElement>;
 
 
   isDraggingMobile: boolean = false;
@@ -37,8 +40,16 @@ export class KanbanBoardComponent {
   }
 
   searchTasks() {
+    this.searchInput.nativeElement.focus();
     const searchInputRef = document.querySelector('.searchTitle') as HTMLInputElement; // without HTMLInputElement ts .value is not working (because of querySelector!)
-    this.searchValue = searchInputRef?.value
+    this.searchValue = searchInputRef?.value;
+    return this.boardService.taskList.filter(task => task.title?.toLocaleLowerCase() === searchInputRef?.value); // ?.value because no start value 
+  }
+
+    searchTasksMobile() {
+    this.searchInputMobile.nativeElement.focus();
+    const searchInputRef = document.querySelector('.searchTitleMobile') as HTMLInputElement; // without HTMLInputElement ts .value is not working (because of querySelector!)
+    this.searchValue = searchInputRef?.value;
     return this.boardService.taskList.filter(task => task.title?.toLocaleLowerCase() === searchInputRef?.value); // ?.value because no start value 
   }
 

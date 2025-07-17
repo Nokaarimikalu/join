@@ -13,6 +13,7 @@ import { CdkDrag } from '@angular/cdk/drag-drop';
 })
 
 export class CardComponent {
+  
   constructor(public boardService: BoardService) {}
 
   @Input() task!: TaskItemBoard;
@@ -65,4 +66,5 @@ export class CardComponent {
   closeOverlayStatus(){
     this.showMobileOverlay = false;
   }
+
 }
