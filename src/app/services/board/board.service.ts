@@ -111,6 +111,7 @@ export class BoardService implements OnDestroy {
   taskConfirmation() {
     const overlayRef = document.querySelector('.createdTask');
     overlayRef?.classList.add('display');
+    
     setTimeout(() => {
       overlayRef?.classList.remove('display');
       this.addCardActive = false;

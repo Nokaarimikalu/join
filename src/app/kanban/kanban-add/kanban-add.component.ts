@@ -145,4 +145,5 @@ export class KanbanAddComponent {
   // Setze den Fokus-Status zurück
   this.isInputFocused = false;
 }
+
 }
