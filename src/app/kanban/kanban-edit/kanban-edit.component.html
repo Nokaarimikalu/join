@@ -3,10 +3,6 @@
         <div class="close-button" (click)="boardService.toggleEditOverlay()">
             <img src="assets/img/add-contacts/Vector.svg"  alt="" />
         </div>
-        <div class="testzwecken">
-            <button class="prev" (click)="prevTask()">Prev</button>
-            <button class="next" (click)="prevTask()">Next</button>
-        </div>
         <div class="overlay-content-wrapper">
             <div class="content-in-overlay">
                 <form class="kanban-overlay-form">
@@ -96,7 +92,7 @@
                                 </button>
                                 
                                 <div class="grey-line"></div>
-                                <button (click)="pushToSubtask()">PUSH
+                                <button (click)="pushToSubtask()">
                                     <img  src="assets/img/kanban-edit-overlay/checkmark-subtask.svg" alt="">
                                 </button>
                             </div>
@@ -107,8 +103,12 @@
                             @if (editingSubtaskIndex === $index) {
                                 <li (click)="$event.stopPropagation()">
                                     <textarea [(ngModel)]="editingSubtaskValue"></textarea>
-                                    <button (click)="saveEditingSubtask($index); $event.stopPropagation()">s</button>
-                                    <button (click)="cancelEditingSubtask(); $event.stopPropagation()">x</button>
+                                    <button (click)="saveEditingSubtask($index); $event.stopPropagation()">s
+
+                                    </button>
+                                    <button (click)="cancelEditingSubtask(); $event.stopPropagation()">x
+                                        
+                                    </button>
                                 </li>
                             }@else {
                                 <li (dblclick)="startEditingSubtask($index)">

@@ -260,7 +260,7 @@ app-kanban-add-overlay{
 }
 
 app-full-card {
-    animation: fade-in-left-fullcard 1s ease-in-out;
+    animation: fade-in-left-fullcard 0.75s ease-in-out;
     border-radius: 20px;
     position: fixed;
     top: 50%;
@@ -271,6 +271,14 @@ app-full-card {
     z-index: 1000;
     background: white;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+@media(max-width:700px){
+    app-full-card{
+        width: 90%;
+        @media(max-width:420px){
+            width: 95%;
+        }
+    }
 }
 
 .small-add-task-button {

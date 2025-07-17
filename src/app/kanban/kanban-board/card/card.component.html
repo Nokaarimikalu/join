@@ -1,8 +1,23 @@
 <section>
+  <div class="overlay-status-for-mobile" 
+        [ngClass]="{'hidden': !showMobileOverlay, 'flex': showMobileOverlay}" 
+        (click)="$event.stopPropagation()">
+        <div class="close-mobile-status" (click)="closeOverlayStatus()">
+          <img src="assets/img/kanban-edit-overlay/exit-subtask.svg" alt="">
+        </div>
+    <div class="mobile-status-overlay">
+      <button [ngClass]="{'chosen-one': task.status === 'to do'}" (click)="setStatus('to do'); $event.stopPropagation()">To do</button>
+      <button [ngClass]="{'chosen-one': task.status === 'in progress'}" (click)="setStatus('in progress'); $event.stopPropagation()">in progress</button>
+      <button [ngClass]="{'chosen-one': task.status === 'await feedback'}" (click)="setStatus('await feedback'); $event.stopPropagation()">Await feedback</button>
+      <button [ngClass]="{'chosen-one': task.status === 'done'}" (click)="setStatus('done'); $event.stopPropagation()">Done</button>
+    </div>
+  </div>
   <div class="testcontainer">
     <div class="category-moveto">
-    <div class="category {{task.category?.toLowerCase()?.replace(' ', '-')}}">{{task.category}} </div>
-<div class="move-to-mobile"> <img src="../../../../../assets/img/kanban-board/mobileMoveToButton.png" alt=""></div>
+      <div class="category {{task.category?.toLowerCase()?.replace(' ', '-')}}">{{task.category}} </div>
+      <div class="move-to-mobile" (click)="openMobileOverlay($event);debug()">
+        <img src="../../../../../assets/img/kanban-board/mobileMoveToButton.png" alt="">
+      </div>
     </div>
     <div class="tite">
       <h4>{{task.title}}</h4>
