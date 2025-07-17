@@ -10,12 +10,49 @@ section {
 
 }
 
-.overlay-for-mobile{
-	height: 100%;
+.overlay-status-for-mobile{
+	flex-direction: column;
+	justify-content: flex-end;
+	position: absolute;
+	height: 244px;
 	width: 100%;
-	background-color: #2563eb;
+	background-color: #ffffff;
 	border-radius: 20px;
-	z-index: 100000000;
+	z-index: 100;
+	&:hover{
+		box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+	}
+	.close-mobile-status{
+		display: flex;
+		justify-content: flex-end;
+		padding: 1em;
+	}
+	.mobile-status-overlay{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 15px;
+		height: 80%;
+		padding: 0em 1em 1em 1em;
+		border-bottom-left-radius:20px;
+		border-bottom-right-radius:20px;
+		
+		button{
+			font-size: 16px;
+			border-radius: 20px;
+			height: 30px;
+			width: 160px;
+			background-color: transparent;
+			&:hover{
+				border: solid 2px #29abe2
+			}
+		}
+		.chosen-one{
+			background-color: #29abe2;
+			color: white;
+		}
+	}
 }
 
 .testcontainer {

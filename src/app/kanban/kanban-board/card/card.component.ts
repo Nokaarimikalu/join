@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common'; // <--- HINZUFÜGEN
 import { BoardService } from '../../../services/board/board.service';
 import { TaskItem, TaskItemBoard } from '../../../shared/interface/task.interface';
 import { CdkDrag } from '@angular/cdk/drag-drop';
@@ -6,7 +7,7 @@ import { CdkDrag } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-card',
-  imports: [CdkDrag],
+  imports: [CommonModule, CdkDrag],
   templateUrl: './card.component.html',
   styleUrl: './card.component.scss'
 })
@@ -42,6 +43,26 @@ export class CardComponent {
   }
 
   debug() {
-    console.log('hallo', this.task.id);
+    console.log(this.showMobileOverlay);
+  }
+
+  showMobileOverlay = false; 
+
+  openMobileOverlay(event: Event) {
+    event.stopPropagation();
+    this.showMobileOverlay = true;
+  }
+
+  setStatus(status: string) {
+    this.task.status = status;
+    const taskIndex = this.boardService.taskList.findIndex(t => t.id === this.task.id);
+    if (taskIndex > -1) {
+      this.boardService.taskList[taskIndex].status = status;
+    }
+    this.showMobileOverlay = false; 
+  }
+
+  closeOverlayStatus(){
+    this.showMobileOverlay = false;
   }
 }
