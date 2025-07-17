@@ -22,8 +22,8 @@ import { OverlayState } from '../../services/contacts/overlayState.service';
     styleUrl: './kanban-add.component.scss',
 })
 export class KanbanAddComponent {
-  
-  
+
+
 
     isInputFocused: boolean = false;
     currentIndex: number = 0;
@@ -41,7 +41,7 @@ export class KanbanAddComponent {
         dueDate: '',
         priority: 'Medium',
         assignedTo: [],
-        subTaskFillTest: [{ text: '', completed: false }],
+        subTaskFillTest: [],
     };
 
     constructor(
@@ -56,7 +56,7 @@ export class KanbanAddComponent {
             dueDate: '',
             priority: 'Medium',
             assignedTo: [],
-            subTaskFillTest: [{ text: '', completed: false }],
+            subTaskFillTest: [],
         };
     }
 
@@ -107,25 +107,21 @@ export class KanbanAddComponent {
         this.isInputFocused = false;
     }
 
-
     resetForm() {
-  // Setze taskList auf Standardwerte
-  this.taskList = {
-    id: '',
-    title: '',
-    description: '',
-    dueDate: '',
-    priority: 'Medium',  
-    assignedTo: [],
-    category: '',
-    subTaskFillTest: []
-  };
+        this.taskList = {
+            id: '',
+            title: '',
+            description: '',
+            dueDate: '',
+            priority: 'Medium',
+            assignedTo: [],
+            category: '',
+            subTaskFillTest: []
+        };
 
-  // Leere das Subtask-Eingabefeld
-  this.subtaskString = '';
+        this.subtaskString = '';
 
-  // Setze den Fokus-Status zurück
-  this.isInputFocused = false;
-}
+        this.isInputFocused = false;
+    }
 
 }
