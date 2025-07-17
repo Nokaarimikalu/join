@@ -11,7 +11,9 @@ export class BoardService implements OnDestroy {
 
   unsubscribe: () => void;
 
-  addCardActive:boolean = false;
+  taskcolumnStatus: string = '';
+
+  addCardActive: boolean = false;
 
   fullCardActive: boolean = false;
 
@@ -59,6 +61,7 @@ export class BoardService implements OnDestroy {
 
   async addTasks(task: TaskItemBoard) {
     const docRef = await addDoc(collection(this.firestore, 'taskItemBoard'), task);
+    this.taskConfirmation();
     return docRef.id
   }
 
@@ -84,18 +87,34 @@ export class BoardService implements OnDestroy {
     this.editOverlayActive = !this.editOverlayActive;
   }
 
-    toggleAddOverlay() {
+  toggleAddOverlay() {
     this.addCardActive = !this.addCardActive;
+  }
+
+  toggleAddOverlayColumn(status: string) {
+    this.addCardActive = !this.addCardActive;
+    this.taskcolumnStatus = status;
   }
 
 
   async updateTaskFullcard(task: TaskItemBoard) {
     if (!task.id) return; //if no task.id is generated from firebase return otherwise kanban board will crash and no input in card and fullcard will beshown
     const taskRef = doc(this.firestore, 'taskItemBoard', task.id); //create  reference  from specific id 
-    await updateDoc(taskRef, {subTaskFillTest: task.subTaskFillTest}); //update only the specific subtask array in documentd (ref with task.id)
+    await updateDoc(taskRef, { subTaskFillTest: task.subTaskFillTest }); //update only the specific subtask array in documentd (ref with task.id)
   }
 
-    async deleteTask(task: TaskItemBoard) {
+  async deleteTask(task: TaskItemBoard) {
     if (!task.id) return; //if no task.id is generated from firebase return otherwise kanban board will crash and no input in card and fullcard will beshown
-    await deleteDoc(doc(this.firestore, 'taskItemBoard', task.id))  }
+    await deleteDoc(doc(this.firestore, 'taskItemBoard', task.id))
+  }
+
+  taskConfirmation() {
+    const overlayRef = document.querySelector('.createdTask');
+    overlayRef?.classList.add('display');
+    setTimeout(() => {
+      overlayRef?.classList.remove('display');
+      this.addCardActive = false;
+    }, 2000);
+  }
 }
+

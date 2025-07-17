@@ -15,6 +15,5 @@ export const routes: Routes = [
   {path: 'legalNotice', component:LegalNoticeComponent},
   {path: 'task', component:KanbanAddComponent},
   {path: 'board', component:KanbanComponent},
-  {path: 'edit', component:KanbanEditComponent},
   {path: 'contacts', component: ContactsComponent },
 ];
