@@ -40,16 +40,7 @@ export class KanbanAddComponent {
         description: '',
         dueDate: '',
         priority: 'Medium',
-        assignedTo: [
-            {
-                initials: '',
-                firstName: '',
-                lastName: '',
-                color: '',
-                email: '',
-                phone: '',
-            },
-        ],
+        assignedTo: [],
         subTaskFillTest: [{ text: '', completed: false }],
     };
 
@@ -64,16 +55,7 @@ export class KanbanAddComponent {
             description: '',
             dueDate: '',
             priority: 'Medium',
-            assignedTo: [
-                {
-                    initials: '',
-                    firstName: '',
-                    lastName: '',
-                    color: '',
-                    email: '',
-                    phone: '',
-                },
-            ],
+            assignedTo: [],
             subTaskFillTest: [{ text: '', completed: false }],
         };
     }
