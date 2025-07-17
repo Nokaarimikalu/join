@@ -141,6 +141,8 @@ section {
                             color: red;
                             margin-right: 1em;
                         }
+
+
                     }
 
 
@@ -149,6 +151,9 @@ section {
                 .form-label {
                     font-size: 1.6em;
 
+                    @media (max-width: 750px) {
+                        display: none;
+                    }
 
                     .required-asterisk {
                         color: red;

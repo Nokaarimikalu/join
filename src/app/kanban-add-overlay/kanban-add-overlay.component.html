@@ -99,7 +99,7 @@
 						</mat-select>
 					</div>
 					<div class="already-assigned">
-					@if (taskList.assignedTo.email != '' && taskList.assignedTo.length > 0) {
+					@if (taskList.assignedTo != undefined && taskList.assignedTo.length > 0) {
 						@for (assigned of task.assignedTo; track $index) {
 							<p>test</p>
 							<div id={{$index}} class="select-initials" [style.background]="assigned.color">{{assigned.initials}}</div>
