@@ -64,6 +64,20 @@ section {
                         }
                     }
 
+                    .input-date {
+                        width: 100%;
+                        height: 48px;
+                        border-radius: 10px;
+                        padding: 0.5em;
+                        font-size: 16px;
+                        border: 2px solid rgba(0, 0, 0, 0.049);
+                        color: black;
+
+                        &:focus {
+                            border: 2px solid #29abe2;
+                        }
+                    }
+
                     textarea {
                         height: 84px;
                     }
@@ -287,7 +301,7 @@ section {
                 width: 100%;
                 height: 48px;
 
-                .input {
+                input {
                     width: 100%;
                     padding: 1em;
                     height: 100%;
