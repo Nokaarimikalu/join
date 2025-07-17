@@ -335,41 +335,42 @@ section {
                     margin: 0px 2px;
                 }
             }
+
             .add,
-                        .submit-cancel {
-                            display: flex;
-                            align-items: center;
-                            position: absolute;
-                            right: 1em;
-                            cursor: pointer;
-                        }
+            .submit-cancel {
+                display: flex;
+                align-items: center;
+                position: absolute;
+                right: 1em;
+                cursor: pointer;
+            }
 
-                        .add {
-                            z-index: 10;
-                            height: 100%;
+            .add {
+                z-index: 10;
+                height: 100%;
 
-                            img {
-                                &:hover {
-                                    background-color: rgba(0, 0, 0, 0.091);
-                                    border-radius: 50px;
-                                }
-                            }
-                        }
+                img {
+                    &:hover {
+                        background-color: rgba(0, 0, 0, 0.091);
+                        border-radius: 50px;
+                    }
+                }
+            }
 
-                        .submit-cancel {
-                            button {
-                                background-color: transparent;
-                                border: transparent;
-                            }
+            .submit-cancel {
+                button {
+                    background-color: transparent;
+                    border: transparent;
+                }
 
-                          
-                            .grey-line {
-                                width: 2px;
-                                height: 24px;
-                                background-color: rgba(128, 128, 128, 0.41);
-                                margin: 0px 2px;
-                            }
-                        }
+
+                .grey-line {
+                    width: 2px;
+                    height: 24px;
+                    background-color: rgba(128, 128, 128, 0.41);
+                    margin: 0px 2px;
+                }
+            }
         }
 
         .each-sub-task {
@@ -568,8 +569,19 @@ input[type="number"] {
     }
 }
 
+.select-initials {
+    width: 2em;
+    height: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1em;
+    margin-right: 1em;
+    color: white;
+}
+
 .errorborder {
-    border: 2px solid red!important;
+    border: 2px solid red !important;
 }
 
 .invalid-input {
