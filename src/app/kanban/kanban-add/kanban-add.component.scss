@@ -450,3 +450,13 @@ section {
     flex-direction: row;
     align-items: center;
 }
+
+.errorborder {
+    border: 2px solid red!important;
+}
+
+.invalid-input {
+    height: 10px;
+    font-size: 12px;
+    color: red;
+}

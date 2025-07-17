@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { HeaderComponent } from '../../shared/header/header.component';
 import { NavFooterComponent } from '../../shared/nav-footer/nav-footer.component';
@@ -8,18 +8,20 @@ import { BoardService } from '../../services/board/board.service';
 import { TaskItemBoard } from '../../shared/interface/task.interface';
 import { MatSelectModule } from '@angular/material/select';
 import { OverlayState } from '../../services/contacts/overlayState.service';
-import { KanbanAddOverlayComponent } from '../../kanban-add-overlay/kanban-add-overlay.component';
+
 
 
 @Component({
   selector: 'app-kanban-add',
-  imports: [ HeaderComponent, NavFooterComponent, NavFooterMobileComponent, FormsModule, MatSelectModule, KanbanAddOverlayComponent],
+  imports: [ HeaderComponent, NavFooterComponent, NavFooterMobileComponent, FormsModule, MatSelectModule],
   templateUrl: './kanban-add.component.html',
   styleUrl: './kanban-add.component.scss'
 })
 export class KanbanAddComponent {
   isInputFocused: boolean = false;
   currentIndex: number = 0;
+  submitted: boolean = false;
+  subtaskString: string = '';
 
   taskList: TaskItemBoard = {
     id: '',
@@ -32,7 +34,22 @@ export class KanbanAddComponent {
     subTaskFillTest: [{text: '', completed: false}]
   };
 
-  constructor(public boardService: BoardService, public overlayState: OverlayState) {}
+  constructor(public boardService: BoardService, public overlayState: OverlayState) {
+    this.taskList = {
+            id: '',
+            status: this.boardService.taskcolumnStatus || 'to do',
+            title: '',
+            description: '',
+            dueDate: '',
+            priority: 'Medium',
+            assignedTo: [{initials:'', firstName:'', lastName:'', color:'', email:'', phone:''}],
+            subTaskFillTest: [{text: '', completed: false}] 
+        };
+  }
+
+
+  @Input() task!: TaskItemBoard;
+
 
   addTask() {
     if (this.boardService.selectedTask) {
