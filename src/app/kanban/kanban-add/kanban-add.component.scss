@@ -21,6 +21,15 @@
             @media(max-width:1040px) {
                 font-size: 7px;
             }
+            @media(max-width:750px) {
+                font-size: 10px;
+            }
+            @media(max-width:550px) {
+                font-size: 9px;
+            }
+            @media(max-width:470px) {
+                font-size: 8px;
+            }
             .content {
                 display: flex;
                 width: 100%;
@@ -53,9 +62,6 @@
                             width: 100%;
                             gap: 30px;
                             height: 100%;
-                            .errorborder {
-                                border: 2px solid red !important;
-                            }
                             .invalid-input {
                                 height: 10px;
                                 font-size: 12px;
@@ -100,13 +106,6 @@
                                         font-size: 1.6em;
                                     }
                                 }
-                                .form-label {
-                                    font-size: 1.6em;
-                                    .required-asterisk {
-                                        color: red;
-                                        margin-right: 1em;
-                                    }
-                                }
                             }
                             .form-label {
                                 font-size: 1.6em;
@@ -120,7 +119,8 @@
                             }
                             .required-label {
                                 font-size: 1.6em;
-                                margin-bottom: 8dvh;
+                                margin-bottom: 4dvh;
+                                margin-bottom: 4dvh;
                             }
                         }
                     }
@@ -144,24 +144,32 @@
                 }
                 .right-addtask {
                     width: 49%;
+                    margin-top: 17em;
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
                     align-items: center;
                     @media(max-width:750px) {
                         width: 100%;
+                        margin-top: 0em;
                     }
+                    
                     .right-content-wrapper {
                         display: flex;
                         flex-direction: column;
+                        justify-content: center;
                         width: 80%;
                         height: 100%;
+                        @media(max-width: 1300px){
+                            width: 90%;
+                        }
                         .kanban-addtask-priority {
                             width: 100%;
                             display: flex;
                             flex-direction: column;
                             p {
                                 font-size: 1.6em;
+                                margin-bottom: 1em;
                             }
                             .priority-buttons {
                                 display: flex;
@@ -282,7 +290,7 @@
                                     width: 100%;
                                     padding: 1em;
                                     height: 48px;
-                                    border: transparent;
+                                    border: none;
                                     font-size: 16px;
                                     background-color: transparent;
                                     &:focus {
@@ -314,9 +322,11 @@
                                     border: transparent;
                                 }
                             }
+                            }
                             .form-label-r {
                                 display: none;
-                                font-size: 2.6em;
+                                font-size: 1.6em;
+                                margin-top: 3em;
                                 @media(max-width:750px) {
                                     display: block;
                                 }
@@ -325,13 +335,16 @@
                                     margin-right: 1em;
                                 }
                             }
-                            }
                         }   
                         .each-sub-task {
                             display: flex;
                             justify-content: flex-end;
                             margin-top: 10em;
                             gap: 1.5em;
+                            @media(max-width: 750px){
+                                margin-bottom: 5em;
+                                margin-top: 2em;
+                            }
 
                             .clear {
                                 display: flex;
@@ -490,7 +503,10 @@
 }
 //===========================  multiple uses Css Part  ==================================
 .errorborder {
-    border: 2px solid red !important;
+    border: 2px solid red ;
+}
+.normalborder {
+    border: 2px solid rgba(0, 0, 0, 0.049);
 }
 .invalid-input {
     height: 10px;
@@ -498,7 +514,6 @@
     color: red;
 }
 //========================================================================================
-
 // KEINE AHNUNG WAS DAS IST 
 .KEINE_AHNUNG_WAS_DAS_IST {
     width: 100%;

@@ -4,6 +4,7 @@
         <app-header></app-header>
         <section>
             <div class="content">
+                <!-- Left AddTask -->
                 <div class="left-addtask">
                     <div class="left-content-wrapper">
                         <form class="kanban-form" #addTaskForm="ngForm">
@@ -16,12 +17,13 @@
                                         </label>
                                         <input [(ngModel)]="taskList.title" name="title" placeholder="Enter a title"
                                             type="text" required #title="ngModel"
-                                            [class.errorborder]="!title.valid && title.touched" />
-                                    </div>
-                                    <div class="invalid-input">
-                                        @if (!title.valid && title.touched) {
-                                        <div>This Field is required</div>
-                                        }
+                                            [class.errorborder]="!title.valid && title.touched"
+                                            [class.normalborder]="title.valid || !title.touched"/>
+                                            <div class="invalid-input">
+                                                @if (!title.valid && title.touched) {
+                                                    <div>This Headline is required</div>
+                                                }
+                                            </div>
                                     </div>
                                     <div class="form-description div-cont">
                                         <span>Description</span>
@@ -34,15 +36,15 @@
                                         </label>
                                         <input [(ngModel)]="taskList.dueDate" type="date" name="dueDate" required
                                             #dueDate="ngModel"
-                                            [class.errorborder]="!dueDate.valid && dueDate.touched" />
-                                    </div>
-                                    <div class="invalid-input">
-                                        @if (!dueDate.valid && dueDate.touched) {
-                                        <div>This Field is required</div>
-                                        }
+                                            [class.errorborder]="!dueDate.valid && dueDate.touched"
+                                            [class.normalborder]="title.valid || !title.touched" />
+                                        <div class="invalid-input">
+                                            @if (!dueDate.valid && dueDate.touched) {
+                                                <div>This Field is required</div>
+                                            }
+                                        </div>
                                     </div>
                                 </div>
-
                             </div>
                             <label class="form-label required-label">
                                 <span class="required-asterisk">*</span>This field is required
@@ -52,14 +54,11 @@
                     </div>
                 </div>
 
-
-
-
+                <!-- Middle AddTask -->
                 <div class="middle-content">
                     <div class="line"></div>
                 </div>
                 
-
 
                 <!-- Right AddTask -->
                 <div class="right-addtask">
@@ -97,9 +96,6 @@
                                 </button>
                             </div>
                         </div>
-
-
-
                         
                         <!-- Assigned-to-Dropdown -->
                         <div class="kanban-assigned-to">
@@ -161,16 +157,14 @@
                                         </div>
                                         }
                                     </div>
-                                    <label class="form-label-r required-label">
-                                        <span class="required-asterisk">*</span>This field is required
-                                    </label>
                                 </div>
+                                <label class="form-label-r required-label">
+                                        <span class="required-asterisk">*</span>This field is required
+                                </label>
                             </div>
                         </div>
-
-
-
-
+                        
+                        <!-- each-sub-task -->
                         <div class="each-sub-task">
                             <button class="clear" (click)="resetForm()">
                                 Clear
@@ -186,12 +180,11 @@
                                 Create Task
                                 <img src="assets/img/add-contacts/check.svg" alt="Create Task" />
                             </button>
-                            
                         </div>
                     </div>
                 </div>
                 <div class="user-feedback">
-                    <img src="assets/img/kanban-add/Frame 73.svg" alt="">
+                    <img src="assets/img/kanban-add/Frame_73.png" alt="">
                 </div>
             </div>
         </section>
