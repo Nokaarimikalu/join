@@ -121,4 +121,25 @@ export class KanbanAddComponent {
         this.subtaskString = '';
         this.isInputFocused = false;
     }
+
+
+    resetForm() {
+  // Setze taskList auf Standardwerte
+  this.taskList = {
+    id: '',
+    title: '',
+    description: '',
+    dueDate: '',
+    priority: 'Medium',  
+    assignedTo: [],
+    category: '',
+    subTaskFillTest: []
+  };
+
+  // Leere das Subtask-Eingabefeld
+  this.subtaskString = '';
+
+  // Setze den Fokus-Status zurück
+  this.isInputFocused = false;
+}
 }
