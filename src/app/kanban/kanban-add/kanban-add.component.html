@@ -11,37 +11,39 @@
                                 <h1>Add Task</h1>
 
                                 <div class="form-input-content">
-<div class="form-title div-cont">
-                                    <label class="form-label">
-                                        Title<span class="required-asterisk">*</span>
-                                    </label>
-                                    <input [(ngModel)]="taskList.title" name="title" placeholder="Enter a title" type="text"
-                                        required #title="ngModel" [class.errorborder]="!title.valid && title.touched" />
+                                    <div class="form-title div-cont">
+                                        <label class="form-label">
+                                            Title<span class="required-asterisk">*</span>
+                                        </label>
+                                        <input [(ngModel)]="taskList.title" name="title" placeholder="Enter a title"
+                                            type="text" required #title="ngModel"
+                                            [class.errorborder]="!title.valid && title.touched" />
+                                    </div>
+                                    <div class="invalid-input">
+                                        @if (!title.valid && title.touched) {
+                                        <div>Example: Title example</div>
+                                        }
+                                    </div>
+                                    <div class="form-description div-cont">
+                                        <span>Description</span>
+                                        <textarea [(ngModel)]="taskList.description" placeholder="Enter a Description "
+                                            name="description" id=""></textarea>
+                                    </div>
+                                    <div class="form-date div-cont">
+                                        <label class="form-label">
+                                            Due date<span class="required-asterisk">*</span>
+                                        </label>
+                                        <input [(ngModel)]="taskList.dueDate" type="date" name="dueDate" required
+                                            #dueDate="ngModel"
+                                            [class.errorborder]="!dueDate.valid && dueDate.touched" />
+                                    </div>
+                                    <div class="invalid-input">
+                                        @if (!dueDate.valid && dueDate.touched) {
+                                        <div>Example: Date example</div>
+                                        }
+                                    </div>
                                 </div>
-                                <div class="invalid-input">
-                                    @if (!title.valid && title.touched) {
-                                    <div>Example: Title example</div>
-                                    }
-                                </div>
-                                <div class="form-description div-cont">
-                                    <span>Description</span>
-                                    <textarea [(ngModel)]="taskList.description" placeholder="Enter a Description "
-                                        name="description" id=""></textarea>
-                                </div>
-                                <div class="form-date div-cont">
-                                    <label class="form-label">
-                                        Due date<span class="required-asterisk">*</span>
-                                    </label>
-                                    <input [(ngModel)]="taskList.dueDate" type="date" name="dueDate" required
-                                        #dueDate="ngModel" [class.errorborder]="!dueDate.valid && dueDate.touched" />
-                                </div>
-                                <div class="invalid-input">
-                                    @if (!dueDate.valid && dueDate.touched) {
-                                    <div>Example: Date example</div>
-                                    }
-                                </div>
-                                </div>
-                                
+
                             </div>
                             <label class="form-label required-label">
                                 <span class="required-asterisk">*</span>This field is required
@@ -131,25 +133,25 @@
                                 <div class="kanban-overlay-subtask">
                                     <span class="subtask-span">Subtask</span>
                                     <div class="subtaskfield" (click)="$event.stopPropagation();">
-                        <input [(ngModel)]="subtaskString" type="text"(focus)="isInputFocused = true" >
-                        @if(!isInputFocused){
-                            <div class="add">
-                                <img src="assets/img/kanban-edit-overlay/plus-zichen.svg" alt=""/>
-                            </div>
-                        }@else {
-                            <div class="submit-cancel">
-                                <button (click)="emptySubtask()">
-                                    <img  src="assets/img/kanban-edit-overlay/exit-subtask.svg" alt="">
-                                </button>
-                                
-                                <div class="grey-line"></div>
-                                
-                                <button (click)="pushToSubtask()">
-                                    <img  src="assets/img/kanban-edit-overlay/checkmark-subtask.svg" alt="">
-                                </button>
-                            </div>
-                        }
-                    </div>
+                                        <input [(ngModel)]="subtaskString" type="text" (focus)="isInputFocused = true">
+                                        @if(!isInputFocused){
+                                        <div class="add">
+                                            <img src="assets/img/kanban-edit-overlay/plus-zichen.svg" alt="" />
+                                        </div>
+                                        }@else {
+                                        <div class="submit-cancel">
+                                            <button (click)="emptySubtask()">
+                                                <img src="assets/img/kanban-edit-overlay/exit-subtask.svg" alt="">
+                                            </button>
+
+                                            <div class="grey-line"></div>
+
+                                            <button (click)="pushToSubtask()">
+                                                <img src="assets/img/kanban-edit-overlay/checkmark-subtask.svg" alt="">
+                                            </button>
+                                        </div>
+                                        }
+                                    </div>
 
                                     <div class="each-sub-task">
                                         <button class="clear">
