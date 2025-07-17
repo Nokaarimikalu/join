@@ -17,6 +17,7 @@ import { OverlayState } from '../../services/contacts/overlayState.service';
         NavFooterMobileComponent,
         FormsModule,
         MatSelectModule,
+        RouterLink
     ],
     templateUrl: './kanban-add.component.html',
     styleUrl: './kanban-add.component.scss',
