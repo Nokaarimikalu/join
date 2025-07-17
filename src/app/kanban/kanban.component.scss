@@ -17,15 +17,18 @@
 
 .kanban-board-content {
     display: flex;
-    width: 100%;
-    height: 100%;
+    flex: 1;
+    height: 90%;
     padding: 0em 4em;
     background: #f0f0f0;
-    overflow-y: auto;
     max-width: (1920px - 230px);
-
+    width: calc(100dvw - 230px);
+    overflow-y: auto;
+    scrollbar-width: none;
     @media (max-width:965px) {
         padding: 0px 10px;
+            width: calc(100dvw);
+
     }
 }
 

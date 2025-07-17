@@ -73,7 +73,7 @@ section {
 	box-shadow: 0 6px 0 rgba(0, 0, 0, 0.02);
 	transition: ease-in-out 0.2s;
 
-	@media (max-width: 965px) {
+	@media (max-width: 1300px) {
 		width: 300px;
 		align-items: start;
 	}
@@ -105,14 +105,14 @@ section {
 		margin-bottom: 12px;
 	}
 	.move-to-mobile{
-		z-index: 20;
+		z-index: 10;
 		width: 25px;
 		height: 25px;
 		display: none;
 			&:hover {
 		box-shadow: 0 0 6px rgba(42, 54, 71, 0.3);
 	}
-		@media (max-width: 965px) {
+		@media (max-width: 1300px) {
 			display: flex;
 			img{
 				width: 25x;
