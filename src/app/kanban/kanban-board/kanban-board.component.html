@@ -3,7 +3,7 @@
     <div class="headline-area">
       <h1>Board</h1>
       <div class="search-input">
-        <input type="text" placeholder="Find Task" class="searchTitle" name="searchTitle" (keyup)="searchTasks()">
+        <input #searchInput type="text" placeholder="Find Task" class="searchTitle" name="searchTitle" (keyup)="searchTasks()">
         <button class="search-button" (click)="searchTasks()">
           <div class="hyphen"></div>
           <img src="assets/img/kanban-board/search.png" alt="Search" width="20">
