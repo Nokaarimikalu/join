@@ -41,6 +41,15 @@ section {
                     font-size: 6em;
                 }
 
+                .form-label {
+                    font-size: 1.6em;
+
+                    .required-asterisk {
+                        color: red;
+                        margin-right: 1em;
+                    }
+                }
+
                 .required-label {
                     font-size: 1.6em;
                 }
@@ -376,7 +385,6 @@ section {
                     background-color: transparent;
                     border: transparent;
                 }
-
 
                 .grey-line {
                     width: 2px;
