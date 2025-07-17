@@ -4,6 +4,7 @@ section {
     justify-content: center;
     width: 100%;
     height: 100%;
+    
 
     .content {
         display: flex;
@@ -22,12 +23,12 @@ section {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                width: 252px;
-/*                 height: 100%;
- */                overflow-y: auto;
+                width: 20%;
+                height: 100%;
+                overflow-y: auto;
                 scrollbar-width: none;
 
-                @media (max-width: 965px) {
+                @media (max-width: 1300px) {
                     width: 100%;
                     height: auto;
                 }
@@ -41,7 +42,7 @@ section {
                     align-items: center;
                     width: 100%;
 
-                    @media (max-width: 965px) {
+                    @media (max-width: 1300px) {
                         margin: 15px 0px;
                     }
                 }
@@ -50,12 +51,12 @@ section {
                     display: flex;
                     flex-direction: column;
                     align-items: center;
-                    width: 252px;
+                    width: 100%;
                     height: 100%;
                     overflow-y: auto;
                     scrollbar-width: none;
 
-                    @media (max-width: 965px) {
+                    @media (max-width: 1300px) {
                         width: 100%;
                         flex-direction: row;
                         align-items: start;
@@ -167,6 +168,12 @@ section {
         height: 50px;
         background-color: #2a3647;
 
+
+        &:hover {
+            background-color: #29abe2;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
         @media (max-width: 965px) {
             padding-bottom: 5px;
             width: 40px;
@@ -218,7 +225,7 @@ section {
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
     }
 
-    app-kanban-edit{
+    app-kanban-edit {
         z-index: 20;
     }
 
@@ -231,15 +238,16 @@ section {
     }
 
     #card-desktop {
-        @media (max-width: 965px) {
+        @media (max-width: 1300px) {
             display: none;
         }
     }
 
     .card-mobile {
-        @media (min-width: 965px) {
+        @media (min-width: 1473px) {
             display: none;
         }
+
         user-select: none;
         -webkit-user-select: none;
         -moz-user-select: none;
@@ -249,7 +257,7 @@ section {
     }
 }
 
-app-kanban-add-overlay{
+app-kanban-add-overlay {
     width: 100%;
     z-index: 10;
     position: fixed;
@@ -272,10 +280,12 @@ app-full-card {
     background: white;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
-@media(max-width:700px){
-    app-full-card{
+
+@media(max-width:700px) {
+    app-full-card {
         width: 90%;
-        @media(max-width:420px){
+
+        @media(max-width:420px) {
             width: 95%;
         }
     }
@@ -299,5 +309,6 @@ app-full-card {
 }
 
 h3 {
-    font-size: 27px;
+    font-size: 21px;
+    color: #42526E;
 }

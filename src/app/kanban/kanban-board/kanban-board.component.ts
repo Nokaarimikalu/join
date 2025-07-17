@@ -11,7 +11,7 @@ import { KanbanAddOverlayComponent } from '../../kanban-add-overlay/kanban-add-o
 
 @Component({
   selector: 'app-kanban-board',
-  imports: [CardComponent, FullCardComponent, DragDropModule, KanbanAddOverlayComponent],
+  imports: [CardComponent, FullCardComponent, DragDropModule, KanbanEditComponent, KanbanAddOverlayComponent],
   templateUrl: './kanban-board.component.html',
   styleUrl: './kanban-board.component.scss'
 })
@@ -90,4 +90,6 @@ export class KanbanBoardComponent {
   endDragMobile() {
     this.isDraggingMobile = false;
   }
+
+  
 }
