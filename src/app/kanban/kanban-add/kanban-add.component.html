@@ -111,7 +111,7 @@
                             </div>
                             <!-- Category-Dropdown -->
                             <div class="category-dropdown">
-                                <label class="form-label">Category<span class="required-asterisk">*</span></label>
+                                <label class="form-label-category">Category<span class="required-asterisk">*</span></label>
                                 <select [(ngModel)]="taskList.category" panelClass="select-category" name="category"
                                     required #category="ngModel"
                                     [class.errorborder]="!category.valid && category.touched">
@@ -151,7 +151,7 @@
                                         }
                                     </div>
                                 </div>
-                                <label class="form-label"><span class="required-asterisk">*</span>This field is required</label>
+                                <label class="form-label-mobile"><span class="required-asterisk">*</span>This field is required</label>
                             </div>
                         </div>
                         
