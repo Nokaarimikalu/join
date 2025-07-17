@@ -2,8 +2,6 @@
     display: flex;
     height: 100dvh;
     overflow-x: hidden;
-
-
     @media (max-width: 965px) {
         height: 92dvh;
     }
@@ -300,12 +298,10 @@ section {
                     }
                 }
             }
-        }
-
-        .category-dropdown {
-            margin-top: 20px;
-            display: flex;
-            flex-direction: column;
+            .category-dropdown {
+                margin-top: 20px;
+                display: flex;
+                flex-direction: column;
 
             .form-label {
                 font-size: 1.6em;
@@ -340,7 +336,8 @@ section {
                     border: 1px #29abe2 solid;
                 }
             }
-        }
+            }
+        }   
 
         .kanban-overlay-subtask {
             width: 100%;
@@ -403,7 +400,25 @@ section {
                 }
             }
 
-            .each-sub-task {
+            .form-label-r {
+                display: none;
+                font-size: 2.6em;
+
+                @media(max-width:750px) {
+                    display: block;
+                }
+
+                .required-asterisk {
+                    color: red;
+                    margin-right: 1em;
+                }
+            }
+        }
+
+
+
+
+        .each-sub-task {
                 display: flex;
                 justify-content: flex-end;
                 margin-top: 10em;
@@ -453,21 +468,6 @@ section {
                     }
                 }
             }
-
-            .form-label-r {
-                display: none;
-                font-size: 2.6em;
-
-                @media(max-width:750px) {
-                    display: block;
-                }
-
-                .required-asterisk {
-                    color: red;
-                    margin-right: 1em;
-                }
-            }
-        }
     }
 
     // -------- Other Components ----------
@@ -652,19 +652,6 @@ section {
             animation: fade-in-left-overlay-viewport 2s ease-in-out;
         }
 
-        .display {
-            display: flex;
-        }
-
-        .errorborder {
-            border: 2px solid red !important;
-        }
-
-        .invalid-input {
-            height: 10px;
-            font-size: 12px;
-            color: red;
-        }
     }
 }
 
@@ -706,4 +693,18 @@ section {
     width: 100%;
     flex-direction: row;
     align-items: center;
+}
+
+.display {
+    display: flex;
+}
+
+.errorborder {
+    border: 2px solid red !important;
+}
+
+.invalid-input {
+    height: 10px;
+    font-size: 12px;
+    color: red;
 }
