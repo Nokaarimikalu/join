@@ -48,10 +48,7 @@ export class KanbanAddOverlayComponent {
       
 
     
-      //   clearSubtask() {
-      //   this.taskList.subTaskFillTest = [];
-      //   this.isInputFocused = false;
-      // } 
+  
     
     changeToUrgent() {
         this.taskList.priority = 'Urgent';

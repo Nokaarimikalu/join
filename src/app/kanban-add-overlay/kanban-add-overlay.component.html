@@ -4,6 +4,7 @@
 		<div class="left-addtask">
 			<div class="left-content-wrapper">
 				<form class="kanban-form" #addTaskForm="ngForm">
+					<div class="without-required">
 					<h1>Add Task</h1>
 					<div class="form-title div-cont">
 						<label class="form-label">
@@ -36,8 +37,10 @@
 						<div>This Field is required</div>
 						}
 					</div>
+					</div>
 				</form>
 			</div>
+			
 			<label class="form-label required-label">
 				<span class="required-asterisk">*</span>This field is required
 			</label>
