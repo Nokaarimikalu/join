@@ -17,8 +17,7 @@
                                         </label>
                                         <input [(ngModel)]="taskList.title" name="title" placeholder="Enter a title"
                                             type="text" required #title="ngModel"
-                                            [class.errorborder]="!title.valid && title.touched"
-                                            [class.normalborder]="title.valid || !title.touched"/>
+                                            [class.errorborder]="!title.valid && title.touched" />
                                             <div class="invalid-input">
                                                 @if (!title.valid && title.touched) {
                                                     <div>This Headline is required</div>
@@ -36,8 +35,7 @@
                                         </label>
                                         <input [(ngModel)]="taskList.dueDate" type="date" name="dueDate" required
                                             #dueDate="ngModel"
-                                            [class.errorborder]="!dueDate.valid && dueDate.touched"
-                                            [class.normalborder]="title.valid || !title.touched" />
+                                            [class.errorborder]="!dueDate.valid && dueDate.touched"/>
                                         <div class="invalid-input">
                                             @if (!dueDate.valid && dueDate.touched) {
                                                 <div>This Field is required</div>
@@ -50,7 +48,6 @@
                                 <span class="required-asterisk">*</span>This field is required
                             </label>
                         </form>
-
                     </div>
                 </div>
 
@@ -75,7 +72,6 @@
                                     <img src="assets/img/kanban-edit-overlay/white-urgent.svg" alt="" />
                                     }
                                 </button>
-
                                 <button (click)="changeToMedium()"
                                     [class.active-medium]="taskList.priority === 'Medium'">
                                     <span>Medium</span>
@@ -85,7 +81,6 @@
                                     <img src="assets/img/kanban-edit-overlay/white-medium.svg" alt="" />
                                     }
                                 </button>
-
                                 <button (click)="changeToLow()" [class.active-low]="taskList.priority === 'Low'">
                                     <span>Low</span>
                                     @if(taskList.priority !== 'Low'){
@@ -148,9 +143,7 @@
                                             <button (click)="emptySubtask()">
                                                 <img src="assets/img/kanban-edit-overlay/exit-subtask.svg" alt="">
                                             </button>
-
                                             <div class="grey-line"></div>
-
                                             <button (click)="pushToSubtask()">
                                                 <img src="assets/img/kanban-edit-overlay/checkmark-subtask.svg" alt="">
                                             </button>
@@ -158,9 +151,7 @@
                                         }
                                     </div>
                                 </div>
-                                <label class="form-label-r required-label">
-                                        <span class="required-asterisk">*</span>This field is required
-                                </label>
+                                <label class="form-label"><span class="required-asterisk">*</span>This field is required</label>
                             </div>
                         </div>
                         

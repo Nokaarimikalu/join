@@ -105,16 +105,9 @@
                                         color: rgba(0, 0, 0, 0.746);
                                         font-size: 1.6em;
                                     }
-                                }
-                            }
-                            .form-label {
-                                font-size: 1.6em;
-                                @media (max-width: 750px) {
-                                    display: none;
-                                }
-                                .required-asterisk {
-                                    color: red;
-                                    margin-right: 1em;
+                                    .required-asterisk{
+                                        color: red;
+                                    }
                                 }
                             }
                             .required-label {
@@ -242,13 +235,6 @@
                                 margin-top: 20px;
                                 display: flex;
                                 flex-direction: column;
-                            .form-label {
-                                font-size: 1.6em;
-                                .required-asterisk {
-                                    color: red;
-                                    margin-right: 1em;
-                                }
-                            }
                             select {
                                 border: 2px rgba(0, 0, 0, 0.049) solid;
                                 width: 100%;
@@ -322,18 +308,6 @@
                                     border: transparent;
                                 }
                             }
-                            }
-                            .form-label-r {
-                                display: none;
-                                font-size: 1.6em;
-                                margin-top: 3em;
-                                @media(max-width:750px) {
-                                    display: block;
-                                }
-                                .required-asterisk {
-                                    color: red;
-                                    margin-right: 1em;
-                                }
                             }
                         }   
                         .each-sub-task {
@@ -503,10 +477,17 @@
 }
 //===========================  multiple uses Css Part  ==================================
 .errorborder {
-    border: 2px solid red ;
+    border: 2px solid red !important;
 }
 .normalborder {
     border: 2px solid rgba(0, 0, 0, 0.049);
+}
+.form-label {
+    font-size: 1.6em;
+    .required-asterisk {
+        color: red;
+        margin-right: 1em;
+    }
 }
 .invalid-input {
     height: 10px;
