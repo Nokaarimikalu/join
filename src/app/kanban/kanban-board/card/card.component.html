@@ -25,23 +25,29 @@
     <div class="description">
       {{task.description}}
     </div>
+    
+    @if (task.subTaskFillTest.length > 1) {
+      <div class="subtask-progress-row">
+        <div class="subtask-progress-bar">
+          <div class="subtask-progress-bar-fill" [style.width.%]="subtaskProgress"></div>
+        </div>
+        <div class="subtask-progress-label">
+          {{completedSubtasks}}/{{totalSubtasks}} Subtasks
+        </div>
+      </div>
+    }
 
-    <div class="subtask-progress-row">
-      <div class="subtask-progress-bar">
-        <div class="subtask-progress-bar-fill" [style.width.%]="subtaskProgress"></div>
-      </div>
-      <div class="subtask-progress-label">
-        {{completedSubtasks}}/{{totalSubtasks}} Subtasks
-      </div>
-    </div>
+
     
     <div class="user-content">
       <div class="user-area">
-        @for (user of task.assignedTo; track $index) {
-        <div class="user-details">
-          <div class="user initials" [style.background]= user.color>{{ user.initials}} </div>
-        </div>
-
+        @for (user of task.assignedTo?.slice(0, 3) || []; track $index) {
+          <div class="user-details">
+            <div class="user initials" [style.background]="user.color">{{ user.initials }}</div>
+          </div>
+        }
+        @if ((task.assignedTo?.length || 0) > 3) {
+          <div class="more-users">+{{ (task.assignedTo?.length || 0) - 3 }}</div>
         }
       </div>
 
