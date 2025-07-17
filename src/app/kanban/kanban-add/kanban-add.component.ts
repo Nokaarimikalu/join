@@ -25,6 +25,7 @@ import { OverlayState } from '../../services/contacts/overlayState.service';
 export class KanbanAddComponent {
 
     @ViewChild('addTaskForm') addTaskForm!: NgForm;
+    @ViewChild('category') addMaterialsForm!: NgForm;
 
 
     isInputFocused: boolean = false;
@@ -123,6 +124,7 @@ export class KanbanAddComponent {
         this.subtaskString = '';
         this.isInputFocused = false;
         this.addTaskForm.reset();
+        this.addMaterialsForm.reset();
     }
 
 }

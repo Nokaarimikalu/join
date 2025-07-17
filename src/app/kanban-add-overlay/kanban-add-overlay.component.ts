@@ -42,6 +42,7 @@ export class KanbanAddOverlayComponent {
       @Input() task!: TaskItemBoard;
 
       @ViewChild('addTaskForm') addTaskForm!: NgForm;
+      @ViewChild('category') addMaterialsForm!: NgForm;
 
       addTask() {
         if (this.boardService.selectedTask) {
@@ -85,6 +86,7 @@ export class KanbanAddOverlayComponent {
     this.subtaskString = '';
     this.isInputFocused = false;
     this.addTaskForm.reset();
+    this.addMaterialsForm.reset();
 
   // Leere das Subtask-Eingabefeld
   this.subtaskString = '';
