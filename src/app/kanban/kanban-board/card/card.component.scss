@@ -10,6 +10,14 @@ section {
 
 }
 
+.overlay-for-mobile{
+	height: 100%;
+	width: 100%;
+	background-color: #2563eb;
+	border-radius: 20px;
+	z-index: 100000000;
+}
+
 .testcontainer {
 	cursor: pointer;
 	user-select: none;

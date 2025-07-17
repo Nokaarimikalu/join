@@ -41,8 +41,7 @@ export class CardComponent {
     return (this.completedSubtasks / this.totalSubtasks) * 100;
   }
 
-  debug(){
-    console.log('hallo');
-    
+  debug() {
+    console.log('hallo', this.task.id);
   }
 }
