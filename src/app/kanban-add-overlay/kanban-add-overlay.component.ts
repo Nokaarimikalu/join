@@ -14,6 +14,9 @@ import { BoardService } from '../services/board/board.service';
 export class KanbanAddOverlayComponent {
     isInputFocused: boolean = false;
 
+    submitted: boolean = false;
+
+
     currentIndex: number = 0;
 
     subtaskString: string = '';
@@ -41,6 +44,9 @@ export class KanbanAddOverlayComponent {
           this.boardService.selectedTask = null;
         }
       }
+
+      
+
     
       //   clearSubtask() {
       //   this.taskList.subTaskFillTest = [];
