@@ -1,9 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { HeaderComponent } from '../../shared/header/header.component';
 import { NavFooterComponent } from '../../shared/nav-footer/nav-footer.component';
 import { NavFooterMobileComponent } from '../../shared/nav-footer-mobile/nav-footer-mobile.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm, NgModel } from '@angular/forms';
 import { BoardService } from '../../services/board/board.service';
 import { TaskItemBoard } from '../../shared/interface/task.interface';
 import { MatSelectModule } from '@angular/material/select';
@@ -17,13 +17,15 @@ import { OverlayState } from '../../services/contacts/overlayState.service';
         NavFooterMobileComponent,
         FormsModule,
         MatSelectModule,
+        RouterLink
     ],
     templateUrl: './kanban-add.component.html',
     styleUrl: './kanban-add.component.scss',
 })
 export class KanbanAddComponent {
-  
-  
+
+    @ViewChild('addTaskForm') addTaskForm!: NgForm;
+    @ViewChild('category') addMaterialsForm!: NgModel;
 
     isInputFocused: boolean = false;
     currentIndex: number = 0;
@@ -33,6 +35,8 @@ export class KanbanAddComponent {
     editingSubtaskValue: string = '';
     editingSubtaskIndex: number | null = null;
 
+    @Input() task!: TaskItemBoard;
+
     taskList: TaskItemBoard = {
         id: '',
         status: 'to do',
@@ -40,17 +44,8 @@ export class KanbanAddComponent {
         description: '',
         dueDate: '',
         priority: 'Medium',
-        assignedTo: [
-            {
-                initials: '',
-                firstName: '',
-                lastName: '',
-                color: '',
-                email: '',
-                phone: '',
-            },
-        ],
-        subTaskFillTest: [{ text: '', completed: false }],
+        assignedTo: [],
+        subTaskFillTest: [],
     };
 
     constructor(
@@ -64,21 +59,20 @@ export class KanbanAddComponent {
             description: '',
             dueDate: '',
             priority: 'Medium',
-            assignedTo: [
-                {
-                    initials: '',
-                    firstName: '',
-                    lastName: '',
-                    color: '',
-                    email: '',
-                    phone: '',
-                },
-            ],
-            subTaskFillTest: [{ text: '', completed: false }],
+            assignedTo: [],
+            subTaskFillTest: [],
         };
     }
 
-    @Input() task!: TaskItemBoard;
+    onSubmit() {
+        this.submitted = true;
+        this.addTaskForm.form.markAllAsTouched();
+        this.addMaterialsForm.control.markAllAsTouched();
+
+        if (this.addTaskForm.form.valid) {
+            this.boardService.addTasks(this.taskList);
+        }
+    }
 
     addTask() {
         if (this.boardService.selectedTask) {
@@ -125,24 +119,21 @@ export class KanbanAddComponent {
         this.isInputFocused = false;
     }
 
-
     resetForm() {
-  // Setze taskList auf Standardwerte
-  this.taskList = {
-    id: '',
-    title: '',
-    description: '',
-    dueDate: '',
-    priority: 'Medium',  
-    assignedTo: [],
-    category: '',
-    subTaskFillTest: []
-  };
+        this.taskList = {
+            id: '',
+            title: '',
+            description: '',
+            dueDate: '',
+            priority: 'Medium',
+            assignedTo: [],
+            category: '',
+            subTaskFillTest: []
+        };
+        this.subtaskString = '';
+        this.isInputFocused = false;
+        this.addTaskForm.reset();
+        this.addMaterialsForm.reset();
+    }
 
-  // Leere das Subtask-Eingabefeld
-  this.subtaskString = '';
-
-  // Setze den Fokus-Status zurück
-  this.isInputFocused = false;
-}
 }

@@ -1,6 +1,7 @@
 import { inject, Injectable, OnDestroy } from '@angular/core';
 import { Firestore, collection, onSnapshot, addDoc, updateDoc, doc, deleteDoc } from '@angular/fire/firestore';
 import { TaskItem, TaskItemBoard } from "../../shared/interface/task.interface";
+import { RouterLink, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,8 @@ export class BoardService implements OnDestroy {
   firestore: Firestore = inject(Firestore);
 
   unsubscribe: () => void;
+
+  boardRouterlink?: string; 
 
   taskcolumnStatus: string = '';
 
@@ -25,7 +28,7 @@ export class BoardService implements OnDestroy {
 
   taskList: TaskItemBoard[] = [];
 
-  constructor() {
+  constructor( private router: Router) {
     this.unsubscribe = onSnapshot(collection(this.firestore, 'taskItemBoard'), (task) => {
       this.taskList = [];
       task.forEach((element) => {
@@ -34,6 +37,7 @@ export class BoardService implements OnDestroy {
       });
     })
   }
+  
 
   ngOnDestroy(): void {
     if (this.unsubscribe) {
@@ -59,10 +63,12 @@ export class BoardService implements OnDestroy {
     return collection(this.firestore, 'taskItemBoard')
   }
 
+  
+
   async addTasks(task: TaskItemBoard) {
     const docRef = await addDoc(collection(this.firestore, 'taskItemBoard'), task);
     this.taskConfirmation();
-    return docRef.id
+    return docRef.id;
   }
 
   openFullCard(task: TaskItemBoard) {
@@ -92,8 +98,12 @@ export class BoardService implements OnDestroy {
   }
 
   toggleAddOverlayColumn(status: string) {
-    this.addCardActive = !this.addCardActive;
     this.taskcolumnStatus = status;
+    if(window.innerWidth < 1300){
+      this.router.navigate(['/task'])
+    }else{
+      this.addCardActive = !this.addCardActive;
+    }
   }
 
 
@@ -111,9 +121,11 @@ export class BoardService implements OnDestroy {
   taskConfirmation() {
     const overlayRef = document.querySelector('.createdTask');
     overlayRef?.classList.add('display');
+    
     setTimeout(() => {
       overlayRef?.classList.remove('display');
       this.addCardActive = false;
+    this.router.navigate(['/board']); // Router-Injection erforderlich
     }, 2000);
   }
 }

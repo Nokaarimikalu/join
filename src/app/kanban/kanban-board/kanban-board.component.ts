@@ -17,9 +17,11 @@ import { KanbanAddOverlayComponent } from '../../kanban-add-overlay/kanban-add-o
 })
 export class KanbanBoardComponent {
 
-    @Input() task!: TaskItemBoard;
+  @Input() task!: TaskItemBoard;
 
   @ViewChild('searchInput') searchInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('searchInputMobile') searchInputMobile!: ElementRef<HTMLInputElement>;
+
 
   isDraggingMobile: boolean = false;
   startXMobile: number = 0;
@@ -37,10 +39,16 @@ export class KanbanBoardComponent {
     return this.boardService.taskList.filter(task => task.status === status); // returns filtered status used for filtering right kanban column 
   }
 
-
   searchTasks() {
     this.searchInput.nativeElement.focus();
     const searchInputRef = document.querySelector('.searchTitle') as HTMLInputElement; // without HTMLInputElement ts .value is not working (because of querySelector!)
+    this.searchValue = searchInputRef?.value;
+    return this.boardService.taskList.filter(task => task.title?.toLocaleLowerCase() === searchInputRef?.value); // ?.value because no start value 
+  }
+
+    searchTasksMobile() {
+    this.searchInputMobile.nativeElement.focus();
+    const searchInputRef = document.querySelector('.searchTitleMobile') as HTMLInputElement; // without HTMLInputElement ts .value is not working (because of querySelector!)
     this.searchValue = searchInputRef?.value;
     return this.boardService.taskList.filter(task => task.title?.toLocaleLowerCase() === searchInputRef?.value); // ?.value because no start value 
   }

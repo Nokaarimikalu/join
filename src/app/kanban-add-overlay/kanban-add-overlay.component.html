@@ -14,7 +14,7 @@
 					</div>
 					<div class="invalid-input">
 						@if (!title.valid && title.touched) {
-						<div>This Field is required</div>
+							<div>This Field is required</div>
 						}
 					</div>
 					<div class="form-description div-cont">
@@ -97,6 +97,17 @@
 							</mat-option>
 							}
 						</mat-select>
+
+					</div>
+					<div class="already-assigned">
+						@for (assigned of taskList.assignedTo?.slice(0, 3) || [];; track $index) {
+						<div id={{$index}} class="select-initials" [style.background]="assigned.color">
+							{{assigned.initials}}
+						</div>
+						}
+						@if ((taskList.assignedTo?.length || 0) > 3) {
+						<div class="more-users">+{{ (taskList.assignedTo?.length || 0) - 3 }}</div>
+						}
 					</div>
 				</div>
 				<!-- Category-Dropdown -->
@@ -153,11 +164,10 @@
 										fill="currentColor" />
 								</svg>
 							</button>
-							<button class="create-task" [disabled]="!addTaskForm.valid"
-								(click)="boardService.addTasks(taskList); boardService.taskConfirmation()">
-								Create Task
-								<img src="assets/img/add-contacts/check.svg" alt="Create Task" />
-							</button>
+								<button class="create-task" (click)="onSubmit()">
+										Create Task
+										<img src="assets/img/add-contacts/check.svg" alt="Create Task" />
+								</button>
 						</div>
 					</div>
 				</div>
