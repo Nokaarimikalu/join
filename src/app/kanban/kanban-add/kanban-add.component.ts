@@ -100,7 +100,7 @@ export class KanbanAddComponent {
     }
 
   pushToSubtask() {
-    if (this.subtaskString.trim() === '') return;
+    if (this.subtaskString.trim() === '') {this.isInputFocused = false; return;}
 
     if (!this.taskList.subTaskFillTest) {
       this.taskList.subTaskFillTest = [];
@@ -163,8 +163,10 @@ spliceSubtask() {
 onKeydown(event: KeyboardEvent) {
     if (event.key === 'Enter') {
         this.pushToSubtask();
+        this.isInputFocused = false;
     } else if (event.key === 'Escape') {
         this.emptySubtask();
+        this.isInputFocused = false;
     }
   }
 }

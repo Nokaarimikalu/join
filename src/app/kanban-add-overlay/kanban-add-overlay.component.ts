@@ -111,7 +111,7 @@ export class KanbanAddOverlayComponent {
   }
 
   pushToSubtask() {
-    if (this.subtaskString.trim() === '') return;
+    if (this.subtaskString.trim() === '') {this.isInputFocused = false; return;}
 
     if (!this.taskList.subTaskFillTest) {
       this.taskList.subTaskFillTest = [];
