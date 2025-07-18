@@ -16,8 +16,7 @@ import { OverlayState } from '../../services/contacts/overlayState.service';
         NavFooterComponent,
         NavFooterMobileComponent,
         FormsModule,
-        MatSelectModule,
-        RouterLink
+        MatSelectModule
     ],
     templateUrl: './kanban-add.component.html',
     styleUrl: './kanban-add.component.scss',
@@ -31,6 +30,7 @@ export class KanbanAddComponent {
     currentIndex: number = 0;
     submitted: boolean = false;
     subtaskString: string = '';
+    currentDate: string = new Date().getFullYear().toString() + "-" + (new Date().getMonth()+1).toString().padStart(2, '0') + "-" + new Date().getDate().toString().padStart(2, '0');
 
     editingSubtaskValue: string = '';
     editingSubtaskIndex: number | null = null;
@@ -117,6 +117,18 @@ export class KanbanAddComponent {
     emptySubtask() {
         this.subtaskString = '';
         this.isInputFocused = false;
+    }
+
+    startEditingSubtask(index: number) {
+        this.editingSubtaskIndex = index;
+        this.editingSubtaskValue = this.task.subTaskFillTest[index].text;
+    }
+
+    saveEditingSubtask(index: number) {
+        if (this.editingSubtaskValue.trim() !== '') {
+            this.taskList.subTaskFillTest[this.currentIndex].text = this.editingSubtaskValue.trim();
+        }
+        this.editingSubtaskIndex = null;
     }
 
     resetForm() {

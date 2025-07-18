@@ -21,6 +21,8 @@ export class KanbanAddOverlayComponent {
   currentIndex: number = 0;
   editingSubtaskValue: string = '';
   subtaskString: string = '';
+  currentDate: string = new Date().getFullYear().toString() + "-" + (new Date().getMonth()+1).toString().padStart(2, '0') + "-" + new Date().getDate().toString().padStart(2, '0');
+
 
   taskList: TaskItemBoard;
 
@@ -122,6 +124,13 @@ export class KanbanAddOverlayComponent {
 spliceSubtask() {
   this.taskList.subTaskFillTest.splice(-1, 1);
 }
+
+saveEditingSubtask(index: number) {
+        if (this.editingSubtaskValue.trim() !== '') {
+            this.taskList.subTaskFillTest[this.currentIndex].text = this.editingSubtaskValue.trim();
+        }
+        this.editingSubtaskIndex = null;
+    }
 
   emptySubtask() {
     this.subtaskString = '';

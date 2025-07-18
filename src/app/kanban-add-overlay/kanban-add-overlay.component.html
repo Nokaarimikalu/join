@@ -28,7 +28,7 @@
 						<label class="form-label">
 							Due date<span class="required-asterisk">*</span>
 						</label>
-						<input [(ngModel)]="taskList.dueDate" class="input-date" type="date" name="dueDate" required
+						<input [(ngModel)]="taskList.dueDate" class="input-date" type="date" [min]="currentDate" name="dueDate" required
 							#dueDate="ngModel" [class.errorborder]="!dueDate.valid && dueDate.touched" />
 					</div>
 					<div class="invalid-input">
@@ -157,25 +157,28 @@
 						<div class="each-sub-task">
 							@for (pushedSubtask of taskList.subTaskFillTest; track $index) {
 
-<!-- 							@if (editingSubtaskIndex === $index) {
+							@if (editingSubtaskIndex === $index) {
 							<li (click)="$event.stopPropagation()">
 								<textarea [(ngModel)]="pushedSubtask.text"></textarea>
-								<button (click)="spliceSubtask()">x
-
+								<button (click)="spliceSubtask()">
+                                    <img src="assets/img/kanban-add/subTaskDeleteButton.png" alt="delete">
 								</button>
+								<button (click)="saveEditingSubtask($index); $event.stopPropagation()">
+									<img src="assets/img/kanban-add/checkmark-subtask.svg" alt="">
+                                </button>
 							</li>
 							}@else {
 							<li (dblclick)="startEditingSubtask($index)">
 								{{ pushedSubtask.text }}
 							</li>
-							} -->
+							}
 							
 							
-							<li (click)="$event.stopPropagation()">
+							<!-- <li (click)="$event.stopPropagation()">
 								<textarea [(ngModel)]="pushedSubtask.text"></textarea>
 								<button (click)="$event.stopPropagation(); spliceSubtask()">x
 								</button>
-							</li> 
+							</li>  -->
 							}
 
 						</div>
