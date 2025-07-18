@@ -63,10 +63,12 @@ export class BoardService implements OnDestroy {
     return collection(this.firestore, 'taskItemBoard')
   }
 
+  
+
   async addTasks(task: TaskItemBoard) {
     const docRef = await addDoc(collection(this.firestore, 'taskItemBoard'), task);
     this.taskConfirmation();
-    return docRef.id
+    return docRef.id;
   }
 
   openFullCard(task: TaskItemBoard) {
