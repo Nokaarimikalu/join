@@ -404,7 +404,9 @@ section {
         }
 
         .each-sub-task {
-            font-size: 1.6em;
+            textarea {
+                height: 1.6em;
+            }
 
             button {
                 border: none;
