@@ -15,12 +15,12 @@
     <div class="headline-area-mobile">
       <div class="mobileDiv">
         <h1>Board</h1>
-        <button class="add-task-button">+</button>
+        <button class="add-task-button" (click)="boardService.toggleAddOverlayColumn('to do')">+</button>
       </div>
 
       <div class="search-input">
-        <input type="text" placeholder="Find Task" class="searchTitle" name="searchTitle" (keyup)="searchTasks()">
-        <button class="search-button" (click)="searchTasks()">
+        <input #searchInputMobile type="text" placeholder="Find Task" class="searchTitleMobile" name="searchTitle" (keyup)="searchTasksMobile()">
+        <button class="search-button" (click)="searchTasksMobile()">
           <div class="hyphen"></div>
           <img src="assets/img/kanban-board/search.png" alt="Search" width="20">
         </button>

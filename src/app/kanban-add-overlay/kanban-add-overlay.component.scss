@@ -396,9 +396,31 @@ section {
         }
 
         .each-sub-task {
+            font-size: 1.6em;
+
+            button {
+                border: none;
+                background: rgba(0, 0, 0, 0);
+                border-bottom: 2px solid #29ABE2;
+            }
+
+            img {
+                width: 1.8em;
+                height: 1.8em;
+                margin-right: 0.3em;
+                padding: 0.1em;
+
+                &:hover {
+                    cursor: pointer;
+                    border-radius: 50%;
+                    background-color: rgba(0, 0, 0, 0.091);
+                }
+            }
+        }
+
+        .each-sub-task-container {
             display: flex;
             justify-content: flex-end;
-            margin-top: 10em;
             gap: 1.5em;
 
             .clear {
@@ -591,17 +613,6 @@ input[type="number"] {
     }
 }
 
-.select-initials {
-    width: 2em;
-    height: 2em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 1em;
-    margin-right: 1em;
-    color: white;
-}
-
 .errorborder {
     border: 2px solid red !important;
 }
@@ -610,4 +621,58 @@ input[type="number"] {
     height: 12px;
     font-size: 12px;
     color: red;
+}
+
+.already-assigned {
+    height: 2em;
+
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5em;
+    padding: 0.5em;
+
+    .select-initials {
+        width: 2em;
+        height: 2em;
+        font-size: 1.6em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 1em;
+        color: white;
+    }
+
+    .more-users {
+        font-size: 16px;
+    }
+}
+
+.each-sub-task {
+    overflow-y: auto;
+    height: 80px;
+    padding-top: 2em;
+
+    li {
+        font-size: 16px;
+    }
+
+    textarea {
+        height: 25px;
+        width: calc(100% - 5em);
+        background: transparent;
+        border: none;
+        border-bottom: 2px solid #29ABE2;
+        resize: none;
+        font-size: 16px;
+        color: #333;
+        outline: none;
+        margin-top: 1em;
+        padding-bottom: 4px;
+        vertical-align: bottom;
+
+        &:focus {
+            border-bottom: 2px solid #29ABE2;
+        }
+    }
 }

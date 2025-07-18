@@ -1,6 +1,6 @@
 <section>
 	<div class="content">
-		<button class="close-button" (click)="boardService.toggleAddOverlay()"></button>
+		<button class="close-button" (click)="boardService.toggleAddOverlay(); $event.stopPropagation()"></button>
 		<div class="left-addtask">
 			<div class="left-content-wrapper">
 				<form class="kanban-form" #addTaskForm="ngForm">
@@ -28,7 +28,7 @@
 						<label class="form-label">
 							Due date<span class="required-asterisk">*</span>
 						</label>
-						<input [(ngModel)]="taskList.dueDate" class="input-date" type="date" name="dueDate" required
+						<input [(ngModel)]="taskList.dueDate" class="input-date" type="date" [min]="currentDate" name="dueDate" required
 							#dueDate="ngModel" [class.errorborder]="!dueDate.valid && dueDate.touched" />
 					</div>
 					<div class="invalid-input">
@@ -97,6 +97,17 @@
 							</mat-option>
 							}
 						</mat-select>
+
+					</div>
+					<div class="already-assigned">
+						@for (assigned of taskList.assignedTo?.slice(0, 3) || [];; track $index) {
+						<div id={{$index}} class="select-initials" [style.background]="assigned.color">
+							{{assigned.initials}}
+						</div>
+						}
+						@if ((taskList.assignedTo?.length || 0) > 3) {
+						<div class="more-users">+{{ (taskList.assignedTo?.length || 0) - 3 }}</div>
+						}
 					</div>
 				</div>
 				<!-- Category-Dropdown -->
@@ -143,8 +154,40 @@
 							}
 						</div>
 
-
 						<div class="each-sub-task">
+							@for (pushedSubtask of taskList.subTaskFillTest; track $index) {
+
+							@if (editingSubtaskIndex === $index) {
+							<li (click)="$event.stopPropagation()">
+								<textarea [(ngModel)]="pushedSubtask.text"></textarea>
+								<button (click)="spliceSubtask()">
+                                    <img src="assets/img/kanban-add/subTaskDeleteButton.png" alt="delete">
+								</button>
+								<button (click)="saveEditingSubtask($index); $event.stopPropagation()">
+									<img src="assets/img/kanban-add/checkmark-subtask.svg" alt="">
+                                </button>
+							</li>
+							}@else {
+							<li (dblclick)="startEditingSubtask($index)">
+								{{ pushedSubtask.text }}
+							</li>
+							}
+							
+							
+							<!-- <li (click)="$event.stopPropagation()">
+								<textarea [(ngModel)]="pushedSubtask.text"></textarea>
+								<button (click)="$event.stopPropagation(); spliceSubtask()">x
+								</button>
+							</li>  -->
+							}
+
+						</div>
+
+
+
+
+
+						<div class="each-sub-task-container">
 							<button class="clear" (click)="resetForm()">
 								Clear
 								<svg width="32" height="32" viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -153,8 +196,7 @@
 										fill="currentColor" />
 								</svg>
 							</button>
-							<button class="create-task" [disabled]="!addTaskForm.valid"
-								(click)="boardService.addTasks(taskList); boardService.taskConfirmation()">
+							<button class="create-task" (click)="onSubmit()">
 								Create Task
 								<img src="assets/img/add-contacts/check.svg" alt="Create Task" />
 							</button>

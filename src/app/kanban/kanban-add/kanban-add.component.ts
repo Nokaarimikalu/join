@@ -1,9 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { HeaderComponent } from '../../shared/header/header.component';
 import { NavFooterComponent } from '../../shared/nav-footer/nav-footer.component';
 import { NavFooterMobileComponent } from '../../shared/nav-footer-mobile/nav-footer-mobile.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm, NgModel } from '@angular/forms';
 import { BoardService } from '../../services/board/board.service';
 import { TaskItemBoard } from '../../shared/interface/task.interface';
 import { MatSelectModule } from '@angular/material/select';
@@ -16,22 +16,26 @@ import { OverlayState } from '../../services/contacts/overlayState.service';
         NavFooterComponent,
         NavFooterMobileComponent,
         FormsModule,
-        MatSelectModule,
+        MatSelectModule
     ],
     templateUrl: './kanban-add.component.html',
     styleUrl: './kanban-add.component.scss',
 })
 export class KanbanAddComponent {
-  
-  
+
+    @ViewChild('addTaskForm') addTaskForm!: NgForm;
+    @ViewChild('category') addMaterialsForm!: NgModel;
 
     isInputFocused: boolean = false;
     currentIndex: number = 0;
     submitted: boolean = false;
     subtaskString: string = '';
+    currentDate: string = new Date().getFullYear().toString() + "-" + (new Date().getMonth()+1).toString().padStart(2, '0') + "-" + new Date().getDate().toString().padStart(2, '0');
 
     editingSubtaskValue: string = '';
     editingSubtaskIndex: number | null = null;
+
+    @Input() task!: TaskItemBoard;
 
     taskList: TaskItemBoard = {
         id: '',
@@ -40,17 +44,8 @@ export class KanbanAddComponent {
         description: '',
         dueDate: '',
         priority: 'Medium',
-        assignedTo: [
-            {
-                initials: '',
-                firstName: '',
-                lastName: '',
-                color: '',
-                email: '',
-                phone: '',
-            },
-        ],
-        subTaskFillTest: [{ text: '', completed: false }],
+        assignedTo: [],
+        subTaskFillTest: [],
     };
 
     constructor(
@@ -64,21 +59,20 @@ export class KanbanAddComponent {
             description: '',
             dueDate: '',
             priority: 'Medium',
-            assignedTo: [
-                {
-                    initials: '',
-                    firstName: '',
-                    lastName: '',
-                    color: '',
-                    email: '',
-                    phone: '',
-                },
-            ],
-            subTaskFillTest: [{ text: '', completed: false }],
+            assignedTo: [],
+            subTaskFillTest: [],
         };
     }
 
-    @Input() task!: TaskItemBoard;
+    onSubmit() {
+        this.submitted = true;
+        this.addTaskForm.form.markAllAsTouched();
+        this.addMaterialsForm.control.markAllAsTouched();
+
+        if (this.addTaskForm.form.valid && this.addMaterialsForm.valid) {
+            this.boardService.addTasks(this.taskList);
+        }
+    }
 
     addTask() {
         if (this.boardService.selectedTask) {
@@ -103,46 +97,58 @@ export class KanbanAddComponent {
         this.boardService.fullCardActive = !this.boardService.fullCardActive;
     }
 
-    pushToSubtask() {
-        if (this.subtaskString.trim() === '') return;
+  pushToSubtask() {
+    if (this.subtaskString.trim() === '') return;
 
-        if (!this.task.subTaskFillTest) {
-            this.task.subTaskFillTest = [];
-        }
-
-        const newSubtask = {
-            text: this.subtaskString.trim(),
-            completed: false,
-        };
-
-        this.task.subTaskFillTest.push(newSubtask);
-        this.subtaskString = '';
-        this.isInputFocused = false;
+    if (!this.taskList.subTaskFillTest) {
+      this.taskList.subTaskFillTest = [];
     }
+
+    const newSubtask = {
+      text: this.subtaskString.trim(),
+      completed: false
+    };
+
+    this.taskList.subTaskFillTest.push(newSubtask);
+    this.subtaskString = '';
+    this.isInputFocused = false;
+  }
 
     emptySubtask() {
         this.subtaskString = '';
         this.isInputFocused = false;
     }
 
+    startEditingSubtask(index: number) {
+        this.editingSubtaskIndex = index;
+        this.editingSubtaskValue = this.task.subTaskFillTest[index].text;
+    }
+
+    saveEditingSubtask(index: number) {
+        if (this.editingSubtaskValue.trim() !== '') {
+            this.taskList.subTaskFillTest[this.currentIndex].text = this.editingSubtaskValue.trim();
+        }
+        this.editingSubtaskIndex = null;
+    }
 
     resetForm() {
-  // Setze taskList auf Standardwerte
-  this.taskList = {
-    id: '',
-    title: '',
-    description: '',
-    dueDate: '',
-    priority: 'Medium',  
-    assignedTo: [],
-    category: '',
-    subTaskFillTest: []
-  };
-
-  // Leere das Subtask-Eingabefeld
-  this.subtaskString = '';
-
-  // Setze den Fokus-Status zurück
-  this.isInputFocused = false;
+        this.taskList = {
+            id: '',
+            title: '',
+            description: '',
+            dueDate: '',
+            priority: 'Medium',
+            assignedTo: [],
+            category: '',
+            subTaskFillTest: []
+        };
+        this.subtaskString = '';
+        this.isInputFocused = false;
+        this.addTaskForm.reset();
+        this.addMaterialsForm.reset();
+    }
+spliceSubtask() {
+  this.taskList.subTaskFillTest.splice(-1, 1);
 }
+
 }

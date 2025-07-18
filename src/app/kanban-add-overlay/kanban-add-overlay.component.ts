@@ -1,118 +1,147 @@
-import { Component, NgModule, Input} from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, NgModule, Input, ViewChild } from '@angular/core';
+import { FormsModule, NgForm, NgModel } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { OverlayState } from '../services/contacts/overlayState.service';
 import { TaskItemBoard } from '../shared/interface/task.interface';
 import { BoardService } from '../services/board/board.service';
 
 @Component({
-    selector: 'app-kanban-add-overlay',
-    imports: [FormsModule, MatSelectModule],
-    templateUrl: './kanban-add-overlay.component.html',
-    styleUrls: ['./kanban-add-overlay.component.scss'],
+  selector: 'app-kanban-add-overlay',
+  imports: [
+    FormsModule,
+    MatSelectModule,
+  ],
+  templateUrl: './kanban-add-overlay.component.html',
+  styleUrls: ['./kanban-add-overlay.component.scss'],
 })
 export class KanbanAddOverlayComponent {
-    isInputFocused: boolean = false;
+  isInputFocused: boolean = false;
+  editingSubtaskIndex: number | null = null;
+  submitted: boolean = false;
+  currentIndex: number = 0;
+  editingSubtaskValue: string = '';
+  subtaskString: string = '';
+  currentDate: string = new Date().getFullYear().toString() + "-" + (new Date().getMonth()+1).toString().padStart(2, '0') + "-" + new Date().getDate().toString().padStart(2, '0');
 
-    submitted: boolean = false;
 
+  taskList: TaskItemBoard;
 
-    currentIndex: number = 0;
+  constructor(public boardService: BoardService, public overlayState: OverlayState) {
+    this.taskList = {
+      id: '',
+      status: this.boardService.taskcolumnStatus || 'to do',
+      title: '',
+      description: '',
+      dueDate: '',
+      priority: 'Medium',
+      assignedTo: [],
+      subTaskFillTest: []
+    };
+  }
 
-    subtaskString: string = '';
+  @Input() task!: TaskItemBoard;
 
-    taskList: TaskItemBoard;
+  @ViewChild('addTaskForm') addTaskForm!: NgForm;
+  @ViewChild('category') addMaterialsForm!: NgModel;
 
-    constructor(public boardService: BoardService, public overlayState: OverlayState) {
-        this.taskList = {
-            id: '',
-            status: this.boardService.taskcolumnStatus || 'to do',
-            title: '',
-            description: '',
-            dueDate: '',
-            priority: 'Medium',
-            assignedTo: [{initials: '', firstName:'', lastName:'', color:'', email:'', phone:''}],
-            subTaskFillTest: [{text: '', completed: false}] 
-        };
+  onSubmit() {
+    this.submitted = true;
+    this.addTaskForm.form.markAllAsTouched();
+    this.addMaterialsForm.control.markAllAsTouched();
+
+    if (this.addTaskForm.form.valid && this.addMaterialsForm.valid) {
+      this.boardService.addTasks(this.taskList);
+    }
+  }
+
+  addTask() {
+    if (this.boardService.selectedTask) {
+      this.boardService.addTasks(this.boardService.selectedTask);
+      this.boardService.selectedTask = null;
+    }
+  }
+
+    startEditingSubtask(index: number) {
+        this.editingSubtaskIndex = index;
+        this.editingSubtaskValue = this.task.subTaskFillTest[index].text;
     }
 
-      @Input() task!: TaskItemBoard;
-    
-      addTask() {
-        if (this.boardService.selectedTask) {
-          this.boardService.addTasks(this.boardService.selectedTask);
-          this.boardService.selectedTask = null;
-        }
-      }
 
-      
+  //   clearSubtask() {
+  //   this.taskList.subTaskFillTest = [];
+  //   this.isInputFocused = false;
+  // } 
 
-    
-      //   clearSubtask() {
-      //   this.taskList.subTaskFillTest = [];
-      //   this.isInputFocused = false;
-      // } 
-    
-    changeToUrgent() {
-        this.taskList.priority = 'Urgent';
-      }
-    
-      changeToMedium() {
-        this.taskList.priority = 'Medium';
-      }
-      
-      changeToLow() {
-        this.taskList.priority = 'Low';
-      }
-    
-    
-      resetForm() {
-  // Setze taskList auf Standardwerte
-  this.taskList = {
-    id: '',
-    title: '',
-    description: '',
-    dueDate: '',
-    priority: 'Medium',  
-    assignedTo: [],
-    category: '',
-    subTaskFillTest: []
-  };
+  changeToUrgent() {
+    this.taskList.priority = 'Urgent';
+  }
 
-  // Leere das Subtask-Eingabefeld
-  this.subtaskString = '';
+  changeToMedium() {
+    this.taskList.priority = 'Medium';
+  }
 
-  // Setze den Fokus-Status zurück
-  this.isInputFocused = false;
+  changeToLow() {
+    this.taskList.priority = 'Low';
+  }
+
+
+  resetForm() {
+    this.taskList = {
+      id: '',
+      title: '',
+      description: '',
+      dueDate: '',
+      priority: 'Medium',
+      assignedTo: [],
+      category: '',
+      subTaskFillTest: []
+    };
+    this.subtaskString = '';
+    this.isInputFocused = false;
+    this.addTaskForm.reset();
+    this.addMaterialsForm.reset();
+    this.subtaskString = '';
+    this.isInputFocused = false;
+  }
+
+  pushToSubtask() {
+    if (this.subtaskString.trim() === '') return;
+
+    if (!this.taskList.subTaskFillTest) {
+      this.taskList.subTaskFillTest = [];
+    }
+
+    const newSubtask = {
+      text: this.subtaskString.trim(),
+      completed: false
+    };
+
+    this.taskList.subTaskFillTest.push(newSubtask);
+    this.subtaskString = '';
+    this.isInputFocused = false;
+  }
+
+spliceSubtask() {
+  this.taskList.subTaskFillTest.splice(-1, 1);
 }
 
-    pushToSubtask() {
-        if (this.subtaskString.trim() === '') return;
-
-        if (!this.taskList.subTaskFillTest) {
-            this.taskList.subTaskFillTest = [];
+saveEditingSubtask(index: number) {
+        if (this.editingSubtaskValue.trim() !== '') {
+            this.taskList.subTaskFillTest[this.currentIndex].text = this.editingSubtaskValue.trim();
         }
-
-        const newSubtask = {
-            text: this.subtaskString.trim(),
-            completed: false
-        };
-
-        this.taskList.subTaskFillTest.push(newSubtask);
-        this.subtaskString = '';
-        this.isInputFocused = false;
+        this.editingSubtaskIndex = null;
     }
 
-    emptySubtask() {
-        this.subtaskString = '';
-        this.isInputFocused = false;
-    }
-      toggleFullCard() {
-        this.boardService.fullCardActive = !this.boardService.fullCardActive;
-      }
+  emptySubtask() {
+    this.subtaskString = '';
+    this.isInputFocused = false;
+  }
+  toggleFullCard() {
+    this.boardService.fullCardActive = !this.boardService.fullCardActive;
+  }
 
-      toggleCheckbox(subtaskIndex: number) {
+  toggleCheckbox(subtaskIndex: number) {
     this.taskList.subTaskFillTest[subtaskIndex].completed = !this.taskList.subTaskFillTest[subtaskIndex].completed;
   }
-    
+
 }
