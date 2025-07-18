@@ -16,7 +16,7 @@
                     </div>
                     <div class="form-date kanban-div">
                         <span>Due date</span>
-                        <input type="date" [(ngModel)]="task.dueDate" name="taskDate"/>
+                        <input type="date" [(ngModel)]="task.dueDate" name="taskDate" [min]="currentDate"/>
                     </div>
                 </form>
 
