@@ -103,11 +103,11 @@
                             @if (editingSubtaskIndex === $index) {
                                 <li (click)="$event.stopPropagation()">
                                     <textarea [(ngModel)]="subtask.text"></textarea>
-                                    <button (click)="saveEditingSubtask($index); $event.stopPropagation()">s
-                                    
+                                    <button (click)="saveEditingSubtask($index); $event.stopPropagation()">
+									    <img src="assets/img/kanban-add/checkmark-subtask.svg" alt="save">
                                     </button>
-                                    <button (click)="cancelEditingSubtask(); $event.stopPropagation()">x
-                                        
+                                    <button (click)="cancelEditingSubtask(); $event.stopPropagation()">
+                                        <img src="assets/img/kanban-add/subTaskDeleteButton.png" alt="delete">
                                     </button>
                                 </li>
                             }@else {
