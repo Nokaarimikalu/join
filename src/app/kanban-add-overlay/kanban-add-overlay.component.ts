@@ -21,6 +21,8 @@ export class KanbanAddOverlayComponent {
   currentIndex: number = 0;
   editingSubtaskValue: string = '';
   subtaskString: string = '';
+  currentDate: string = new Date().getFullYear().toString() + "-" + (new Date().getMonth()+1).toString().padStart(2, '0') + "-" + new Date().getDate().toString().padStart(2, '0');
+
 
   taskList: TaskItemBoard;
 
