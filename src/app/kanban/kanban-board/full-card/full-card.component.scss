@@ -2,6 +2,10 @@ section {
     z-index: 5;
     font-size: 16px;
     height: 800px;
+
+    @media (max-width: 965px) {
+        height: 80dvh;
+    }
 }
 
 .full-card-container {
@@ -25,11 +29,16 @@ section {
         width: auto;
     }
 
-    @media (max-width: 474px) {
-        width: auto;
-        height: 744px;
-        gap: 30px;
+    @media (max-width: 415px) {
+        padding-bottom: 0.5em;
+        gap: 40px;
     }
+
+    // @media (max-width: 474px) {
+    //     width: auto;
+    //     // height: 744px;
+    //     gap: 30px;
+    // }
 
     &:hover {
         box-shadow: 0 0 6px rgba(42, 54, 71, 0.3);
@@ -60,23 +69,23 @@ section {
         overflow-y: auto;
 
         &::-webkit-scrollbar {
-                width: 6px;
-                
-            }
+            width: 6px;
 
-            &::-webkit-scrollbar-track {
-                background: #e7e7e7;
-                border-radius: 6px;
-            }
+        }
 
-            &::-webkit-scrollbar-thumb {
-                background: #a8a8a8;
-                border-radius: 6px;
-            }
+        &::-webkit-scrollbar-track {
+            background: #e7e7e7;
+            border-radius: 6px;
+        }
 
-            &::-webkit-scrollbar-thumb:hover {
-                background: #888888;
-            }
+        &::-webkit-scrollbar-thumb {
+            background: #a8a8a8;
+            border-radius: 6px;
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
+            background: #888888;
+        }
 
         .user {
             display: flex;

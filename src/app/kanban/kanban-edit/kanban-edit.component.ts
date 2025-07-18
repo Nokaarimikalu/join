@@ -130,7 +130,7 @@ export class KanbanEditComponent {
     }
 
     pushToSubtask() {
-        if (this.subtaskString.trim() === '') return;
+        if (this.subtaskString.trim() === '') {this.isInputFocused = false;return;}
 
         if (!this.task.subTaskFillTest) {
             this.task.subTaskFillTest = [];

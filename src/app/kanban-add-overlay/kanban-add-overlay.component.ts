@@ -62,8 +62,14 @@ export class KanbanAddOverlayComponent {
   }
 
     startEditingSubtask(index: number) {
-        this.editingSubtaskIndex = index;
-        this.editingSubtaskValue = this.task.subTaskFillTest[index].text;
+        try {
+            this.editingSubtaskIndex = index;
+            this.editingSubtaskValue = this.task.subTaskFillTest[index].text;
+        } catch (error) {
+            console.log('Editing subtask at index:', index);
+            console.log('Current subtask value:', this.taskList.subTaskFillTest[index].text);
+            console.log('Current taskList:', this.taskList.subTaskFillTest);
+        }
     }
 
 
@@ -105,7 +111,7 @@ export class KanbanAddOverlayComponent {
   }
 
   pushToSubtask() {
-    if (this.subtaskString.trim() === '') return;
+    if (this.subtaskString.trim() === '') {this.isInputFocused = false; return;}
 
     if (!this.taskList.subTaskFillTest) {
       this.taskList.subTaskFillTest = [];

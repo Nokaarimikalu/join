@@ -8,6 +8,7 @@ import { BoardService } from '../../services/board/board.service';
 import { TaskItemBoard } from '../../shared/interface/task.interface';
 import { MatSelectModule } from '@angular/material/select';
 import { OverlayState } from '../../services/contacts/overlayState.service';
+import { empty } from 'rxjs';
 
 @Component({
     selector: 'app-kanban-add',
@@ -25,6 +26,7 @@ export class KanbanAddComponent {
 
     @ViewChild('addTaskForm') addTaskForm!: NgForm;
     @ViewChild('category') addMaterialsForm!: NgModel;
+    @ViewChild('subtaskInput') subtaskInput!: HTMLInputElement;
 
     isInputFocused: boolean = false;
     currentIndex: number = 0;
@@ -98,7 +100,7 @@ export class KanbanAddComponent {
     }
 
   pushToSubtask() {
-    if (this.subtaskString.trim() === '') return;
+    if (this.subtaskString.trim() === '') {this.isInputFocused = false; return;}
 
     if (!this.taskList.subTaskFillTest) {
       this.taskList.subTaskFillTest = [];
@@ -158,4 +160,13 @@ spliceSubtask() {
   this.taskList.subTaskFillTest.splice(-1, 1);
 }
 
+onKeydown(event: KeyboardEvent) {
+    if (event.key === 'Enter') {
+        this.pushToSubtask();
+        this.isInputFocused = false;
+    } else if (event.key === 'Escape') {
+        this.emptySubtask();
+        this.isInputFocused = false;
+    }
+  }
 }
