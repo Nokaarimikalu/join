@@ -47,7 +47,7 @@ export class KanbanAddOverlayComponent {
     this.addTaskForm.form.markAllAsTouched();
     this.addMaterialsForm.control.markAllAsTouched();
 
-    if (this.addTaskForm.form.valid) {
+    if (this.addTaskForm.form.valid && this.addMaterialsForm.valid) {
       this.boardService.addTasks(this.taskList);
     }
   }

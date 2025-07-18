@@ -69,7 +69,7 @@ export class KanbanAddComponent {
         this.addTaskForm.form.markAllAsTouched();
         this.addMaterialsForm.control.markAllAsTouched();
 
-        if (this.addTaskForm.form.valid) {
+        if (this.addTaskForm.form.valid && this.addMaterialsForm.valid) {
             this.boardService.addTasks(this.taskList);
         }
     }
@@ -97,22 +97,22 @@ export class KanbanAddComponent {
         this.boardService.fullCardActive = !this.boardService.fullCardActive;
     }
 
-    pushToSubtask() {
-        if (this.subtaskString.trim() === '') return;
+  pushToSubtask() {
+    if (this.subtaskString.trim() === '') return;
 
-        if (!this.task.subTaskFillTest) {
-            this.task.subTaskFillTest = [];
-        }
-
-        const newSubtask = {
-            text: this.subtaskString.trim(),
-            completed: false,
-        };
-
-        this.task.subTaskFillTest.push(newSubtask);
-        this.subtaskString = '';
-        this.isInputFocused = false;
+    if (!this.taskList.subTaskFillTest) {
+      this.taskList.subTaskFillTest = [];
     }
+
+    const newSubtask = {
+      text: this.subtaskString.trim(),
+      completed: false
+    };
+
+    this.taskList.subTaskFillTest.push(newSubtask);
+    this.subtaskString = '';
+    this.isInputFocused = false;
+  }
 
     emptySubtask() {
         this.subtaskString = '';
@@ -135,5 +135,8 @@ export class KanbanAddComponent {
         this.addTaskForm.reset();
         this.addMaterialsForm.reset();
     }
+spliceSubtask() {
+  this.taskList.subTaskFillTest.splice(-1, 1);
+}
 
 }
