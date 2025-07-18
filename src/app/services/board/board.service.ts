@@ -121,12 +121,12 @@ export class BoardService implements OnDestroy {
   taskConfirmation() {
     const overlayRef = document.querySelector('.createdTask');
     overlayRef?.classList.add('display');
+    this.addCardActive = false;
     
     setTimeout(() => {
       overlayRef?.classList.remove('display');
-      this.addCardActive = false;
-    this.router.navigate(['/board']); // Router-Injection erforderlich
-    }, 2000);
+      this.router.navigate(['/board']); // Router-Injection erforderlich
+    }, 1000);
   }
 }
 

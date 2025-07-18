@@ -146,7 +146,7 @@
                                 <div class="kanban-overlay-subtask">
                                     <span class="subtask-span">Subtask</span>
                                     <div class="subtaskfield" (click)="$event.stopPropagation();">
-                                        <input [(ngModel)]="subtaskString" type="text" (focus)="isInputFocused = true">
+                                        <input (keydown)="onKeydown($event)" name="subtaskInput" [(ngModel)]="subtaskString" type="text" (focus)="isInputFocused = true">
                                         @if(!isInputFocused){
                                         <div class="add">
                                             <img src="assets/img/kanban-edit-overlay/plus-zichen.svg" alt="" />
@@ -190,18 +190,17 @@
 							}}
 							
 							
-							<!-- <li (click)="$event.stopPropagation()">
-								<textarea [(ngModel)]="pushedSubtask.text"></textarea>
-								<button (click)="$event.stopPropagation(); spliceSubtask()">x
-								</button>
-							</li> 
-							} -->
 
 						</div>
 
-
+                        <div class="invalid-input">
+                            @if (!title.valid && title.touched || !dueDate.valid && dueDate.touched || !category.valid && category.touched) {
+                                <div>Check your inputs!</div>
+                            }
+                        </div>
                         <!-- each-sub-task -->
                         <div class="each-sub-task-container">
+                            
                             <button class="clear" (click)="resetForm()">
                                 Clear
                                 <svg width="32" height="32" viewBox="0 0 32 32" fill="currentColor"
