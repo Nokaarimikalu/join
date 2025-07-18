@@ -1,6 +1,6 @@
 <section>
 	<div class="content">
-		<button class="close-button" (click)="boardService.toggleAddOverlay()"></button>
+		<button class="close-button" (click)="boardService.toggleAddOverlay(); $event.stopPropagation()"></button>
 		<div class="left-addtask">
 			<div class="left-content-wrapper">
 				<form class="kanban-form" #addTaskForm="ngForm">
@@ -14,7 +14,7 @@
 					</div>
 					<div class="invalid-input">
 						@if (!title.valid && title.touched) {
-							<div>This Field is required</div>
+						<div>This Field is required</div>
 						}
 					</div>
 					<div class="form-description div-cont">
@@ -154,8 +154,37 @@
 							}
 						</div>
 
-
 						<div class="each-sub-task">
+							@for (pushedSubtask of taskList.subTaskFillTest; track $index) {
+
+<!-- 							@if (editingSubtaskIndex === $index) {
+							<li (click)="$event.stopPropagation()">
+								<textarea [(ngModel)]="pushedSubtask.text"></textarea>
+								<button (click)="spliceSubtask()">x
+
+								</button>
+							</li>
+							}@else {
+							<li (dblclick)="startEditingSubtask($index)">
+								{{ pushedSubtask.text }}
+							</li>
+							} -->
+							
+							
+							<li (click)="$event.stopPropagation()">
+								<textarea [(ngModel)]="pushedSubtask.text"></textarea>
+								<button (click)="$event.stopPropagation(); spliceSubtask()">x
+								</button>
+							</li> 
+							}
+
+						</div>
+
+
+
+
+
+						<div class="each-sub-task-container">
 							<button class="clear" (click)="resetForm()">
 								Clear
 								<svg width="32" height="32" viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -164,10 +193,10 @@
 										fill="currentColor" />
 								</svg>
 							</button>
-								<button class="create-task" (click)="onSubmit()">
-										Create Task
-										<img src="assets/img/add-contacts/check.svg" alt="Create Task" />
-								</button>
+							<button class="create-task" (click)="onSubmit()">
+								Create Task
+								<img src="assets/img/add-contacts/check.svg" alt="Create Task" />
+							</button>
 						</div>
 					</div>
 				</div>
