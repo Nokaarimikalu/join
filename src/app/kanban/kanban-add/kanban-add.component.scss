@@ -45,6 +45,12 @@
                 width: 100%;
                 height: 92dvh;
 
+
+                @media (max-width: 965px) {
+                    height: 84dvh;
+
+                }
+
                 @media(max-width:750px) {
                     flex-direction: column;
                 }
@@ -55,6 +61,7 @@
                     flex-direction: column;
                     justify-content: center;
                     align-items: center;
+                    padding-top: 2em;
 
                     @media(max-width:750px) {
                         width: 100%;
@@ -74,7 +81,7 @@
                         .kanban-form {
                             display: flex;
                             flex-direction: column;
-                            justify-content: space-around;
+                            justify-content: space-evenly;
                             width: 100%;
                             gap: 30px;
                             height: 100%;
@@ -85,12 +92,14 @@
                                 color: red;
                             }
 
-                            .form-label {
-                                font-size: 1.6em;
-
+                            .required-label {
                                 @media(max-width:750px) {
                                     display: none;
                                 }
+                            }
+
+                            .form-label {
+                                font-size: 1.6em;
 
                                 .required-asterisk {
                                     color: red;
@@ -101,25 +110,31 @@
                             .without-required {
                                 display: flex;
                                 flex-direction: column;
-                                justify-content: space-evenly;
                                 width: 100%;
                                 height: 100%;
+                                padding-top: 8dvh;
 
                                 h1 {
                                     font-size: 6em;
+                                    margin-bottom: 0.7em;
+
+                                    @media (max-width: 965px) {
+                                        margin-bottom: 0;
+                                    }
                                 }
 
                                 .form-input-content {
                                     height: 50dvh;
                                     display: flex;
                                     flex-direction: column;
-                                    justify-content: space-around;
+                                    justify-content: center;
                                 }
 
                                 .div-cont {
                                     display: flex;
                                     flex-direction: column;
                                     min-height: 64px;
+                                    margin-bottom: 3em;
 
                                     input,
                                     textarea {
@@ -153,8 +168,7 @@
 
                             .required-label {
                                 font-size: 1.6em;
-                                margin-bottom: 4dvh;
-                                margin-bottom: 4dvh;
+                                margin-bottom: 8dvh;
                             }
                         }
                     }
@@ -601,7 +615,10 @@
 .each-sub-task {
     overflow-y: auto;
     height: 80px;
-    padding-top: 2em;
+    margin-top: 1em;
+    border: solid rgba(0, 0, 0, 0.049) 2px;
+    padding: 1em 2em;
+    border-radius: 1.5em;
 
     li {
         font-size: 16px;
@@ -617,9 +634,10 @@
         font-size: 16px;
         color: #333;
         outline: none;
-        margin-top: 1em;
         padding-bottom: 4px;
         vertical-align: bottom;
+
+
 
         &:focus {
             border-bottom: 2px solid #29ABE2;
