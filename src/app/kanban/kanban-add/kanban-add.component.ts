@@ -16,8 +16,7 @@ import { OverlayState } from '../../services/contacts/overlayState.service';
         NavFooterComponent,
         NavFooterMobileComponent,
         FormsModule,
-        MatSelectModule,
-        RouterLink
+        MatSelectModule
     ],
     templateUrl: './kanban-add.component.html',
     styleUrl: './kanban-add.component.scss',
@@ -117,6 +116,18 @@ export class KanbanAddComponent {
     emptySubtask() {
         this.subtaskString = '';
         this.isInputFocused = false;
+    }
+
+    startEditingSubtask(index: number) {
+        this.editingSubtaskIndex = index;
+        this.editingSubtaskValue = this.task.subTaskFillTest[index].text;
+    }
+
+    saveEditingSubtask(index: number) {
+        if (this.editingSubtaskValue.trim() !== '') {
+            this.taskList.subTaskFillTest[this.currentIndex].text = this.editingSubtaskValue.trim();
+        }
+        this.editingSubtaskIndex = null;
     }
 
     resetForm() {
