@@ -6,10 +6,13 @@ import { KanbanAddComponent } from "./kanban/kanban-add/kanban-add.component";
 import { HelpMeComponent } from './shared/help-me/help-me.component';
 import { PrivacyComponent } from './shared/privacy/privacy.component';
 import { LegalNoticeComponent } from './shared/legal-notice/legal-notice.component';
+import { SummaryComponent } from './summary/summary.component';
+
 
 
 export const routes: Routes = [
   {path: '', component:KanbanComponent},
+  {path: 'summary', component:SummaryComponent},
   {path: 'privacy', component:PrivacyComponent},
   {path: 'help', component:HelpMeComponent},
   {path: 'legalNotice', component:LegalNoticeComponent},
