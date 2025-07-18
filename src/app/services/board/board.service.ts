@@ -98,8 +98,12 @@ export class BoardService implements OnDestroy {
   }
 
   toggleAddOverlayColumn(status: string) {
-    this.addCardActive = !this.addCardActive;
     this.taskcolumnStatus = status;
+    if(window.innerWidth < 1300){
+      this.router.navigate(['/task'])
+    }else{
+      this.addCardActive = !this.addCardActive;
+    }
   }
 
 
