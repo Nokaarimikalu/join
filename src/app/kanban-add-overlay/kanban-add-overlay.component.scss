@@ -3,6 +3,10 @@ section {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @media (max-width: 1300px) {
+        display: none;
+    }
 }
 
 .content {
@@ -13,6 +17,10 @@ section {
     border-radius: 40px;
     background-color: white;
     box-shadow: black 0px 0px 15px 0px;
+
+    @media (max-width: 1300px) {
+        display: none;
+    }
 
     // ----------- Left Side ----------
     .left-addtask {
