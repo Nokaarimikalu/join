@@ -18,5 +18,4 @@ export class HeaderComponent {
     overlayRef?.classList.toggle("hidden");
     spanRef?.classList.toggle("active");
   }
-
 }
