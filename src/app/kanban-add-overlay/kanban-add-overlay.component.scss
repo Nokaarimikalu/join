@@ -395,6 +395,29 @@ section {
             }
         }
 
+        .each-sub-task {
+            font-size: 1.6em;
+
+            button {
+                border: none;
+                background: rgba(0, 0, 0, 0);
+                border-bottom: 2px solid #29ABE2;
+            }
+
+            img {
+                width: 1.8em;
+                height: 1.8em;
+                margin-right: 0.3em;
+                padding: 0.1em;
+
+                &:hover {
+                    cursor: pointer;
+                    border-radius: 50%;
+                    background-color: rgba(0, 0, 0, 0.091);
+                }
+            }
+        }
+
         .each-sub-task-container {
             display: flex;
             justify-content: flex-end;
@@ -626,8 +649,8 @@ input[type="number"] {
 }
 
 .each-sub-task {
-            overflow-y: auto;
-            height: 80px;
+    overflow-y: auto;
+    height: 80px;
     padding-top: 2em;
 
     li {
