@@ -157,9 +157,12 @@
 						<div class="each-sub-task">
 							@for (pushedSubtask of taskList.subTaskFillTest; track $index) {
 
-<!-- 							@if (editingSubtaskIndex === $index) {
+							@if (editingSubtaskIndex === $index) {
 							<li (click)="$event.stopPropagation()">
 								<textarea [(ngModel)]="pushedSubtask.text"></textarea>
+								<button (click)="saveEditingSubtask($index); $event.stopPropagation()">
+									s
+                                </button>
 								<button (click)="spliceSubtask()">x
 
 								</button>
@@ -168,14 +171,14 @@
 							<li (dblclick)="startEditingSubtask($index)">
 								{{ pushedSubtask.text }}
 							</li>
-							} -->
+							}
 							
 							
-							<li (click)="$event.stopPropagation()">
+							<!-- <li (click)="$event.stopPropagation()">
 								<textarea [(ngModel)]="pushedSubtask.text"></textarea>
 								<button (click)="$event.stopPropagation(); spliceSubtask()">x
 								</button>
-							</li> 
+							</li>  -->
 							}
 
 						</div>

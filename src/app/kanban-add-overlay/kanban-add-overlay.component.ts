@@ -123,6 +123,13 @@ spliceSubtask() {
   this.taskList.subTaskFillTest.splice(-1, 1);
 }
 
+saveEditingSubtask(index: number) {
+        if (this.editingSubtaskValue.trim() !== '') {
+            this.taskList.subTaskFillTest[this.currentIndex].text = this.editingSubtaskValue.trim();
+        }
+        this.editingSubtaskIndex = null;
+    }
+
   emptySubtask() {
     this.subtaskString = '';
     this.isInputFocused = false;
