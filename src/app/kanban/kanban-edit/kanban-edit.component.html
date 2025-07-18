@@ -102,7 +102,7 @@
                         @for (subtask of task.subTaskFillTest; track $index) {
                             @if (editingSubtaskIndex === $index) {
                                 <li (click)="$event.stopPropagation()">
-                                    <textarea [(ngModel)]="editingSubtaskValue"></textarea>
+                                    <textarea [(ngModel)]="subtask.text"></textarea>
                                     <button (click)="saveEditingSubtask($index); $event.stopPropagation()">s
                                     
                                     </button>

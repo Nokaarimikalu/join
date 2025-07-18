@@ -16,10 +16,10 @@ import { BoardService } from '../services/board/board.service';
 })
 export class KanbanAddOverlayComponent {
   isInputFocused: boolean = false;
-
+  editingSubtaskIndex: number | null = null;
   submitted: boolean = false;
   currentIndex: number = 0;
-
+  editingSubtaskValue: string = '';
   subtaskString: string = '';
 
   taskList: TaskItemBoard;
@@ -47,7 +47,7 @@ export class KanbanAddOverlayComponent {
     this.addTaskForm.form.markAllAsTouched();
     this.addMaterialsForm.control.markAllAsTouched();
 
-    if (this.addTaskForm.form.valid) {
+    if (this.addTaskForm.form.valid && this.addMaterialsForm.valid) {
       this.boardService.addTasks(this.taskList);
     }
   }
@@ -59,7 +59,10 @@ export class KanbanAddOverlayComponent {
     }
   }
 
-
+    startEditingSubtask(index: number) {
+        this.editingSubtaskIndex = index;
+        this.editingSubtaskValue = this.task.subTaskFillTest[index].text;
+    }
 
 
   //   clearSubtask() {
@@ -95,11 +98,7 @@ export class KanbanAddOverlayComponent {
     this.isInputFocused = false;
     this.addTaskForm.reset();
     this.addMaterialsForm.reset();
-
-    // Leere das Subtask-Eingabefeld
     this.subtaskString = '';
-
-    // Setze den Fokus-Status zurück
     this.isInputFocused = false;
   }
 
@@ -119,6 +118,10 @@ export class KanbanAddOverlayComponent {
     this.subtaskString = '';
     this.isInputFocused = false;
   }
+
+spliceSubtask() {
+  this.taskList.subTaskFillTest.splice(-1, 1);
+}
 
   emptySubtask() {
     this.subtaskString = '';

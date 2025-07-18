@@ -395,10 +395,9 @@ section {
             }
         }
 
-        .each-sub-task {
+        .each-sub-task-container {
             display: flex;
             justify-content: flex-end;
-            margin-top: 10em;
             gap: 1.5em;
 
             .clear {
@@ -623,5 +622,34 @@ input[type="number"] {
 
     .more-users {
         font-size: 16px;
+    }
+}
+
+.each-sub-task {
+            overflow-y: auto;
+            height: 80px;
+    padding-top: 2em;
+
+    li {
+        font-size: 16px;
+    }
+
+    textarea {
+        height: 25px;
+        width: calc(100% - 5em);
+        background: transparent;
+        border: none;
+        border-bottom: 2px solid #29ABE2;
+        resize: none;
+        font-size: 16px;
+        color: #333;
+        outline: none;
+        margin-top: 1em;
+        padding-bottom: 4px;
+        vertical-align: bottom;
+
+        &:focus {
+            border-bottom: 2px solid #29ABE2;
+        }
     }
 }
