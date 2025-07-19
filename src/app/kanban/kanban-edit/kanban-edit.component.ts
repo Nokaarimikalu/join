@@ -155,21 +155,6 @@ export class KanbanEditComponent {
         this.isInputFocused = false;
     }
 
-    setFocusOnInput() {
-        this.isInputFocused = true;
-        setTimeout(() => {
-            const inputField = document.querySelector(
-                '.subtaskfield input'
-            ) as HTMLInputElement;
-            inputField?.focus();
-        }, 0);
-    }
-
-    handleBlur() {
-        // Optional: prüfe hier, ob wirklich kein anderer Button geklickt wurde
-        this.isInputFocused = false;
-    }
-
     emptySubtask() {
         this.subtaskString = '';
         this.isInputFocused = false;
