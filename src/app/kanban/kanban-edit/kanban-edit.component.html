@@ -72,10 +72,30 @@
                             } 
                         </mat-select>
                     </div>
-                    <div class="already-assigned">@for (assigned of task.assignedTo; track $index) {
-                    <div id={{$index}} class="select-initials" [style.background]="assigned.color">{{assigned.initials}}</div>              
-                    }</div>
+                    <div class="already-assigned">
+                        @for (assigned of task.assignedTo?.slice(0, 3) || [];; track $index) {
+						<div id={{$index}} class="select-initials" [style.background]="assigned.color">
+							{{assigned.initials}}
+						</div>
+						}
+						@if ((task.assignedTo?.length || 0) > 3) {
+						<div class="more-users">+{{ (task.assignedTo?.length || 0) - 3 }}</div>
+						}
+                    </div>
                 </div>
+
+                <div class="category-dropdown">
+					<label class="form-label">Category</label>
+					<select [(ngModel)]="task.category" panelClass="select-category" name="category" required
+						#category="ngModel">
+						<option value="Management">Management</option>
+						<option value="Technical">Technical</option>
+						<option value="Developement">Developement</option>
+						<option value="Design">Design</option>
+						<option value="Documentation">Documentation</option>
+						<option value="User Story">User Story</option>
+					</select>
+				</div>
 
                 <div class="kanban-overlay-subtask">
                     <span>Subtask</span>
