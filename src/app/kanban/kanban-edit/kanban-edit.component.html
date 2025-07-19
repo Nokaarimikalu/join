@@ -84,6 +84,19 @@
                     </div>
                 </div>
 
+                <div class="category-dropdown">
+					<label class="form-label">Category</label>
+					<select [(ngModel)]="task.category" panelClass="select-category" name="category" required
+						#category="ngModel">
+						<option value="Management">Management</option>
+						<option value="Technical">Technical</option>
+						<option value="Developement">Developement</option>
+						<option value="Design">Design</option>
+						<option value="Documentation">Documentation</option>
+						<option value="User Story">User Story</option>
+					</select>
+				</div>
+
                 <div class="kanban-overlay-subtask">
                     <span>Subtask</span>
                     <div class="subtaskfield" (click)="$event.stopPropagation();">
