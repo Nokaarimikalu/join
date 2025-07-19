@@ -72,11 +72,19 @@ export class KanbanAddOverlayComponent {
         }
     }
 
+setFocusOnInput() {
+  this.isInputFocused = true;
+  setTimeout(() => {
+    const inputField = document.querySelector('.subtaskfield input') as HTMLInputElement;
+    inputField?.focus();
+  }, 0);
+}
 
-  //   clearSubtask() {
-  //   this.taskList.subTaskFillTest = [];
-  //   this.isInputFocused = false;
-  // } 
+handleBlur() {
+  // Optional: prüfe hier, ob wirklich kein anderer Button geklickt wurde
+  this.isInputFocused = false;
+}
+ 
 
   changeToUrgent() {
     this.taskList.priority = 'Urgent';
