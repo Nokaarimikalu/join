@@ -14,11 +14,9 @@ import { ContactList } from '../../shared/interface/contact-list.interface';
     styleUrl: './kanban-edit.component.scss',
 })
 export class KanbanEditComponent {
-
     @Input() task!: TaskItemBoard;
 
     selectedUser: ContactList[] = [];
-
 
     isInputFocused: boolean = false;
 
@@ -28,7 +26,12 @@ export class KanbanEditComponent {
 
     currentIndex: number = 0;
 
-    currentDate: string = new Date().getFullYear().toString() + "-" + (new Date().getMonth()+1).toString().padStart(2, '0') + "-" + new Date().getDate().toString().padStart(2, '0');
+    currentDate: string =
+        new Date().getFullYear().toString() +
+        '-' +
+        (new Date().getMonth() + 1).toString().padStart(2, '0') +
+        '-' +
+        new Date().getDate().toString().padStart(2, '0');
 
     editingSubtaskValue: string = '';
     editingSubtaskIndex: number | null = null;
@@ -99,7 +102,10 @@ export class KanbanEditComponent {
     copyDummyTasks: TaskItem[] = JSON.parse(JSON.stringify(this.dummyTasks));
     //---------------------------------------------------------------------------------------------
 
-    constructor(public overlayState: OverlayState, public boardService: BoardService) { }
+    constructor(
+        public overlayState: OverlayState,
+        public boardService: BoardService
+    ) {}
 
     //------------------------------------------------------------------------------------------
     changeToUrgent() {
@@ -130,7 +136,10 @@ export class KanbanEditComponent {
     }
 
     pushToSubtask() {
-        if (this.subtaskString.trim() === '') {this.isInputFocused = false;return;}
+        if (this.subtaskString.trim() === '') {
+            this.isInputFocused = false;
+            return;
+        }
 
         if (!this.task.subTaskFillTest) {
             this.task.subTaskFillTest = [];
@@ -138,11 +147,26 @@ export class KanbanEditComponent {
 
         const newSubtask = {
             text: this.subtaskString.trim(),
-            completed: false
+            completed: false,
         };
 
         this.task.subTaskFillTest.push(newSubtask);
         this.subtaskString = '';
+        this.isInputFocused = false;
+    }
+
+    setFocusOnInput() {
+        this.isInputFocused = true;
+        setTimeout(() => {
+            const inputField = document.querySelector(
+                '.subtaskfield input'
+            ) as HTMLInputElement;
+            inputField?.focus();
+        }, 0);
+    }
+
+    handleBlur() {
+        // Optional: prüfe hier, ob wirklich kein anderer Button geklickt wurde
         this.isInputFocused = false;
     }
 
@@ -162,10 +186,11 @@ export class KanbanEditComponent {
                 description: this.task.description,
                 dueDate: this.task.dueDate,
                 priority: this.task.priority,
-                assignedTo: this.task.assignedTo, 
+                assignedTo: this.task.assignedTo,
                 status: this.task.status,
-                subTaskFillTest: this.task.subTaskFillTest
-            };console.log(this.task.subTaskFillTest);
+                subTaskFillTest: this.task.subTaskFillTest,
+            };
+            console.log(this.task.subTaskFillTest);
             if (typeof this.task.subTaskFillTest !== 'undefined') {
                 updatedTask.subTaskFillTest = this.task.subTask;
             }
@@ -173,10 +198,17 @@ export class KanbanEditComponent {
                 updatedTask.subTaskFillTest = this.task.subTaskFillTest;
             }
             const { doc, updateDoc } = await import('@angular/fire/firestore');
-            const taskDoc = doc(this.boardService.firestore, 'taskItemBoard', this.task.id);
+            const taskDoc = doc(
+                this.boardService.firestore,
+                'taskItemBoard',
+                this.task.id
+            );
             await updateDoc(taskDoc, updatedTask);
         } catch (error) {
-            console.error('Fehler beim Aktualisieren der Aufgabe in Firestore:', error);
+            console.error(
+                'Fehler beim Aktualisieren der Aufgabe in Firestore:',
+                error
+            );
         }
     }
 
@@ -197,12 +229,14 @@ export class KanbanEditComponent {
 
     startEditingSubtask(index: number) {
         this.editingSubtaskIndex = index;
-        this.editingSubtaskValue = this.copyDummyTasks[this.currentIndex].subTask[index];
+        this.editingSubtaskValue =
+            this.copyDummyTasks[this.currentIndex].subTask[index];
     }
 
     saveEditingSubtask(index: number) {
         if (this.editingSubtaskValue.trim() !== '') {
-            this.copyDummyTasks[this.currentIndex].subTask[index] = this.editingSubtaskValue.trim();
+            this.copyDummyTasks[this.currentIndex].subTask[index] =
+                this.editingSubtaskValue.trim();
         }
         this.editingSubtaskIndex = null;
     }
@@ -218,6 +252,10 @@ export class KanbanEditComponent {
     }
 
     isUserAssigned(user: ContactList): boolean {
-        return this.task.assignedTo?.some(assignedUser => assignedUser.email === user.email) || false;
+        return (
+            this.task.assignedTo?.some(
+                (assignedUser) => assignedUser.email === user.email
+            ) || false
+        );
     }
 }

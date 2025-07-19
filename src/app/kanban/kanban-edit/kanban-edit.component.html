@@ -100,9 +100,9 @@
                 <div class="kanban-overlay-subtask">
                     <span>Subtask</span>
                     <div class="subtaskfield" (click)="$event.stopPropagation();">
-                        <input [(ngModel)]="subtaskString" type="text"(focus)="isInputFocused = true" >
+                        <input [(ngModel)]="subtaskString" type="text"(focus)="isInputFocused = true" (blur)="handleBlur()">
                         @if(!isInputFocused){
-                            <div class="add">
+                            <div class="add" (click)="setFocusOnInput()">
                                 <img src="assets/img/kanban-edit-overlay/plus-zichen.svg" alt=""/>
                             </div>
                         }@else {
