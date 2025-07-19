@@ -134,7 +134,7 @@
 					<div class="kanban-overlay-subtask">
 						<span class="subtask-span">Subtask</span>
 						<div class="subtaskfield" (click)="$event.stopPropagation();">
-							<input [(ngModel)]="subtaskString" type="text" (focus)="isInputFocused = true" (blur)="handleBlur()">
+							<input (keydown)="onKeydown($event)" [(ngModel)]="subtaskString" type="text" (focus)="isInputFocused = true" (blur)="handleBlur()">
 							@if(!isInputFocused){
 							<div class="add" (click)="setFocusOnInput()">
 								<img src="assets/img/kanban-edit-overlay/plus-zichen.svg" alt="" />
@@ -144,19 +144,15 @@
 								<button (click)="emptySubtask()">
 									<img src="assets/img/kanban-edit-overlay/exit-subtask.svg" alt="">
 								</button>
-
 								<div class="grey-line"></div>
-
 								<button (click)="pushToSubtask()">
 									<img src="assets/img/kanban-edit-overlay/checkmark-subtask.svg" alt="">
 								</button>
 							</div>
 							}
 						</div>
-
 						<div class="each-sub-task">
 							@for (pushedSubtask of taskList.subTaskFillTest; track $index) {
-
 							@if (editingSubtaskIndex === $index) {
 							<li (click)="$event.stopPropagation()">
 								<textarea [(ngModel)]="pushedSubtask.text"></textarea>
@@ -172,21 +168,8 @@
 								{{ pushedSubtask.text }}
 							</li>
 							}
-							
-							
-							<!-- <li (click)="$event.stopPropagation()">
-								<textarea [(ngModel)]="pushedSubtask.text"></textarea>
-								<button (click)="$event.stopPropagation(); spliceSubtask()">x
-								</button>
-							</li>  -->
 							}
-
 						</div>
-
-
-
-
-
 						<div class="each-sub-task-container">
 							<button class="clear" (click)="resetForm()">
 								Clear

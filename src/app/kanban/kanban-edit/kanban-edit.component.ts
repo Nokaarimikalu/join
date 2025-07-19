@@ -220,4 +220,23 @@ export class KanbanEditComponent {
     isUserAssigned(user: ContactList): boolean {
         return this.task.assignedTo?.some(assignedUser => assignedUser.email === user.email) || false;
     }
+
+    setFocusOnInput() {
+        this.isInputFocused = true;
+        const inputField = document.querySelector('.subtaskfield input') as HTMLInputElement;
+        inputField?.focus();
+    }
+
+    handleBlur() {
+        if( this.subtaskString.trim() === '') {
+        this.isInputFocused = false;}
+    }
+
+    onKeydown(event: KeyboardEvent) {
+        if (event.key === 'Enter') {
+            this.pushToSubtask();
+        } else if (event.key === 'Escape') {
+            this.emptySubtask();
+        }
+    }
 }

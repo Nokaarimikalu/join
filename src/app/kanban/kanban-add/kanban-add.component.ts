@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, input, Input, ViewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { HeaderComponent } from '../../shared/header/header.component';
 import { NavFooterComponent } from '../../shared/nav-footer/nav-footer.component';
@@ -122,16 +122,16 @@ export class KanbanAddComponent {
     }
 
     setFocusOnInput() {
-  this.isInputFocused = true;
-  setTimeout(() => {
-    const inputField = document.querySelector('.subtaskfield input') as HTMLInputElement;
-    inputField?.focus();
-  }, 0);
-}
+        this.isInputFocused = true;
+        
+        const inputField = document.querySelector('.subtaskfield input') as HTMLInputElement;
+        inputField?.focus();
+        
+    }
 
 handleBlur() {
-  // Optional: prüfe hier, ob wirklich kein anderer Button geklickt wurde
-  this.isInputFocused = false;
+  if( this.subtaskString.trim() === '') {
+  this.isInputFocused = false;}
 }
 
     startEditingSubtask(index: number) {
@@ -176,10 +176,8 @@ spliceSubtask() {
 onKeydown(event: KeyboardEvent) {
     if (event.key === 'Enter') {
         this.pushToSubtask();
-        this.isInputFocused = false;
     } else if (event.key === 'Escape') {
         this.emptySubtask();
-        this.isInputFocused = false;
     }
   }
 }
