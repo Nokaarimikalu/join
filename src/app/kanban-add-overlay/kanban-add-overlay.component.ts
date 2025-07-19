@@ -74,15 +74,13 @@ export class KanbanAddOverlayComponent {
 
 setFocusOnInput() {
   this.isInputFocused = true;
-  setTimeout(() => {
     const inputField = document.querySelector('.subtaskfield input') as HTMLInputElement;
     inputField?.focus();
-  }, 0);
 }
 
 handleBlur() {
-  // Optional: prüfe hier, ob wirklich kein anderer Button geklickt wurde
-  this.isInputFocused = false;
+  if( this.subtaskString.trim() === '') {
+  this.isInputFocused = false;}
 }
  
 
@@ -156,6 +154,14 @@ saveEditingSubtask(index: number) {
 
   toggleCheckbox(subtaskIndex: number) {
     this.taskList.subTaskFillTest[subtaskIndex].completed = !this.taskList.subTaskFillTest[subtaskIndex].completed;
+  }
+
+  onKeydown(event: KeyboardEvent) {
+    if (event.key === 'Enter') {
+        this.pushToSubtask();
+    } else if (event.key === 'Escape') {
+        this.emptySubtask();
+    }
   }
 
 }
