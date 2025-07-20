@@ -25,7 +25,6 @@ section {
 				align-items: center;
 				width: 20%;
 				height: 100%;
-				overflow-y: auto;
 				scrollbar-width: none;
 
 				@media (max-width: 1300px) {
@@ -34,9 +33,7 @@ section {
 				}
 
 				.add-area {
-					top: 0px;
 					margin-bottom: 15px;
-					position: sticky;
 					display: flex;
 					justify-content: space-between;
 					align-items: center;
@@ -53,7 +50,6 @@ section {
 					align-items: center;
 					width: 100%;
 					height: 100%;
-					overflow-y: auto;
 					scrollbar-width: none;
 
 					@media (max-width: 1300px) {
@@ -67,7 +63,6 @@ section {
 						display: none;
 					}
 
-					overflow-y: auto;
 				}
 			}
 		}
