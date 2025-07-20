@@ -7,11 +7,15 @@
         <div class="title-line"></div>
       </div>
       <div class="signup-form">
-        <form>
-          <input type="text" placeholder="Name" name="name">
-          <input type="email" placeholder="Email" name="email">
-          <input type="password" placeholder="Password" name="password">
-          <button class="signup-button">Sign up</button>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <input type="text" placeholder="Name" formControlName="username">
+          <input type="email" placeholder="Email" formControlName="email">
+          @if(errorMessage){
+            <div>{{errorMessage}}</div>
+          }
+          <input type="password" placeholder="Password" formControlName="password">
+          <input type="password" placeholder="Confirm Password" formControlName="confirmPassword">
+          <button type="submit" class="register-button">Sign up</button>
         </form>
       </div>
       <div class="required checkbox-privacy">
@@ -24,7 +28,7 @@
         </label>
         <span class="error-text">You must accept the Privacy policy</span>
       </div>
-      <button class="register-button">Sign up</button>
+      
     </div>
   </div>
 </section>
