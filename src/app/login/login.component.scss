@@ -45,12 +45,20 @@ section {
             }
         }
 
+
+        .login-container {
+            display: flex;
+            justify-content: center;
+        }
         .login-overlay {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            width: 100%;
+            width: 60%;
+            height: 60dvh;
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 
             .login-title {
                 display: flex;
@@ -126,7 +134,7 @@ section {
                             justify-content: center;
                             align-items: center;
                             background-color: transparent;
-                            border: solid rgba(0, 0, 0, 0.049) 2px;
+                            border: solid rgba(0, 0, 0, 0.144) 2px;
                             border-radius: 10px;
                             color: #2a3647;
                             font-size: 1.6em;
