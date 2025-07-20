@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { LoginComponent } from './login/login.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 
 @Component({
@@ -10,5 +11,6 @@ import { LoginComponent } from './login/login.component';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
+
   title = 'join';
 }

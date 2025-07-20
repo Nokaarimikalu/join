@@ -7,6 +7,7 @@
         <button class="register-button">Sign up</button>
       </div>
     </div>
+
     <div class="login-container">
       <div class="login-overlay">
         <div class="login-title">
@@ -14,14 +15,17 @@
           <div class="title-line"></div>
         </div>
         <div class="login-form">
-          <form>
-            <input type="email" placeholder="Email" name="email">
-            <input type="password" placeholder="Password" name="password">
-            <div class="form-btn">
-              <button class="login-button">Login</button>
-              <button class="guest-button">Guest Log in</button>
-            </div>
-          </form>
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <input type="email" placeholder="Email" formControlName="email">
+          @if(errorMessage){
+            <div>{{errorMessage}}</div>
+          }
+          <input type="password" placeholder="Password" formControlName="password">
+          <div class="form-btn">
+            <button type="submit" class="login-button">Login</button>
+            <button class="guest-button">Guest Log in</button>
+          </div>
+        </form>
         </div>
       </div>
     </div>
