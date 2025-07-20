@@ -14,9 +14,11 @@ section {
 
     .not-footer {
         width: 100%;
+        height: 25dvh;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        margin-bottom: 25dvh;
 
         .logo {
             width: 100%;
