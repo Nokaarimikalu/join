@@ -1,13 +1,24 @@
 <section>
+  <div class="logo">
+    <img src="assets/img/sign-up/logo.svg" alt="">
+  </div>
   <div class="content">
     <div class="signup-container">
       <div class="signup-title">
-        <button routerLink="/login"> 
-        <img src="assets/img/info-screen/arrow-left-line.png" alt="Back Button">
-        </button>
-        <h1>Sign up</h1>
-        <div class="title-line"></div>
+        <div class="signup">
+          <button routerLink="/login"> 
+          <img src="assets/img/info-screen/arrow-left-line.png" alt="Back Button">
+          </button>
+          <h1>Sign up</h1>
+          <div class="empty-space"></div>
+        </div>
+        <div class="line-container">
+          <div class="line"></div>
+        </div>
       </div>
+
+
+
       <div class="signup-form">
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
           <input type="text" placeholder="Name" formControlName="username">
@@ -17,7 +28,6 @@
           }
           <input type="password" placeholder="Password" formControlName="password">
           <input type="password" placeholder="Confirm Password" formControlName="confirmPassword">
-          <button type="submit" class="register-button">Sign up</button>
         </form>
       </div>
       <div class="required checkbox-privacy">
@@ -25,12 +35,16 @@
           <input type="checkbox" id="privacy" name="privacy" required />
           <span class="checkmark"></span>
           I accept the
-          <a href="/privacy" target="_blank">
-            Privacy policy</a>
+          <a href="/privacy" target="_blank">Privacy policy</a>
         </label>
-        <span class="error-text">You must accept the Privacy policy</span>
+        <span class="error-text hidden">You must accept the Privacy policy</span>
+        <button type="submit" class="register-button">Sign up</button>
       </div>
       
     </div>
+  </div>
+  <div class="legal-privacy">
+    <span [routerLink]="'/privacy'">Privacy Policy</span>
+    <span [routerLink]="'/legalNotice'">Legal notice</span>
   </div>
 </section>
