@@ -1,6 +1,6 @@
 section {
     width: 100%;
-    max-width: (1920px - 230px);
+    max-width: (1920px);
     height: 100dvh;
     font-size: 10px;
 
@@ -23,13 +23,14 @@ section {
             .logo-wrapper {
                 z-index: 200;
                 animation: moveLogo 1.25s ease-in-out;
-                
+
                 @keyframes diagonal-slide {
                     0% {
                         left: 45%;
                         top: 200%;
                         transform: scale(3); // doppelte Größe
                     }
+
                     100% {
                         left: 0;
                         top: 0;
@@ -45,7 +46,7 @@ section {
                 _position: relative;
             }
 
-           
+
 
             .logo {
                 @media (max-width: 750px) {
