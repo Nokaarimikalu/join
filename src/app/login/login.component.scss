@@ -23,7 +23,7 @@ section {
             .logo-wrapper {
                 z-index: 200;
                 animation: moveLogo 1.25s ease-in-out;
-                
+
                 @keyframes diagonal-slide {
                     0% {
                         left: 45%;
@@ -38,14 +38,11 @@ section {
                 }
             }
 
-
             .slide {
                 -webkit-animation: diagonal-slide 1.25s;
                 animation: diagonal-slide 1.25s;
                 _position: relative;
             }
-
-           
 
             .logo {
                 @media (max-width: 750px) {
@@ -150,13 +147,25 @@ section {
                     width: 100%;
 
                     input {
-                        width: 60%;
+                        width: 70%;
                         min-height: 48px;
                         border-radius: 15px;
                         padding: 0.5em;
                         font-size: 16px;
                         resize: none;
                         border: 2px solid rgba(0, 0, 0, 0.214);
+                    }
+
+                    .mail-icon {
+                        background-image: url(./../../../public/assets/img/login/mail.svg);
+                        background-repeat: no-repeat;
+                        background-position: right 10px center;
+                    }
+
+                    .lock-icon {
+                        background-image: url(./../../../public/assets/img/login/lock.svg);
+                        background-repeat: no-repeat;
+                        background-position: right 10px center;
                     }
 
                     .form-btn {
