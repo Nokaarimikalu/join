@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -9,6 +10,7 @@ import { RouterLink } from '@angular/router';
 })
 export class HeaderComponent {
 
+  authService = inject(AuthService);
 
   toggleDropDown(){
     const dropDownRef = document.querySelector('#drop-down');
@@ -17,5 +19,9 @@ export class HeaderComponent {
     dropDownRef?.classList.toggle("hidden");
     overlayRef?.classList.toggle("hidden");
     spanRef?.classList.toggle("active");
+  }
+
+  logOut(){
+    this.authService.logout();
   }
 }
