@@ -21,13 +21,29 @@ export class SummaryContentComponent {
 
   today = new Date();
 
+  currentGreeting = signal(this.timeGreeting());
+
+
+
   constructor(private boardService: BoardService, private authService: AuthService) {
     this.userEmail = this.authService.loggedInUser(); // get auth mail
     if (this.boardService.taskList.length > 0) {
       this.loading.set(false);
     } else {
-      setTimeout(() => this.loading.set(false), 500);
+      setTimeout(() => this.loading.set(false), 1500);
     }
+    setInterval(() => this.currentGreeting.set(this.timeGreeting()), 60000);
+    console.log("Aktuelle Stunde:", new Date().getHours());
+
+  }
+
+  public timeGreeting(): string {
+    const hour = new Date().getHours();
+
+    if (hour < 5) return 'Good evening';
+    else if (hour < 12) return 'Good morning';
+    else if (hour < 18) return 'Good afternoon';
+    else return 'Good evening';
   }
 
   get todoCount(): number {

@@ -73,22 +73,21 @@
             <span class="text-input">Awaiting <br> Feedback</span>
           </div>
         </div>
-
-
       </div>
     </div>
 
   </div>
   <div class="user-greeting">
-    <h2>Good morning, </h2>
+    <h2>{{currentGreeting()}}</h2>
     <br> <span id="username">{{userFullName}}</span>
   </div>
 </section>
 }
 @placeholder {
-<div class="loader-overlay">
-  <div class="three-dots-loader">
-    <span></span><span></span><span></span>
+  <div class="loader-overlay">
+    <div class="three-dots-loader">
+      <h2>{{ currentGreeting() }}</h2> 
+      <span>Loading...</span>
+    </div>
   </div>
-</div>
 }
