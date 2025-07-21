@@ -37,4 +37,7 @@ export class AuthService {
     })
   }
 
+  loggedInUser(): string | null {
+  return this.firebaseAuth.currentUser?.email || null;
+}
 }

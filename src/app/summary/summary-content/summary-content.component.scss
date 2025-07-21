@@ -67,15 +67,14 @@ section {
 
   @media (max-width: 1270px) {
     margin: 5em 0em;
-
     display: flex;
     justify-content: start;
     flex-direction: column;
     align-items: start;
   }
-    @media (max-width: 1270px) {
-    margin: 3em 0em;
 
+  @media (max-width: 1270px) {
+    margin: 3em 0em;
   }
 
   >.hyphen-mobile {
@@ -89,7 +88,8 @@ section {
   gap: 20px;
   display: flex;
   flex-direction: column;
-        @media (max-width: 750px) {
+
+  @media (max-width: 750px) {
     gap: 0px;
   }
 
@@ -99,14 +99,62 @@ section {
     width: 100%;
     justify-content: space-between;
 
-      @media (max-width: 750px) {
-    height: 16em;
-  }
+    @media (max-width: 750px) {
+      height: 16em;
+    }
   }
 }
 
+.to-do-icon {
+  width: 70px;
+  height: 70px;
+  background-image: url('../../../../public/assets/img/summary/toDoIconDefault.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  @media (max-width:750px) {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (min-width:965px) {
+  .menu-point:hover .to-do-icon {
+    background-image: url('../../../../public/assets/img/summary/toDoIconHover.png');
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
+
+
+.done-icon {
+  width: 70px;
+  height: 70px;
+  background-image: url('../../../../public/assets/img/summary/doneIconDefault.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  @media (max-width:750px) {
+    width: 40px;
+    height: 40px;
+  }
+
+}
+
+@media (min-width:965px) {
+  .menu-point:hover .done-icon {
+    background-image: url('../../../../public/assets/img/summary/doneIconHover.png');
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
+
+
+
+
 span {
-  color: #2a3647;
   font-size: 2em;
 }
 
@@ -128,11 +176,14 @@ h2 {
 
 h4 {
   font-size: 6.4em;
+
+  @media (max-width: 750px) {
+    font-size: 47px;
+  }
 }
 
 h1 {
   font-size: 6.1em;
-  width: 100%;
 
   @media (max-width: 750px) {
     font-size: 47px;
@@ -160,20 +211,17 @@ p {
   height: 16.88em;
   transition: ease-in-out 0.1s;
 
-  &:hover {
-    color: white;
-    width: 51%;
-    height: 18em;
-    background-color: #2a3647;
+  @media (min-width:965px) {
+    &:hover {
+      color: white;
+      width: 51%;
+      height: 18em;
+      background-color: #2a3647;
+    }
   }
 
   @media (max-width: 750px) {
     height: 15em;
-
-      &:hover {
-    color: white;
-    height: 16em;
-  }
   }
 }
 
@@ -199,20 +247,19 @@ p {
   width: 90%;
   transition: ease-in-out 0.1s;
 
-    @media (max-width: 750px) {
+  @media (max-width: 750px) {
     height: 15em;
-
-      &:hover {
-    color: white;
-    height: 16em;
-  }
   }
 
-  &:hover {
-    height: 18em;
-    width: 100%;
-    background-color: #2a3647;
+  @media (min-width:965px) {
+    &:hover {
+      color: white;
+      height: 18em;
+      width: 100%;
+      background-color: #2a3647;
+    }
   }
+
 }
 
 .deadline-priority-container {
@@ -220,7 +267,6 @@ p {
   align-items: center;
   width: 100%;
   height: 18em;
-
 }
 
 .deadline-priority {
@@ -236,14 +282,17 @@ p {
   height: 16.88em;
   transition: ease-in-out 0.1s;
 
-  @media (max-width: 750px) {
-    height: 15em;
+  @media (min-width:965px) {
+    &:hover {
+      height: 18em;
+      background-color: #2a3647;
+      color: white;
+    }
   }
 
-  &:hover {
-    width: 103%;
-    height: 16em;
-    background-color: #2a3647;
+
+  @media (max-width: 750px) {
+    height: 15em;
   }
 
   >.hyphen {
@@ -265,7 +314,7 @@ p {
     flex-direction: column;
 
     #deadline {
-      font-size: 1.6em;
+      font-size: 16px;
     }
   }
 
@@ -280,10 +329,10 @@ p {
   display: flex;
   justify-content: space-between;
   align-items: center;
-@media (max-width: 750px) {
-  height: 16em;
-}
-  
+
+  @media (max-width: 750px) {
+    height: 16em;
+  }
 }
 
 .category-number-container {
@@ -291,6 +340,12 @@ p {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @media (min-width:965px) {
+    &:hover {
+      color: white;
+    }
+  }
 }
 
 @media (max-width: 750px) {

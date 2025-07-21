@@ -6,43 +6,43 @@
       <h3>Key Metrics at Glance</h3>
     </div>
 
-        <div class="headline-area-summary-mobile">
+    <div class="headline-area-summary-mobile">
       <h1>Join 360</h1>
       <h3>Key Metrics at Glance</h3>
-            <div class="hyphen-mobile"></div>
+      <div class="hyphen-mobile"></div>
     </div>
 
     <div class="menu-summary">
 
       <div class="to-do-done">
         <div class="menu-point">
-          <img src="../../../../assets/img/summary/toDoIconDefault.png" alt="">
+          <div class="to-do-icon"></div>
           <div class="category-number-container">
-            <p>1</p>
-            <span>To-do</span>
+            <p>{{todoCount}}</p>
+            <span class="text-input">To-do</span>
           </div>
         </div>
 
         <div class="menu-point">
-          <img src="../../../../assets/img/summary/doneIconDefault.png" alt="">
+          <div class="done-icon"></div>
           <div class="category-number-container">
-            <p>1</p>
-            <span>Done</span>
+            <p>{{doneCount}}</p>
+            <span class="text-input">Done</span>
           </div>
         </div>
       </div>
+
       <div class="deadline-priority-container">
         <div class="deadline-priority">
           <div class="priority">
-            <img src="../../../../assets/img/summary/urgentDefaultIcon.png" alt="">
+            <img src="../../../../assets/img/summary/urgentDefaultIcon.png">
             <div class="category-number-container">
-              <p>1</p>
-              <span>Urgent</span>
+              <p>{{urgentCount}}</p>
+              <span class="text-input">Urgent</span>
             </div>
           </div>
 
           <div class="hyphen"></div>
-
           <div class="deadline">
             <span id="date">{{ today | date:'MMMM d, yyyy' }}</span>
             <span id="deadline">Upcoming Deadline</span>
@@ -54,24 +54,24 @@
       <div class="progression-tasks">
         <div class="hover-container">
           <div class="small-menu-point">
-            <h4>5</h4>
-            <span>Tasks in <br> Board</span>
+            <h4>{{filteredTasks.length}}</h4>
+            <span class="text-input">Tasks in <br> Board</span>
           </div>
         </div>
 
-      <div class="hover-container">
-        <div class="small-menu-point">
-          <h4>2</h4>
-          <span>Tasks in <br> Progress</span>
+        <div class="hover-container">
+          <div class="small-menu-point">
+            <h4>{{progressCount}}</h4>
+            <span class="text-input">Tasks in <br> Progress</span>
+          </div>
         </div>
-      </div>
 
-      <div class="hover-container">
-        <div class="small-menu-point">
-          <h4>2</h4>
-          <span>Awaiting <br> Feedback</span>
+        <div class="hover-container">
+          <div class="small-menu-point">
+            <h4>{{feedbackCount}}</h4>
+            <span class="text-input">Awaiting <br> Feedback</span>
+          </div>
         </div>
-      </div>
 
 
       </div>
@@ -80,6 +80,6 @@
   </div>
   <div class="user-greeting">
     <h2>Good morning, </h2>
-    <br> <span id="username">Sofia Müller</span>
+    <br> <span id="username">{{userFullName}}</span>
   </div>
 </section>

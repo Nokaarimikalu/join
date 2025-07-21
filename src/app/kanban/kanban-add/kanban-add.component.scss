@@ -466,11 +466,11 @@
                         .each-sub-task-container {
                             display: flex;
                             justify-content: flex-end;
-                            margin-top: 10em;
+                            margin-top: 4em;
                             gap: 1.5em;
 
                             @media(max-width: 750px) {
-                                margin-bottom: 5em;
+                                _margin-bottom: 5em;
                                 margin-top: 2em;
                             }
 
