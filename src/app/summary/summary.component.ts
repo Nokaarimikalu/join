@@ -9,7 +9,7 @@ import { SummaryContentComponent } from './summary-content/summary-content.compo
 
 @Component({
   selector: 'app-summary',
-  imports: [NavFooterComponent, NavFooterMobileComponent, HeaderComponent, RouterLink, SummaryContentComponent],
+  imports: [NavFooterComponent, NavFooterMobileComponent, HeaderComponent, SummaryContentComponent],
   templateUrl: './summary.component.html',
   styleUrl: './summary.component.scss'
 })
