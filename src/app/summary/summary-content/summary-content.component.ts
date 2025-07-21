@@ -3,6 +3,7 @@ import { Component, signal } from '@angular/core';
 import { AuthService } from "../../../app/services/auth/auth.service";
 import { BoardService } from "../../../app/services/board/board.service";
 import { TaskItemBoard } from "../../../app/shared/interface/task.interface";
+import { onSnapshot } from '@angular/fire/firestore';
 
 
 
@@ -15,11 +16,18 @@ import { TaskItemBoard } from "../../../app/shared/interface/task.interface";
 
 export class SummaryContentComponent {
   userEmail: string | null = null;
-  
+
+  loading = signal(true);
+
   today = new Date();
 
   constructor(private boardService: BoardService, private authService: AuthService) {
-    this.userEmail = this.authService.loggedInUser(); // get auth mail 
+    this.userEmail = this.authService.loggedInUser(); // get auth mail
+    if (this.boardService.taskList.length > 0) {
+      this.loading.set(false);
+    } else {
+      setTimeout(() => this.loading.set(false), 500);
+    }
   }
 
   get todoCount(): number {
@@ -55,8 +63,8 @@ export class SummaryContentComponent {
     return 'Unknown User';
   }
   getFilteredTasks() {
-  return this.boardService.taskList.filter(
-    task => task.assignedTo?.some(user => user.email === this.userEmail)
-  );
-}
+    return this.boardService.taskList.filter(
+      task => task.assignedTo?.some(user => user.email === this.userEmail)
+    );
+  }
 }

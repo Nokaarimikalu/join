@@ -1,3 +1,4 @@
+@defer (when !loading()) {
 <section>
   <div class="main-input">
     <div class="headline-area-summary">
@@ -83,3 +84,11 @@
     <br> <span id="username">{{userFullName}}</span>
   </div>
 </section>
+}
+@placeholder {
+<div class="loader-overlay">
+  <div class="three-dots-loader">
+    <span></span><span></span><span></span>
+  </div>
+</div>
+}
