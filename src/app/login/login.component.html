@@ -18,11 +18,11 @@
         </div>
         <div class="login-form">
           <form [formGroup]="form" (ngSubmit)="onSubmit()">
-            <input type="email" placeholder="Email" formControlName="email">
+            <input class="mail-icon" type="email" placeholder="Email" formControlName="email">
             @if(errorMessage){
             <div>{{errorMessage}}</div>
             }
-            <input type="password" placeholder="Password" formControlName="password">
+            <input class="lock-icon" type="password" placeholder="Password" formControlName="password">
             <div class="form-btn">
               <button type="submit" class="login-button">Login</button>
               <button (click)="guestLogIn()" class="guest-button" routerLink="/">Guest Log in</button>
