@@ -24,10 +24,14 @@
     width: calc(100dvw - 230px);
     overflow-y: auto;
     scrollbar-width: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+
     @media (max-width:965px) {
         padding: 0px 10px;
-            width: calc(100dvw);
-
+        width: calc(100dvw);
+        justify-content: center;
     }
 }
 
@@ -36,6 +40,7 @@ app-kanban-board {
 }
 
 app-summary-content {
+    display: flex;
     width: 100%;
 }
 

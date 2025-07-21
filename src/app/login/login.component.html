@@ -1,19 +1,21 @@
 <section>
   <div class="content">
     <div class="background-content">
-      <img src="assets/img/header/Logo.png" alt="Logo Join">
+      <img class="logo" src="assets/img/header/Logo.png" alt="Logo Join">
       <div class="login-nav">
         <p>Not a Join User?</p>
-        <button class="register-button">Sign up</button>
+        <button class="register-button" routerLink="/signup">Sign up</button>
       </div>
     </div>
-    <div class="login-overlay">
-      <div class="login-title">
-        <h1>Log in</h1>
-        <div class="title-line"></div>
-      </div>
-      <div class="login-form">
-        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <div class="login-container">
+      <div class="login-overlay">
+        <div class="login-title">
+          <h1>Log in</h1>
+          <div class="title-line"></div>
+        </div>
+        <div class="login-form">
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
           <input type="email" placeholder="Email" formControlName="email">
           @if(errorMessage){
             <div>{{errorMessage}}</div>
@@ -21,11 +23,16 @@
           <input type="password" placeholder="Password" formControlName="password">
           <div class="form-btn">
             <button type="submit" class="login-button">Login</button>
-            <button class="guest-button">Guest Log in</button>
+            <button (click)="guestLogIn()" class="guest-button" routerLink="/">Guest Log in</button>
           </div>
         </form>
+        </div>
       </div>
     </div>
+    <div class="login-nav-mobile">
+        <p>Not a Join User?</p>
+        <button class="register-btn-mobile" routerLink="/signup">Sign up</button>
+      </div>
     <footer>
       <div class="footer-content">
         <a routerLink="/privacy">Privacy Policy</a>
