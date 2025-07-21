@@ -34,6 +34,18 @@ export class LoginComponent {
       });
   }
 
+  guestLogIn(){
+    this.authService.login('mustermann@bspmail.com', '123456')
+      .subscribe({
+        next: () => {
+        this.router.navigateByUrl('/');
+        },
+        error: (error) => {
+          this.errorMessage = error.code
+        },
+      });
+  }
+
   constructor(private router: Router) { }
 }
 

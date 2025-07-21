@@ -23,7 +23,7 @@
           <input type="password" placeholder="Password" formControlName="password">
           <div class="form-btn">
             <button type="submit" class="login-button">Login</button>
-            <button class="guest-button" routerLink="/">Guest Log in</button>
+            <button (click)="guestLogIn()" class="guest-button" routerLink="/">Guest Log in</button>
           </div>
         </form>
         </div>
