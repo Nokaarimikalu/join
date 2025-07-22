@@ -6,8 +6,8 @@
     <div class="signup-container">
       <div class="signup-title">
         <div class="signup">
-          <button routerLink="/login"> 
-          <img src="assets/img/info-screen/arrow-left-line.png" alt="Back Button">
+          <button routerLink="/login">
+            <img src="assets/img/info-screen/arrow-left-line.png" alt="Back Button">
           </button>
           <h1>Sign up</h1>
           <div class="empty-space"></div>
@@ -23,24 +23,23 @@
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
           <input type="text" placeholder="Name" formControlName="username">
           <input type="email" placeholder="Email" formControlName="email">
-          @if(errorMessage){
-            <div>{{errorMessage}}</div>
-          }
           <input type="password" placeholder="Password" formControlName="password">
           <input type="password" placeholder="Confirm Password" formControlName="confirmPassword">
+          <div class="required checkbox-privacy">
+            <label class="custom-checkbox">
+              <input type="checkbox" id="privacy" name="privacy" required />
+              <span class="checkmark"></span>
+              I accept the
+              <a href="/privacy" target="_blank">Privacy policy</a>
+            </label>
+            <span class="error-text hidden">You must accept the Privacy policy</span>
+            <button type="submit" class="register-button">Sign up</button>
+          </div>
+
         </form>
       </div>
-      <div class="required checkbox-privacy">
-        <label class="custom-checkbox">
-          <input type="checkbox" id="privacy" name="privacy" required />
-          <span class="checkmark"></span>
-          I accept the
-          <a href="/privacy" target="_blank">Privacy policy</a>
-        </label>
-        <span class="error-text hidden">You must accept the Privacy policy</span>
-        <button type="submit" class="register-button">Sign up</button>
-      </div>
-      
+
+
     </div>
   </div>
   <div class="legal-privacy">

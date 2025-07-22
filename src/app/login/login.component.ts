@@ -44,10 +44,7 @@ export class LoginComponent {
       .subscribe({
         next: () => {
           this.router.navigateByUrl('/');
-        },
-        error: (error) => {
-          this.errorMessage = error.code
-        },
+        }
       });
   }
 

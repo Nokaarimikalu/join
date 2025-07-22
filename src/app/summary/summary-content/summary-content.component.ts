@@ -47,25 +47,21 @@ export class SummaryContentComponent {
   }
 
   get todoCount(): number {
-    return this.boardService.taskList
-      .filter(task => task.assignedTo?.some(user => user.email === this.userEmail))
-      .filter(task => task.status === 'to do').length;
+    return this.boardService.taskList.filter(task => task.assignedTo?.some(user => user.email === this.userEmail)).filter(task => task.status === 'to do').length;
   }
 
-  get doneCount(): number {
-    return this.boardService.taskList.filter(task => task.status === 'done').length;
-  }
+get doneCount(): number {
+  return this.boardService.taskList.filter(task => task.assignedTo?.some(user => user.email === this.userEmail)).filter(task => task.status === 'done').length;
+}
 
   get progressCount(): number {
-    return this.boardService.taskList.filter(task => task.status === 'in progress').length;
-  }
+  return this.boardService.taskList.filter(task => task.assignedTo?.some(user => user.email === this.userEmail)).filter(task => task.status === 'in progress').length;  }
   get feedbackCount(): number {
-    return this.boardService.taskList.filter(task => task.status === 'await feedback').length;
+    return this.boardService.taskList.filter(task => task.assignedTo?.some(user => user.email === this.userEmail)).filter(task => task.status === 'await feedback').length;
   }
 
   get urgentCount(): number {
-    return this.boardService.taskList.filter(task => task.priority === 'Urgent').length;
-  }
+  return this.boardService.taskList.filter(task => task.assignedTo?.some(user => user.email === this.userEmail)).filter(task => task.priority === 'Urgent').length;  }
 
   get userFullName(): string {
     const userTask = this.boardService.taskList.find(task =>
