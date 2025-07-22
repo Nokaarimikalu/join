@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators, NgModel, NgForm, FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../services/auth/auth.service';
@@ -20,28 +20,30 @@ export class LoginComponent {
 
   errorMessage: string | null = null;
 
+  showPassword: boolean = false;
+
+
   constructor(private router: Router) { }
 
-onSubmit(): void {
+  onSubmit(): void {
     this.form.markAllAsTouched();
+    if (this.form.invalid) {
+      this.errorMessage = 'Check your email and password. Please try again.';
+      return;
+    }
 
-  if (this.form.invalid) {
-    this.errorMessage = 'Check your email and password. Please try again.';
-    return;
+    const rawForm = this.form.getRawValue();
+    this.authService.login(rawForm.email, rawForm.password).subscribe({
+      next: () => this.router.navigateByUrl('/'),
+      error: (error) => this.errorMessage = error.code
+    });
   }
 
-  const rawForm = this.form.getRawValue();
-  this.authService.login(rawForm.email, rawForm.password).subscribe({
-    next: () => this.router.navigateByUrl('/'),
-    error: (error) => this.errorMessage = error.code
-  });
-}
-
-  guestLogIn(){
+  guestLogIn() {
     this.authService.login('mustermann@bspmail.com', '123456')
       .subscribe({
         next: () => {
-        this.router.navigateByUrl('/');
+          this.router.navigateByUrl('/');
         },
         error: (error) => {
           this.errorMessage = error.code

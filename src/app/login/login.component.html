@@ -20,12 +20,15 @@
           <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <input class="mail-icon" type="email" placeholder="Email" formControlName="email"
               [class.error-border]="form.get('email')?.invalid && (form.get('email')?.dirty || form.get('email')?.touched)">
+            <input class="lock-icon" [type]="showPassword ? 'text' : 'password'" placeholder="Password"
+              formControlName="password" [class.error-border]="form.get('password')?.invalid && (form.get('password')?.dirty || form.get('password')?.touched)">
 
-            <input class="lock-icon" type="password" placeholder="Password" formControlName="password"
-              [class.error-border]="form.get('password')?.invalid && (form.get('password')?.dirty || form.get('password')?.touched)">
+            <span (click)="showPassword = !showPassword" class="toggle-password"> {{ showPassword ? 'hide-Pw' : 'show-Pw' }} </span>
+
             <div class="error-text">
               <p>{{errorMessage}}</p>
             </div>
+
             <div class="form-btn">
               <button type="submit" class="login-button">Login</button>
               <button (click)="guestLogIn()" class="guest-button" routerLink="/">Guest Log in</button>

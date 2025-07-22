@@ -3,6 +3,8 @@ section {
     max-width: (1920px);
     height: 100dvh;
     font-size: 10px;
+        user-select: none;
+
 
     .content {
         display: flex;
@@ -150,6 +152,7 @@ section {
                     width: 100%;
 
                     input {
+                        cursor: pointer;
                         width: 70%;
                         min-height: 48px;
                         border-radius: 15px;
@@ -305,4 +308,12 @@ section {
 
 .error-border{
     border-color: red !important;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 32%;
+  transform: translateY(-50%);
+  cursor: pointer;
 }
