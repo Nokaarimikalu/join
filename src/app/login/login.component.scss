@@ -22,11 +22,11 @@ section {
         }
     }
 
-    /* Animation für das Ausblenden */
     @keyframes fadeOut {
         from {
             opacity: 1;
         }
+
         to {
             opacity: 0;
             visibility: hidden;
@@ -49,23 +49,29 @@ section {
             align-items: center;
             width: 100%;
 
-           
+
 
             .logo-wrapper {
-                z-index: 200;
+                z-index: 1000;
                 animation: moveLogo 1.25s ease-in-out;
 
                 @keyframes diagonal-slide {
                     0% {
                         left: 45%;
                         top: 200%;
-                        transform: scale(3); // doppelte Größe
+                        transform: scale(3);
+                        filter: brightness(0) invert(1);
+                    }
+
+                    50% {
+                        filter: brightness(0) invert(1);
                     }
 
                     100% {
                         left: 0;
                         top: 0;
-                        transform: scale(1); // normale Größe
+                        transform: scale(1);
+                        filter: none;
                     }
                 }
             }
@@ -78,6 +84,7 @@ section {
 
             .logo {
                 @media (max-width: 750px) {
+                    z-index: 200;
                     width: 3.5em;
                 }
             }
