@@ -2,7 +2,6 @@
     display: flex;
     height: 100dvh;
     overflow-x: hidden;
-    font-size: 10px;
 
     @media (max-width: 965px) {
         height: 92dvh;
@@ -14,44 +13,19 @@
         width: 100%;
 
         section {
+            font-size: 10px;
             max-width: (1920px - 230px);
-
-            @media(max-width:1280px) {
-                font-size: 9px;
-            }
-
-            @media(max-width:1240px) {
-                font-size: 8px;
-            }
-
-            @media(max-width:1040px) {
-                font-size: 7px;
-            }
-
-            @media(max-width:750px) {
-                font-size: 10px;
-            }
-
-            @media(max-width:550px) {
-                font-size: 9px;
-            }
-
-            @media(max-width:470px) {
-                font-size: 8px;
-            }
 
             .content {
                 display: flex;
                 width: 100%;
                 height: 92dvh;
 
-
                 @media (max-width: 965px) {
                     height: 84dvh;
-
                 }
 
-                @media(max-width:750px) {
+                @media (max-width: 750px) {
                     flex-direction: column;
                 }
 
@@ -63,7 +37,7 @@
                     align-items: center;
                     padding-top: 2em;
 
-                    @media(max-width:750px) {
+                    @media (max-width: 750px) {
                         width: 100%;
                     }
 
@@ -74,7 +48,7 @@
                         height: 100%;
                         width: 80%;
 
-                        @media(max-width:1300px) {
+                        @media (max-width: 1300px) {
                             width: 90%;
                         }
 
@@ -83,28 +57,12 @@
                             flex-direction: column;
                             justify-content: space-evenly;
                             width: 100%;
-                            gap: 30px;
                             height: 100%;
 
                             .invalid-input {
                                 height: 10px;
                                 font-size: 12px;
                                 color: red;
-                            }
-
-                            .required-label {
-                                @media(max-width:750px) {
-                                    display: none;
-                                }
-                            }
-
-                            .form-label {
-                                font-size: 1.6em;
-
-                                .required-asterisk {
-                                    color: red;
-                                    margin-right: 1em;
-                                }
                             }
 
                             .without-required {
@@ -114,12 +72,16 @@
                                 height: 100%;
                                 padding-top: 8dvh;
 
+                                @media (max-width: 750px) {
+                                    padding-top: 4dvh;
+                                }
+
                                 h1 {
                                     font-size: 6em;
                                     margin-bottom: 0.7em;
 
                                     @media (max-width: 965px) {
-                                        margin-bottom: 0;
+                                        margin-bottom: 0.5em;
                                     }
                                 }
 
@@ -128,6 +90,10 @@
                                     display: flex;
                                     flex-direction: column;
                                     justify-content: center;
+
+                                    @media (max-width: 750px) {
+                                        height: 22dvh;
+                                    }
                                 }
 
                                 .div-cont {
@@ -135,6 +101,11 @@
                                     flex-direction: column;
                                     min-height: 64px;
                                     margin-bottom: 3em;
+
+                                    @media (max-width: 750px) {
+                                        min-height: 24px;
+                                        margin-bottom: 2em;
+                                    }
 
                                     input,
                                     textarea {
@@ -153,6 +124,18 @@
                                     textarea {
                                         min-height: 64px;
                                         height: 16dvh;
+
+                                        @media (max-width: 750px) {
+                                            display: none;
+                                            z-index: -1;
+                                        }
+                                    }
+
+                                    .span-description {
+                                        @media (max-width: 750px) {
+                                            display: none;
+                                            z-index: -1;
+                                        }
                                     }
 
                                     span {
@@ -168,7 +151,15 @@
 
                             .required-label {
                                 font-size: 1.6em;
-                                margin-bottom: 8dvh;
+                                margin-bottom: 6dvh;
+
+                                @media (max-width: 965px) {
+                                    margin-bottom: 4dvh;
+                                }
+
+                                @media (max-width: 750px) {
+                                    display: none;
+                                }
                             }
                         }
                     }
@@ -188,7 +179,7 @@
                         background-color: rgba(0, 0, 0, 0.049);
                         margin: 0px 2px;
 
-                        @media(max-width:750px) {
+                        @media (max-width: 750px) {
                             display: none;
                         }
                     }
@@ -202,7 +193,7 @@
                     justify-content: center;
                     align-items: center;
 
-                    @media(max-width:750px) {
+                    @media (max-width: 750px) {
                         width: 100%;
                         margin-top: 0em;
                     }
@@ -214,7 +205,7 @@
                         width: 80%;
                         height: 100%;
 
-                        @media(max-width: 1300px) {
+                        @media (max-width: 1300px) {
                             width: 90%;
                         }
 
@@ -226,12 +217,17 @@
                             p {
                                 font-size: 1.6em;
                                 margin-bottom: 1em;
+
+                                @media (max-width: 750px) {
+                                    margin-top: 1.5em;
+                                    margin-bottom: 0.2em;
+                                }
                             }
 
                             .priority-buttons {
                                 display: flex;
                                 justify-content: space-between;
-                                margin-bottom: 4em;
+                                margin-bottom: 2em;
 
                                 .active-urgent {
                                     background-color: #ff3d00;
@@ -256,10 +252,10 @@
                                     border: solid rgba(0, 0, 0, 0.049) 2px;
                                     border-radius: 10px;
                                     font-size: 2em;
-                                    padding: 0.7em 1em;
+                                    padding: 0.5em 1em;
                                     transition: box-shadow 0.3s ease;
 
-                                    @media(max-width:390px) {
+                                    @media (max-width: 390px) {
                                         font-size: 0px;
                                         height: 44px;
                                         width: 60px;
@@ -299,7 +295,7 @@
                                 display: none;
                                 font-size: 1.6em;
 
-                                @media(max-width:750px) {
+                                @media (max-width: 750px) {
                                     display: flex;
                                     margin-top: 3em;
                                     margin-bottom: 2em;
@@ -423,7 +419,12 @@
                                             border-radius: 50%;
 
                                             &:hover {
-                                                background-color: rgba(0, 0, 0, 0.091);
+                                                background-color: rgba(
+                                                    0,
+                                                    0,
+                                                    0,
+                                                    0.091
+                                                );
                                             }
                                         }
                                     }
@@ -446,7 +447,7 @@
                             button {
                                 border: none;
                                 background: rgba(0, 0, 0, 0);
-                                border-bottom: 2px solid #29ABE2;
+                                border-bottom: 2px solid #29abe2;
                             }
 
                             img {
@@ -465,56 +466,67 @@
 
                         .each-sub-task-container {
                             display: flex;
-                            justify-content: flex-end;
+                            justify-content: space-between;
+                            align-items: center;
                             margin-top: 4em;
-                            gap: 1.5em;
+                            width: 100%;
 
-                            @media(max-width: 750px) {
-                                _margin-bottom: 5em;
-                                margin-top: 2em;
+                            @media (max-width: 750px) {
+                                margin-top: 1em;
                             }
 
-                            .clear {
+                            .btn-each {
                                 display: flex;
-                                justify-content: center;
-                                align-items: center;
-                                background-color: transparent;
-                                border: solid rgba(0, 0, 0, 0.049) 2px;
-                                border-radius: 10px;
-                                font-size: 1.8em;
-                                padding: 8px 10px;
-                                transition: box-shadow 0.3s ease;
+                                justify-content: flex-end;
+                                gap: 1.5em;
+                                width: 100%;
 
-                                img {
-                                    margin-left: 0.5em;
+                                @media (max-width: 750px) {
+                                    margin-bottom: 1em;
                                 }
 
-                                &:hover {
-                                    color: #29abe2;
-                                    border: 2px #29abe2 solid;
-                                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+                                .clear {
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    background-color: transparent;
+                                    border: solid rgba(0, 0, 0, 0.049) 2px;
+                                    border-radius: 10px;
+                                    font-size: 1.8em;
+                                    padding: 8px 10px;
+                                    transition: box-shadow 0.3s ease;
+
+                                    img {
+                                        margin-left: 0.5em;
+                                    }
+
+                                    &:hover {
+                                        color: #29abe2;
+                                        border: 2px #29abe2 solid;
+                                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+                                    }
                                 }
-                            }
 
-                            .create-task {
-                                color: white;
-                                display: flex;
-                                justify-content: center;
-                                align-items: center;
-                                background-color: #2a3647;
-                                border: solid rgba(0, 0, 0, 0.049) 2px;
-                                border-radius: 10px;
-                                font-size: 1.8em;
-                                padding: 10px 18px;
-                                transition: box-shadow 0.3s ease;
+                                .create-task {
+                                    color: white;
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    background-color: #2a3647;
+                                    border: solid rgba(0, 0, 0, 0.049) 2px;
+                                    border-radius: 10px;
+                                    font-size: 1.8em;
+                                    padding: 10px 18px;
+                                    transition: box-shadow 0.3s ease;
 
-                                img {
-                                    margin-left: 0.5em;
-                                }
+                                    img {
+                                        margin-left: 0.5em;
+                                    }
 
-                                &:hover {
-                                    background-color: #29abe2;
-                                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+                                    &:hover {
+                                        background-color: #29abe2;
+                                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+                                    }
                                 }
                             }
                         }
@@ -586,10 +598,8 @@
 
 //========================================================================================
 
-
 .already-assigned {
     height: 2em;
-
     display: flex;
     align-items: center;
     flex-wrap: wrap;
@@ -629,7 +639,7 @@
         width: calc(100% - 5em);
         background: transparent;
         border: none;
-        border-bottom: 2px solid #29ABE2;
+        border-bottom: 2px solid #29abe2;
         resize: none;
         font-size: 16px;
         color: #333;
@@ -637,10 +647,8 @@
         padding-bottom: 4px;
         vertical-align: bottom;
 
-
-
         &:focus {
-            border-bottom: 2px solid #29ABE2;
+            border-bottom: 2px solid #29abe2;
         }
     }
 }
