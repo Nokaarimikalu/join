@@ -10,6 +10,7 @@ import {
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../services/auth/auth.service';
+import { OverlayState } from '../services/contacts/overlayState.service';
 
 @Component({
     selector: 'app-login',
@@ -33,22 +34,16 @@ export class LoginComponent {
 
     lockIconSrc = 'assets/img/login/lock.svg'; // Standard-Bild
 
-    @ViewChild('password') pwInput!: FormGroup;
-
-    constructor(private router: Router) {
-        console.log(this.pwInput);
-
+    constructor(private router: Router, private overlayState: OverlayState) {
     }
 
     onSubmit(): void {
         this.form.markAllAsTouched();
-        if (this.form.invalid) {
-            this.errorMessage =
-                'Check your email and password. Please try again.';
+        const rawForm = this.form.getRawValue();
+        if (!this.checkExistingUser(rawForm.email)) {
+            this.errorMessage = 'Email does not exist';
             return;
         }
-
-        const rawForm = this.form.getRawValue();
         this.authService.login(rawForm.email, rawForm.password).subscribe({
             next: () => this.router.navigateByUrl('/'),
             error: (error) => (this.errorMessage = error.code),
@@ -72,7 +67,7 @@ export class LoginComponent {
             passwordInput.focus();
         } else if (this.lockClickCount === 2) {
             this.showPassword = true;
-            this.lockIconSrc = 'assets/img/login/visibility.svg'; 
+            this.lockIconSrc = 'assets/img/login/visibility.svg';
         } else if (this.showPassword === true) {
             this.lockClickCount = 1;
             this.showPassword = false;
@@ -91,6 +86,12 @@ export class LoginComponent {
         if (this.lockClickCount >= 2) {
             this.lockIconSrc = 'assets/img/login/visibility.svg'; // Bild 3 bei weiterer Eingabe
         }
+    }
+
+    checkExistingUser(email: string): boolean {
+        return this.overlayState.contactList.some(contact =>
+            contact.email.toLowerCase() === email.toLowerCase()
+        );
     }
 
 }
