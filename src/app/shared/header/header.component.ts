@@ -24,11 +24,15 @@ export class HeaderComponent {
   authService = inject(AuthService);
 
   toggleDropDown() {
-    const dropDownRef = document.querySelector('#drop-down');
-    const overlayRef = document.querySelector('#overlay');
+    const dropDownRef = document.querySelectorAll('#drop-down');
+    const overlayRef = document.querySelectorAll('#overlay');
     const spanRef = document.querySelector('#user');
-    dropDownRef?.classList.toggle("hidden");
-    overlayRef?.classList.toggle("hidden");
+    dropDownRef?.forEach(element => {
+      element.classList.toggle('hidden');
+    });
+    overlayRef?.forEach(element => {
+      element.classList.toggle('hidden');
+    });
     spanRef?.classList.toggle("active");
   }
 
