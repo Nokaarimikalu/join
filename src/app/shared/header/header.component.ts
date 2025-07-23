@@ -35,6 +35,18 @@ export class HeaderComponent {
     spanRef?.classList.toggle("active");
   }
 
+  closeDropDown(){
+    const dropDownRef = document.querySelectorAll('#drop-down');
+    const overlayRef = document.querySelectorAll('#overlay');
+    dropDownRef?.forEach(element => {
+      element.classList.remove('hidden');
+    });
+    overlayRef?.forEach(element => {
+      element.classList.remove('hidden');
+    });
+  }
+  
+
   logOut() {
     this.authService.logout();
   }
@@ -93,7 +105,6 @@ export class HeaderComponent {
   closeHelp(){
     const helpRef = document.querySelector('#help-me-overlay');
     helpRef?.classList.add('hidden');
-    
   }
 
 get initialsUser(): string {

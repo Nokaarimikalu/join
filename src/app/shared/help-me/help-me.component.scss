@@ -81,4 +81,8 @@
     @media (min-width:1920px) {
         left: 1820px;
     }
+
+    @media (max-width:750px) {
+        right: 3em;
+    }
 }
