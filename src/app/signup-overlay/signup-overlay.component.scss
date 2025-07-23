@@ -16,8 +16,7 @@ section{
     }
     .content{
         display: flex;
-        justify-content: center;
-        height: 60dvh;
+        justify-content: center;     
         width: 100%;
         .signup-container{
             border-radius: 15px;
@@ -78,10 +77,10 @@ section{
                 display: flex;
                 flex-direction: column;
                 width: 80%;
+                gap: 20px;
                 @media(max-width:550px){
                     width: 90%;
                 }
-                gap: 20px;
                 input{
                     height: 40px;
                     border-radius: 10px;
@@ -141,7 +140,6 @@ section{
         color: #cacacb;
         span{
             cursor: pointer;
-            padding-bottom: 1em;
             &:hover{
                 color: #aaaaaa;
             }
