@@ -3,8 +3,7 @@ section {
     max-width: (1920px);
     height: 100dvh;
     font-size: 10px;
-        user-select: none;
-
+    user-select: none;
 
     .content {
         display: flex;
@@ -46,8 +45,6 @@ section {
                 animation: diagonal-slide 1.25s;
                 _position: relative;
             }
-
-
 
             .logo {
                 @media (max-width: 750px) {
@@ -97,8 +94,8 @@ section {
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            width: 50%;
-            height: 40dvh;
+            width: 640px;
+            height: 540px;
             border-radius: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 
@@ -153,7 +150,7 @@ section {
 
                     input {
                         cursor: pointer;
-                        width: 70%;
+                        width: 480px;
                         min-height: 48px;
                         border-radius: 15px;
                         padding: 0.5em;
@@ -162,16 +159,41 @@ section {
                         border: 2px solid rgba(0, 0, 0, 0.214);
                     }
 
-                    .mail-icon {
-                        background-image: url(./../../../public/assets/img/login/mail.svg);
-                        background-repeat: no-repeat;
-                        background-position: right 10px center;
+                    // .mail-icon {
+                    //     background-image: url(./../../../public/assets/img/login/mail.svg);
+                    //     background-repeat: no-repeat;
+                    //     background-position: right 10px center;
+                    // }
+
+                    // .lock-icon {
+                    //     background-image: url(./../../../public/assets/img/login/lock.svg);
+                    //     background-repeat: no-repeat;
+                    //     background-position: right 10px center;
+                    // }
+
+                    .input-wrapper {
+                        position: relative;
+                        margin-bottom: 1rem;
                     }
 
-                    .lock-icon {
-                        background-image: url(./../../../public/assets/img/login/lock.svg);
-                        background-repeat: no-repeat;
-                        background-position: right 10px center;
+                    .lock-image {
+                        position: absolute;
+                        right: 10px;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        height: 20px;
+                        cursor: pointer;
+                    }
+
+                    .error-border {
+                        border: 2px solid red;
+                    }
+
+                    .error-text {
+                        font-weight: light;
+                        height: 2em;
+                        width: 69%;
+                        color: rgb(255, 102, 102);
                     }
 
                     .form-btn {
@@ -299,21 +321,9 @@ section {
     display: none;
 }
 
-.error-text{
+.error-text {
     font-weight: light;
     height: 2em;
     width: 69%;
     color: rgb(255, 102, 102);
-}
-
-.error-border{
-    border-color: red !important;
-}
-
-.toggle-password {
-  position: absolute;
-  right: 10px;
-  top: 32%;
-  transform: translateY(-50%);
-  cursor: pointer;
 }

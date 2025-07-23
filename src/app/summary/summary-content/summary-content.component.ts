@@ -4,12 +4,14 @@ import { AuthService } from "../../../app/services/auth/auth.service";
 import { BoardService } from "../../../app/services/board/board.service";
 import { TaskItemBoard } from "../../../app/shared/interface/task.interface";
 import { onSnapshot } from '@angular/fire/firestore';
+import { Router, RouterModule } from '@angular/router';
+
 
 
 
 @Component({
   selector: 'app-summary-content',
-  imports: [DatePipe],
+  imports: [DatePipe, RouterModule],
   templateUrl: './summary-content.component.html',
   styleUrl: './summary-content.component.scss'
 })
@@ -25,7 +27,7 @@ export class SummaryContentComponent {
 
 
 
-  constructor(private boardService: BoardService, private authService: AuthService) {
+  constructor(private boardService: BoardService, private authService: AuthService, private router: Router) {
     this.userEmail = this.authService.loggedInUser(); // get auth mail
     if (this.boardService.taskList.length > 0) {
       this.loading.set(false);
