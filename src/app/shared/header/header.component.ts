@@ -107,7 +107,6 @@ export class HeaderComponent {
   closeHelp() {
     const helpRef = document.querySelector('#help-me-overlay');
     helpRef?.classList.add('hidden');
-
   }
 
     get initialsUser(): string {
