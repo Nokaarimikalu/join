@@ -15,8 +15,9 @@ export class SignupOverlayComponent {
 
     showPassword: boolean = false;
 
-        isFocused: boolean = false;
+    isFocused: boolean = false;
 
+    isConfirmFocused:boolean = true;
 
     lockClickCount: number = 0;
 
@@ -52,7 +53,7 @@ export class SignupOverlayComponent {
 
     onSubmit(): void {
         this.form.markAllAsTouched();
- 
+
         const rawForm = this.form.getRawValue();
         if (!this.getMailFromContact(rawForm.email)) {
             this.contactList.email = rawForm.email;
@@ -102,4 +103,19 @@ export class SignupOverlayComponent {
             this.lockIconSrc = 'assets/img/login/visibility_off.svg';
         }
     }
+    
+    checkPasswordInput(): void {
+        const pwValue = this.form.get('password')?.value;
+
+        if (this.lockClickCount < 1 && pwValue) {
+            this.lockIconSrc = 'assets/img/login/visibility_off.svg'; // Bild 2 beim erster Eingabe
+        }
+
+        if (this.lockClickCount >= 2) {
+            this.lockIconSrc = 'assets/img/login/visibility.svg'; // Bild 3 bei weiterer Eingabe
+        }
+    }
+
+
+    
 }
