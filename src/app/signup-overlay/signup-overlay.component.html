@@ -21,8 +21,8 @@
 
       <div class="signup-form">
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
-          <input type="text" placeholder="Name" formControlName="username">
-          <input type="email" placeholder="Email" formControlName="email">
+          <input type="text" placeholder="Name" formControlName="username" [class.error-border]="form.get('username')?.invalid && form.get('username')?.touched">
+          <input type="email" placeholder="Email" formControlName="email" >
           <input type="password" placeholder="Password" formControlName="password">
           <input type="password" placeholder="Confirm Password" formControlName="confirmPassword">
           <div class="required checkbox-privacy">

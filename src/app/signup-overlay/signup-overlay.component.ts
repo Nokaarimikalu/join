@@ -36,6 +36,8 @@ export class SignupOverlayComponent {
   constructor(public overlayState: OverlayState){}
 
   onSubmit(): void {
+            this.form.markAllAsTouched();
+
     const rawForm = this.form.getRawValue();
     if(!this.getMailFromContact(rawForm.email)){
         this.contactList.email = rawForm.email;

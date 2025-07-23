@@ -1,5 +1,7 @@
 <section>
   <div class="content">
+     <div class="bluescreen">
+  </div>
     <div class="background-content">
       <div class="logo-wrapper slide">
         <img id="animated-logo" class="logo" src="assets/img/header/Logo.png" alt="Logo Join">
@@ -32,13 +34,19 @@
               <img [src]="lockIconSrc" alt="Lock Icon" class="lock-image" (click)="checkLockClick(pwInput)">
             </div>
             <!-- Fehlertext -->
+
             <div class="error-text">
               <p>{{ errorMessage }}</p>
+
+              @if (this.form.invalid && this.form.touched) {
+              <p>Check your email and password. Please try again.</p>
+              }
+
             </div>
             <!-- Buttons -->
             <div class="form-btn">
               <button type="submit" class="login-button">Login</button>
-              <button (click)="guestLogIn()" class="guest-button" routerLink="/">Guest Log in</button>
+              <button (click)="guestLogIn()" type="button" class="guest-button" routerLink="/">Guest Log in</button>
             </div>
           </form>
         </div>
@@ -50,8 +58,8 @@
     </div>
     <footer>
       <div class="footer-content">
-        <a routerLink="/privacy">Privacy Policy</a>
-        <a routerLink="/legalNotice">Legal notice</a>
+    <a [routerLink]="'/privacy-sign-in'">Privacy Policy</a>
+    <a [routerLink]="'/legal-notice-sign-in'">Legal notice</a>
       </div>
     </footer>
   </div>
