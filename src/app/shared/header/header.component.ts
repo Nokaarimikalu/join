@@ -36,7 +36,7 @@ export class HeaderComponent {
     spanRef?.classList.toggle("active");
   }
 
-  closeDropDown(){
+  closeDropDown() {
     const dropDownRef = document.querySelectorAll('#drop-down');
     const overlayRef = document.querySelectorAll('#overlay');
     dropDownRef?.forEach(element => {
@@ -46,7 +46,7 @@ export class HeaderComponent {
       element.classList.remove('hidden');
     });
   }
-  
+
 
   logOut() {
     this.authService.logout();
@@ -109,15 +109,14 @@ export class HeaderComponent {
     helpRef?.classList.add('hidden');
   }
 
-    get initialsUser(): string {
+  get initialsUser(): string {
+    const email = this.userEmail || this.authService.loggedInUser();
+    if (!email) return 'G';
     const userContact = this.overlayState.contactList.find(
-      (contact) => contact.email === this.userEmail
+      (contact) => contact.email.toLowerCase() === email.toLowerCase()
     );
 
-    if (userContact) {
-      return `${userContact.initials}`;
-    }
-    return '';
+    return userContact?.initials || 'G';
   }
 
 }

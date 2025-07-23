@@ -23,8 +23,11 @@ section {
         width: 100%;
 
         .signup-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
             border-radius: 15px;
-            height: 52em;
+            height: 50em;
             width: clamp(31em, 85vw, 55em);
             background-color: #ffffff;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -160,8 +163,8 @@ section {
         justify-content: center;
         align-items: flex-end;
         gap: 2em;
-        height: 18dvh;
-        font-size: 16px;
+/*         height: 18dvh;
+ */        font-size: 16px;
         color: #cacacb;
 
         span {
@@ -179,8 +182,23 @@ section {
 }
 
 .error-text {
-    font-weight: light;
+    color: rgb(255, 0, 0) !important;
+}
+
+a{
+    color: #29abe2;
+    &:hover{
+        text-decoration: underline;
+    }
+}
+
+p{
+    font-size: 16px;
+    color: red;
+}
+
+.error-message{
+    display: flex;
+    width: 100%;
     height: 2em;
-    width: 69%;
-    color: rgb(255, 102, 102);
 }

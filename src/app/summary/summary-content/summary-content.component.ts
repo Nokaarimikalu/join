@@ -92,7 +92,7 @@ export class SummaryContentComponent {
     );
 
     if (userContact) {
-      return `${userContact.firstName}`;
+      return `${userContact.firstName} ${userContact.lastName}`;
     }
     return 'Guest';
   }
