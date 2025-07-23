@@ -30,7 +30,7 @@
               <input type="checkbox" id="privacy" name="privacy" required />
               <span class="checkmark"></span>
               I accept the
-              <a href="/privacy" target="_blank">Privacy policy</a>
+              <a [routerLink]="'/privacy'">Privacy policy</a>
             </label>
             <span class="error-text hidden">You must accept the Privacy policy</span>
             <button type="submit" class="register-button">Sign up</button>
