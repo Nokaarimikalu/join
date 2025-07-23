@@ -17,19 +17,29 @@
         </div>
       </div>
 
-
-
       <div class="signup-form">
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
-          <input type="text" placeholder="Name" formControlName="username">
-          <input type="email" placeholder="Email" formControlName="email">
-          <input type="password" placeholder="Password" formControlName="password">
-          <input type="password" placeholder="Confirm Password" formControlName="confirmPassword">
+          <input type="text" placeholder="Name" formControlName="username"
+            [class.error-border]="form.get('username')?.invalid && form.get('username')?.touched">
+          <input type="email" placeholder="Email" formControlName="email" [class.error-border]="form.get('email')?.invalid && form.get('email')?.touched">
+          <input #pwInput [type]="showPassword ? 'text' : 'password'" placeholder="Password" formControlName="password"
+            (focus)="isFocused = true" (blur)="isFocused = false" [class.error-border]="form.get('password')?.invalid && form.get('password')?.touched" required="6">
+          <input #pwInput [type]="showPassword ? 'text' : 'password'" placeholder="Confirm Password"
+            formControlName="confirmPassword">
+          <div class="error-message">
+            @if (form.get('password')?.value !== form.get('confirmPassword')?.value &&
+            form.get('confirmPassword')?.touched) {
+            <p>Your passwords don't match. Please try again.</p>
+            }
+          </div>
+
+          <button type="button" (click)="checkLockClick(pwInput)">HIDE</button>
+
           <div class="required checkbox-privacy">
             <label class="custom-checkbox">
-              <input type="checkbox" id="privacy" name="privacy" required />
-              <span class="checkmark"></span>
-              I accept the
+              <input formControlName="checkbox" type="checkbox" id="privacy" name="privacy" required />
+              <span [class.error-text]="form.get('checkbox')?.touched && form.get('checkbox')?.invalid" class="checkmark">              I accept the</span>
+
               <a [routerLink]="'/privacy'">Privacy policy</a>
             </label>
             <span class="error-text hidden">You must accept the Privacy policy</span>

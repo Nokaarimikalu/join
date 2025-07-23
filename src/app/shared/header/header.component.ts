@@ -3,6 +3,7 @@ import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
 import { BoardService } from '../../services/board/board.service';
 import { AppComponent } from '../../app.component';
+import { OverlayState } from '../../services/contacts/overlayState.service';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class HeaderComponent {
   userEmail: string | null = null;
   helpOpen: boolean = false;
 
-  constructor(private boardService: BoardService, private router:Router) {
+  constructor(private boardService: BoardService, private router: Router, private overlayState: OverlayState) {
     this.userEmail = this.authService.loggedInUser(); // get auth mail
 
   }
@@ -23,40 +24,56 @@ export class HeaderComponent {
   authService = inject(AuthService);
 
   toggleDropDown() {
-    const dropDownRef = document.querySelector('#drop-down');
-    const overlayRef = document.querySelector('#overlay');
+    const dropDownRef = document.querySelectorAll('#drop-down');
+    const overlayRef = document.querySelectorAll('#overlay');
     const spanRef = document.querySelector('#user');
-    dropDownRef?.classList.toggle("hidden");
-    overlayRef?.classList.toggle("hidden");
+    dropDownRef?.forEach(element => {
+      element.classList.toggle('hidden');
+    });
+    overlayRef?.forEach(element => {
+      element.classList.toggle('hidden');
+    });
     spanRef?.classList.toggle("active");
   }
+
+  closeDropDown() {
+    const dropDownRef = document.querySelectorAll('#drop-down');
+    const overlayRef = document.querySelectorAll('#overlay');
+    dropDownRef?.forEach(element => {
+      element.classList.remove('hidden');
+    });
+    overlayRef?.forEach(element => {
+      element.classList.remove('hidden');
+    });
+  }
+
 
   logOut() {
     this.authService.logout();
   }
 
-  toggleHelp(){
+  toggleHelp() {
     const helpRef = document.querySelector('#help-me-overlay');
     helpRef?.classList.toggle('hidden');
-    
-      const path = this.router.url.split('/')[1];
-      this.toggleActive(path);
-    
-      const helpButtonRef = document.querySelectorAll('.help-button-header');
-      helpButtonRef.forEach(element => {
+
+    const path = this.router.url.split('/')[1];
+    this.toggleActive(path);
+
+    const helpButtonRef = document.querySelectorAll('.help-button-header');
+    helpButtonRef.forEach(element => {
       element.classList.toggle('hidden');
     });
     const helpDropdownRef = document.querySelectorAll('.help-button-dropdown');
-      helpDropdownRef.forEach(element => {
+    helpDropdownRef.forEach(element => {
       element.classList.toggle('hidden');
     })
-      const activeElements = document.querySelectorAll('.active');
-      activeElements.forEach(element => {
+    const activeElements = document.querySelectorAll('.active');
+    activeElements.forEach(element => {
       element.classList.remove('active');
     });
   }
 
-  toggleActive(state:string):void{
+  toggleActive(state: string): void {
     const activeElements = document.querySelectorAll('.active');
     activeElements.forEach(element => {
       element.classList.remove('active');
@@ -80,22 +97,26 @@ export class HeaderComponent {
     }
   }
 
-  runCase(path:string):void{
+  runCase(path: string): void {
     const currentElements = document.querySelectorAll(path);
-        currentElements?.forEach((element: { classList: { add: (arg0: string) => void; }; }) => {
-        element.classList.add('active');});
+    currentElements?.forEach((element: { classList: { add: (arg0: string) => void; }; }) => {
+      element.classList.add('active');
+    });
   }
 
-  closeHelp(){
+  closeHelp() {
     const helpRef = document.querySelector('#help-me-overlay');
     helpRef?.classList.add('hidden');
-    
   }
 
-get initialsUser(): string {
-  const userTask = this.boardService.taskList.find(task => 
-    task.assignedTo?.some(user => user.email === this.authService.loggedInUser())
-  );
-  return userTask?.assignedTo?.find(user => user.email === this.authService.loggedInUser())?.initials || '?';
-}
+  get initialsUser(): string {
+    const email = this.userEmail || this.authService.loggedInUser();
+    if (!email) return 'G';
+    const userContact = this.overlayState.contactList.find(
+      (contact) => contact.email.toLowerCase() === email.toLowerCase()
+    );
+
+    return userContact?.initials || 'G';
+  }
+
 }
