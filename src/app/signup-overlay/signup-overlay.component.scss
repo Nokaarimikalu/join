@@ -1,18 +1,17 @@
 section{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 1920px;
     font-size: 10px;
     height: 100dvh;
     width: 100%;
-    background-color: #f6f7f8;
-    padding: clamp(1em, 2vw, 2em) clamp(1em, 2vw, 4em);
+    background-color: #f0f0f0;
+    padding: 4.8em clamp(1em, 5vw, 8em) 0px clamp(1em, 5vw, 8em) ;
     .logo{
         display: flex;
         align-items: center;
-        height: 20dvh;
         width: 100%;
-        padding-left: 2em;
-        img{
-            height: clamp(80px, 20vw, 120px);
-        }
     }
     .content{
         display: flex;
@@ -134,9 +133,9 @@ section{
     .legal-privacy{
         display: flex;
         justify-content: center;
-        align-items: flex-end;
+        align-items: center;
+        height: 6em;
         gap: 2em;
-        height: 18dvh;
         font-size: 16px;
         color: #cacacb;
         span{
