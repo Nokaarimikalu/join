@@ -40,6 +40,17 @@ export class OverlayContactsComponent {
 		};
 	}
 
+	checkAndAdd(contacts:ContactList){
+		if(!this.getMailFromContact(this.contactList.email)){
+			this.overlayState.addContacts(contacts)
+		}
+	}
+	getMailFromContact(mail:string){
+    return this.overlayState.contactList.some(
+		contacts => contacts.email === mail
+    );
+	}
+
 	splitFullName() {
 		this.splittedName = this.contactList.firstName.split(' ');
 		this.contactList.firstName = this.splittedName[0];

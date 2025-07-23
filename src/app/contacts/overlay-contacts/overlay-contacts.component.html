@@ -117,7 +117,7 @@
                 <img src="assets/img/add-contacts/Vector.svg" />
               </button>
               <button class="create" [disabled]="!contactForm.valid"
-                (click)=" splitFullName(); overlayState.addContacts(contactList);  overlayState.contactConfirmation(); resetNewContactInput(); toggleOverlay(); contactForm.resetForm();">
+                (click)=" splitFullName(); checkAndAdd(contactList);  overlayState.contactConfirmation(); resetNewContactInput(); toggleOverlay(); contactForm.resetForm();">
                 Create contact
                 <img src="assets/img/add-contacts/check.svg" />
               </button>
