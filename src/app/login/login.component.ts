@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, ViewChild } from '@angular/core';
 import {
     FormBuilder,
     ReactiveFormsModule,
@@ -6,6 +6,7 @@ import {
     NgModel,
     NgForm,
     FormsModule,
+    FormGroup,
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../services/auth/auth.service';
@@ -32,31 +33,12 @@ export class LoginComponent {
 
     lockIconSrc = 'assets/img/login/lock.svg'; // Standard-Bild
 
-    checkLockClick(passwordInput: HTMLInputElement): void {
-        this.lockClickCount++;
+    @ViewChild('password') pwInput!: FormGroup;
 
-        if (this.lockClickCount === 1) {
-            this.lockIconSrc = 'assets/img/login/visibility_off.svg'; // Bild 2
-            passwordInput.focus();
-        } else if (this.lockClickCount >= 2) {
-            this.showPassword = true;
-            this.lockIconSrc = 'assets/img/login/visibility.svg'; // Bild 3
-        }
+    constructor(private router: Router) {
+        console.log(this.pwInput);
+
     }
-
-    checkPasswordInput(): void {
-        const pwValue = this.form.get('password')?.value;
-
-        if (this.lockClickCount < 1 && pwValue) {
-            this.lockIconSrc = 'assets/img/login/visibility_off.svg'; // Bild 2 beim erster Eingabe
-        }
-
-        if (this.lockClickCount >= 2) {
-            this.lockIconSrc = 'assets/img/login/visibility.svg'; // Bild 3 bei weiterer Eingabe
-        }
-    }
-
-    constructor(private router: Router) {}
 
     onSubmit(): void {
         this.form.markAllAsTouched();
@@ -80,4 +62,35 @@ export class LoginComponent {
             },
         });
     }
+
+
+
+    checkLockClick(passwordInput: HTMLInputElement): void {
+        this.lockClickCount++;
+        if (this.lockClickCount === 1 && this.showPassword == false) {
+            this.lockIconSrc = 'assets/img/login/visibility_off.svg';
+            passwordInput.focus();
+        } else if (this.lockClickCount === 2) {
+            this.showPassword = true;
+            this.lockIconSrc = 'assets/img/login/visibility.svg'; 
+        } else if (this.showPassword === true) {
+            this.lockClickCount = 1;
+            this.showPassword = false;
+            this.lockIconSrc = 'assets/img/login/visibility_off.svg';
+        }
+    }
+
+
+    checkPasswordInput(): void {
+        const pwValue = this.form.get('password')?.value;
+
+        if (this.lockClickCount < 1 && pwValue) {
+            this.lockIconSrc = 'assets/img/login/visibility_off.svg'; // Bild 2 beim erster Eingabe
+        }
+
+        if (this.lockClickCount >= 2) {
+            this.lockIconSrc = 'assets/img/login/visibility.svg'; // Bild 3 bei weiterer Eingabe
+        }
+    }
+
 }
