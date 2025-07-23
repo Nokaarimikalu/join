@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common'; // <--- HINZUFÜGEN
+import { CommonModule } from '@angular/common'; 
 import { BoardService } from '../../../services/board/board.service';
+import { doc, updateDoc } from '@angular/fire/firestore';
+
 import { TaskItem, TaskItemBoard } from '../../../shared/interface/task.interface';
 import { CdkDrag } from '@angular/cdk/drag-drop';
 
@@ -54,14 +56,21 @@ export class CardComponent {
     this.showMobileOverlay = true;
   }
 
-  setStatus(status: string) {
-    this.task.status = status;
-    const taskIndex = this.boardService.taskList.findIndex(t => t.id === this.task.id);
-    if (taskIndex > -1) {
-      this.boardService.taskList[taskIndex].status = status;
+async setStatus(status: string) {
+  this.task.status = status;
+  const taskIndex = this.boardService.taskList.findIndex(t => t.id === this.task.id);
+  if (taskIndex > -1) {
+    this.boardService.taskList[taskIndex].status = status;
+    try {
+      const taskRef = doc(this.boardService.firestore, 'taskItemBoard', this.task.id);
+      await updateDoc(taskRef, { status: status });
+    } catch (error) {
+      console.error('Error updating status in Firestore:', error);
     }
-    this.showMobileOverlay = false; 
   }
+  
+  this.showMobileOverlay = false;
+}
 
   closeOverlayStatus(){
     this.showMobileOverlay = false;
