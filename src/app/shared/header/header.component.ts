@@ -118,7 +118,6 @@ export class HeaderComponent {
       return `${userContact.initials}`;
     }
     return '';
-
   }
 
 }
