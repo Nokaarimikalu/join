@@ -1,0 +1,273 @@
+.main-content {
+    display: flex;
+    height: 100dvh;
+    overflow-x: hidden;
+
+    @media (max-width:965px) {
+        height: 92dvh;
+    }
+}
+
+.main-content-input {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    >div {
+        overflow-y: auto;
+        padding: 8dvh 4dvw;
+
+        h1 {
+            font-size: 3.6em;
+            margin-bottom: 0.5em;
+        }
+
+        h2 {
+            margin: 1em 0;
+        }
+
+        h3 {
+            margin: 1em 0;
+        }
+
+        h4 {
+            margin: 1em 0;
+        }
+    }
+}
+
+.display {
+    display: flex;
+}
+
+.nav-desktop{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    width: 230px;
+    background-color: #2a3647;
+    padding: 60px 0px;
+    .logo-login{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 100px;
+        width: 230px;
+        img{
+            height: 121px;
+            width: 101px;
+        }
+        .log-in{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 40px;
+            gap: 8px;
+            &:hover{
+                background-color: #2a3d59;
+            }
+            img{
+                width: 26px;
+                height: 26px;
+            }
+        }
+        .span-one{
+            color: white;
+        }
+    }
+    .privacy-legal-notice{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        color: #a8a8a8;
+        width: 230px;
+        cursor: pointer;
+        .span-two{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            &:hover{
+                color: #59cdff;
+            }
+        }
+        .span-three{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #091931;
+            right: 7px;
+            height: 35px;
+            width: 100%;
+        }
+    }
+}
+
+@media(max-width:965px){
+    .nav-desktop{
+        display: none;
+    }
+}
+
+.nav-mobile{
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 8dvh;
+    padding: 0px clamp(10px, 5vw, 40px);
+    color: #a8a8a8;
+    background-color: #2a3647;
+    .logo-login-mobile{
+        display: flex;
+        flex-direction: column;
+        img{
+            height: 26px;
+        }
+    }
+    .privacy-legal-notice-mobile{
+        display: flex;
+        align-items: center;
+        height: 8dvh;
+        gap: 10px;
+        font-size: 14px;
+        .span-three-mobile{
+            display: flex;
+            align-items: center;
+            background-color: #091931;
+            height: 100%;
+            border-radius: 15px;
+            padding: 0px 5px;
+        }
+        .span-two-mobile{
+            display: flex;
+            align-items: center;
+            height: 100%;
+            border-radius: 15px;
+            padding: 0px 5px;
+        }
+    }
+}
+
+@media(max-width:965px){
+    .nav-mobile{
+        display: flex;
+    }
+}
+
+.contractDetails {
+    padding-left: 4dvw;
+    font-family: sans-serif;
+    overflow-wrap: break-word;
+    overflow-y: auto;
+
+    h2,
+    h3,
+    h4 {
+        margin: 1em 0;
+    }
+}
+
+p.BodyLeft,
+p.Body {
+    margin-left: 0;
+}
+
+p.BodyLeft p,
+p.Body p {
+    margin-left: 0;
+}
+
+p.BodyLeft p span,
+p.Body p span {
+    margin-left: 0;
+}
+
+p.BodyLeft p span span,
+p.Body p span span {
+    margin-left: 0;
+}
+
+.DieterLista,
+.DieterListi,
+.BulletList1 {
+    padding-left: 4dvw;
+}
+
+.DieterLista .number-prefix-p,
+.DieterListi .number-prefix-p,
+.BulletList1 .number-prefix-p {
+    margin-left: -4dvw;
+    display: inline-block;
+    width: 1.25cm;
+}
+
+.DieterListaIndent,
+.DieterListiIndent,
+.BulletList2 .number-prefix-p {
+    margin-left: 4dvw;
+    display: inline-block;
+    width: 1.25cm;
+}
+
+.DieterHeading2 .number-prefix-p,
+.DieterHeading3 .number-prefix-p,
+.DieterHeading4 .number-prefix-p {
+    display: inline-block;
+    width: 4dvw;
+    margin-left: -1.25cm;
+}
+
+.DieterHeading2,
+.HeadingLeft {
+    font-weight: 600;
+}
+
+.DieterHeading2 span:not(.number-prefix-p) {
+    margin-left: 0;
+}
+
+.BulletListNoIndent {
+    margin-left: 0;
+}
+
+.BulletListNoIndent span {
+    text-indent: 0;
+}
+
+.BulletListNoIndent .number-prefix-p {
+    display: inline-block;
+    width: 1.25cm;
+    margin-left: -1.25cm;
+}
+
+.BulletListNoIndent span:not(.number-prefix-p) {
+    text-indent: 1.25cm;
+}
+
+.HeadingLeft {
+    margin-left: 0;
+    font-size: 1.25rem;
+}
+
+.HeadingLeft span {
+    margin-left: 0;
+}
+
+.DieterSmall {
+    margin: 1.6em;
+    font-size: 1rem;
+    font-weight: 200;
+}
+
+.DieterInvisible {
+    display: none;
+}
+
+.multiline {
+    white-space: pre-wrap;
+}
