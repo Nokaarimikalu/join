@@ -1,9 +1,80 @@
-ol {
-    counter-reset: section;
-    list-style-type: none;
+.main-content {
+    display: flex;
+    height: 100dvh;
+    overflow-x: hidden;
+    font-size: 10px;
 
-    li::before {
-        counter-increment: section;
-        content: counters(section, ".")". ";
+    @media (max-width:965px) {
+        height: 92dvh;
+    }
+
+    .main-content-input {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        font-size: 1.6em;
+        background: #f6f7f8;
+
+        span {
+            color: #29abe2;
+        }
+
+        .help-me-content {
+            padding: 6em 4em;
+            overflow-y: auto;
+            max-width: (1920px - 230px);
+
+            .title-menu {
+
+                h1 {
+                    font-size: 3.6em;
+                }
+
+                margin-bottom: 2em;
+            }
+
+            div,
+            h2 {
+                margin-bottom: 1em;
+            }
+
+            ol {
+                counter-reset: section;
+                list-style-type: none;
+
+                b {
+                    font-size: 1.4em;
+                }
+
+                p {
+                    margin-left: 3.5em;
+                }
+
+                li::before {
+                    counter-increment: section;
+                    content: counters(section, ".")". ";
+                    font-size: 1.6em;
+                    margin-right: 1em;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}
+
+.back-button {
+    position: fixed;
+    top: 15em;
+    right: 10em;
+    border: none;
+    background: rgba($color: #f6f7f8, $alpha: 0.4);
+    z-index: 200000;
+    object-fit: contain;
+    height: 2.5em;
+    width: 3em;
+    background-image: url('./../../../../public/assets/img/info-screen/arrow-left-line.png');
+
+    @media (min-width:1920px) {
+        left: 1820px;
     }
 }

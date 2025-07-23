@@ -9,6 +9,8 @@ import { Router } from '@angular/router'
 })
 export class AuthService {
 
+  static helpOpen:boolean = false;
+
   firebaseAuth = inject(Auth);
 
   constructor( private router: Router  ) { }

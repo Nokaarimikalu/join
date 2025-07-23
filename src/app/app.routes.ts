@@ -10,12 +10,15 @@ import { LegalNoticeComponent } from './shared/legal-notice/legal-notice.compone
 import { SummaryComponent } from './summary/summary.component';
 import { LoginComponent } from './login/login.component';
 import { SignupOverlayComponent } from './signup-overlay/signup-overlay.component';
+import { PrivacySignInComponent } from './shared/privacy-sign-in/privacy-sign-in.component';
+import { LegalNoticeSignInComponent } from './shared/legal-notice-sign-in/legal-notice-sign-in.component';
 
-const redirectUnauthorizedToLogIn = () => redirectUnauthorizedTo(['/login'])
+const redirectUnauthorizedToLogIn = () => redirectUnauthorizedTo(['/login']);
 const redirectLoggedInToItems = () => redirectLoggedInTo(['/']);
-// data: {authGuardPipe: redirectUnauthorizedToLogIn}
+const redirectLoggedInToSummary = () => redirectLoggedInTo(['/summary'])
+
 export const routes: Routes = [
-  {path: '', component:SummaryComponent, canActivate: [AuthGuard], data: {authGuardPipe: redirectUnauthorizedToLogIn}},
+  {path: '', redirectTo: '/summary', pathMatch: 'full'},
   {path: 'login', component:LoginComponent, canActivate: [AuthGuard], data: {authGuardPipe: redirectLoggedInToItems}},
   {path: 'signup', component:SignupOverlayComponent, canActivate: [AuthGuard], data: {authGuardPipe: redirectLoggedInToItems}},
   {path: 'summary', component:SummaryComponent, canActivate: [AuthGuard], data: {authGuardPipe: redirectUnauthorizedToLogIn}},
@@ -25,4 +28,6 @@ export const routes: Routes = [
   {path: 'task', component:KanbanAddComponent,  canActivate: [AuthGuard], data: {authGuardPipe: redirectUnauthorizedToLogIn}},
   {path: 'board', component:KanbanComponent,  canActivate: [AuthGuard], data: {authGuardPipe: redirectUnauthorizedToLogIn}},
   {path: 'contacts', component: ContactsComponent,  canActivate: [AuthGuard], data: {authGuardPipe: redirectUnauthorizedToLogIn}},
+  {path: 'privacy-sign-in', component: PrivacySignInComponent},
+  {path: 'legal-notice-sign-in', component: LegalNoticeSignInComponent}
 ];

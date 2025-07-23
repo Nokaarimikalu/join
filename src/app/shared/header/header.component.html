@@ -4,14 +4,14 @@
         <header>
         <div class="kanban"></div>
         <div class="menu">
-            <a routerLink="/help"><div class="help"></div></a>
+            <a id="help-button-header" (click)="toggleHelp()"><div class="help help-button-header"></div></a>
             <span id="user" (click)="toggleDropDown()">{{initialsUser}}</span>
         </div>
         </header>
         <div id="drop-down" class="hidden">
-            <a routerLink="/help"><p id="help">Help</p></a>
-            <a routerLink="/legalNotice"><p>Legal Notice</p></a>
-            <a routerLink="/privacy"><p>Privacy</p></a>
+            <a (click)="toggleHelp()"><p id="help" class="help-button-dropdown">Help</p></a>
+            <a (click)="closeHelp()" routerLink="/legalNotice"><p>Legal Notice</p></a>
+            <a (click)="closeHelp()" routerLink="/privacy"><p>Privacy</p></a>
             <p (click)="logOut()">Log out</p>
         </div>
     </div>
