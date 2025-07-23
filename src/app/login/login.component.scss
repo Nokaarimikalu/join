@@ -150,7 +150,7 @@ section {
 
                     input {
                         cursor: pointer;
-                        width: 480px;
+                        width: 74%;
                         min-height: 48px;
                         border-radius: 15px;
                         padding: 0.5em;
@@ -159,26 +159,19 @@ section {
                         border: 2px solid rgba(0, 0, 0, 0.214);
                     }
 
-                    // .mail-icon {
-                    //     background-image: url(./../../../public/assets/img/login/mail.svg);
-                    //     background-repeat: no-repeat;
-                    //     background-position: right 10px center;
-                    // }
-
-                    // .lock-icon {
-                    //     background-image: url(./../../../public/assets/img/login/lock.svg);
-                    //     background-repeat: no-repeat;
-                    //     background-position: right 10px center;
-                    // }
-
+                  
                     .input-wrapper {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
                         position: relative;
                         margin-bottom: 1rem;
+                        width: 100%;
                     }
 
                     .lock-image {
                         position: absolute;
-                        right: 10px;
+                        right: 15%;
                         top: 50%;
                         transform: translateY(-50%);
                         height: 20px;
