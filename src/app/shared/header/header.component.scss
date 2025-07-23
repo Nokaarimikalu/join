@@ -92,7 +92,7 @@ section {
 
         #drop-down {
             background: #2A3647;
-            z-index: 15;
+            z-index: 999999999;
             position: absolute;
             right: 5em;
             top: 8dvh;
@@ -142,4 +142,3 @@ section {
     background: rgba($color: #0C2E62, $alpha: 0.12) !important;
     cursor: pointer;
 }
-

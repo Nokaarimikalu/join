@@ -1,7 +1,8 @@
 import { Component, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
 import { BoardService } from '../../services/board/board.service';
+import { AppComponent } from '../../app.component';
 
 
 @Component({
@@ -12,8 +13,9 @@ import { BoardService } from '../../services/board/board.service';
 })
 export class HeaderComponent {
   userEmail: string | null = null;
+  helpOpen: boolean = false;
 
-  constructor(private boardService: BoardService) {
+  constructor(private boardService: BoardService, private router:Router) {
     this.userEmail = this.authService.loggedInUser(); // get auth mail
 
   }
@@ -31,6 +33,63 @@ export class HeaderComponent {
 
   logOut() {
     this.authService.logout();
+  }
+
+  toggleHelp(){
+    const helpRef = document.querySelector('#help-me-overlay');
+    helpRef?.classList.toggle('hidden');
+    
+      const path = this.router.url.split('/')[1];
+      this.toggleActive(path);
+    
+      const helpButtonRef = document.querySelectorAll('.help-button-header');
+      helpButtonRef.forEach(element => {
+      element.classList.toggle('hidden');
+    });
+    const helpDropdownRef = document.querySelectorAll('.help-button-dropdown');
+      helpDropdownRef.forEach(element => {
+      element.classList.toggle('hidden');
+    })
+      const activeElements = document.querySelectorAll('.active');
+      activeElements.forEach(element => {
+      element.classList.remove('active');
+    });
+  }
+
+  toggleActive(state:string):void{
+    const activeElements = document.querySelectorAll('.active');
+    activeElements.forEach(element => {
+      element.classList.remove('active');
+    });
+    switch (state) {
+      case 'summary':
+        this.runCase('.summary')
+        break;
+      case 'task':
+        this.runCase('.task')
+        break;
+      case 'board':
+        this.runCase('.board')
+        break;
+      case 'contacts':
+        this.runCase('.contacts')
+        break;
+      case 'legalNotice':
+      default:
+        break;
+    }
+  }
+
+  runCase(path:string):void{
+    const currentElements = document.querySelectorAll(path);
+        currentElements?.forEach((element: { classList: { add: (arg0: string) => void; }; }) => {
+        element.classList.add('active');});
+  }
+
+  closeHelp(){
+    const helpRef = document.querySelector('#help-me-overlay');
+    helpRef?.classList.add('hidden');
+    
   }
 
 get initialsUser(): string {

@@ -13,11 +13,12 @@ import { SignupOverlayComponent } from './signup-overlay/signup-overlay.componen
 import { PrivacySignInComponent } from './shared/privacy-sign-in/privacy-sign-in.component';
 import { LegalNoticeSignInComponent } from './shared/legal-notice-sign-in/legal-notice-sign-in.component';
 
-const redirectUnauthorizedToLogIn = () => redirectUnauthorizedTo(['/login'])
+const redirectUnauthorizedToLogIn = () => redirectUnauthorizedTo(['/login']);
 const redirectLoggedInToItems = () => redirectLoggedInTo(['/']);
-// data: {authGuardPipe: redirectUnauthorizedToLogIn}
+const redirectLoggedInToSummary = () => redirectLoggedInTo(['/summary'])
+
 export const routes: Routes = [
-  {path: '', component:SummaryComponent, canActivate: [AuthGuard], data: {authGuardPipe: redirectUnauthorizedToLogIn}},
+  {path: '', redirectTo: '/summary', pathMatch: 'full'},
   {path: 'login', component:LoginComponent, canActivate: [AuthGuard], data: {authGuardPipe: redirectLoggedInToItems}},
   {path: 'signup', component:SignupOverlayComponent, canActivate: [AuthGuard], data: {authGuardPipe: redirectLoggedInToItems}},
   {path: 'summary', component:SummaryComponent, canActivate: [AuthGuard], data: {authGuardPipe: redirectUnauthorizedToLogIn}},
