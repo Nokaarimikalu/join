@@ -16,10 +16,10 @@ export class SignupOverlayComponent {
   router = inject(Router);
 
   form = this.fb.nonNullable.group({
-    email: ['', Validators.required, Validators.email],
+    email: ['', Validators.required],
     username: ['', Validators.required],
     password: ['', Validators.required],
-    confirmPassword: ['', Validators.required] 
+    confirmPassword: ['', Validators.required]
   });
   errorMessage: string | null = null;
 
@@ -28,10 +28,11 @@ export class SignupOverlayComponent {
     this.authService.register(rawForm.email, rawForm.username, rawForm.password)
       .subscribe({
         next: () => {
+        this.authService.logout();
         this.router.navigateByUrl('/login');
         },
         error: (error) => {
-          this.errorMessage = error.code
+          this.errorMessage = error.code;
         },
       });
   }
