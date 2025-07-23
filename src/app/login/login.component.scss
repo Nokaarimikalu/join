@@ -12,7 +12,7 @@ section {
         width: 100%;
         height: 100%;
         background-color: #2a3647;
-        z-index: 1000;
+        z-index: 500;
         display: none;
         animation: fadeOut 0.5s ease-out 0.5s forwards;
 
@@ -48,16 +48,18 @@ section {
             align-items: center;
             width: 100%;
 
-           
 
             .logo-wrapper {
-                z-index: 200;
+
+
+                .logo-white {
+                z-index: 600;
                 animation: moveLogo 1.25s ease-in-out;
 
                 @keyframes diagonal-slide {
                     0% {
                         left: 45%;
-                        top: 200%;
+                        top: 180%;
                         transform: scale(3); // doppelte Größe
                     }
 
@@ -67,12 +69,32 @@ section {
                         transform: scale(1); // normale Größe
                     }
                 }
+                @media (min-width: 750px) {
+                    display: none;
+                }
             }
-
             .slide {
                 -webkit-animation: diagonal-slide 1.25s;
                 animation: diagonal-slide 1.25s;
-                _position: relative;
+            }
+
+            .logo {
+                z-index: 200;
+                animation: moveLogo 1.25s ease-in-out;
+
+                @keyframes diagonal-slide {
+                    0% {
+                        left: 45%;
+                        top: 180%;
+                        transform: scale(3); 
+                    }
+
+                    100% {
+                        left: 0;
+                        top: 0;
+                        transform: scale(1); 
+                    }
+                }
             }
 
             .logo {
@@ -80,6 +102,8 @@ section {
                     width: 3.5em;
                 }
             }
+            }
+            
 
             .login-nav {
                 display: flex;
