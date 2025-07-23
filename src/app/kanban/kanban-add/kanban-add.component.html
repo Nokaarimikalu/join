@@ -25,7 +25,7 @@
                                         </div>
                                     </div>
                                     <div class="form-description div-cont">
-                                        <span>Description</span>
+                                        <span class="span-description">Description</span>
                                         <textarea [(ngModel)]="taskList.description" placeholder="Enter a Description "
                                             name="description" id=""></textarea>
                                     </div>
@@ -33,8 +33,8 @@
                                         <label class="form-label">
                                             Due date<span class="required-asterisk">*</span>
                                         </label>
-                                        <input [(ngModel)]="taskList.dueDate" type="date" [min]="currentDate" name="dueDate" required
-                                            #dueDate="ngModel"
+                                        <input [(ngModel)]="taskList.dueDate" type="date" [min]="currentDate"
+                                            name="dueDate" required #dueDate="ngModel"
                                             [class.errorborder]="!dueDate.valid && dueDate.touched" />
                                         <div class="invalid-input">
                                             @if (!dueDate.valid && dueDate.touched) {
@@ -48,6 +48,7 @@
                                 <span class="required-asterisk">*</span>This field is required
                             </label>
                         </form>
+
                     </div>
                 </div>
 
@@ -118,7 +119,7 @@
                                     <div class="more-users">+{{ (taskList.assignedTo?.length || 0) - 3 }}</div>
                                     }
                                 </div>
-                                
+
                             </div>
 
                             <!-- Category-Dropdown -->
@@ -146,7 +147,9 @@
                                 <div class="kanban-overlay-subtask">
                                     <span class="subtask-span">Subtask</span>
                                     <div class="subtaskfield" (click)="$event.stopPropagation();">
-                                        <input (keydown)="onKeydown($event)" name="subtaskInput" [(ngModel)]="subtaskString" type="text" (focus)="isInputFocused = true" (blur)="handleBlur()">
+                                        <input (keydown)="onKeydown($event)" name="subtaskInput"
+                                            [(ngModel)]="subtaskString" type="text" (focus)="isInputFocused = true"
+                                            (blur)="handleBlur()">
                                         @if(!isInputFocused){
                                         <div class="add" (click)="setFocusOnInput()">
                                             <img src="assets/img/kanban-edit-overlay/plus-zichen.svg" alt="" />
@@ -164,56 +167,56 @@
                                         }
                                     </div>
                                 </div>
-                                <label class="form-label-mobile"><span class="required-asterisk">*</span>This field is
-                                    required</label>
                             </div>
                         </div>
 
 
                         <div class="each-sub-task">
-							@for (pushedSubtask of taskList.subTaskFillTest; track $index) {
+                            @for (pushedSubtask of taskList.subTaskFillTest; track $index) {
 
-							@if (editingSubtaskIndex === $index) {
-							<li (click)="$event.stopPropagation()">
-								<textarea [(ngModel)]="pushedSubtask.text"></textarea>
+                            @if (editingSubtaskIndex === $index) {
+                            <li (click)="$event.stopPropagation()">
+                                <textarea [(ngModel)]="pushedSubtask.text"></textarea>
                                 <button (click)="spliceSubtask()">
                                     <img src="assets/img/kanban-add/subTaskDeleteButton.png" alt="delete">
-								</button>
-								<button (click)="saveEditingSubtask($index); $event.stopPropagation()">
-									<img src="assets/img/kanban-add/checkmark-subtask.svg" alt="save">
                                 </button>
-							</li>
-							}@else {
-							<li (dblclick)="startEditingSubtask($index)">
-								{{ pushedSubtask.text }}
-							</li>
-							}}
-							
-							
+                                <button (click)="saveEditingSubtask($index); $event.stopPropagation()">
+                                    <img src="assets/img/kanban-add/checkmark-subtask.svg" alt="save">
+                                </button>
+                            </li>
+                            }@else {
+                            <li (dblclick)="startEditingSubtask($index)">
+                                {{ pushedSubtask.text }}
+                            </li>
+                            }}
 
-						</div>
+
+
+                        </div>
 
                         <div class="invalid-input">
-                            @if (!title.valid && title.touched || !dueDate.valid && dueDate.touched || !category.valid && category.touched) {
-                                <div>Check your inputs!</div>
+                            @if (!title.valid && title.touched || !dueDate.valid && dueDate.touched || !category.valid
+                            && category.touched) {
+                            <div>Check your inputs!</div>
                             }
                         </div>
                         <!-- each-sub-task -->
                         <div class="each-sub-task-container">
-                            
-                            <button class="clear" (click)="resetForm()">
-                                Clear
-                                <svg width="32" height="32" viewBox="0 0 32 32" fill="currentColor"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M16 17.4L11.1 22.3C10.9167 22.4834 10.6834 22.575 10.4 22.575C10.1167 22.575 9.88338 22.4834 9.70005 22.3C9.51672 22.1167 9.42505 21.8834 9.42505 21.6C9.42505 21.3167 9.51672 21.0834 9.70005 20.9L14.6 16L9.70005 11.1C9.51672 10.9167 9.42505 10.6834 9.42505 10.4C9.42505 10.1167 9.51672 9.88338 9.70005 9.70005C9.88338 9.51672 10.1167 9.42505 10.4 9.42505C10.6834 9.42505 10.9167 9.51672 11.1 9.70005L16 14.6L20.9 9.70005C21.0834 9.51672 21.3167 9.42505 21.6 9.42505C21.8834 9.42505 22.1167 9.51672 22.3 9.70005C22.4834 9.88338 22.575 10.1167 22.575 10.4C22.575 10.6834 22.4834 10.9167 22.3 11.1L17.4 16L22.3 20.9C22.4834 21.0834 22.575 21.3167 22.575 21.6C22.575 21.8834 22.4834 22.1167 22.3 22.3C22.1167 22.4834 21.8834 22.575 21.6 22.575C21.3167 22.575 21.0834 22.4834 20.9 22.3L16 17.4Z"
-                                        fill="currentColor" />
-                                </svg>
-                            </button>
+                            <div class="btn-each">
+                                <button class="clear" (click)="resetForm()">
+                                    Clear
+                                    <svg width="32" height="32" viewBox="0 0 32 32" fill="currentColor"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M16 17.4L11.1 22.3C10.9167 22.4834 10.6834 22.575 10.4 22.575C10.1167 22.575 9.88338 22.4834 9.70005 22.3C9.51672 22.1167 9.42505 21.8834 9.42505 21.6C9.42505 21.3167 9.51672 21.0834 9.70005 20.9L14.6 16L9.70005 11.1C9.51672 10.9167 9.42505 10.6834 9.42505 10.4C9.42505 10.1167 9.51672 9.88338 9.70005 9.70005C9.88338 9.51672 10.1167 9.42505 10.4 9.42505C10.6834 9.42505 10.9167 9.51672 11.1 9.70005L16 14.6L20.9 9.70005C21.0834 9.51672 21.3167 9.42505 21.6 9.42505C21.8834 9.42505 22.1167 9.51672 22.3 9.70005C22.4834 9.88338 22.575 10.1167 22.575 10.4C22.575 10.6834 22.4834 10.9167 22.3 11.1L17.4 16L22.3 20.9C22.4834 21.0834 22.575 21.3167 22.575 21.6C22.575 21.8834 22.4834 22.1167 22.3 22.3C22.1167 22.4834 21.8834 22.575 21.6 22.575C21.3167 22.575 21.0834 22.4834 20.9 22.3L16 17.4Z"
+                                            fill="currentColor" />
+                                    </svg>
+                                </button>
                                 <button class="create-task" (click)="onSubmit()">
                                     Create Task
                                     <img src="assets/img/add-contacts/check.svg" alt="Create Task" />
                                 </button>
+                            </div>
                         </div>
                     </div>
                 </div>

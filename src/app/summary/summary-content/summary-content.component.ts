@@ -70,9 +70,9 @@ get doneCount(): number {
 
     if (userTask) {
       const user = userTask.assignedTo?.find(u => u.email === this.userEmail);
-      return `${user?.firstName} ${user?.lastName}` || 'Unknown User';
+      return `${user?.firstName} ${user?.lastName}` || 'Guest';
     }
-    return 'Unknown User';
+    return 'Guest';
   }
   getFilteredTasks() {
     return this.boardService.taskList.filter(
