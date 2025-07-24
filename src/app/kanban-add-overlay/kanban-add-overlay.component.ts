@@ -16,14 +16,19 @@ import { BoardService } from '../services/board/board.service';
 })
 export class KanbanAddOverlayComponent {
   isInputFocused: boolean = false;
+
   editingSubtaskIndex: number | null = null;
+
   submitted: boolean = false;
+
   currentIndex: number = 0;
+
   editingSubtaskValue: string = '';
+
   subtaskString: string = '';
-  currentDate: string = new Date().getFullYear().toString() + "-" + (new Date().getMonth()+1).toString().padStart(2, '0') + "-" + new Date().getDate().toString().padStart(2, '0');
 
-
+  currentDate: string = new Date().getFullYear().toString() + "-" + (new Date().getMonth() + 1).toString().padStart(2, '0') + "-" + new Date().getDate().toString().padStart(2, '0');
+  
   taskList: TaskItemBoard;
 
   constructor(public boardService: BoardService, public overlayState: OverlayState) {
@@ -40,7 +45,6 @@ export class KanbanAddOverlayComponent {
   }
 
   @Input() task!: TaskItemBoard;
-
   @ViewChild('addTaskForm') addTaskForm!: NgForm;
   @ViewChild('category') addMaterialsForm!: NgModel;
 
@@ -61,28 +65,28 @@ export class KanbanAddOverlayComponent {
     }
   }
 
-    startEditingSubtask(index: number) {
-        try {
-            this.editingSubtaskIndex = index;
-            this.editingSubtaskValue = this.task.subTaskFillTest[index].text;
-        } catch (error) {
-            console.log('Editing subtask at index:', index);
+  startEditingSubtask(index: number) {
+    try {
+      this.editingSubtaskIndex = index;
+      this.editingSubtaskValue = this.task.subTaskFillTest[index].text;
+    } catch (error) {
+/*             console.log('Editing subtask at index:', index);
             console.log('Current subtask value:', this.taskList.subTaskFillTest[index].text);
             console.log('Current taskList:', this.taskList.subTaskFillTest);
-        }
-    }
+ */        }
+  }
 
-setFocusOnInput() {
-  this.isInputFocused = true;
+  setFocusOnInput() {
+    this.isInputFocused = true;
     const inputField = document.querySelector('.subtaskfield input') as HTMLInputElement;
     inputField?.focus();
-}
+  }
 
-handleBlur() {
-  if( this.subtaskString.trim() === '') {
-  this.isInputFocused = false;}
-}
- 
+  handleBlur() {
+    if (this.subtaskString.trim() === '') {
+      this.isInputFocused = false;
+    }
+  }
 
   changeToUrgent() {
     this.taskList.priority = 'Urgent';
@@ -95,7 +99,6 @@ handleBlur() {
   changeToLow() {
     this.taskList.priority = 'Low';
   }
-
 
   resetForm() {
     this.taskList = {
@@ -117,32 +120,29 @@ handleBlur() {
   }
 
   pushToSubtask() {
-    if (this.subtaskString.trim() === '') {this.isInputFocused = false; return;}
-
+    if (this.subtaskString.trim() === '') { this.isInputFocused = false; return; }
     if (!this.taskList.subTaskFillTest) {
       this.taskList.subTaskFillTest = [];
     }
-
     const newSubtask = {
       text: this.subtaskString.trim(),
       completed: false
     };
-
     this.taskList.subTaskFillTest.push(newSubtask);
     this.subtaskString = '';
     this.isInputFocused = false;
   }
 
-spliceSubtask() {
-  this.taskList.subTaskFillTest.splice(-1, 1);
-}
+  spliceSubtask() {
+    this.taskList.subTaskFillTest.splice(-1, 1);
+  }
 
-saveEditingSubtask(index: number) {
-        if (this.editingSubtaskValue.trim() !== '') {
-            this.taskList.subTaskFillTest[this.currentIndex].text = this.editingSubtaskValue.trim();
-        }
-        this.editingSubtaskIndex = null;
+  saveEditingSubtask(index: number) {
+    if (this.editingSubtaskValue.trim() !== '') {
+      this.taskList.subTaskFillTest[this.currentIndex].text = this.editingSubtaskValue.trim();
     }
+    this.editingSubtaskIndex = null;
+  }
 
   emptySubtask() {
     this.subtaskString = '';
@@ -158,10 +158,9 @@ saveEditingSubtask(index: number) {
 
   onKeydown(event: KeyboardEvent) {
     if (event.key === 'Enter') {
-        this.pushToSubtask();
+      this.pushToSubtask();
     } else if (event.key === 'Escape') {
-        this.emptySubtask();
+      this.emptySubtask();
     }
   }
-
 }
