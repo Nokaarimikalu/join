@@ -206,8 +206,7 @@ export class KanbanAddComponent {
             priority: 'Medium',
             assignedTo: [],
             category: '',
-            subTaskFillTest: []
-        };
+            subTaskFillTest: []};
         this.subtaskString = '';
         this.isInputFocused = false;
         this.addTaskForm.reset();

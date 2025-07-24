@@ -28,45 +28,78 @@ html {
         left: -100%;
         transform: translate(-50%, -50%);
     }
+
     .mat-mdc-option:focus.mdc-list-item,
     .mat-mdc-option.mat-mdc-option-active.mdc-list-item {
-    display: flex;
-    flex-direction: row-reverse;
-    background-color: #2a3647;
-    color: white;
-
-    &:hover {
-        background-color: #091931;
-    }
-}
-
-.mat-mdc-option.mdc-list-item {
-    display: flex;
-    flex-direction: row-reverse;
-    background: white;
-
-    .select-initials {
-        width: 2em;
-        height: 2em;
         display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 1em;
-        margin-right: 1em;
+        flex-direction: row-reverse;
+        background-color: #2a3647;
         color: white;
+
+        &:hover {
+            background-color: #091931;
+        }
     }
 
-    &:hover {
-        background: #eeeeee;
-    }
-}
+    .mat-mdc-option.mdc-list-item {
+        display: flex;
+        flex-direction: row-reverse;
+        background: white;
 
-.option-text {
-    display: flex;
-    width: 100%;
-    flex-direction: row;
-    align-items: center;
-}
+        .select-initials {
+            width: 2em;
+            height: 2em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 1em;
+            margin-right: 1em;
+            color: white;
+        }
+
+        &:hover {
+            background: #eeeeee;
+        }
+    }
+
+    .mat-mdc-option:focus.mdc-list-item,
+    .mat-mdc-option.mat-mdc-option-active.mdc-list-item {
+        display: flex;
+        flex-direction: row-reverse;
+        background-color: #2a3647;
+        color: white;
+
+
+
+        &:hover {
+            background-color: #091931;
+        }
+    }
+
+    .mat-mdc-option.mdc-list-item {
+        display: flex;
+        flex-direction: row-reverse;
+        background: white;
+
+        .select-initials {
+            width: 2em;
+            height: 2em;
+            border-radius: 1em;
+            margin-right: 1em;
+            color: white;
+        }
+
+        &:hover {
+            background: #eeeeee;
+        }
+    }
+
+    .option-text {
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+    }
 }
 
 * {
@@ -276,14 +309,13 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-app-login{
+app-login {
     display: flex;
     background-color: #f0f0f0;
 }
 
-@mixin flex ($jc: center, $fd: column, $ai: center) {
+@mixin flex ($jc: center, $ai: center) {
     display: flex;
-    flex-direction: $fd;
     justify-content: $jc;
     align-items: $ai;
 }

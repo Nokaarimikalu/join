@@ -11,5 +11,4 @@ import { HelpMeComponent } from "./shared/help-me/help-me.component";
 })
 export class AppComponent {
   title = 'join';
-  // static helpOpen: boolean = false;
 }
