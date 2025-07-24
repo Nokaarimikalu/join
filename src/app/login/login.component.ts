@@ -51,7 +51,7 @@ export class LoginComponent {
     }
 
     guestLogIn() {
-        this.authService.login('mustermann@bspmail.com', '123456').subscribe({
+        this.authService.login('guestlogin@join.com', 'guest123').subscribe({
             next: () => {
                 this.router.navigateByUrl('/');
             },
