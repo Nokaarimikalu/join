@@ -33,6 +33,10 @@ export class OverlayState implements OnDestroy {
 
   //#endregion
   //#region constructor
+  /**
+   * Creates an instance of OverlayState
+   * Initializes Firestore snapshot listener
+   */
   constructor() {
     this.unsubscribe = onSnapshot(collection(this.firestore, 'contacts'), (contact) => {
       this.contactList = [];
@@ -44,15 +48,29 @@ export class OverlayState implements OnDestroy {
     })
   }
   //#endregion
+
   //#region methods
+  /**
+   * Toggles overlay visibility
+   */
   toggleOverlay() {
     this.isActive = !this.isActive;
   }
 
+  /**
+   * Gets Firestore collection reference for contacts
+   * @returns Collection reference
+   */
   getContacts() {
     return collection(this.firestore, 'contacts');
   }
 
+  /**
+   * Creates a ContactList object from Firestore data
+   * @param {string} id - Contact ID from Firestore
+   * @param {any} obj - Contact data from Firestore
+   * @returns {ContactList} Formatted contact object
+   */
   setContactsObject(id: string, obj: any): ContactList {
     return {
       id: id,
@@ -65,21 +83,32 @@ export class OverlayState implements OnDestroy {
     }
   }
 
-async addContacts(contact: ContactList) {
-  contact.firstName = contact.firstName.charAt(0).toUpperCase() + contact.firstName.slice(1); // contact.firstName.slice(1) to add the rest of the name!
-  contact.lastName = contact.lastName.charAt(0).toUpperCase() + contact.lastName.slice(1);
-  const docRef = await addDoc(collection(this.firestore, 'contacts'), contact);
-  this.sortContacts();
-  const newIndex = this.contactList.findIndex(u => u.id === docRef.id); 
-  this.toggleSelectedProfile(newIndex);
-}
+  /**
+   * Adds a new contact to Firestore
+   * @param {ContactList} contact - Contact to add
+   */
+  async addContacts(contact: ContactList) {
+    contact.firstName = contact.firstName.charAt(0).toUpperCase() + contact.firstName.slice(1);
+    contact.lastName = contact.lastName.charAt(0).toUpperCase() + contact.lastName.slice(1);
+    const docRef = await addDoc(collection(this.firestore, 'contacts'), contact);
+    this.sortContacts();
+    const newIndex = this.contactList.findIndex(u => u.id === docRef.id); 
+    this.toggleSelectedProfile(newIndex);
+  }
 
+  /**
+   * Sorts contacts alphabetically by first name
+   */
   sortContacts() {
-    this.contactList.sort((a, b) => { // sort rearranges the array elements based on the rules, in this case. alphabetic with firstname
-      return a.firstName.localeCompare(b.firstName); // localCompare is a string method, sorting strings in alphabetic order
+    this.contactList.sort((a, b) => {
+      return a.firstName.localeCompare(b.firstName);
     });
   }
 
+  /**
+   * Toggles selected profile state
+   * @param {number} activeUser - Index of user to select
+   */
   toggleSelectedProfile(activeUser: number) {
     const isSameUser = this.activeProfileIndex === activeUser;
 
@@ -91,12 +120,16 @@ async addContacts(contact: ContactList) {
       this.activeProfileIndex = isSameUser ? null : activeUser;
       this.selectedUser = isSameUser ? null : this.contactList[activeUser];
     }
-    this.inputActive = !!this.selectedUser; // first ! makes null to true because its falsy, the second makes it true 
+    this.inputActive = !!this.selectedUser;
     this.fullNameForEdit = this.selectedUser
       ? `${this.selectedUser.firstName} ${this.selectedUser.lastName}`
       : '';
   }
 
+  /**
+   * Handles mobile view contact selection
+   * @param {number} activeUser - Index of selected user
+   */
   mobileViewContacts(activeUser: number) {
     this.activeProfileIndex = activeUser;
     this.selectedUser = this.contactList[activeUser];
@@ -107,26 +140,30 @@ async addContacts(contact: ContactList) {
     infoRef?.classList.remove('hidden');
   }
 
+  /**
+   * Handles window resize events for responsive behavior
+   */
   controllResize() {
-    window.addEventListener('resize', () => { // 'resize' JS implemented eventlistener! 
+    window.addEventListener('resize', () => {
       const contactListRef = document.querySelector('.contact-list-component');
-            const infoRef = document.querySelector('.app-info-screen-mobile-component');
+      const infoRef = document.querySelector('.app-info-screen-mobile-component');
 
       if (window.innerWidth > 750) {
         contactListRef?.classList.remove('hidden');
-                infoRef?.classList.add('hidden');
-
+        infoRef?.classList.add('hidden');
       }
     });
   }
 
+  /**
+   * Updates contact in Firestore
+   */
   async updateContact() {
     if (!this.selectedUser || this.activeProfileIndex === null) return;
     const contactId = this.contactList[this.activeProfileIndex]?.id;
     if (!contactId) return;
     this.editSplitFullName(this.fullNameForEdit, this.selectedUser);
     this.contactList[this.activeProfileIndex] = { ...this.selectedUser };
-
     try {
       const contactRef = doc(this.firestore, 'contacts', contactId);
       await updateDoc(contactRef, {
@@ -139,8 +176,7 @@ async addContacts(contact: ContactList) {
       });
       this.sortContacts();
       const newIndex = this.contactList.findIndex(contact => contact.id === this.selectedUser?.id);
-
-      if (newIndex !== this.activeProfileIndex) { // if no change in position keep selection (or it will deselecct because of this.tsp() logic)
+      if (newIndex !== this.activeProfileIndex) {
         this.toggleSelectedProfile(newIndex);
       }
     } catch (error) {
@@ -148,6 +184,11 @@ async addContacts(contact: ContactList) {
     }
   }
 
+  /**
+   * Splits full name into first and last name for editing
+   * @param {string} fullName - Full name to split
+   * @param {ContactList} target - Contact object to update
+   */
   editSplitFullName(fullName: string, target: ContactList) {
     const [firstName, ...lastParts] = fullName.split(' ');
     target.firstName = firstName.charAt(0).toUpperCase() + firstName.slice(1);
@@ -155,21 +196,31 @@ async addContacts(contact: ContactList) {
     target.initials = firstName.charAt(0).toUpperCase() + (lastParts[0]?.charAt(0).toUpperCase() || '');
   }
 
+  /**
+   * Deletes contact from Firestore
+   */
   async deleteContact() {
     if (!this.selectedUser || this.activeProfileIndex === null) return;
     const contactId = this.contactList[this.activeProfileIndex]?.id;
     if (!contactId) return;
     await deleteDoc(doc(this.firestore, 'contacts', contactId))
     this.sortContacts();
-        this.toggleSelectedProfile(this.activeProfileIndex);
-  }//new deleteFunction
+    this.toggleSelectedProfile(this.activeProfileIndex);
+  }
 
+  /**
+   * Cleans up Firestore snapshot listener
+   */
   ngOnDestroy() {
     if (this.unsubscribe) {
       this.unsubscribe();
     }
   }
 
+  /**
+   * Generates random RGB color
+   * @returns {string} Random RGB color string
+   */
   getRandomColor() {
     const r: number = Math.floor(Math.random() * 256);
     const g: number = Math.floor(Math.random() * 256);
@@ -177,6 +228,9 @@ async addContacts(contact: ContactList) {
     return `rgb(${r}, ${g}, ${b})`;
   }
 
+  /**
+   * Returns to contact list view (mobile)
+   */
   toList() {
     const infoRef = document.querySelector('.app-info-screen-mobile-component');
     infoRef?.classList.toggle('hidden');
@@ -184,11 +238,14 @@ async addContacts(contact: ContactList) {
     contactListRef?.classList.remove('hidden')
   }
 
+  /**
+   * Shows contact creation confirmation
+   */
   contactConfirmation(){
-        const overlayRef = document.querySelector('.createdContact');
-        overlayRef?.classList.add('display');
+    const overlayRef = document.querySelector('.createdContact');
+    overlayRef?.classList.add('display');
     setTimeout(() => {
-        overlayRef?.classList.remove('display');
+      overlayRef?.classList.remove('display');
     }, 1900);    
   }
   //#endregion

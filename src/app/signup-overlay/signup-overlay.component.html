@@ -20,7 +20,7 @@
       <div class="signup-form">
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
           <div class="username-input allInputs" >
-            <input type="text" placeholder="Name" formControlName="username" [class.error-border]="form.get('username')?.invalid && form.get('username')?.touched">
+            <input type="text" placeholder="Name" formControlName="username" [class.error-border]="form.get('username')?.invalid && form.get('username')?.touched" pattern="^[a-zA-ZäöüÄÖÜß]+ [a-zA-ZäöüÄÖÜß]+$">
             <img  class="absoluteimg" src="assets/img/sign-up/person.svg" alt="">
           </div>
           
@@ -41,6 +41,9 @@
           </div>
           
           <div class="error-message all-inputs">
+            @if (form.get('username')?.invalid && form.get('confirmPassword')?.touched) {
+            <p>You need firstname & lastname</p>
+            }
             @if (form.get('password')?.value !== form.get('confirmPassword')?.value && form.get('confirmPassword')?.touched) {
             <p>Your passwords don't match. Please try again.</p>
             }
