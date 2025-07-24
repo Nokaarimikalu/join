@@ -17,21 +17,45 @@
         </div>
       </div>
 
-
-
       <div class="signup-form">
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
-          <input type="text" placeholder="Name" formControlName="username">
-          <input type="email" placeholder="Email" formControlName="email">
-          <input type="password" placeholder="Password" formControlName="password">
-          <input type="password" placeholder="Confirm Password" formControlName="confirmPassword">
+          <div class="username-input allInputs" >
+            <input type="text" placeholder="Name" formControlName="username" [class.error-border]="form.get('username')?.invalid && form.get('username')?.touched">
+            <img  class="absoluteimg" src="assets/img/sign-up/person.svg" alt="">
+          </div>
+          
+          <div class="mail-input allInputs">
+            <input type="email" placeholder="Email" formControlName="email" [class.error-border]="form.get('email')?.invalid && form.get('email')?.touched">
+            <img class="absoluteimg" src="assets/img/sign-up/mail.png" alt="">
+          </div>
+          
+          <div class="password-input allInputs">
+            <input #pwInput [type]="showPassword ? 'text' : 'password'" placeholder="Password" formControlName="password" (focus)="isFocused = true " (blur)="isFocused = false" (input)="checkPasswordInput()" 
+            [class.error-border]="form.get('password')?.invalid && form.get('password')?.touched" required="6">
+            <img  [src]="lockIconSrc" alt="Lock Icon" class="absoluteimg" (click)="checkLockClick(pwInput)">
+          </div>
+
+          <div class="confirm-password allInputs">
+            <input #pwInput [type]="showPassword ? 'text' : 'password'" placeholder="Confirm Password" formControlName="confirmPassword" (focus)="isFocused = true" (blur)="isFocused = false" (input)="checkPasswordInput()">
+            <img  [src]="lockIconSrc" alt="Lock Icon" class="absoluteimg" (click)="checkLockClick(pwInput)">
+          </div>
+          
+          <div class="error-message all-inputs">
+            @if (form.get('password')?.value !== form.get('confirmPassword')?.value && form.get('confirmPassword')?.touched) {
+            <p>Your passwords don't match. Please try again.</p>
+            }
+          </div>
+
           <div class="required checkbox-privacy">
-            <label class="custom-checkbox">
-              <input type="checkbox" id="privacy" name="privacy" required />
-              <span class="checkmark"></span>
-              I accept the
+            <div class="custom-checkbox">
+              <input formControlName="checkbox" type="checkbox" id="privacy" name="privacy" required />
+              @if(form.get('checkbox')?.touched && form.get('checkbox')?.invalid){
+                <span class="red">I accept the</span>
+              }@else {
+                <span>I accept the</span>
+              }
               <a [routerLink]="'/privacy'">Privacy policy</a>
-            </label>
+            </div>
             <span class="error-text hidden">You must accept the Privacy policy</span>
             <button type="submit" class="register-button">Sign up</button>
           </div>

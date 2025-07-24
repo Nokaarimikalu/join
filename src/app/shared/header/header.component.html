@@ -9,10 +9,10 @@
         </div>
         </header>
         <div id="drop-down" class="hidden">
-            <a (click)="toggleHelp()"><p id="help" class="help-button-dropdown">Help</p></a>
-            <a (click)="closeHelp()" routerLink="/legalNotice"><p>Legal Notice</p></a>
-            <a (click)="closeHelp()" routerLink="/privacy"><p>Privacy</p></a>
-            <p (click)="logOut()">Log out</p>
+            <a (click)="toggleHelp(); closeDropDown()"><p id="help" class="help-button-dropdown">Help</p></a>
+            <a (click)="closeHelp(); closeDropDown()" routerLink="/legalNotice"><p>Legal Notice</p></a>
+            <a (click)="closeHelp(); closeDropDown()" routerLink="/privacy"><p>Privacy</p></a>
+            <p (click)="logOut(); closeHelp(); closeDropDown()">Log out</p>
         </div>
     </div>
 </section>

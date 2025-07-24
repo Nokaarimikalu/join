@@ -77,6 +77,7 @@ section {
                     font-weight: bold;
                     border: solid black 0.15em;
                     border-radius: 50%;
+                    z-index: 15;
 
                     &:hover {
                         background: rgba($color: #0C2E62, $alpha: 0.12);
@@ -92,7 +93,7 @@ section {
 
         #drop-down {
             background: #2A3647;
-            z-index: 999999999;
+            z-index: 20;
             position: absolute;
             right: 5em;
             top: 8dvh;
