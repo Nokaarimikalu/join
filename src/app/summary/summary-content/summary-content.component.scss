@@ -139,7 +139,6 @@ section {
     width: 40px;
     height: 40px;
   }
-
 }
 
 @media (min-width:965px) {
@@ -149,9 +148,6 @@ section {
     background-repeat: no-repeat;
   }
 }
-
-
-
 
 span {
   font-size: 2em;
@@ -268,7 +264,7 @@ p {
   cursor: pointer;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
   display: flex;
-  gap: 30px;
+  gap: 16px;
   justify-content: space-evenly;
   align-items: center;
   background-color: #ffffff;

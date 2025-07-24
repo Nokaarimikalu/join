@@ -17,7 +17,7 @@ export class SignupOverlayComponent {
 
     isFocused: boolean = false;
 
-    isConfirmFocused:boolean = true;
+    isConfirmFocused: boolean = true;
 
     lockClickCount: number = 0;
 
@@ -82,14 +82,14 @@ export class SignupOverlayComponent {
     splitFullName() {
         this.splittedName = this.contactList.firstName.split(' ');
         this.contactList.firstName = this.splittedName[0];
-        this.contactList.lastName = this.splittedName[1];
+        this.contactList.lastName = this.splittedName[1] || '';
         this.contactList.initials =
             this.contactList.firstName.charAt(0).toUpperCase() +
             this.contactList.lastName.charAt(0).toUpperCase();
         this.contactList.color = this.overlayState.getRandomColor();
     }
 
-        checkLockClick(passwordInput: HTMLInputElement): void {
+    checkLockClick(passwordInput: HTMLInputElement): void {
         this.lockClickCount++;
         if (this.lockClickCount === 1 && this.showPassword == false) {
             this.lockIconSrc = 'assets/img/login/visibility_off.svg';
@@ -103,19 +103,15 @@ export class SignupOverlayComponent {
             this.lockIconSrc = 'assets/img/login/visibility_off.svg';
         }
     }
-    
+
     checkPasswordInput(): void {
         const pwValue = this.form.get('password')?.value;
-
         if (this.lockClickCount < 1 && pwValue) {
             this.lockIconSrc = 'assets/img/login/visibility_off.svg'; // Bild 2 beim erster Eingabe
         }
-
         if (this.lockClickCount >= 2) {
             this.lockIconSrc = 'assets/img/login/visibility.svg'; // Bild 3 bei weiterer Eingabe
         }
     }
 
-
-    
 }

@@ -119,12 +119,6 @@ export class KanbanEditComponent {
     }
     //--------------------------------------------------------------------------------
 
-    debugPriority() {
-        console.log(this.task.priority);
-        console.log('oben ist referenz');
-        console.log(this.task.priority);
-    }
-
     nextTask() {
         this.currentIndex = (this.currentIndex + 1) % this.dummyTasks.length;
     }
@@ -175,7 +169,6 @@ export class KanbanEditComponent {
                 status: this.task.status,
                 subTaskFillTest: this.task.subTaskFillTest,
             };
-            console.log(this.task.subTaskFillTest);
             if (typeof this.task.subTaskFillTest !== 'undefined') {
                 updatedTask.subTaskFillTest = this.task.subTask;
             }

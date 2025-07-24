@@ -45,10 +45,6 @@ export class CardComponent {
     return (this.completedSubtasks / this.totalSubtasks) * 100;
   }
 
-  debug() {
-    console.log(this.showMobileOverlay);
-  }
-
   showMobileOverlay = false; 
 
   openMobileOverlay(event: Event) {
