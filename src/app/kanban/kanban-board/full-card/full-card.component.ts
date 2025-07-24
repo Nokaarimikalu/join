@@ -7,24 +7,31 @@ import { KanbanEditComponent } from '../../kanban-edit/kanban-edit.component';
 
 
 @Component({
-  selector: 'app-full-card',
-  imports: [FormsModule, KanbanEditComponent],
-  templateUrl: './full-card.component.html',
-  styleUrl: './full-card.component.scss'
+    selector: 'app-full-card',
+    imports: [FormsModule, KanbanEditComponent],
+    templateUrl: './full-card.component.html',
+    styleUrl: './full-card.component.scss'
 })
 
 
 export class FullCardComponent {
+    checkboxActive: boolean = false;
 
-  checkboxActive: boolean = false;
+    /**
+     * Creates an instance of FullCardComponent.
+     * @param {BoardService} boardService - Service for board operations
+     */
+    constructor(public boardService: BoardService) {
+    }
 
-  constructor(public boardService: BoardService) {
-  }
+    @Input() task!: TaskItemBoard;
 
-  @Input() task!: TaskItemBoard;
-
-toggleCheckbox(subtaskIndex: number) {
-  this.task.subTaskFillTest[subtaskIndex].completed = !this.task.subTaskFillTest[subtaskIndex].completed;
-  this.boardService.updateTaskFullcard(this.task);
-}
+    /**
+     * Toggles the completion status of a subtask and updates the task
+     * @param {number} subtaskIndex - The index of the subtask to toggle
+     */
+    toggleCheckbox(subtaskIndex: number) {
+        this.task.subTaskFillTest[subtaskIndex].completed = !this.task.subTaskFillTest[subtaskIndex].completed;
+        this.boardService.updateTaskFullcard(this.task);
+    }
 }
