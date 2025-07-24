@@ -139,10 +139,10 @@ handleBlur() {
             this.editingSubtaskIndex = index;
             this.editingSubtaskValue = this.task.subTaskFillTest[index].text;
         } catch (error) {
-            console.log('Editing subtask at index:', index);
+/*             console.log('Editing subtask at index:', index);
             console.log('Current subtask value:', this.taskList.subTaskFillTest[index].text);
             console.log('Current taskList:', this.taskList.subTaskFillTest);
-        }
+ */        }
         
     }
 
