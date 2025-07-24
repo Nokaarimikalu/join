@@ -48,6 +48,7 @@ export class KanbanAddOverlayComponent {
   @ViewChild('addTaskForm') addTaskForm!: NgForm;
   @ViewChild('category') addMaterialsForm!: NgModel;
 
+  /** Handles form submission and adds the task if valid. */
   onSubmit() {
     this.submitted = true;
     this.addTaskForm.form.markAllAsTouched();
@@ -58,6 +59,7 @@ export class KanbanAddOverlayComponent {
     }
   }
 
+  /** Adds the selected task from the service to the board. */
   addTask() {
     if (this.boardService.selectedTask) {
       this.boardService.addTasks(this.boardService.selectedTask);
@@ -65,38 +67,49 @@ export class KanbanAddOverlayComponent {
     }
   }
 
+  /**
+   * Starts editing the subtask at the given index.
+   * @param index - Index of the subtask to edit
+   */
   startEditingSubtask(index: number) {
     try {
       this.editingSubtaskIndex = index;
       this.editingSubtaskValue = this.task.subTaskFillTest[index].text;
-    } catch (error) {
-    }
+  } catch(error){
+
+  }
   }
 
+  /** Focuses the subtask input field. */
   setFocusOnInput() {
     this.isInputFocused = true;
     const inputField = document.querySelector('.subtaskfield input') as HTMLInputElement;
     inputField?.focus();
   }
 
+  /** Removes focus if the subtask input is empty. */
   handleBlur() {
     if (this.subtaskString.trim() === '') {
       this.isInputFocused = false;
     }
   }
 
+  /** Sets priority to 'Urgent'. */
   changeToUrgent() {
     this.taskList.priority = 'Urgent';
   }
 
+  /** Sets priority to 'Medium'. */
   changeToMedium() {
     this.taskList.priority = 'Medium';
   }
 
+  /** Sets priority to 'Low'. */
   changeToLow() {
     this.taskList.priority = 'Low';
   }
 
+  /** Resets the form and clears all task fields. */
   resetForm() {
     this.taskList = {
       id: '',
@@ -116,6 +129,7 @@ export class KanbanAddOverlayComponent {
     this.isInputFocused = false;
   }
 
+  /** Adds a subtask to the task list if input is not empty. */
   pushToSubtask() {
     if (this.subtaskString.trim() === '') { this.isInputFocused = false; return; }
     if (!this.taskList.subTaskFillTest) {
@@ -130,10 +144,15 @@ export class KanbanAddOverlayComponent {
     this.isInputFocused = false;
   }
 
+  /** Removes the last subtask from the list. */
   spliceSubtask() {
     this.taskList.subTaskFillTest.splice(-1, 1);
   }
 
+  /**
+   * Saves the edited subtask text at the current index.
+   * @param index - Index of the subtask being edited
+   */
   saveEditingSubtask(index: number) {
     if (this.editingSubtaskValue.trim() !== '') {
       this.taskList.subTaskFillTest[this.currentIndex].text = this.editingSubtaskValue.trim();
@@ -141,18 +160,29 @@ export class KanbanAddOverlayComponent {
     this.editingSubtaskIndex = null;
   }
 
+  /** Clears the subtask input field. */
   emptySubtask() {
     this.subtaskString = '';
     this.isInputFocused = false;
   }
+
+  /** Toggles the full card view mode. */
   toggleFullCard() {
     this.boardService.fullCardActive = !this.boardService.fullCardActive;
   }
 
+  /**
+   * Toggles the checkbox state (completed) for a subtask.
+   * @param subtaskIndex - Index of the subtask
+   */
   toggleCheckbox(subtaskIndex: number) {
     this.taskList.subTaskFillTest[subtaskIndex].completed = !this.taskList.subTaskFillTest[subtaskIndex].completed;
   }
 
+  /**
+   * Handles Enter (to add subtask) and Escape (to cancel) key presses.
+   * @param event - KeyboardEvent
+   */
   onKeydown(event: KeyboardEvent) {
     if (event.key === 'Enter') {
       this.pushToSubtask();
