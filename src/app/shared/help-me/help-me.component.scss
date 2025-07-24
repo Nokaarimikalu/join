@@ -1,11 +1,11 @@
 .main-content {
     display: flex;
-    height: 100dvh;
+    height: 92dvh;
     overflow-x: hidden;
     font-size: 10px;
 
     @media (max-width:965px) {
-        height: 92dvh;
+        height: 84dvh;
     }
 
     .main-content-input {
@@ -62,17 +62,13 @@
     }
 }
 
-.header {
-    z-index: 25;
-}
-
 .back-button {
     position: fixed;
     top: 15em;
     right: 10em;
     border: none;
     background: rgba($color: #f6f7f8, $alpha: 0.4);
-    z-index: 20;
+    z-index: 5;
     object-fit: contain;
     height: 2.5em;
     width: 3em;

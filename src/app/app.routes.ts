@@ -15,19 +15,23 @@ import { LegalNoticeSignInComponent } from './shared/legal-notice-sign-in/legal-
 
 const redirectUnauthorizedToLogIn = () => redirectUnauthorizedTo(['/login']);
 const redirectLoggedInToItems = () => redirectLoggedInTo(['/']);
-const redirectLoggedInToSummary = () => redirectLoggedInTo(['/summary'])
+const redirectLoggedInToprivacy = () => redirectLoggedInTo(['/privacy']);
+const redirectLoggedInToLegal = () => redirectLoggedInTo(['/legalNotice']);
+const redirectUnauthorizedToPrivacy = () => redirectUnauthorizedTo(['/privacy-sign-in']);
+const redirectUnauthorizedToLegal = () => redirectUnauthorizedTo(['/legal-notice-sign-in']);
+
 
 export const routes: Routes = [
   {path: '', redirectTo: '/summary', pathMatch: 'full'},
   {path: 'login', component:LoginComponent, canActivate: [AuthGuard], data: {authGuardPipe: redirectLoggedInToItems}},
   {path: 'signup', component:SignupOverlayComponent, canActivate: [AuthGuard], data: {authGuardPipe: redirectLoggedInToItems}},
   {path: 'summary', component:SummaryComponent, canActivate: [AuthGuard], data: {authGuardPipe: redirectUnauthorizedToLogIn}},
-  {path: 'privacy', component:PrivacyComponent},
+  {path: 'privacy', component:PrivacyComponent, canActivate: [AuthGuard], data: {authGuardPipe: redirectUnauthorizedToPrivacy}},
   {path: 'help', component:HelpMeComponent,  canActivate: [AuthGuard], data: {authGuardPipe: redirectUnauthorizedToLogIn}},
-  {path: 'legalNotice', component:LegalNoticeComponent},
+  {path: 'legalNotice', component:LegalNoticeComponent, canActivate: [AuthGuard], data: {authGuardPipe: redirectUnauthorizedToLegal}},
   {path: 'task', component:KanbanAddComponent,  canActivate: [AuthGuard], data: {authGuardPipe: redirectUnauthorizedToLogIn}},
   {path: 'board', component:KanbanComponent,  canActivate: [AuthGuard], data: {authGuardPipe: redirectUnauthorizedToLogIn}},
   {path: 'contacts', component: ContactsComponent,  canActivate: [AuthGuard], data: {authGuardPipe: redirectUnauthorizedToLogIn}},
-  {path: 'privacy-sign-in', component: PrivacySignInComponent},
-  {path: 'legal-notice-sign-in', component: LegalNoticeSignInComponent}
+  {path: 'privacy-sign-in', component: PrivacySignInComponent, canActivate: [AuthGuard], data: {authGuardPipe: redirectLoggedInToprivacy} },
+  {path: 'legal-notice-sign-in', component: LegalNoticeSignInComponent, canActivate: [AuthGuard], data: {authGuardPipe: redirectLoggedInToLegal}}
 ];
