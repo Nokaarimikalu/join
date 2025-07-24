@@ -28,23 +28,34 @@ export class BoardService implements OnDestroy {
 
   taskList: TaskItemBoard[] = [];
 
-  constructor( private router: Router) {
+  /**
+   * Creates an instance of BoardService
+   * @param {Router} router - Angular router service
+   */
+  constructor(private router: Router) {
     this.unsubscribe = onSnapshot(collection(this.firestore, 'taskItemBoard'), (task) => {
       this.taskList = [];
       task.forEach((element) => {
         this.taskList.push(this.setTaskObject(element.id, element.data()));
-
       });
     })
   }
-  
 
+  /**
+   * Cleans up Firestore snapshot listener on service destruction
+   */
   ngOnDestroy(): void {
     if (this.unsubscribe) {
       this.unsubscribe();
     }
   }
 
+  /**
+   * Creates a TaskItemBoard object from Firestore data
+   * @param {string} id - Task ID from Firestore
+   * @param {any} obj - Task data from Firestore
+   * @returns {TaskItemBoard} Formatted task object
+   */
   setTaskObject(id: string, obj: any): TaskItemBoard {
     return {
       id: id,
@@ -59,44 +70,52 @@ export class BoardService implements OnDestroy {
     }
   }
 
+  /**
+   * Gets Firestore collection reference for tasks
+   * @returns Collection reference
+   */
   getTasks() {
     return collection(this.firestore, 'taskItemBoard')
   }
 
-  
-
+  /**
+   * Adds a new task to Firestore
+   * @param {TaskItemBoard} task - Task to add
+   * @returns {Promise<string>} Promise with new document ID
+   */
   async addTasks(task: TaskItemBoard) {
     const docRef = await addDoc(collection(this.firestore, 'taskItemBoard'), task);
     this.taskConfirmation();
     return docRef.id;
   }
 
+  /**
+   * Toggles full card view for a task
+   * @param {TaskItemBoard} task - Task to display
+   */
   openFullCard(task: TaskItemBoard) {
     this.fullCardActive = !this.fullCardActive;
     this.selectedTask = task;
   }
-  /* 
-      getSelectedProfile(activeUser: number) {
-      const isSameUser = this.activeProfileIndex === activeUser;
-    }
-  
-  
-   */
-  /* updateTaskStatus(taskId: string, newStatus: string) {
-    const task = this.dummyTasks.find(t => t.id === taskId);
-    if (task) {
-      task.status = newStatus;
-    }
-  } */
 
+  /**
+   * Toggles edit overlay visibility
+   */
   toggleEditOverlay() {
     this.editOverlayActive = !this.editOverlayActive;
   }
 
+  /**
+   * Toggles add task overlay visibility
+   */
   toggleAddOverlay() {
     this.addCardActive = !this.addCardActive;
   }
 
+  /**
+   * Toggles add task overlay for specific column status
+   * @param {string} status - Column status to add task to
+   */
   toggleAddOverlayColumn(status: string) {
     this.taskcolumnStatus = status;
     if(window.innerWidth < 1300){
@@ -106,18 +125,28 @@ export class BoardService implements OnDestroy {
     }
   }
 
-
+  /**
+   * Updates task subtasks in Firestore
+   * @param {TaskItemBoard} task - Task with updated subtasks
+   */
   async updateTaskFullcard(task: TaskItemBoard) {
-    if (!task.id) return; //if no task.id is generated from firebase return otherwise kanban board will crash and no input in card and fullcard will beshown
-    const taskRef = doc(this.firestore, 'taskItemBoard', task.id); //create  reference  from specific id 
-    await updateDoc(taskRef, { subTaskFillTest: task.subTaskFillTest }); //update only the specific subtask array in documentd (ref with task.id)
+    if (!task.id) return;
+    const taskRef = doc(this.firestore, 'taskItemBoard', task.id);
+    await updateDoc(taskRef, { subTaskFillTest: task.subTaskFillTest });
   }
 
+  /**
+   * Deletes a task from Firestore
+   * @param {TaskItemBoard} task - Task to delete
+   */
   async deleteTask(task: TaskItemBoard) {
-    if (!task.id) return; //if no task.id is generated from firebase return otherwise kanban board will crash and no input in card and fullcard will beshown
+    if (!task.id) return;
     await deleteDoc(doc(this.firestore, 'taskItemBoard', task.id))
   }
 
+  /**
+   * Shows task creation confirmation and navigates back to board
+   */
   taskConfirmation() {
     const overlayRef = document.querySelector('.createdTask');
     overlayRef?.classList.add('display');
@@ -125,8 +154,7 @@ export class BoardService implements OnDestroy {
     
     setTimeout(() => {
       overlayRef?.classList.remove('display');
-      this.router.navigate(['/board']); // Router-Injection erforderlich
+      this.router.navigate(['/board']);
     }, 1000);
   }
 }
-
