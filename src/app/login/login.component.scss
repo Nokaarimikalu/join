@@ -5,20 +5,23 @@ section {
     font-size: 10px;
     user-select: none;
     flex: 1;
+    overflow-y: hidden;
+    overflow-x: hidden;
 
     .bluescreen {
         position: fixed;
         top: 0;
         left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: #2a3647;
+        width: 100dvw;
+        height: 100dvh;
+        background-color: #f0f0f0;
         z-index: 1000;
-        display: none;
         animation: fadeOut 0.5s ease-out 0.5s forwards;
+
 
         @media (max-width: 750px) {
             display: block;
+            background-color: #2a3647;
         }
     }
 
@@ -48,37 +51,35 @@ section {
             justify-content: space-between;
             align-items: center;
             width: 100%;
-
+            background-color: #f0f0f0;
 
 
             .logo-wrapper {
                 z-index: 1000;
                 animation: moveLogo 1.25s ease-in-out;
+                position: absolute;
 
-                @keyframes diagonal-slide {
-                    0% {
-                        left: 45%;
-                        top: 200%;
-                        transform: scale(3);
-                        filter: brightness(0) invert(1);
-                    }
+                left: 0;
+                top: 0;
+                content: url('./../../../public/assets/img/header/Logo.png');
 
-                    50% {
-                        filter: brightness(0) invert(1);
-                    }
-
-                    100% {
-                        left: 0;
-                        top: 0;
-                        transform: scale(1);
-                        filter: none;
-                    }
+                @media (max-width:750px) {
+                    padding: 1em 3em;
+                    transform: scale(0.8);
                 }
+
+                padding: 3em 5em;
             }
 
             .slide {
                 -webkit-animation: diagonal-slide 1.25s;
                 animation: diagonal-slide 1.25s;
+
+                @media (max-width:750px) {
+                    -webkit-animation: diagonal-slide-mobile 1.25s;
+                    animation: diagonal-slide-mobile 1.25s;
+                }
+
                 _position: relative;
             }
 
@@ -354,4 +355,58 @@ section {
     height: 2em;
     width: 69%;
     color: rgb(255, 102, 102);
+}
+
+@keyframes diagonal-slide {
+    0% {
+        content: url('./../../../public/assets/img/add-contacts/join-logo.svg');
+        left: 50dvw;
+        top: 50dvh;
+        transform: scale(3);
+    }
+
+    50% {
+        content: url('./../../../public/assets/img/add-contacts/join-logo.svg');
+        transform: scale(2);
+    }
+
+    60% {
+        content: url('./../../../public/assets/img/header/Logo.png');
+        transform: scale(1.4);
+    }
+
+    100% {
+        content: url('./../../../public/assets/img/header/Logo.png');
+        transform: scale(1);
+        left: 0;
+        top: 0;
+        padding: 3em 5em;
+    }
+}
+
+@keyframes diagonal-slide-mobile {
+    0% {
+        content: url('./../../../public/assets/img/add-contacts/join-logo.svg');
+        left: 50dvw;
+        top: 50dvh;
+        transform: scale(3);
+    }
+
+    50% {
+        content: url('./../../../public/assets/img/add-contacts/join-logo.svg');
+        transform: scale(1.9);
+    }
+
+    60% {
+        content: url('./../../../public/assets/img/header/Logo.png');
+        transform: scale(1.05);
+    }
+
+    100% {
+        left: 0;
+        top: 0;
+        content: url('./../../../public/assets/img/header/Logo.png');
+        padding: 1em 3em;
+        transform: scale(0.8);
+    }
 }
