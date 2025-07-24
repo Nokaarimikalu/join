@@ -8,6 +8,28 @@
     }
 }
 
+header {
+    display: flex;
+    align-items: center;
+    min-height: 9dvh;
+    padding-left: clamp(2em, 8vw, 5em);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    .header-title{
+        display: flex;
+        @media(max-width: 750px){
+            display: none;
+        }
+    }
+    img{
+        display: flex;
+        height: 50px;
+        @media(min-width: 750px){
+            display: none;
+        }
+    }
+}
+
+
 .main-content-input {
     display: flex;
     flex-direction: column;
