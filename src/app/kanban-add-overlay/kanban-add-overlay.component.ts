@@ -75,7 +75,6 @@ export class KanbanAddOverlayComponent {
     try {
       this.editingSubtaskIndex = index;
       this.editingSubtaskValue = this.task.subTaskFillTest[index].text;
-    } catch (error) {}
   }
 
   /** Focuses the subtask input field. */

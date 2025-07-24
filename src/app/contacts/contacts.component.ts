@@ -11,7 +11,7 @@ import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-contacts',
-  imports: [RouterLink, ContactListComponent, HeaderComponent, InfoScreenComponent, NavFooterComponent, ContactListComponent, OverlayContactsComponent, NavFooterMobileComponent, InfoScreenMobileComponent],
+  imports: [ContactListComponent, HeaderComponent, InfoScreenComponent, NavFooterComponent, ContactListComponent, OverlayContactsComponent, NavFooterMobileComponent, InfoScreenMobileComponent],
   templateUrl: './contacts.component.html',
   styleUrl: './contacts.component.scss'
 })
