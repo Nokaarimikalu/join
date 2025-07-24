@@ -15,11 +15,16 @@ import { Auth } from '@angular/fire/auth';
 })
 export class HelpMeComponent {
 
-  constructor(private router:Router){
-    
-  }
+  /**
+   * Creates an instance of HelpMeComponent
+   * @param {Router} router - Angular router service for navigation
+   */
+  constructor(private router: Router) {}
 
-  hideHelp(){
+  /**
+   * Hides the help overlay and updates UI state
+   */
+  hideHelp() {
     const helpRef = document.querySelector('#help-me-overlay');
     const helpButtonRef = document.querySelectorAll('.help-button-header');
     helpButtonRef.forEach(element => {
@@ -30,7 +35,11 @@ export class HelpMeComponent {
     helpRef?.classList.toggle('hidden');
   }
 
-  toggleActive(state:string):void{
+  /**
+   * Updates active navigation state based on current route
+   * @param {string} state - Current route path segment
+   */
+  toggleActive(state: string): void {
     const activeElements = document.querySelectorAll('.active');
     activeElements.forEach(element => {
       element.classList.remove('active');
@@ -53,10 +62,14 @@ export class HelpMeComponent {
     }
   }
 
-  runCase(path:string):void{
+  /**
+   * Helper method to set active state for navigation elements
+   * @param {string} path - CSS selector for elements to activate
+   */
+  runCase(path: string): void {
     const currentElements = document.querySelectorAll(path);
-        currentElements?.forEach((element: { classList: { add: (arg0: string) => void; }; }) => {
-        element.classList.add('active');});
+    currentElements?.forEach((element: { classList: { add: (arg0: string) => void; }; }) => {
+      element.classList.add('active');
+    });
   }
-
 }

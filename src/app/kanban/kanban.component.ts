@@ -9,7 +9,7 @@ import { KanbanBoardComponent } from './kanban-board/kanban-board.component';
 
 @Component({
   selector: 'app-kanban',
-  imports: [RouterLink, HeaderComponent, NavFooterComponent, NavFooterMobileComponent, KanbanBoardComponent],
+  imports: [HeaderComponent, NavFooterComponent, NavFooterMobileComponent, KanbanBoardComponent],
   templateUrl: './kanban.component.html',
   styleUrl: './kanban.component.scss'
 })

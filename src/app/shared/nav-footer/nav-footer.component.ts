@@ -9,8 +9,15 @@ import { Router, RouterLink } from '@angular/router';
 })
 export class NavFooterComponent implements OnInit {
 
+  /**
+   * Creates an instance of NavFooterComponent
+   * @param {Router} router - Angular router service for navigation
+   */
   constructor(private router: Router) {}
 
+  /**
+   * Initializes component and sets up route change listener
+   */
   ngOnInit(): void {
     this.setActiveBaseOnRoute();
 
@@ -18,16 +25,22 @@ export class NavFooterComponent implements OnInit {
       if (event instanceof NavFooterComponent) {
         this.setActiveBaseOnRoute();
       }
-    }
-    );
+    });
   }
 
-  setActiveBaseOnRoute():void {
+  /**
+   * Sets active state based on current route
+   */
+  setActiveBaseOnRoute(): void {
     const path = this.router.url.split('/')[1];
     this.toggleActive(path);
   }
 
-  toggleActive(state:string):void{
+  /**
+   * Toggles active state for navigation items based on current route
+   * @param {string} state - Current route path segment
+   */
+  toggleActive(state: string): void {
     const activeElements = document.querySelectorAll('.active');
     activeElements.forEach(element => {
       element.classList.remove('active');
@@ -47,7 +60,7 @@ export class NavFooterComponent implements OnInit {
         break;
       case 'privacy':
         this.runImpLegalCase();
-        break
+        break;
       case 'legalNotice':
         this.runImpLegalCase();
         break;
@@ -56,7 +69,10 @@ export class NavFooterComponent implements OnInit {
     }
   }
 
-  closeHelp(){
+  /**
+   * Closes the help overlay and resets help button states
+   */
+  closeHelp() {
     const helpRef = document.querySelector('#help-me-overlay');
     helpRef?.classList.add('hidden');
     const helpButtonRef = document.querySelector('.help-button-header');
@@ -65,13 +81,21 @@ export class NavFooterComponent implements OnInit {
     helpDropdownRef?.classList.remove('hidden');
   }
 
-  runCase(path:string):void{
+  /**
+   * Sets active state for elements matching the given selector
+   * @param {string} path - CSS selector for elements to activate
+   */
+  runCase(path: string): void {
     const currentElements = document.querySelectorAll(path);
-        currentElements?.forEach((element: { classList: { add: (arg0: string) => void; }; }) => {
-        element.classList.add('active');});
+    currentElements?.forEach((element: { classList: { add: (arg0: string) => void; }; }) => {
+      element.classList.add('active');
+    });
   }
 
-  runImpLegalCase(){
+  /**
+   * Handles special case for legal/privacy routes by hiding help buttons
+   */
+  runImpLegalCase() {
     const helpButtonRef = document.querySelector('.help-button-header');
     const helpDropdownRef = document.querySelector('.help-button-dropdown');
     helpButtonRef?.classList.add('hidden');
