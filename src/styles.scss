@@ -280,3 +280,10 @@ app-login{
     display: flex;
     background-color: #f0f0f0;
 }
+
+@mixin flex ($jc: center, $fd: column, $ai: center) {
+    display: flex;
+    flex-direction: $fd;
+    justify-content: $jc;
+    align-items: $ai;
+}
