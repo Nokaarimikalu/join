@@ -70,7 +70,7 @@ export class KanbanAddOverlayComponent {
       this.editingSubtaskIndex = index;
       this.editingSubtaskValue = this.task.subTaskFillTest[index].text;
     } catch (error) {
-}
+    }
   }
 
   setFocusOnInput() {
