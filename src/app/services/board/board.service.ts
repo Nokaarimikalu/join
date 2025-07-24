@@ -128,5 +128,14 @@ export class BoardService implements OnDestroy {
       this.router.navigate(['/board']); // Router-Injection erforderlich
     }, 1000);
   }
+
+  
+  showSignInOverlay(){
+    const signInOverlay = document.querySelector('.sign-in-overlay');
+    signInOverlay?.classList.remove('hidden')
+    setTimeout(() => {
+      signInOverlay?.classList.add('hidden');
+    }, 2000);
+  }
 }
 

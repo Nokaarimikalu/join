@@ -4,6 +4,8 @@ import { AuthService } from '../services/auth/auth.service';
 import { Router, RouterLink } from '@angular/router';
 import { ContactList } from '../shared/interface/contact-list.interface';
 import { OverlayState } from '../services/contacts/overlayState.service';
+import { BoardService } from '../services/board/board.service';
+
 
 @Component({
     selector: 'app-signup-overlay',
@@ -49,11 +51,10 @@ export class SignupOverlayComponent {
     });
     errorMessage: string | null = null;
 
-    constructor(public overlayState: OverlayState) { }
+    constructor(public overlayState: OverlayState, public boardService: BoardService) { }
 
     onSubmit(): void {
         this.form.markAllAsTouched();
-
         const rawForm = this.form.getRawValue();
         if (!this.getMailFromContact(rawForm.email)) {
             this.contactList.email = rawForm.email;
@@ -66,6 +67,7 @@ export class SignupOverlayComponent {
                 next: () => {
                     this.authService.logout();
                     this.router.navigateByUrl('/login');
+                    this.boardService.showSignInOverlay()
                 },
                 error: (error) => {
                     this.errorMessage = error.code;
