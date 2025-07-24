@@ -29,12 +29,17 @@ export class KanbanAddComponent {
     @ViewChild('subtaskInput') subtaskInput!: HTMLInputElement;
 
     isInputFocused: boolean = false;
+
     currentIndex: number = 0;
+
     submitted: boolean = false;
+
     subtaskString: string = '';
-    currentDate: string = new Date().getFullYear().toString() + "-" + (new Date().getMonth()+1).toString().padStart(2, '0') + "-" + new Date().getDate().toString().padStart(2, '0');
+
+    currentDate: string = new Date().getFullYear().toString() + "-" + (new Date().getMonth() + 1).toString().padStart(2, '0') + "-" + new Date().getDate().toString().padStart(2, '0');
 
     editingSubtaskValue: string = '';
+
     editingSubtaskIndex: number | null = null;
 
     @Input() task!: TaskItemBoard;
@@ -50,6 +55,12 @@ export class KanbanAddComponent {
         subTaskFillTest: [],
     };
 
+    /**
+       * Creates an instance of KanbanAddComponent.
+       * Initializes taskList with default values from boardService
+       * @param {BoardService} boardService - Service for board operations
+       * @param {OverlayState} overlayState - Service for overlay state management
+       */
     constructor(
         public boardService: BoardService,
         public overlayState: OverlayState
@@ -66,16 +77,21 @@ export class KanbanAddComponent {
         };
     }
 
+    /**
+     * Handles form submission and validates inputs
+     */
     onSubmit() {
         this.submitted = true;
         this.addTaskForm.form.markAllAsTouched();
         this.addMaterialsForm.control.markAllAsTouched();
-
         if (this.addTaskForm.form.valid && this.addMaterialsForm.valid) {
             this.boardService.addTasks(this.taskList);
         }
     }
 
+    /**
+     * Adds the currently selected task to the board
+     */
     addTask() {
         if (this.boardService.selectedTask) {
             this.boardService.addTasks(this.boardService.selectedTask);
@@ -83,69 +99,94 @@ export class KanbanAddComponent {
         }
     }
 
+    /**
+     * Sets task priority to 'Urgent'
+     */
     changeToUrgent() {
         this.taskList.priority = 'Urgent';
     }
 
+    /**
+     * Sets task priority to 'Medium'
+     */
     changeToMedium() {
         this.taskList.priority = 'Medium';
     }
 
+    /**
+     * Sets task priority to 'Low'
+     */
     changeToLow() {
         this.taskList.priority = 'Low';
     }
 
+    /**
+     * Toggles the full card view
+     */
     toggleFullCard() {
         this.boardService.fullCardActive = !this.boardService.fullCardActive;
     }
 
-  pushToSubtask() {
-    if (this.subtaskString.trim() === '') {this.isInputFocused = false; return;}
-
-    if (!this.taskList.subTaskFillTest) {
-      this.taskList.subTaskFillTest = [];
+    /**
+     * Adds a new subtask to the task
+     */
+    pushToSubtask() {
+        if (this.subtaskString.trim() === '') { this.isInputFocused = false; return; }
+        if (!this.taskList.subTaskFillTest) {
+            this.taskList.subTaskFillTest = [];
+        }
+        const newSubtask = {
+            text: this.subtaskString.trim(),
+            completed: false
+        };
+        this.taskList.subTaskFillTest.push(newSubtask);
+        this.subtaskString = '';
+        this.isInputFocused = false;
     }
 
-    const newSubtask = {
-      text: this.subtaskString.trim(),
-      completed: false
-    };
-
-    this.taskList.subTaskFillTest.push(newSubtask);
-    this.subtaskString = '';
-    this.isInputFocused = false;
-  }
-
+    /**
+     * Clears the current subtask input
+     */
     emptySubtask() {
         this.subtaskString = '';
         this.isInputFocused = false;
     }
 
+    /**
+     * Sets focus on the subtask input field
+     */
     setFocusOnInput() {
         this.isInputFocused = true;
-        
         const inputField = document.querySelector('.subtaskfield input') as HTMLInputElement;
         inputField?.focus();
-        
     }
 
-handleBlur() {
-  if( this.subtaskString.trim() === '') {
-  this.isInputFocused = false;}
-}
+    /**
+     * Handles blur event for subtask input
+     */
+    handleBlur() {
+        if (this.subtaskString.trim() === '') {
+            this.isInputFocused = false;
+        }
+    }
 
+    /**
+     * Starts editing a subtask
+     * @param {number} index - Index of the subtask to edit
+     */
     startEditingSubtask(index: number) {
         try {
             this.editingSubtaskIndex = index;
             this.editingSubtaskValue = this.task.subTaskFillTest[index].text;
         } catch (error) {
-/*             console.log('Editing subtask at index:', index);
-            console.log('Current subtask value:', this.taskList.subTaskFillTest[index].text);
-            console.log('Current taskList:', this.taskList.subTaskFillTest);
- */        }
-        
+            // Error handling remains silent as per original code
+        }
     }
 
+    /**
+     * Saves the edited subtask
+     * @param {number} index - Index of the subtask being edited
+     */
     saveEditingSubtask(index: number) {
         if (this.editingSubtaskValue.trim() !== '') {
             this.taskList.subTaskFillTest[this.currentIndex].text = this.editingSubtaskValue.trim();
@@ -153,6 +194,9 @@ handleBlur() {
         this.editingSubtaskIndex = null;
     }
 
+    /**
+     * Resets the form to its initial state
+     */
     resetForm() {
         this.taskList = {
             id: '',
@@ -169,15 +213,23 @@ handleBlur() {
         this.addTaskForm.reset();
         this.addMaterialsForm.reset();
     }
-spliceSubtask() {
-  this.taskList.subTaskFillTest.splice(-1, 1);
-}
 
-onKeydown(event: KeyboardEvent) {
-    if (event.key === 'Enter') {
-        this.pushToSubtask();
-    } else if (event.key === 'Escape') {
-        this.emptySubtask();
+    /**
+     * Removes the last subtask from the list
+     */
+    spliceSubtask() {
+        this.taskList.subTaskFillTest.splice(-1, 1);
     }
-  }
+
+    /**
+     * Handles keyboard events for subtask input
+     * @param {KeyboardEvent} event - The keyboard event
+     */
+    onKeydown(event: KeyboardEvent) {
+        if (event.key === 'Enter') {
+            this.pushToSubtask();
+        } else if (event.key === 'Escape') {
+            this.emptySubtask();
+        }
+    }
 }
