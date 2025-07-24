@@ -34,10 +34,10 @@ export class KanbanEditComponent {
         new Date().getDate().toString().padStart(2, '0');
 
     editingSubtaskValue: string = '';
+    
     editingSubtaskIndex: number | null = null;
 
-    //----------------------------------------------------------------------------------
-    // dummy Daten solange Firebase nicht eingerichtet wurde
+
     dummyTasks: TaskItem[] = [
         {
             id: '1',
@@ -102,63 +102,64 @@ export class KanbanEditComponent {
     copyDummyTasks: TaskItem[] = JSON.parse(JSON.stringify(this.dummyTasks));
     //---------------------------------------------------------------------------------------------
 
-    constructor(
+  constructor(
         public overlayState: OverlayState,
         public boardService: BoardService
     ) {}
 
-    //------------------------------------------------------------------------------------------
+    /** Sets task priority to 'Urgent'. */
     changeToUrgent() {
         this.task.priority = 'Urgent';
     }
+
+    /** Sets task priority to 'Medium'. */
     changeToMedium() {
         this.task.priority = 'Medium';
     }
+
+    /** Sets task priority to 'Low'. */
     changeToLow() {
         this.task.priority = 'Low';
     }
-    //--------------------------------------------------------------------------------
 
+    /** Switches to the next task in the dummy task list. */
     nextTask() {
         this.currentIndex = (this.currentIndex + 1) % this.dummyTasks.length;
     }
 
+    /** Switches to the previous task in the dummy task list. */
     prevTask() {
         this.currentIndex =
-            (this.currentIndex - 1 + this.dummyTasks.length) %
-            this.dummyTasks.length;
+            (this.currentIndex - 1 + this.dummyTasks.length) % this.dummyTasks.length;
     }
 
+    /** Adds a new subtask to the current task if input is not empty. */
     pushToSubtask() {
         if (this.subtaskString.trim() === '') {
             this.isInputFocused = false;
             return;
-        }
-
-        if (!this.task.subTaskFillTest) {
+        } if (!this.task.subTaskFillTest) {
             this.task.subTaskFillTest = [];
         }
-
         const newSubtask = {
             text: this.subtaskString.trim(),
             completed: false,
         };
-
         this.task.subTaskFillTest.push(newSubtask);
         this.subtaskString = '';
         this.isInputFocused = false;
     }
 
+    /** Clears the subtask input field. */
     emptySubtask() {
         this.subtaskString = '';
         this.isInputFocused = false;
     }
 
-    // Update the current task in Firestore with all fields
+    /** Updates the task in Firestore with all current values. */
     async confirmChanges() {
         if (!this.task || !this.task.id) return;
         try {
-            // Prepare the updated task object, only include defined fields
             const updatedTask: any = {
                 title: this.task.title,
                 category: this.task.category,
@@ -183,52 +184,75 @@ export class KanbanEditComponent {
             );
             await updateDoc(taskDoc, updatedTask);
         } catch (error) {
-            console.error(
-                'Fehler beim Aktualisieren der Aufgabe in Firestore:',
-                error
-            );
+            console.error('Error updating task in Firestore:', error);
         }
     }
 
+    /** Resets the current task to its original dummy state. */
     resetChanges() {
-        // muss mit json usw weil sonst die Buttons net gehen ??
         this.copyDummyTasks[this.currentIndex] = JSON.parse(
             JSON.stringify(this.dummyTasks[this.currentIndex])
         );
     }
 
+    /**
+     * Handles a click on the backdrop and resets changes.
+     * @param event - MouseEvent from the backdrop
+     */
     handleBackdropClick(event: MouseEvent) {
         this.resetChanges();
     }
 
+    /**
+     * Removes focus when clicking outside of the subtask input.
+     * @param event - MouseEvent
+     */
     subtaskTest(event: MouseEvent) {
         this.isInputFocused = false;
     }
 
+    /**
+     * Starts editing a subtask at a given index.
+     * @param index - Index of the subtask
+     */
     startEditingSubtask(index: number) {
         this.editingSubtaskIndex = index;
         this.editingSubtaskValue =
-            this.copyDummyTasks[this.currentIndex].subTask[index];
+        this.copyDummyTasks[this.currentIndex].subTask[index];
     }
 
+    /**
+     * Saves the edited subtask at the given index.
+     * @param index - Index of the subtask
+     */
     saveEditingSubtask(index: number) {
         if (this.editingSubtaskValue.trim() !== '') {
-            this.copyDummyTasks[this.currentIndex].subTask[index] =
-                this.editingSubtaskValue.trim();
+        this.copyDummyTasks[this.currentIndex].subTask[index] =
+        this.editingSubtaskValue.trim();
         }
         this.editingSubtaskIndex = null;
     }
 
+    /** Cancels subtask editing. */
     cancelEditingSubtask() {
         this.editingSubtaskIndex = null;
     }
 
+    /**
+     * Cancels subtask editing if clicking outside.
+     * @param event - MouseEvent
+     */
     closeEditingSubtaskOnOverlay(event: MouseEvent) {
         if (this.editingSubtaskIndex !== null) {
             this.cancelEditingSubtask();
         }
     }
 
+    /**
+     * Checks if the user is assigned to the current task.
+     * @param user - The user to check
+     * @returns True if assigned, false otherwise
+     */
     isUserAssigned(user: ContactList): boolean {
         return (
             this.task.assignedTo?.some(
@@ -237,17 +261,24 @@ export class KanbanEditComponent {
         );
     }
 
+    /** Sets focus on the subtask input field. */
     setFocusOnInput() {
         this.isInputFocused = true;
         const inputField = document.querySelector('.subtaskfield input') as HTMLInputElement;
         inputField?.focus();
     }
 
+    /** Handles blur if subtask input is empty. */
     handleBlur() {
-        if( this.subtaskString.trim() === '') {
-        this.isInputFocused = false;}
+        if (this.subtaskString.trim() === '') {
+            this.isInputFocused = false;
+        }
     }
 
+    /**
+     * Handles keypress events on the subtask input field.
+     * @param event - KeyboardEvent (Enter or Escape)
+     */
     onKeydown(event: KeyboardEvent) {
         if (event.key === 'Enter') {
             this.pushToSubtask();

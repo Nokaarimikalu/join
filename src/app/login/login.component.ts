@@ -29,14 +29,24 @@ export class LoginComponent {
     errorMessage: string | null = null;
 
     showPassword: boolean = false;
+
     isFocused: boolean = false;
-    lockClickCount = 0;
 
-    lockIconSrc = 'assets/img/login/lock.svg'; // Standard-Bild
+    lockClickCount: number = 0;
 
-    constructor(private router: Router, private overlayState: OverlayState) {
-    }
+    lockIconSrc: string = 'assets/img/login/lock.svg';
 
+
+    /**
+     * Constructor that injects router and overlayState service.
+     * @param router Angular router for navigation
+     * @param overlayState Service providing access to stored contacts
+     */
+    constructor(private router: Router, private overlayState: OverlayState) {}
+
+    /**
+     * Handles login form submission. Validates credentials and attempts login.
+     */
     onSubmit(): void {
         this.form.markAllAsTouched();
         const rawForm = this.form.getRawValue();
@@ -50,7 +60,10 @@ export class LoginComponent {
         });
     }
 
-    guestLogIn() {
+    /**
+     * Logs in with predefined guest credentials.
+     */
+    guestLogIn(): void {
         this.authService.login('guestlogin@join.com', 'guest123').subscribe({
             next: () => {
                 this.router.navigateByUrl('/');
@@ -58,8 +71,11 @@ export class LoginComponent {
         });
     }
 
-
-
+    /**
+     * Handles the lock icon click to toggle password visibility.
+     * Changes the icon and focuses the input accordingly.
+     * @param passwordInput Reference to the password input field
+     */
     checkLockClick(passwordInput: HTMLInputElement): void {
         this.lockClickCount++;
         if (this.lockClickCount === 1 && this.showPassword == false) {
@@ -75,23 +91,27 @@ export class LoginComponent {
         }
     }
 
-
+    /**
+     * Updates the password visibility icon based on user input and click count.
+     */
     checkPasswordInput(): void {
         const pwValue = this.form.get('password')?.value;
-
         if (this.lockClickCount < 1 && pwValue) {
-            this.lockIconSrc = 'assets/img/login/visibility_off.svg'; // Bild 2 beim erster Eingabe
+            this.lockIconSrc = 'assets/img/login/visibility_off.svg';
         }
-
         if (this.lockClickCount >= 2) {
-            this.lockIconSrc = 'assets/img/login/visibility.svg'; // Bild 3 bei weiterer Eingabe
+            this.lockIconSrc = 'assets/img/login/visibility.svg';
         }
     }
 
+    /**
+     * Checks whether the given email exists in the current contact list.
+     * @param email The email address to check
+     * @returns True if the email is found, false otherwise
+     */
     checkExistingUser(email: string): boolean {
         return this.overlayState.contactList.some(contact =>
             contact.email.toLowerCase() === email.toLowerCase()
         );
     }
-
 }

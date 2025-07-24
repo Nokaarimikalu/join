@@ -4,6 +4,8 @@ import { AuthService } from '../services/auth/auth.service';
 import { Router, RouterLink } from '@angular/router';
 import { ContactList } from '../shared/interface/contact-list.interface';
 import { OverlayState } from '../services/contacts/overlayState.service';
+import { BoardService } from '../services/board/board.service';
+
 
 @Component({
     selector: 'app-signup-overlay',
@@ -49,11 +51,17 @@ export class SignupOverlayComponent {
     });
     errorMessage: string | null = null;
 
-    constructor(public overlayState: OverlayState) { }
+    /**
+        * Constructor injecting overlay state for accessing contact list
+        * @param overlayState Service managing contact list and color assignment
+        */
+    constructor(public overlayState: OverlayState , public boardService: BoardService) { }
 
+    /**
+     * Handles form submission for signup
+     */
     onSubmit(): void {
         this.form.markAllAsTouched();
-
         const rawForm = this.form.getRawValue();
         if (!this.getMailFromContact(rawForm.email)) {
             this.contactList.email = rawForm.email;
@@ -66,6 +74,7 @@ export class SignupOverlayComponent {
                 next: () => {
                     this.authService.logout();
                     this.router.navigateByUrl('/login');
+                    this.boardService.showSignInOverlay()
                 },
                 error: (error) => {
                     this.errorMessage = error.code;
@@ -73,13 +82,21 @@ export class SignupOverlayComponent {
             });
     }
 
-    getMailFromContact(mail: string) {
+    /**
+     * Checks if an email already exists in the contact list
+     * @param mail Email address to check
+     * @returns True if it exists, false otherwise
+     */
+    getMailFromContact(mail: string): boolean {
         return this.overlayState.contactList.some(
             contacts => contacts.email === mail
         );
     }
 
-    splitFullName() {
+    /**
+     * Splits the username into first and last name, sets initials and random color
+     */
+    splitFullName(): void {
         this.splittedName = this.contactList.firstName.split(' ');
         this.contactList.firstName = this.splittedName[0];
         this.contactList.lastName = this.splittedName[1] || '';
@@ -89,6 +106,10 @@ export class SignupOverlayComponent {
         this.contactList.color = this.overlayState.getRandomColor();
     }
 
+    /**
+     * Toggles password visibility and updates icon accordingly
+     * @param passwordInput HTML input element of the password field
+     */
     checkLockClick(passwordInput: HTMLInputElement): void {
         this.lockClickCount++;
         if (this.lockClickCount === 1 && this.showPassword == false) {
@@ -104,14 +125,16 @@ export class SignupOverlayComponent {
         }
     }
 
+    /**
+     * Updates the lock icon based on password input and visibility state
+     */
     checkPasswordInput(): void {
         const pwValue = this.form.get('password')?.value;
         if (this.lockClickCount < 1 && pwValue) {
-            this.lockIconSrc = 'assets/img/login/visibility_off.svg'; // Bild 2 beim erster Eingabe
+            this.lockIconSrc = 'assets/img/login/visibility_off.svg';
         }
         if (this.lockClickCount >= 2) {
-            this.lockIconSrc = 'assets/img/login/visibility.svg'; // Bild 3 bei weiterer Eingabe
+            this.lockIconSrc = 'assets/img/login/visibility.svg';
         }
     }
-
 }
