@@ -29,8 +29,6 @@ export class NavFooterComponent implements OnInit {
 
   toggleActive(state:string):void{
     const activeElements = document.querySelectorAll('.active');
-    const helpButtonRef = document.querySelectorAll('.help-button-header');
-    const helpDropdownRef = document.querySelectorAll('.help-button-dropdown');
     activeElements.forEach(element => {
       element.classList.remove('active');
     });
@@ -48,23 +46,12 @@ export class NavFooterComponent implements OnInit {
         this.runCase('.contacts')
         break;
       case 'privacy':
-        helpButtonRef.forEach(element => {
-          element.classList.add('hidden');
-        });
-        helpDropdownRef.forEach(element => {
-          element.classList.add('hidden');
-        });
+        this.runImpLegalCase();
         break
       case 'legalNotice':
-        helpButtonRef.forEach(element => {
-          element.classList.add('hidden');
-        });
-        helpDropdownRef.forEach(element => {
-          element.classList.add('hidden');
-        });
+        this.runImpLegalCase();
         break;
       default:
-        this.runCase('.summary');
         break;
     }
   }
@@ -72,19 +59,22 @@ export class NavFooterComponent implements OnInit {
   closeHelp(){
     const helpRef = document.querySelector('#help-me-overlay');
     helpRef?.classList.add('hidden');
-    const helpButtonRef = document.querySelectorAll('.help-button-header');
-      helpButtonRef.forEach(element => {
-      element.classList.remove('hidden');
-    });
-    const helpDropdownRef = document.querySelectorAll('.help-button-dropdown');
-      helpDropdownRef.forEach(element => {
-      element.classList.remove('hidden');
-    })
+    const helpButtonRef = document.querySelector('.help-button-header');
+    helpButtonRef?.classList.remove('hidden');
+    const helpDropdownRef = document.querySelector('.help-button-dropdown');
+    helpDropdownRef?.classList.remove('hidden');
   }
 
   runCase(path:string):void{
     const currentElements = document.querySelectorAll(path);
         currentElements?.forEach((element: { classList: { add: (arg0: string) => void; }; }) => {
         element.classList.add('active');});
+  }
+
+  runImpLegalCase(){
+    const helpButtonRef = document.querySelector('.help-button-header');
+    const helpDropdownRef = document.querySelector('.help-button-dropdown');
+    helpButtonRef?.classList.add('hidden');
+    helpDropdownRef?.classList.add('hidden');
   }
 }
