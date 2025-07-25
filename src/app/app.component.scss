@@ -1,27 +1,35 @@
-.everything{
+.everything {
     height: 100dvh;
     width: 100%;
 }
+
 #help-me-overlay {
     position: absolute;
     top: 8dvh;
     left: 230px;
-    width: 100%;
+    width: calc(100% - 230px);
     max-width: (1920px - 230px);
+
+    @media (max-width:965px) {
+        left: 0;
+        width: 100%;
+    }
 }
-.sign-in-overlay{
+
+.sign-in-overlay {
     position: absolute;
     display: flex;
     align-items: center;
-    top: 65dvh;
+    top: 57dvh;
     left: 50%;
-    transform: translate( -50%, 0%);
+    transform: translate(-50%, 0%);
     padding: 1em 2em;
     border-radius: 15px;
     background-color: #2a3647;
     color: white;
     animation: slide-in-and-out 3s ease-in-out forwards;
 }
-.hidden{
+
+.hidden {
     display: none;
 }
