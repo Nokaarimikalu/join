@@ -7,8 +7,13 @@
     position: absolute;
     top: 8dvh;
     left: 230px;
-    width: 100%;
+    width: calc(100% - 230px);
     max-width: (1920px - 230px);
+
+    @media (max-width:965px) {
+        left: 0;
+        width: 100%;
+    }
 }
 
 .sign-in-overlay {

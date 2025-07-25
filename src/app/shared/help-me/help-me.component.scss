@@ -1,8 +1,8 @@
 .main-content {
     display: flex;
     height: 92dvh;
-    overflow-x: hidden;
     font-size: 10px;
+    max-width: (1920px - 230px);
 
     @media (max-width:965px) {
         height: 84dvh;
@@ -22,7 +22,7 @@
         .help-me-content {
             padding: 6em 4em;
             overflow-y: auto;
-            max-width: (1920px - 230px);
+
 
             .title-menu {
 
