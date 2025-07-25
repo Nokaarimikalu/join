@@ -63,18 +63,18 @@ export class SignupOverlayComponent {
     onSubmit(): void {
         this.form.markAllAsTouched();
         const rawForm = this.form.getRawValue();
-        if (!this.getMailFromContact(rawForm.email)) {
-            this.contactList.email = rawForm.email;
-            this.contactList.firstName = rawForm.username;
-            this.splitFullName();
-            this.overlayState.addContacts(this.contactList);
-        }
         this.authService.register(rawForm.email, rawForm.username, rawForm.password)
             .subscribe({
                 next: () => {
                     this.authService.logout();
                     this.router.navigateByUrl('/login');
                     this.boardService.showSignInOverlay()
+                    if (!this.getMailFromContact(rawForm.email)) {
+                        this.contactList.email = rawForm.email;
+                        this.contactList.firstName = rawForm.username;
+                        this.splitFullName();
+                        this.overlayState.addContacts(this.contactList);
+                    }
                 },
                 error: (error) => {
                     this.errorMessage = error.code;
