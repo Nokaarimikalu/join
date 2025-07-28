@@ -18,7 +18,7 @@ section {
         height: 100dvh;
         background-color: #f0f0f0;
         z-index: 1000;
-        animation: fadeOut 0.5s ease-out 0.5s forwards;
+        animation: fadeOut 0.4s ease-out 0.4s forwards;
 
 
         @media (max-width: 750px) {
@@ -73,8 +73,8 @@ section {
             }
 
             .slide {
-                -webkit-animation: diagonal-slide 1.25s;
-                animation: diagonal-slide 1.25s;
+                -webkit-animation: diagonal-slide-white 1.25s;
+                animation: diagonal-slide-white 1.25s;
 
                 @media (max-width:750px) {
                     -webkit-animation: diagonal-slide-mobile 1.25s;
@@ -330,22 +330,12 @@ section {
     color: rgb(255, 102, 102);
 }
 
-@keyframes diagonal-slide {
+@keyframes diagonal-slide-white {
     0% {
-        content: url('./../../../public/assets/img/add-contacts/join-logo.svg');
+        content: url('./../../../public/assets/img/login/Join logo_white.svg');
         left: 50dvw;
         top: 50dvh;
         transform: scale(3);
-    }
-
-    50% {
-        content: url('./../../../public/assets/img/add-contacts/join-logo.svg');
-        transform: scale(2);
-    }
-
-    60% {
-        content: url('./../../../public/assets/img/header/Logo.png');
-        transform: scale(1.4);
     }
 
     100% {
@@ -359,20 +349,10 @@ section {
 
 @keyframes diagonal-slide-mobile {
     0% {
-        content: url('./../../../public/assets/img/add-contacts/join-logo.svg');
+        content: url('./../../../public/assets/img/login/Join logo_white.svg');
         left: 50dvw;
         top: 50dvh;
         transform: scale(3);
-    }
-
-    50% {
-        content: url('./../../../public/assets/img/add-contacts/join-logo.svg');
-        transform: scale(1.9);
-    }
-
-    60% {
-        content: url('./../../../public/assets/img/header/Logo.png');
-        transform: scale(1.05);
     }
 
     100% {
