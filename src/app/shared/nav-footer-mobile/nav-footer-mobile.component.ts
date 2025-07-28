@@ -72,5 +72,14 @@ export class NavFooterMobileComponent implements OnInit {
       element.classList.add('active');
     });
   }
+
+  closeHelp() {
+    const helpRef = document.querySelector('#help-me-overlay');
+    helpRef?.classList.add('hidden');
+    const helpButtonRef = document.querySelector('.help-button-header');
+    helpButtonRef?.classList.remove('hidden');
+    const helpDropdownRef = document.querySelector('.help-button-dropdown');
+    helpDropdownRef?.classList.remove('hidden');
+  }
 }
 
