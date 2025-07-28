@@ -4,6 +4,7 @@
 }
 
 #help-me-overlay {
+    z-index: 3; //new
     position: absolute;
     top: 8dvh;
     left: 230px;
