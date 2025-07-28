@@ -22,7 +22,7 @@
             <!-- Email-Feld -->
             <div class="input-wrapper">
               <input class="mail-icon" type="email" placeholder="Email" formControlName="email"
-                [class.error-border]="form.get('email')?.invalid && (form.get('email')?.dirty || form.get('email')?.touched)">
+                [class.error-border]="form.get('email')?.invalid && (form.get('email')?.dirty || form.get('email')?.touched)" pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}">
             </div>
             <!-- Passwort-Feld mit Bild-Logik -->
             <div class="input-wrapper">
@@ -35,10 +35,12 @@
             <!-- Fehlertext -->
 
             <div class="error-text">
+
               <p>{{ errorMessage }}</p>
 
               @if (this.form.invalid && this.form.touched) {
-              <p>Check your email and password. Please try again.</p>
+
+              <p>Check your email and password.</p>
               }
 
             </div>

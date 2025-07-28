@@ -119,6 +119,9 @@ section {
     .login-container {
         display: flex;
         justify-content: center;
+        @media (max-width: 750px) {
+                height: 467px;
+        }
     }
 
     .login-overlay {
@@ -170,6 +173,10 @@ section {
                 flex-direction: column;
                 width: 100%;
 
+                    @media (max-width: 750px) {
+                    gap: 10px;
+                }
+
                 p{
                     font-size: 14px;
                 }
@@ -190,6 +197,10 @@ section {
                     position: relative;
                     margin-top: 1rem;
                     width: 100%;
+
+                    @media (max-width: 750px) {
+                        margin-top: 0rem;
+                    }
                 }
 
                 .mail-icon {
