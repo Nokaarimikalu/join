@@ -4,6 +4,11 @@
 
     .wrapper2 {
         width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 80vh;
 
         section {
             font-size: 10px;
@@ -229,14 +234,18 @@
             }
 
             //#region mobile edit Button
+            .field-mobile-button{
+                display: flex;
+                justify-content: flex-end;
+                width: 100%;
+                
             .edit-mobilebtn {
-                position: absolute;
-                top: 49em;
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 width: 5.6em;
                 height: 5.6em;
+                margin-right: 2em;
                 background: #2a3647;
                 border-radius: 50%;
                 cursor: pointer;
@@ -245,11 +254,6 @@
                 @media (min-width: 1300px) {
                     display: none;
                 }
-
-                @media (max-width: 1260px) {
-                    right: 5em;
-                }
-
 
                 //#endregion
 
@@ -298,6 +302,8 @@
                     font-size: 1.5em;
                 }
             }
+            }
+
 
             //#endregion
         }
