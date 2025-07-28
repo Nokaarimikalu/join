@@ -43,7 +43,6 @@ export class LoginComponent {
      * @param overlayState Service providing access to stored contacts
      */
     constructor(private router: Router, private overlayState: OverlayState) {}
-
     /**
      * Handles login form submission. Validates credentials and attempts login.
      */
@@ -56,7 +55,7 @@ export class LoginComponent {
         }
         this.authService.login(rawForm.email, rawForm.password).subscribe({
             next: () => this.router.navigateByUrl('/'),
-            error: (error) => (this.errorMessage = error.code),
+            error: () => this.errorMessage = 'Login failed',
         });
     }
 

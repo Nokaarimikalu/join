@@ -47,6 +47,7 @@ export class AuthService {
       localStorage.setItem('token', 'true')
     }, err => {
       localStorage.setItem('token', 'false');
+      throw err;
     });
     return from(promise);
   }
