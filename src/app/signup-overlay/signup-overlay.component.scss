@@ -12,6 +12,9 @@ section{
         align-items: center;
         width: 100%;
         padding: 48px 80px;
+        @media(max-width:750px){
+            padding: 1em 2em;
+        }
         img{
             @media(max-width:750px){
                 width: 56px;
@@ -46,6 +49,9 @@ section{
     margin-top: 2em;
     height: 110px;
     margin-bottom: 2em;
+    @media(max-width:500px){
+        margin-bottom: 0em;
+    }
     .signup {
         display: flex;
         justify-content: space-around;
@@ -128,6 +134,9 @@ section{
     flex-direction: column;
     align-items: center;
     padding-top: 2em;
+    @media(max-width:500px){
+        padding-top: 0em;
+    }
 
     .custom-checkbox {
         display: flex;
@@ -137,6 +146,9 @@ section{
         font-size: 16px;
         width: 110%;
         margin-bottom: 2em;
+        @media(max-width: 500px){
+            margin-bottom: 1em;
+        }
     }
 
     button {
@@ -152,6 +164,9 @@ section{
         &:hover {
             background-color: #29abe2;
         }
+        @media(max-width:500px){
+            margin-bottom: 0.5em;
+        }
     }
 }
 
@@ -159,7 +174,7 @@ section{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 6em;
+    height: 4em;
     gap: 2em;
     font-size: 16px;
     color: #cacacb;
