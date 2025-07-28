@@ -25,7 +25,7 @@
           </div>
           
           <div class="mail-input allInputs">
-            <input type="email" placeholder="Email" formControlName="email" [class.error-border]="form.get('email')?.invalid && form.get('email')?.touched">
+            <input type="email" placeholder="Email" formControlName="email" [class.error-border]="form.get('email')?.invalid && form.get('email')?.touched"  required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}">
             <img class="absoluteimg" src="assets/img/sign-up/mail.png" alt="">
           </div>
           
