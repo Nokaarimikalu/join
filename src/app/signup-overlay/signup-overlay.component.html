@@ -41,7 +41,7 @@
           </div>
           
           <div class="error-message all-inputs">
-            @if (form.get('username')?.invalid && form.get('confirmPassword')?.touched) {
+            @if (form.get('username')?.invalid && form.get('username')?.touched) {
             <p>You need firstname & lastname</p>
             }
             @if (form.get('password')?.value !== form.get('confirmPassword')?.value && form.get('confirmPassword')?.touched) {

@@ -4,6 +4,11 @@
 
     .wrapper2 {
         width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 80vh;
 
         section {
             font-size: 10px;
@@ -18,8 +23,9 @@
 
             //#region header Info
             .header-info {
-                margin-top: 10em;
+                margin-top: 2em;
                 margin-left: 4em;
+                margin-bottom: 2em;
                 display: flex;
                 align-items: center;
                 flex: 1;
@@ -110,47 +116,25 @@
                     flex: 1;
 
                     .initiales-bg {
-                        margin-left: 4em;
+                        margin-left: 2em;
                         display: flex;
                         align-items: center;
                         justify-content: center;
-                        width: 12em;
-                        height: 12em;
+                        width: 7em;
+                        height: 7em;
                         background: #ff7a00;
                         border: 0.3em solid white;
                         border-radius: 50%;
                         box-shadow: 0px 0px 4px 1px rgba($color: #000000, $alpha: 0.2);
 
-                        @media (max-width: 1130px) {
-                            width: 9em;
-                            height: 9em;
-                        }
-
-                        @media (max-width: 1075px) {
-                            margin-left: 2em;
-                        }
-
-                        @media (max-width: 330px) {
-                            width: 7em;
-                            height: 7em;
-                        }
-
                         p {
-                            font-size: 4.7em;
+                            font-size: 3.2em;
                             color: white;
-
-                            @media (max-width: 1130px) {
-                                font-size: 4.2em;
-                            }
-
-                            @media (max-width: 330px) {
-                                font-size: 3.4em;
-                            }
                         }
                     }
 
                     .name-user {
-                        height: 23em;
+                        height: 9em;
                         display: flex;
                         flex-direction: column;
                         justify-content: center;
@@ -205,7 +189,7 @@
 
                 //#region detail infos
                 .contactinfos {
-                    margin-top: 3em;
+                    margin-top: 1em;
                     margin-left: 2.2em;
                     font-size: 2em;
                     margin-bottom: 1em;
@@ -250,14 +234,18 @@
             }
 
             //#region mobile edit Button
+            .field-mobile-button{
+                display: flex;
+                justify-content: flex-end;
+                width: 100%;
+                
             .edit-mobilebtn {
-                position: absolute;
-                top: 49em;
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 width: 5.6em;
                 height: 5.6em;
+                margin-right: 2em;
                 background: #2a3647;
                 border-radius: 50%;
                 cursor: pointer;
@@ -266,11 +254,6 @@
                 @media (min-width: 1300px) {
                     display: none;
                 }
-
-                @media (max-width: 1260px) {
-                    right: 5em;
-                }
-
 
                 //#endregion
 
@@ -319,6 +302,8 @@
                     font-size: 1.5em;
                 }
             }
+            }
+
 
             //#endregion
         }

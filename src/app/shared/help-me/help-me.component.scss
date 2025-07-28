@@ -21,11 +21,16 @@
 
         .help-me-content {
             padding: 6em 4em;
+            @media(max-width: 740px){
+                padding: 2em 2em 2em 1em;
+            }
             overflow-y: auto;
 
 
             .title-menu {
-
+                display: flex;
+                width: 100%;
+                justify-content: space-between;
                 h1 {
                     font-size: 3.6em;
                 }
@@ -63,22 +68,19 @@
 }
 
 .back-button {
-    position: fixed;
-    top: 15em;
-    right: 10em;
+    display: flex;
+    align-items: center;
     border: none;
     background: rgba($color: #f6f7f8, $alpha: 0.4);
     z-index: 5;
     object-fit: contain;
-    height: 2.5em;
-    width: 3em;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    height: 5.5em;
+    width: 5.5em;
     background-image: url('./../../../../public/assets/img/info-screen/arrow-left-line.png');
-
-    @media (min-width:1920px) {
-        left: 1820px;
-    }
-
-    @media (max-width:750px) {
-        right: 3em;
+    @media(min-width:750px){
+        position: fixed;
+        right: 1em;
     }
 }
