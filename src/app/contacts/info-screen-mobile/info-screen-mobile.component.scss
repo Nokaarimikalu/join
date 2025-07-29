@@ -1,14 +1,10 @@
 .wrapper1 {
     display: flex;
     width: 100%;
+    height: 100%;
 
     .wrapper2 {
         width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 80vh;
 
         section {
             font-size: 10px;
@@ -102,7 +98,6 @@
 
         section {
             font-size: 10px;
-
             .content {
                 display: flex;
                 flex-direction: column;
@@ -233,83 +228,79 @@
                 //#endregion
             }
 
-            //#region mobile edit Button
-            .field-mobile-button{
-                display: flex;
-                justify-content: flex-end;
-                width: 100%;
-                
-            .edit-mobilebtn {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                width: 5.6em;
-                height: 5.6em;
-                margin-right: 2em;
-                background: #2a3647;
-                border-radius: 50%;
-                cursor: pointer;
-
-                //#region Responsive Edit Mobil Button
-                @media (min-width: 1300px) {
-                    display: none;
-                }
-
-                //#endregion
-
-                &:hover {
-                    background: #29abe2;
-                }
-
-                .dropdown-menu {
-                    position: absolute;
-                    right: 0em;
-                    background-color: white;
-                    border-radius: 20px;
-                    border-bottom-right-radius: 0;
-                    box-shadow: 6px 4px 10px rgba(0, 0, 0, 0.274);
-                    width: 120px;
-                    z-index: 100;
-                    animation: fade-in-left 0.5s ease-in-out;
-                }
-
-                .dropdown-menu div {
-                    display: flex;
-                    align-items: center;
-                    padding: 1.5em 2em 1.5em 2em;
-                    cursor: pointer;
-                }
-
-                .edit {
-                    display: flex;
-                    justify-content: start;
-                    align-items: center;
-                }
-
-                .dropdown-menu div:hover {
-                    background-color: #f0f0f0;
-                    border-radius: 20px;
-                    border-bottom-right-radius: 0;
-                }
-
-                .dropdown-menu img {
-                    width: 2em;
-                    height: 2em;
-                    margin-right: 1em;
-                }
-
-                p {
-                    font-size: 1.5em;
-                }
-            }
-            }
-
-
             //#endregion
         }
     }
-
 }
+
+        //#region mobile edit Button              
+        .edit-mobilebtn {
+            display: flex;
+            position: absolute;
+            justify-content: center;
+            align-items: center;
+            top: 87%;
+            right: 27px;
+            width: 56px;
+            height: 56px;
+            background: #2a3647;
+            border-radius: 50%;
+            cursor: pointer;
+
+            //#region Responsive Edit Mobil Button
+            @media (min-width: 1300px) {
+                display: none;
+            }
+
+            //#endregion
+
+            &:hover {
+                background: #29abe2;
+            }
+
+            .dropdown-menu {
+                font-size: 10px;
+                position: absolute;
+                right: 0em;
+                background-color: white;
+                border-radius: 20px;
+                border-bottom-right-radius: 0;
+                box-shadow: 6px 4px 10px rgba(0, 0, 0, 0.274);
+                width: 120px;
+                z-index: 100;
+                animation: fade-in-left 0.5s ease-in-out;
+            }
+
+            .dropdown-menu div {
+                display: flex;
+                align-items: center;
+                padding: 1.5em 2em 1.5em 2em;
+                cursor: pointer;
+            }
+
+            .edit {
+                display: flex;
+                justify-content: start;
+                align-items: center;
+            }
+
+            .dropdown-menu div:hover {
+                background-color: #f0f0f0;
+                border-radius: 20px;
+                border-bottom-right-radius: 0;
+            }
+
+            .dropdown-menu img {
+                width: 2em;
+                height: 2em;
+                margin-right: 1em;
+            }
+
+            p {
+                font-size: 1.5em;
+            }
+            
+        }
 
 .overlay {
     position: fixed;

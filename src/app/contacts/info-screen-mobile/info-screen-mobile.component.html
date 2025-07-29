@@ -1,4 +1,4 @@
-<div class="overlay hidden" (click)="toggleDropdown()"></div>
+<div class="overlay" [class.hidden]="!isDropdownOpen" (click)="toggleDropdown()"></div>
 <div class="wrapper1">
     <div class="nav"></div>
     <div class="list"></div>
@@ -94,54 +94,25 @@
                         {{ overlayState.selectedUser.phone }}
                     </p>
                 </div>
-                <div class="field-mobile-button">
-                <div
-                    class="edit-mobilebtn"
-                    (click)="toggleDropdown()"
-                    tabindex="0"
-                >
-                    <img
-                        src="assets/img/info-screen/more_vert.png"
-                        alt="edit menu"
-                    />
-                    <div
-                        class="dropdown-menu"
-                        *ngIf="isDropdownOpen"
-                        (click)="$event.stopPropagation()"
-                    >
-                        <div
-                            class="edit"
-                            (click)="
-                                toggleOverlay() +
-                                    (overlayState.AddOrEditState =
-                                        'editContact');
-                                toggleDropdown()
-                            "
-                        >
-                            <img
-                                src="assets/img/info-screen/edit.svg"
-                                alt="edit"
-                            />
-                            <p>Edit</p>
-                        </div>
-                        <div
-                            class="delete"
-                            (click)="
-                                overlayState.deleteContact(); toggleDropdown()
-                            "
-                        >
-                            <img
-                                src="assets/img/info-screen/delete.svg"
-                                alt="delete"
-                            />
-                            <p>Delete</p>
-                        </div>
-                    </div>
-                </div>
-                </div>
-
             </div>
         </section>
+        <div class="edit-mobilebtn" (click)="toggleDropdown()" tabindex="0">
+            <img src="assets/img/info-screen/more_vert.png" alt="edit menu" />
+
+            <div class="dropdown-menu" *ngIf="isDropdownOpen" (click)="$event.stopPropagation()">
+                <div
+                    class="edit"
+                    (click)="toggleOverlay() + (overlayState.AddOrEditState = 'editContact'); toggleDropdown()">
+                    <img src="assets/img/info-screen/edit.svg" alt="edit" />
+                    <p>Edit</p>
+                </div>
+
+                <div class="delete" (click)="overlayState.deleteContact(); toggleDropdown()">
+                    <img src="assets/img/info-screen/delete.svg" alt="delete" />
+                    <p>Delete</p>
+                </div>
+            </div>
+        </div>
         }
     </div>
 </div>
