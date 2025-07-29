@@ -13,12 +13,15 @@
         justify-content: center;
         position: absolute;
         z-index: 1;
-        border-radius: 25px;
+        border-radius: 20px;
         overflow: hidden; //damit border-radius geht
         width: 100%;
-        height: 80em;
+        height: 800px;
         font-size: 10px;
-        background-color: white;
+        background-color: #ffffff;
+        @media (max-width: 965px) {
+            height: 80dvh;
+        }
 
         .close-button {
             z-index: 5;
@@ -48,7 +51,7 @@
             top: 3em;
 
             @media(max-width: 430px) {
-                padding: 28px 20px 28px 20px
+                padding: 28px 20px 44px 20px
             }
 
             .content-in-overlay {
