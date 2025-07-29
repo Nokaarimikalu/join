@@ -1,9 +1,10 @@
 section {
     font-size: 10px;
     height: 8dvh;
-    background: white;
+    background: var(--color-container);
     box-shadow: 0 0.6em 0.6em -0.2em rgba($color: #000000, $alpha: 0.2);
     z-index: 10;
+    color: var(--color-normal-text);
 
     .content {
         width: 100%;
@@ -23,14 +24,12 @@ section {
             .kanban {
                 font-size: 1.8em;
                 padding-left: 2em;
-
                 &::after {
                     content: "Kanban Project Management Tool";
                 }
 
                 @media (max-width:750px) {
                     padding-left: 0;
-
                     &::after {
                         background-image: url('./../../../../public/assets/img/header/Logo.png');
                         background-size: contain;
@@ -68,19 +67,27 @@ section {
                 }
 
                 span {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                     text-align: center;
                     height: 49px;
                     width: 49px;
                     font-size: 1.6em;
-                    padding: 0.8em 0.6em;
-                    color: #29ABE2;
+                    color: var(--color-hover);
                     font-weight: bold;
-                    border: solid black 0.15em;
+                    border: solid var(--color-normal-text) 0.15em;
                     border-radius: 50%;
                     z-index: 15;
+                    opacity: 0.8;
+                    @media(max-width:750px){
+                        height: 39px;
+                        width: 39px;
+                    }
 
                     &:hover {
-                        background: rgba($color: #0C2E62, $alpha: 0.12);
+                        background: var(--color-text-active-rgb);
+                        opacity: 1;
                         cursor: pointer;
                     }
                 }
@@ -92,7 +99,7 @@ section {
         }
 
         #drop-down {
-            background: #2A3647;
+            background: var(--color-button);
             z-index: 20;
             position: absolute;
             right: 5em;
@@ -101,7 +108,10 @@ section {
             border-top-right-radius: 0;
             padding: 1em;
             animation: fade-in-left 0.75s ease-in-out;
-
+            user-select: none; /* Verhindert Textmarkierung */
+            -webkit-user-select: none; /* Safari */
+            -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* IE/Edge */
             #help {
                 display: none;
 
@@ -116,7 +126,8 @@ section {
                 color: rgba($color: #FFFFFF, $alpha: 0.4);
 
                 &:hover {
-                    background: #2A3D59;
+                    background: var(--color-hover-nav);
+                    border-radius: 20px;
                     cursor: pointer;
                 }
             }

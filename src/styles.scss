@@ -7,11 +7,13 @@
     --color-button: #2a3647;
     --color-hover: #29abe2;
     --color-active-nav: #091931;
+    --color-hover-nav:#2A3D59;
     --color-text: #a8a8a8;
     --color-text-active: #29abe2;
     --color-normal-text: #000000;
     --linear-gradiant-contact-list: #e7e7e7;
     --email-link: #007cee;
+
 }
 
 /* ==== Dark Theme (Lila Akzent) ==== */
@@ -21,11 +23,32 @@
     --color-button: #2b2b2b;
     --color-hover: #a259ff;
     --color-active-nav: #2c0e54;
+    --color-hover-nav:#3d3d3d;
     --color-text: #bbbbbb;
     --color-text-active: #d3a6ff;
     --color-normal-text: #ffffff;
     --linear-gradiant-contact-list: #2c2c2c;
-    --email-link: #8b2fa2;
+    --email-link: #007cee;
+
+}
+
+/* Theme Toggle Styles */
+.theme-dark, .theme-light {
+    color: var(--color-text);
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+/* Dark Theme aktiv: "dark" bekommt lila Farbe */
+.dark-theme .theme-dark {
+    color: #d3a6ff ;
+    font-weight: bold;
+}
+
+/* Light Theme aktiv: "light" bekommt blaue Farbe */
+.light-theme .theme-light {
+    color: #29abe2 ;
+    font-weight: bold;
 }
 
 html {

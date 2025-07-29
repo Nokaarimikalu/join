@@ -2,6 +2,7 @@
     display: flex;
     width: 100%;
     height: 100%;
+    color: var(--color-normal-text);
 
     .wrapper2 {
         width: 100%;
@@ -69,7 +70,7 @@
                 .line {
                     width: 0.4em;
                     height: 5.9em;
-                    background: #29abe2;
+                    background: var(--color-hover);
                     margin-right: 2.5em;
 
                     @media (max-width: 1300px) {
@@ -84,7 +85,7 @@
 
                 .line-mobile {
                     width: 12em;
-                    background: #29abe2;
+                    background: var(--color-hover);
                     height: 0.3em;
 
                     @media (min-width: 1301px) {
@@ -209,7 +210,7 @@
                 a {
                     font-size: 1.6em;
                     margin-left: 2.8em;
-                    color: #007cee;
+                    color: var(--email-link);
 
                     @media (max-width: 1075px) {
                         margin-left: 2em;
@@ -243,7 +244,7 @@
             right: 27px;
             width: 56px;
             height: 56px;
-            background: #2a3647;
+            background: var(--color-button);
             border-radius: 50%;
             cursor: pointer;
 
@@ -255,14 +256,15 @@
             //#endregion
 
             &:hover {
-                background: #29abe2;
+                background: var(--color-hover);
             }
 
             .dropdown-menu {
                 font-size: 10px;
                 position: absolute;
-                right: 0em;
-                background-color: white;
+                right: -1em;
+                bottom: -0.3em;
+                background-color: var(--color-container);
                 border-radius: 20px;
                 border-bottom-right-radius: 0;
                 box-shadow: 6px 4px 10px rgba(0, 0, 0, 0.274);
@@ -285,7 +287,7 @@
             }
 
             .dropdown-menu div:hover {
-                background-color: #f0f0f0;
+                background-color: var(--color-bg);
                 border-radius: 20px;
                 border-bottom-right-radius: 0;
             }

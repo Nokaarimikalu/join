@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
 import { BoardService } from '../../services/board/board.service';
@@ -12,7 +12,7 @@ import { OverlayState } from '../../services/contacts/overlayState.service';
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   userEmail: string | null = null;
   helpOpen: boolean = false;
 
@@ -150,5 +150,50 @@ export class HeaderComponent {
       (contact) => contact.email.toLowerCase() === email.toLowerCase()
     );
     return userContact?.initials || 'G';
+  }
+
+  /**
+   * Toggles between light and dark theme
+   */
+  toggleTheme(): void {
+    const body = document.body;
+    
+    if (body.classList.contains('light-theme')) {
+      // Wechsel zu Dark Theme
+      body.classList.remove('light-theme');
+      body.classList.add('dark-theme');
+      localStorage.setItem('theme', 'dark-theme');
+    } else {
+      // Wechsel zu Light Theme
+      body.classList.remove('dark-theme');
+      body.classList.add('light-theme');
+      localStorage.setItem('theme', 'light-theme');
+    }
+  }
+
+  /**
+   * Loads saved theme from localStorage on component init
+   */
+  ngOnInit(): void {
+    this.loadSavedTheme();
+  }
+
+  /**
+   * Loads and applies the saved theme from localStorage
+   */
+  private loadSavedTheme(): void {
+    const savedTheme = localStorage.getItem('theme');
+    const body = document.body;
+    
+    if (savedTheme) {
+      // Entferne alle Theme-Klassen
+      body.classList.remove('light-theme', 'dark-theme');
+      // Füge gespeichertes Theme hinzu
+      body.classList.add(savedTheme);
+    } else {
+      // Fallback: Light Theme als Standard
+      body.classList.add('light-theme');
+      localStorage.setItem('theme', 'light-theme');
+    }
   }
 }

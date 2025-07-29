@@ -3,7 +3,7 @@ section {
     font-size: 10px;
     height: 8dvh;
     width: 100%;
-    background: #2A3647;
+    background: var(--color-button);
     z-index: 5;
 
     nav {
@@ -59,14 +59,14 @@ section {
 
                 &:hover {
                     cursor: pointer;
-                    background: #2A3D59;
+                    background: var(--color-hover-nav);
                 }
             }
 
 
             .active {
                 color: #FFFFFF;
-                background: #091931;
+                background: var(--color-active-nav);
                 font-weight: normal;
 
                 img {
@@ -75,7 +75,7 @@ section {
 
                 &:hover {
                     cursor: default;
-                    background: #091931;
+                    background: var(--color-active-nav);
                 }
             }
         }

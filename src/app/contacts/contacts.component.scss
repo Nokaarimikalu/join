@@ -17,11 +17,11 @@
 .contact-list-content {
     display: flex;
     overflow-x:hidden ;
+    height: 100%;
 }
 
 .contact-list-component {
     display: flex;
-    height: auto;
 
     @media (max-width:750px) {
         width: 100%;
@@ -39,6 +39,7 @@
 .info-screen-component {
     height: auto;
     width: 100%;
+    background: var(--color-bg);
 
     @media (max-width:750px) {
         display: none;
@@ -47,6 +48,8 @@
 
 .app-info-screen-mobile-component {
     width: 100%;
+    height: auto;
+    background: var(--color-bg);
 
     @media (min-width: 750px) {
         display: none;

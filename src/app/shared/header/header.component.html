@@ -12,6 +12,7 @@
             <a (click)="toggleHelp(); closeDropDown()"><p id="help" class="help-button-dropdown">Help</p></a>
             <a (click)="closeHelp(); closeDropDown()" routerLink="/legalNotice"><p>Legal Notice</p></a>
             <a (click)="closeHelp(); closeDropDown()" routerLink="/privacy"><p>Privacy</p></a>
+            <p (click)="toggleTheme()"><span class="theme-dark">Dark</span> | <span class="theme-light">Light</span></p>
             <p (click)="logOut(); closeHelp(); closeDropDown()">Log out</p>
         </div>
     </div>
