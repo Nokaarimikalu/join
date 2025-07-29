@@ -3,6 +3,8 @@ section {
   width: 400px;
   overflow-y: auto;
   overflow-x: hidden;
+  background-color: var(--color-container);
+  color: var(--color-normal-text);
 
   &::-webkit-scrollbar {
     width: 8px;
@@ -14,7 +16,7 @@ section {
   }
 
   &::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background: var(--color-bg);
     border-radius: 4px;
   }
 
@@ -40,7 +42,7 @@ section {
     z-index: 1;
     width: 100%;
     height: 9em;
-    background-color: white;
+    background-color:var(--color-container);
     position: sticky;
     top: 0px;
     display: flex;
@@ -82,7 +84,7 @@ section {
     align-items: center;
     width: 90%;
     height: 56px;
-    background-color: #2a3647;
+    background-color:var(--color-button);
 
     @media (max-width:750px) {
       border-radius: 50px;
@@ -93,7 +95,7 @@ section {
     }
 
     &:hover {
-      background-color: #29abe2;
+      background-color: var(--color-hover);
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     }
 
@@ -156,21 +158,18 @@ section {
   }
 
   &:hover {
-    background: linear-gradient(to bottom, #ededed30, #e7e7e7);
+    background: linear-gradient(to bottom, #ededed0f, var(--linear-gradiant-contact-list));
     border-radius: 0.8em;
   }
 
   &.active {
     color: white;
-    background: #2a3647;
+    background: var(--color-button);
     border-radius: 0.8em;
 
     .initials {
-      border: solid 1px white;
-
+      border: solid 2px white;
     }
-
-
   }
 
   .initials {
@@ -197,7 +196,7 @@ section {
 
   .user-mail {
     font-size: 1.8em;
-    color: #007cee;
+    color: var(--email-link);
   }
 }
 

@@ -1,5 +1,33 @@
 @use '@angular/material' as mat;
 
+/* ==== Light Theme ==== */
+.light-theme {
+    --color-bg: #f0f0f0;
+    --color-container: #ffffff;
+    --color-button: #2a3647;
+    --color-hover: #29abe2;
+    --color-active-nav: #091931;
+    --color-text: #a8a8a8;
+    --color-text-active: #29abe2;
+    --color-normal-text: #000000;
+    --linear-gradiant-contact-list: #e7e7e7;
+    --email-link: #007cee;
+}
+
+/* ==== Dark Theme (Lila Akzent) ==== */
+.dark-theme {
+    --color-bg: #181818;
+    --color-container: #1f1f1f;
+    --color-button: #2b2b2b;
+    --color-hover: #a259ff;
+    --color-active-nav: #2c0e54;
+    --color-text: #bbbbbb;
+    --color-text-active: #d3a6ff;
+    --color-normal-text: #ffffff;
+    --linear-gradiant-contact-list: #2c2c2c;
+    --email-link: #8b2fa2;
+}
+
 html {
 
     .mat-pseudo-checkbox-full.mat-pseudo-checkbox-checked,
