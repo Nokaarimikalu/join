@@ -49,10 +49,10 @@ export class LoginComponent {
     onSubmit(): void {
         this.form.markAllAsTouched();
         const rawForm = this.form.getRawValue();
-        if (!this.checkExistingUser(rawForm.email)) {
+/*         if (!this.checkExistingUser(rawForm.email)) {
             this.errorMessage = 'Email does not exist';
             return;
-        }
+        } */
         this.authService.login(rawForm.email, rawForm.password).subscribe({
             next: () => this.router.navigateByUrl('/'),
             error: () => this.errorMessage = 'Login failed',
@@ -108,9 +108,9 @@ export class LoginComponent {
      * @param email The email address to check
      * @returns True if the email is found, false otherwise
      */
-    checkExistingUser(email: string): boolean {
+/*     checkExistingUser(email: string): boolean {
         return this.overlayState.contactList.some(contact =>
             contact.email.toLowerCase() === email.toLowerCase()
         );
-    }
+    } */
 }
