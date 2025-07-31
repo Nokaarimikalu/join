@@ -30,7 +30,7 @@
         @for (user of task.assignedTo; track $index) {
         <div class="user-details">
           <div class="user initials" [style.background]= user.color>{{ user.initials}} </div>
-          <div class="user-name">{{user.firstName}}{{user.lastName}}</div>
+          <div class="user-name">{{user.firstName}} {{user.lastName}}</div>
         </div>
 
         }
