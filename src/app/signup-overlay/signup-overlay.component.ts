@@ -45,7 +45,7 @@ export class SignupOverlayComponent {
     form = this.fb.nonNullable.group({
         email: ['', Validators.required],
         username: ['', Validators.required],
-        password: ['', Validators.required],
+        password: ['', Validators.required, Validators.minLength(6)],
         confirmPassword: ['', Validators.required],
         checkbox: [false, Validators.requiredTrue]
     });
@@ -116,13 +116,10 @@ export class SignupOverlayComponent {
     checkLockClick(passwordInput: HTMLInputElement): void {
         this.lockClickCount++;
         if (this.lockClickCount === 1 && this.showPassword == false) {
-            this.lockIconSrc = 'assets/img/login/visibility_off.svg';
-            passwordInput.focus();
-        } else if (this.lockClickCount === 2) {
             this.showPassword = true;
             this.lockIconSrc = 'assets/img/login/visibility.svg';
-        } else if (this.showPassword === true) {
-            this.lockClickCount = 1;
+        }else if (this.lockClickCount === 2) {
+            this.lockClickCount = 0;
             this.showPassword = false;
             this.lockIconSrc = 'assets/img/login/visibility_off.svg';
         }
@@ -133,7 +130,7 @@ export class SignupOverlayComponent {
      */
     checkPasswordInput(): void {
         const pwValue = this.form.get('password')?.value;
-        if (this.lockClickCount < 1 && pwValue) {
+        if (this.lockClickCount === 1 && pwValue) {
             this.lockIconSrc = 'assets/img/login/visibility_off.svg';
         }
         if (this.lockClickCount >= 2) {

@@ -55,7 +55,7 @@ export class LoginComponent {
         } */
         this.authService.login(rawForm.email, rawForm.password).subscribe({
             next: () => this.router.navigateByUrl('/'),
-            error: () => this.errorMessage = 'Login failed',
+            error: () => this.errorMessage = 'Check your email and password.',
         });
     }
 
@@ -78,13 +78,10 @@ export class LoginComponent {
     checkLockClick(passwordInput: HTMLInputElement): void {
         this.lockClickCount++;
         if (this.lockClickCount === 1 && this.showPassword == false) {
-            this.lockIconSrc = 'assets/img/login/visibility_off.svg';
-            passwordInput.focus();
-        } else if (this.lockClickCount === 2) {
             this.showPassword = true;
             this.lockIconSrc = 'assets/img/login/visibility.svg';
-        } else if (this.showPassword === true) {
-            this.lockClickCount = 1;
+        }else if (this.lockClickCount === 2) {
+            this.lockClickCount = 0;
             this.showPassword = false;
             this.lockIconSrc = 'assets/img/login/visibility_off.svg';
         }

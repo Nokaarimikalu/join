@@ -182,7 +182,6 @@ section {
                 }
 
                 input {
-                    cursor: pointer;
                     width: 74%;
                     min-height: 48px;
                     border-radius: 15px;
@@ -204,6 +203,7 @@ section {
                 }
 
                 .mail-icon {
+                    cursor: pointer;
                     background-image: url("./../../../public/assets/img/login/mail.svg");
                     background-repeat: no-repeat;
                     background-position: right 8px center;
