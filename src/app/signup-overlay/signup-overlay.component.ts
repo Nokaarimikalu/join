@@ -49,6 +49,7 @@ export class SignupOverlayComponent {
         confirmPassword: ['', Validators.required],
         checkbox: [false, Validators.requiredTrue]
     });
+    
     errorMessage: string | null = null;
 
     /**
@@ -63,7 +64,8 @@ export class SignupOverlayComponent {
     onSubmit(): void {
         this.form.markAllAsTouched();
         const rawForm = this.form.getRawValue();
-        this.authService.register(rawForm.email, rawForm.username, rawForm.password)
+        if (rawForm.password === rawForm.confirmPassword && rawForm.checkbox == true) {
+                    this.authService.register(rawForm.email, rawForm.username, rawForm.password)
             .subscribe({
                 next: () => {
                     this.authService.logout();
@@ -80,6 +82,7 @@ export class SignupOverlayComponent {
                     this.errorMessage = error.code;
                 },
             });
+        }
     }
 
     /**

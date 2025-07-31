@@ -20,12 +20,12 @@
       <div class="signup-form">
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
           <div class="username-input allInputs" >
-            <input type="text" placeholder="Name" formControlName="username" [class.error-border]="form.get('username')?.invalid && form.get('username')?.touched" pattern="^[a-zA-ZäöüÄÖÜß]+ [a-zA-ZäöüÄÖÜß]+$">
+            <input type="text" placeholder="Name" formControlName="username" [class.error-border]="form.get('username')?.invalid && form.get('username')?.touched" pattern="^[a-zA-ZäöüÄÖÜß]+ [a-zA-ZäöüÄÖÜß]+$" required>
             <img  class="absoluteimg" src="assets/img/sign-up/person.svg" alt="">
           </div>
           
           <div class="mail-input allInputs">
-            <input type="email" placeholder="Email" formControlName="email" [class.error-border]="form.get('email')?.invalid && form.get('email')?.touched"  required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}">
+            <input type="email" placeholder="Email" formControlName="email" [class.error-border]="form.get('email')?.invalid && form.get('email')?.touched"  required pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}">
             <img class="absoluteimg" src="assets/img/sign-up/mail.png" alt="">
           </div>
           
@@ -36,7 +36,7 @@
           </div>
 
           <div class="confirm-password allInputs">
-            <input #pwInput [type]="showPassword ? 'text' : 'password'" placeholder="Confirm Password" formControlName="confirmPassword" (focus)="isFocused = true" (blur)="isFocused = false" (input)="checkPasswordInput()">
+            <input #pwInput [type]="showPassword ? 'text' : 'password'" placeholder="Confirm Password" formControlName="confirmPassword" (focus)="isFocused = true" (blur)="isFocused = false" (input)="checkPasswordInput()" required>
             <img  [src]="lockIconSrc" alt="Lock Icon" class="absoluteimg" (click)="checkLockClick(pwInput)">
           </div>
           
