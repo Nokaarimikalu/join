@@ -31,12 +31,12 @@
           
           <div class="password-input allInputs">
             <input #pwInput [type]="showPassword ? 'text' : 'password'" placeholder="Password" formControlName="password" (focus)="isFocused = true " (blur)="isFocused = false" (input)="checkPasswordInput()" 
-            [class.error-border]="form.get('password')?.invalid && form.get('password')?.touched" required="6">
+            [class.error-border]="form.get('password')?.invalid && form.get('password')?.touched" minlength="6">
             <img  [src]="lockIconSrc" alt="Lock Icon" class="absoluteimg" (click)="checkLockClick(pwInput)">
           </div>
 
           <div class="confirm-password allInputs">
-            <input #pwInput [type]="showPassword ? 'text' : 'password'" placeholder="Confirm Password" formControlName="confirmPassword" (focus)="isFocused = true" (blur)="isFocused = false" (input)="checkPasswordInput()" required>
+            <input #pwInput [class.error-border]="(form.get('password')?.value !== form.get('confirmPassword')?.value && form.get('confirmPassword')?.touched) || (form.get('confirmPassword')?.invalid && form.get('confirmPassword')?.touched)" [type]="showPassword ? 'text' : 'password'" placeholder="Confirm Password" formControlName="confirmPassword" (focus)="isFocused = true" (blur)="isFocused = false" (input)="checkPasswordInput()" required>
             <img  [src]="lockIconSrc" alt="Lock Icon" class="absoluteimg" (click)="checkLockClick(pwInput)">
           </div>
           
