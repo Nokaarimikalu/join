@@ -22,7 +22,7 @@ const redirectUnauthorizedToLegal = () => redirectUnauthorizedTo(['/legal-notice
 
 
 export const routes: Routes = [
-  {path: '', redirectTo: '/summary', pathMatch: 'full'},
+  {path: '', redirectTo: '/summary', canActivate: [AuthGuard], data: {authGuardPipe: redirectUnauthorizedToLogIn}, pathMatch: 'full'},
   {path: 'login', component:LoginComponent, canActivate: [AuthGuard], data: {authGuardPipe: redirectLoggedInToItems}},
   {path: 'signup', component:SignupOverlayComponent, canActivate: [AuthGuard], data: {authGuardPipe: redirectLoggedInToItems}},
   {path: 'summary', component:SummaryComponent, canActivate: [AuthGuard], data: {authGuardPipe: redirectUnauthorizedToLogIn}},
