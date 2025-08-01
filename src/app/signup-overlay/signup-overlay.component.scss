@@ -2,7 +2,7 @@ section{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    max-width: 1920px;
+    
     font-size: 10px;
     height: 100dvh;
     width: 100%;
@@ -26,6 +26,7 @@ section{
     display: flex;
     justify-content: center;
     width: 100%;
+    max-width: 1920px;
 
     .signup-container {
         display: flex;
@@ -52,6 +53,7 @@ section{
     @media(max-width:500px){
         margin-bottom: 0em;
     }
+
     .signup {
         display: flex;
         justify-content: space-around;
