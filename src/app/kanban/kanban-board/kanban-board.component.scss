@@ -229,8 +229,8 @@ section {
 	app-card {
 		width: 100%;
 
-		@media (max-width: 965px) {
-			width: auto;
+		@media (max-width: 1300px) {
+			width: unset;
 		}
 	}
 

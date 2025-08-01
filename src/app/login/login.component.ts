@@ -57,6 +57,15 @@ export class LoginComponent {
             next: () => this.router.navigateByUrl('/'),
             error: () => this.errorMessage = 'Check your email and password.',
         });
+            localStorage.removeItem('loginDraft');
+    }
+
+        ngOnInit() {
+        this.form.valueChanges.subscribe(values => { localStorage.setItem('loginDraft', JSON.stringify(values)) });
+        const savedData = localStorage.getItem('loginDraft');
+        if (savedData !== null) {
+            this.form.patchValue(JSON.parse(savedData));
+        }
     }
 
     /**

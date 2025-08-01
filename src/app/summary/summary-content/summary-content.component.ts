@@ -14,6 +14,7 @@ import { OverlayState } from '../../services/contacts/overlayState.service';
     styleUrl: './summary-content.component.scss',
 })
 export class SummaryContentComponent {
+    
     userEmail: string | null = null;
 
     loading = signal(true);
@@ -30,7 +31,7 @@ export class SummaryContentComponent {
      * @param {Router} router - Angular router service
      */
     constructor(
-        private boardService: BoardService,
+        public boardService: BoardService,
         private overlayState: OverlayState,
         private authService: AuthService,
         private router: Router

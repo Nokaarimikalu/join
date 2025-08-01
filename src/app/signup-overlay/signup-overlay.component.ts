@@ -45,18 +45,26 @@ export class SignupOverlayComponent {
     form = this.fb.nonNullable.group({
         email: ['', Validators.required],
         username: ['', Validators.required],
-        password: ['', Validators.required, Validators.minLength(6)],
+        password: ['', [Validators.required, Validators.minLength(6)]],
         confirmPassword: ['', Validators.required],
         checkbox: [false, Validators.requiredTrue]
     });
-    
+
     errorMessage: string | null = null;
 
     /**
         * Constructor injecting overlay state for accessing contact list
         * @param overlayState Service managing contact list and color assignment
         */
-    constructor(public overlayState: OverlayState , public boardService: BoardService) { }
+    constructor(public overlayState: OverlayState, public boardService: BoardService) { }
+
+    ngOnInit() {
+        this.form.valueChanges.subscribe(values => { localStorage.setItem('signupDraft', JSON.stringify(values)) });
+        const savedData = localStorage.getItem('signupDraft');
+        if (savedData !== null) {
+            this.form.patchValue(JSON.parse(savedData));
+        }
+    }
 
     /**
      * Handles form submission for signup
@@ -65,23 +73,24 @@ export class SignupOverlayComponent {
         this.form.markAllAsTouched();
         const rawForm = this.form.getRawValue();
         if (rawForm.password === rawForm.confirmPassword && rawForm.checkbox == true) {
-                    this.authService.register(rawForm.email, rawForm.username, rawForm.password)
-            .subscribe({
-                next: () => {
-                    this.authService.logout();
-                    this.router.navigateByUrl('/login');
-                    this.boardService.showSignInOverlay()
-                    if (!this.getMailFromContact(rawForm.email)) {
-                        this.contactList.email = rawForm.email;
-                        this.contactList.firstName = rawForm.username;
-                        this.splitFullName();
-                        this.overlayState.addContacts(this.contactList);
-                    }
-                },
-                error: (error) => {
-                    this.errorMessage = error.code;
-                },
-            });
+            this.authService.register(rawForm.email, rawForm.username, rawForm.password)
+                .subscribe({
+                    next: () => {
+                        this.authService.logout();
+                        this.router.navigateByUrl('/login');
+                        this.boardService.showSignInOverlay()
+                        if (!this.getMailFromContact(rawForm.email)) {
+                            this.contactList.email = rawForm.email;
+                            this.contactList.firstName = rawForm.username;
+                            this.splitFullName();
+                            this.overlayState.addContacts(this.contactList);
+                            localStorage.removeItem('signupDraft');
+                        }
+                    },
+                    error: (error) => {
+                        this.errorMessage = error.code;
+                    },
+                });
         }
     }
 
@@ -118,7 +127,7 @@ export class SignupOverlayComponent {
         if (this.lockClickCount === 1 && this.showPassword == false) {
             this.showPassword = true;
             this.lockIconSrc = 'assets/img/login/visibility.svg';
-        }else if (this.lockClickCount === 2) {
+        } else if (this.lockClickCount === 2) {
             this.lockClickCount = 0;
             this.showPassword = false;
             this.lockIconSrc = 'assets/img/login/visibility_off.svg';
