@@ -143,8 +143,8 @@ section {
   user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
-  flex-wrap: wrap;
-  width: 90%;
+/*   flex-wrap: wrap;
+ */  width: 90%;
   height: 78px;
   display: flex;
   justify-content: start;
@@ -174,9 +174,9 @@ section {
   }
 
   .initials {
-    font-size: 1.2em;
-    margin-right: 8%;
-    color: white;
+    font-size: 16px;
+/*     margin-right: 8%;
+ */    color: white;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -190,14 +190,27 @@ section {
     }
   }
 
+  .user-details{
+    width: 86%;
+    padding-left: 10px;
+  }
+
   .user-name {
     font-size: 2em;
     font-weight: 400;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
   }
 
   .user-mail {
     font-size: 1.8em;
     color: #007cee;
+        white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
   }
 }
 

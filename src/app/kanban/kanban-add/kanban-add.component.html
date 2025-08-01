@@ -17,7 +17,7 @@
                                         </label>
                                         <input [(ngModel)]="taskList.title" name="title" placeholder="Enter a title"
                                             type="text" required #title="ngModel"
-                                            [class.errorborder]="!title.valid && title.touched" />
+                                            [class.errorborder]="!title.valid && title.touched" maxlength="30" />
                                         <div class="invalid-input">
                                             @if (!title.valid && title.touched) {
                                             <div>This Headline is required</div>
@@ -27,7 +27,7 @@
                                     <div class="form-description div-cont">
                                         <span class="span-description">Description</span>
                                         <textarea [(ngModel)]="taskList.description" placeholder="Enter a Description "
-                                            name="description" id=""></textarea>
+                                            name="description" id="" maxlength="120"></textarea>
                                     </div>
                                     <div class="form-date div-cont">
                                         <label class="form-label">
@@ -149,7 +149,7 @@
                                     <div class="subtaskfield" (click)="$event.stopPropagation();">
                                         <input (keydown)="onKeydown($event)" name="subtaskInput"
                                             [(ngModel)]="subtaskString" type="text" (focus)="isInputFocused = true"
-                                            (blur)="handleBlur()">
+                                            (blur)="handleBlur()" maxlength="30">
                                         @if(!isInputFocused){
                                         <div class="add" (click)="setFocusOnInput()">
                                             <img src="assets/img/kanban-edit-overlay/plus-zichen.svg" alt="" />
@@ -176,7 +176,7 @@
 
                             @if (editingSubtaskIndex === $index) {
                             <li (click)="$event.stopPropagation()">
-                                <textarea [(ngModel)]="pushedSubtask.text"></textarea>
+                                <textarea [(ngModel)]="pushedSubtask.text" maxlength="30"></textarea>
                                 <button (click)="spliceSubtask()">
                                     <img src="assets/img/kanban-add/subTaskDeleteButton.png" alt="delete">
                                 </button>

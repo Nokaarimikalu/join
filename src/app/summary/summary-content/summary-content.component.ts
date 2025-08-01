@@ -64,9 +64,9 @@ export class SummaryContentComponent {
      */
     get todoCount(): number {
         return this.boardService.taskList
-            .filter((task) =>
+/*             .filter((task) =>
                 task.assignedTo?.some((user) => user.email === this.userEmail)
-            )
+            ) */
             .filter((task) => task.status === 'to do').length;
     }
 
@@ -76,9 +76,9 @@ export class SummaryContentComponent {
      */
     get doneCount(): number {
         return this.boardService.taskList
-            .filter((task) =>
+/*             .filter((task) =>
                 task.assignedTo?.some((user) => user.email === this.userEmail)
-            )
+            ) */
             .filter((task) => task.status === 'done').length;
     }
 
@@ -88,9 +88,9 @@ export class SummaryContentComponent {
      */
     get progressCount(): number {
         return this.boardService.taskList
-            .filter((task) =>
+/*             .filter((task) =>
                 task.assignedTo?.some((user) => user.email === this.userEmail)
-            )
+            ) */
             .filter((task) => task.status === 'in progress').length;
     }
 
@@ -100,9 +100,9 @@ export class SummaryContentComponent {
      */
     get feedbackCount(): number {
         return this.boardService.taskList
-            .filter((task) =>
+/*             .filter((task) =>
                 task.assignedTo?.some((user) => user.email === this.userEmail)
-            )
+            ) */
             .filter((task) => task.status === 'await feedback').length;
     }
 
@@ -112,9 +112,9 @@ export class SummaryContentComponent {
      */
     get urgentCount(): number {
         return this.boardService.taskList
-            .filter((task) =>
+/*             .filter((task) =>
                 task.assignedTo?.some((user) => user.email === this.userEmail)
-            )
+            ) */
             .filter((task) => task.priority === 'Urgent').length;
     }
 
@@ -122,7 +122,7 @@ export class SummaryContentComponent {
      * Gets formatted date of nearest deadline among user's tasks
      * @returns {string} Formatted deadline date or empty string if no deadlines
      */
-    get nextDeadline(): string {
+/*     get nextDeadline(): string { //user specific
         const userTasks = this.boardService.taskList.filter(task =>
             task.assignedTo?.some(user => user.email === this.userEmail) &&
             task.dueDate
@@ -134,7 +134,16 @@ export class SummaryContentComponent {
             return currentDate < prevDate ? current : prev;
         });
         return closest.dueDate ? new Date(closest.dueDate).toLocaleDateString() : '';
-    }
+    } */
+
+        get nextDeadline(): string {
+    const tasksWithDueDate = this.boardService.taskList.filter(task => task.dueDate);
+    if (tasksWithDueDate.length === 0) return '';
+    const closest = tasksWithDueDate.reduce((prev, current) => 
+        new Date(current.dueDate!) < new Date(prev.dueDate!) ? current : prev
+    );
+    return closest.dueDate ? new Date(closest.dueDate).toLocaleDateString() : '';
+}
 
     /**
      * Gets full name of current user from contacts

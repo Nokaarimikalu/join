@@ -8,11 +8,11 @@
                 <form class="kanban-overlay-form">
                     <div class="form-title kanban-div">
                         <span>Title</span>
-                        <input [(ngModel)]="task.title" name="taskTitle" placeholder="Enter a title" type="text">
+                        <input maxlength="30"  [(ngModel)]="task.title" name="taskTitle" placeholder="Enter a title" type="text">
                     </div>
                     <div class="form-description kanban-div">
                         <span>Description</span>
-                        <textarea [(ngModel)]="task.description" name="taskDescription" placeholder="Enter a Description "></textarea>
+                        <textarea  [(ngModel)]="task.description" name="taskDescription" placeholder="Enter a Description " maxlength="120"></textarea>
                     </div>
                     <div class="form-date kanban-div">
                         <span>Due date</span>
@@ -100,7 +100,7 @@
                 <div class="kanban-overlay-subtask">
                     <span>Subtask</span>
                     <div class="subtaskfield" (click)="$event.stopPropagation();">
-                        <input (keydown)="onKeydown($event)" name="subtaskInput" [(ngModel)]="subtaskString" type="text" (focus)="isInputFocused = true" (blur)="handleBlur()">
+                        <input maxlength="30" (keydown)="onKeydown($event)" name="subtaskInput" [(ngModel)]="subtaskString" type="text" (focus)="isInputFocused = true" (blur)="handleBlur()">
                         @if(!isInputFocused){
                             <div class="add" (click)="setFocusOnInput()">
                                 <img src="assets/img/kanban-edit-overlay/plus-zichen.svg" alt=""/>
@@ -122,7 +122,7 @@
                         @for (subtask of task.subTaskFillTest; track $index) {
                             @if (editingSubtaskIndex === $index) {
                                 <li (click)="$event.stopPropagation()">
-                                    <textarea [(ngModel)]="subtask.text"></textarea>
+                                    <textarea [(ngModel)]="subtask.text" maxlength="30"></textarea>
                                     <button (click)="saveEditingSubtask($index); $event.stopPropagation()">
 									    <img src="assets/img/kanban-add/checkmark-subtask.svg" alt="save">
                                     </button>

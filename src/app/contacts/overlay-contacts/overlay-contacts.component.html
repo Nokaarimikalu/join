@@ -48,7 +48,7 @@
                 <div class="inputAreas">
                   <input [(ngModel)]="contactList.firstName" class="user" type="text" placeholder="Name" name="name"
                   required pattern="^[a-zA-ZäöüÄÖÜß]+ [a-zA-ZäöüÄÖÜß]+$" id="name" #name="ngModel"
-                  [class.invalid]=" name.invalid && name.dirty " />
+                  [class.invalid]=" name.invalid && name.dirty " maxlength="30"/>
                   <div class="invalid-input">
                   @if (name.invalid && name.dirty) {
                   <div>Example: firstname lastname</div>
@@ -59,7 +59,7 @@
               <div class="inputAreas">
                 <input [(ngModel)]="contactList.email" class="mail" type="email" placeholder="Email" name="email" required
                   pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" id="mail" #mail="ngModel"
-                  [class.invalid]=" mail.invalid && mail.dirty " />
+                  [class.invalid]=" mail.invalid && mail.dirty " maxlength="30"/>
                 <div class="invalid-input">
                   @if (mail.invalid && mail.dirty) {
                   <div>Example: name&#64;example.com</div>
@@ -82,7 +82,7 @@
               @if (overlayState.selectedUser) {
               <input [(ngModel)]="overlayState.fullNameForEdit" class="user" type="text" placeholder="Name" name="name"
                 required pattern="^[a-zA-ZäöüÄÖÜß]+( [a-zA-ZäöüÄÖÜß]+)?$" id="name" #name="ngModel"
-                [class.invalid]=" name.invalid && name.dirty " />
+                [class.invalid]=" name.invalid && name.dirty " maxlength="30"/>
               <div class="invalid-input">
                 @if (name.invalid && name.dirty) {
                 <div>Example: firstname lastname</div>
@@ -91,7 +91,7 @@
 
               <input [(ngModel)]="overlayState.selectedUser.email" class="mail" type="email" placeholder="Email"
                 name="email" required pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" id="mail"
-                #mail="ngModel" [class.invalid]=" mail.invalid && mail.dirty " />
+                #mail="ngModel" [class.invalid]=" mail.invalid && mail.dirty " maxlength="30"/>
               <div class="invalid-input">
                 @if (mail.invalid && mail.dirty) {
                 <div>Example: name&#64;example.com</div>
@@ -100,9 +100,9 @@
 
               <input [(ngModel)]="overlayState.selectedUser.phone" class="phone" type="number" placeholder="Phone"
                 name="phone" required pattern="^\+?[0-9\s]{6,16}$" id="phone" #phone="ngModel"
-                [class.invalid]=" phone.invalid && phone.dirty " />
+                [class.invalid]=" phone.invalid && phone.dirty " maxlength="15"/>
               <div class="invalid-input">
-                @if (phone.invalid && phone.dirty) {
+                @if (phone.invalid && phone.dirty || !contactForm.valid) {
                 <div>Example: +49301234567</div>
                 }
               </div>
