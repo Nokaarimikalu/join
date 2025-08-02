@@ -68,14 +68,14 @@
               </div>
 
               <div class="inputAreas">
-                <input [(ngModel)]="contactList.phone" class="phone" type="number" placeholder="Phone" name="phone"
-                  required pattern="^\+?[0-9\s]{6,16}$" id="phone" #phone="ngModel"
-                  [class.invalid]=" phone.invalid && phone.dirty " />
-                <div class="invalid-input">
-                  @if (phone.invalid && phone.dirty) {
-                    <div>Example: +49 30 1234567</div>
-                  }
-                </div>
+                <input [(ngModel)]="contactList.phone" class="phone" type="text" placeholder="Phone"
+                name="phone" required pattern="^[0-9]{6,16}$" id="phone" #phone="ngModel"
+                [class.invalid]=" phone.invalid && phone.dirty " (input)="addPrefix()" maxlength="15" (keypress)="allowOnlyNumbersAndPlus($event)"/>
+              <div class="invalid-input">
+                @if (phone.invalid && phone.dirty || !contactForm.valid) {
+                <div>Example: +49301234567</div>
+                }
+              </div>
               </div>
 
               } @case ('editContact') {
@@ -98,9 +98,9 @@
                 }
               </div>
 
-              <input [(ngModel)]="overlayState.selectedUser.phone" class="phone" type="tel" placeholder="Phone"
-                name="phone" required pattern="^\+?[0-9\s]{6,16}$" id="phone" #phone="ngModel"
-                [class.invalid]=" phone.invalid && phone.dirty " maxlength="15"/>
+              <input [(ngModel)]="overlayState.selectedUser.phone" class="phone" type="text" placeholder="Phone"
+                name="phone" required pattern="^[0-9]{6,16}$" id="phone" #phone="ngModel"
+                [class.invalid]=" phone.invalid && phone.dirty " (input)="addPrefix()" maxlength="15" (keypress)="allowOnlyNumbersAndPlus($event)"/>
               <div class="invalid-input">
                 @if (phone.invalid && phone.dirty || !contactForm.valid) {
                 <div>Example: +49301234567</div>

@@ -10,6 +10,15 @@ import { ContactList } from "../../shared/interface/contact-list.interface";
     styleUrl: './overlay-contacts.component.scss',
 })
 export class OverlayContactsComponent {
+    /**
+     * Verhindert die Eingabe von Buchstaben im Telefonnummernfeld
+     */
+    allowOnlyNumbersAndPlus(event: KeyboardEvent) {
+        const allowed = /[0-9+]/;
+        if (!allowed.test(event.key)) {
+            event.preventDefault();
+        }
+    }
     splittedName?: string[];
 
     editFullName?: string;
@@ -82,5 +91,24 @@ export class OverlayContactsComponent {
             this.contactList.firstName.charAt(0).toUpperCase() +
             this.contactList.lastName.charAt(0).toUpperCase();
         this.contactList.color = this.overlayState.getRandomColor();
+    }
+
+    /**
+     * Ensures that the phone number always starts with +49 and cannot be removed
+     * Works for both addContact (contactList.phone) and editContact (selectedUser.phone)
+     */
+    addPrefix() {
+        // addContact case
+        if (this.contactList && this.contactList.phone !== undefined) {
+            if (!this.contactList.phone.startsWith('+49')) {
+                this.contactList.phone = '+49' + this.contactList.phone.replace(/^\+?49/, '');
+            }
+        }
+        // editContact case
+        if (this.overlayState.selectedUser && this.overlayState.selectedUser.phone !== undefined) {
+            if (!this.overlayState.selectedUser.phone.startsWith('+49')) {
+                this.overlayState.selectedUser.phone = '+49' + this.overlayState.selectedUser.phone.replace(/^\+?49/, '');
+            }
+        }
     }
 }
