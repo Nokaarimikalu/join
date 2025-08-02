@@ -23,7 +23,7 @@ export class KanbanAddOverlayComponent {
 
   currentIndex: number = 0;
 
-  editingSubtaskValue: string = '';
+  // editingSubtaskValue entfernt, da direkt im Array gearbeitet wird
 
   subtaskString: string = '';
 
@@ -72,12 +72,7 @@ export class KanbanAddOverlayComponent {
    * @param index - Index of the subtask to edit
    */
   startEditingSubtask(index: number) {
-    try {
-      this.editingSubtaskIndex = index;
-      this.editingSubtaskValue = this.task.subTaskFillTest[index].text;
-  } catch(error){
-
-  }
+    this.editingSubtaskIndex = index;
   }
 
   /** Focuses the subtask input field. */
@@ -145,20 +140,30 @@ export class KanbanAddOverlayComponent {
   }
 
   /** Removes the last subtask from the list. */
-  spliceSubtask() {
-    this.taskList.subTaskFillTest.splice(-1, 1);
-  }
+  spliceSubtask(index:number) {
+        this.taskList.subTaskFillTest.splice(index, 1);
+        this.cancelEditingSubtask();
+    }
 
   /**
    * Saves the edited subtask text at the current index.
    * @param index - Index of the subtask being edited
    */
   saveEditingSubtask(index: number) {
-    if (this.editingSubtaskValue.trim() !== '') {
-      this.taskList.subTaskFillTest[this.currentIndex].text = this.editingSubtaskValue.trim();
+    const value = this.taskList.subTaskFillTest[index].text.trim();
+    if (value !== '') {
+      this.taskList.subTaskFillTest[index].text = value;
+      this.editingSubtaskIndex = null;
+    } else {
+      this.spliceSubtask(index);
+      this.editingSubtaskIndex = null;
     }
-    this.editingSubtaskIndex = null;
   }
+
+
+    cancelEditingSubtask() {
+        this.editingSubtaskIndex = null;
+    }
 
   /** Clears the subtask input field. */
   emptySubtask() {

@@ -16,7 +16,7 @@
                     </div>
                     <div class="form-date kanban-div">
                         <span>Due date</span>
-                        <input type="date" [(ngModel)]="task.dueDate" name="taskDate" [min]="currentDate"/>
+                        <input type="date" [(ngModel)]="task.dueDate" name="taskDate" [min]="currentDate" onkeydown="return false;"/>
                     </div>
                 </form>
 
@@ -126,7 +126,7 @@
                                     <button (click)="saveEditingSubtask($index); $event.stopPropagation()">
 									    <img src="assets/img/kanban-add/checkmark-subtask.svg" alt="save">
                                     </button>
-                                    <button (click)="cancelEditingSubtask(); $event.stopPropagation()">
+                                    <button (click)="spliceSubtask($index); $event.stopPropagation()">
                                         <img src="assets/img/kanban-add/subTaskDeleteButton.png" alt="delete">
                                     </button>
                                 </li>

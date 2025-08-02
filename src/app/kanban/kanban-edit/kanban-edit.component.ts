@@ -33,73 +33,73 @@ export class KanbanEditComponent {
         '-' +
         new Date().getDate().toString().padStart(2, '0');
 
-    editingSubtaskValue: string = '';
+    // editingSubtaskValue entfernt, da direkt im Array gearbeitet wird
     
     editingSubtaskIndex: number | null = null;
 
 
-    dummyTasks: TaskItem[] = [
-        {
-            id: '1',
-            title: 'Projektstart',
-            category: 'Management',
-            description: 'Initiales Meeting und Aufgabenverteilung',
-            dueDate: '2025-07-15',
-            priority: 'Urgent',
-            assignedTo: [{ user: 'Max Mustermann' }],
-            subTask: ['Meeting vorbereiten', 'Teilnehmer einladen'],
-        },
-        {
-            id: '2',
-            title: 'Dokumentation schreiben',
-            category: 'Entwicklung',
-            description: 'Technische Details dokumentieren',
-            dueDate: '2025-07-20',
-            priority: 'Medium',
-            assignedTo: [{ user: 'Anna Müller' }],
-            subTask: [
-                'Inhalt gliedern',
-                'Screenshots einfügen',
-                'Review einholen',
-            ],
-        },
-        {
-            id: '3',
-            title: 'Bugfixing Sprint 3',
-            category: 'Entwicklung',
-            description: 'Offene Bugs aus Sprint 3 beheben',
-            dueDate: '2025-07-25',
-            priority: 'Urgent',
-            assignedTo: [{ user: 'Lukas Schmidt' }],
-            subTask: ['Fehler identifizieren', 'Fix schreiben', 'Testen'],
-        },
-        {
-            id: '4',
-            title: 'Kundendemo vorbereiten',
-            category: 'Marketing',
-            description: 'Demo für Stakeholder vorbereiten',
-            dueDate: '2025-07-18',
-            priority: 'Low',
-            assignedTo: [{ user: 'Clara Becker' }],
-            subTask: [
-                'Ablauf planen',
-                'Unterlagen erstellen',
-                'Technik prüfen',
-            ],
-        },
-        {
-            id: '5',
-            title: 'UX-Review',
-            category: 'Design',
-            description: 'Feedbackrunde zur Nutzerfreundlichkeit',
-            dueDate: '2025-07-22',
-            priority: 'Medium',
-            assignedTo: [{ user: 'Tom Meier' }],
-            subTask: ['Feedback sammeln', 'UX-Bericht erstellen'],
-        },
-    ];
+    // dummyTasks: TaskItem[] = [
+    //     {
+    //         id: '1',
+    //         title: 'Projektstart',
+    //         category: 'Management',
+    //         description: 'Initiales Meeting und Aufgabenverteilung',
+    //         dueDate: '2025-07-15',
+    //         priority: 'Urgent',
+    //         assignedTo: [{ user: 'Max Mustermann' }],
+    //         subTask: ['Meeting vorbereiten', 'Teilnehmer einladen'],
+    //     },
+    //     {
+    //         id: '2',
+    //         title: 'Dokumentation schreiben',
+    //         category: 'Entwicklung',
+    //         description: 'Technische Details dokumentieren',
+    //         dueDate: '2025-07-20',
+    //         priority: 'Medium',
+    //         assignedTo: [{ user: 'Anna Müller' }],
+    //         subTask: [
+    //             'Inhalt gliedern',
+    //             'Screenshots einfügen',
+    //             'Review einholen',
+    //         ],
+    //     },
+    //     {
+    //         id: '3',
+    //         title: 'Bugfixing Sprint 3',
+    //         category: 'Entwicklung',
+    //         description: 'Offene Bugs aus Sprint 3 beheben',
+    //         dueDate: '2025-07-25',
+    //         priority: 'Urgent',
+    //         assignedTo: [{ user: 'Lukas Schmidt' }],
+    //         subTask: ['Fehler identifizieren', 'Fix schreiben', 'Testen'],
+    //     },
+    //     {
+    //         id: '4',
+    //         title: 'Kundendemo vorbereiten',
+    //         category: 'Marketing',
+    //         description: 'Demo für Stakeholder vorbereiten',
+    //         dueDate: '2025-07-18',
+    //         priority: 'Low',
+    //         assignedTo: [{ user: 'Clara Becker' }],
+    //         subTask: [
+    //             'Ablauf planen',
+    //             'Unterlagen erstellen',
+    //             'Technik prüfen',
+    //         ],
+    //     },
+    //     {
+    //         id: '5',
+    //         title: 'UX-Review',
+    //         category: 'Design',
+    //         description: 'Feedbackrunde zur Nutzerfreundlichkeit',
+    //         dueDate: '2025-07-22',
+    //         priority: 'Medium',
+    //         assignedTo: [{ user: 'Tom Meier' }],
+    //         subTask: ['Feedback sammeln', 'UX-Bericht erstellen'],
+    //     },
+    // ];
     // copy dummyDaten
-    copyDummyTasks: TaskItem[] = JSON.parse(JSON.stringify(this.dummyTasks));
+    // copyDummyTasks: TaskItem[] = JSON.parse(JSON.stringify(this.dummyTasks));
     //---------------------------------------------------------------------------------------------
 
   constructor(
@@ -124,13 +124,13 @@ export class KanbanEditComponent {
 
     /** Switches to the next task in the dummy task list. */
     nextTask() {
-        this.currentIndex = (this.currentIndex + 1) % this.dummyTasks.length;
+        this.currentIndex = (this.currentIndex + 1) % this.task.subTaskFillTest.length;
     }
 
     /** Switches to the previous task in the dummy task list. */
     prevTask() {
         this.currentIndex =
-            (this.currentIndex - 1 + this.dummyTasks.length) % this.dummyTasks.length;
+            (this.currentIndex - 1 + this.task.subTaskFillTest.length) % this.task.subTaskFillTest.length;
     }
 
     /** Adds a new subtask to the current task if input is not empty. */
@@ -190,8 +190,8 @@ export class KanbanEditComponent {
 
     /** Resets the current task to its original dummy state. */
     resetChanges() {
-        this.copyDummyTasks[this.currentIndex] = JSON.parse(
-            JSON.stringify(this.dummyTasks[this.currentIndex])
+        this.task.subTaskFillTest[this.currentIndex] = JSON.parse(
+            JSON.stringify(this.task.subTaskFillTest[this.currentIndex])
         );
     }
 
@@ -217,8 +217,6 @@ export class KanbanEditComponent {
      */
     startEditingSubtask(index: number) {
         this.editingSubtaskIndex = index;
-        this.editingSubtaskValue =
-        this.copyDummyTasks[this.currentIndex].subTask[index];
     }
 
     /**
@@ -226,11 +224,14 @@ export class KanbanEditComponent {
      * @param index - Index of the subtask
      */
     saveEditingSubtask(index: number) {
-        if (this.editingSubtaskValue.trim() !== '') {
-        this.copyDummyTasks[this.currentIndex].subTask[index] =
-        this.editingSubtaskValue.trim();
+        const value = this.task.subTaskFillTest[index].text.trim();
+        if (value !== '') {
+            this.task.subTaskFillTest[index].text = value;
+            this.editingSubtaskIndex = null;
+        } else {
+            this.spliceSubtask(index);
+            this.editingSubtaskIndex = null;
         }
-        this.editingSubtaskIndex = null;
     }
 
     /** Cancels subtask editing. */
@@ -246,6 +247,10 @@ export class KanbanEditComponent {
         if (this.editingSubtaskIndex !== null) {
             this.cancelEditingSubtask();
         }
+    }
+
+    spliceSubtask(index:number) {
+        this.task.subTaskFillTest.splice(index, 1);
     }
 
     /**
