@@ -145,7 +145,11 @@
                             <!-- Subtask Section -->
                             <div class="list-of-members">
                                 <div class="kanban-overlay-subtask">
-                                    <span class="subtask-span">Subtask</span>
+                                    <div class="subtask-span">
+                                        <span>Subtask</span>
+                                        <img src="assets/img/header/help-hover.png" alt="" class="help-icon">
+                                        <span class="hover-text">doubleclick to edit Subtask</span>
+                                    </div>
                                     <div class="subtaskfield" (click)="$event.stopPropagation();">
                                         <input (keydown)="onKeydown($event)" name="subtaskInput"
                                             [(ngModel)]="subtaskString" type="text" (focus)="isInputFocused = true"

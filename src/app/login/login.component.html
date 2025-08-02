@@ -21,13 +21,13 @@
           <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <!-- Email-Feld -->
             <div class="input-wrapper">
-              <input class="mail-icon" type="email" placeholder="Email" formControlName="email"
+              <input class="mail-icon" maxlength="30" type="email" placeholder="Email" formControlName="email"
                 [class.error-border]="form.get('email')?.invalid && (form.get('email')?.dirty || form.get('email')?.touched) || errorMessage"
                 type="email">
             </div>
             <!-- Passwort-Feld mit Bild-Logik -->
             <div class="input-wrapper">
-              <input #pwInput class="lock-icon" [type]="showPassword ? 'text' : 'password'" placeholder="Password"
+              <input #pwInput class="lock-icon" maxlength="30" [type]="showPassword ? 'text' : 'password'" placeholder="Password"
                 formControlName="password" (focus)="isFocused = true" (blur)="isFocused = false"
                 (input)="checkPasswordInput()"
                 [class.error-border]="(form.get('password')?.invalid && (form.get('password')?.dirty || form.get('password')?.touched)) || errorMessage">
