@@ -98,7 +98,7 @@
                 }
               </div>
 
-              <input [(ngModel)]="overlayState.selectedUser.phone" class="phone" type="number" placeholder="Phone"
+              <input [(ngModel)]="overlayState.selectedUser.phone" class="phone" type="tel" placeholder="Phone"
                 name="phone" required pattern="^\+?[0-9\s]{6,16}$" id="phone" #phone="ngModel"
                 [class.invalid]=" phone.invalid && phone.dirty " maxlength="15"/>
               <div class="invalid-input">

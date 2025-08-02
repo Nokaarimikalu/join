@@ -33,7 +33,7 @@ export class KanbanEditComponent {
         '-' +
         new Date().getDate().toString().padStart(2, '0');
 
-    editingSubtaskValue: string = '';
+    // editingSubtaskValue entfernt, da direkt im Array gearbeitet wird
     
     editingSubtaskIndex: number | null = null;
 
@@ -217,8 +217,6 @@ export class KanbanEditComponent {
      */
     startEditingSubtask(index: number) {
         this.editingSubtaskIndex = index;
-        this.editingSubtaskValue =
-        this.task.subTaskFillTest[index].text || '';
     }
 
     /**
@@ -226,16 +224,14 @@ export class KanbanEditComponent {
      * @param index - Index of the subtask
      */
     saveEditingSubtask(index: number) {
-        if (this.subtaskString.trim() === '') {
+        const value = this.task.subTaskFillTest[index].text.trim();
+        if (value !== '') {
+            this.task.subTaskFillTest[index].text = value;
+            this.editingSubtaskIndex = null;
+        } else {
             this.spliceSubtask(index);
-            this.cancelEditingSubtask();
-            return;
+            this.editingSubtaskIndex = null;
         }
-        if (this.editingSubtaskValue.trim() !== '') {
-        this.task.subTaskFillTest[index].text =
-        this.editingSubtaskValue.trim();
-        }
-        this.editingSubtaskIndex = null;
     }
 
     /** Cancels subtask editing. */
