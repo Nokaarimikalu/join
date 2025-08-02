@@ -255,7 +255,7 @@
                         white-space: nowrap;
                         text-overflow: ellipsis;
                         overflow: hidden;
-                        max-width: 100%;
+                        width: clamp(50%, 25vw, 100%);
                         display: inline-block;
                         box-sizing: border-box;
 
