@@ -38,7 +38,7 @@ export class KanbanAddComponent {
 
     currentDate: string = new Date().getFullYear().toString() + "-" + (new Date().getMonth() + 1).toString().padStart(2, '0') + "-" + new Date().getDate().toString().padStart(2, '0');
 
-    editingSubtaskValue: string = '';
+    // editingSubtaskValue entfernt, da direkt im Array gearbeitet wird
 
     editingSubtaskIndex: number | null = null;
 
@@ -175,12 +175,7 @@ export class KanbanAddComponent {
      * @param {number} index - Index of the subtask to edit
      */
     startEditingSubtask(index: number) {
-        try {
-            this.editingSubtaskIndex = index;
-            this.editingSubtaskValue = this.task.subTaskFillTest[index].text;
-        } catch (error) {
-            // Error handling remains silent as per original code
-        }
+        this.editingSubtaskIndex = index;
     }
 
     /**
@@ -188,16 +183,13 @@ export class KanbanAddComponent {
      * @param {number} index - Index of the subtask being edited
      */
     saveEditingSubtask(index: number) {
-        if (this.subtaskString.trim() === '') {
+        const value = this.taskList.subTaskFillTest[index].text.trim();
+        if (value !== '') {
+            this.taskList.subTaskFillTest[index].text = value;
+            this.editingSubtaskIndex = null;
+        } else {
             this.spliceSubtask(index);
-            this.cancelEditingSubtask();
-            return;
         }
-        if (this.editingSubtaskValue.trim() !== '') {
-        this.taskList.subTaskFillTest[index].text =
-        this.editingSubtaskValue.trim();
-        }
-        this.editingSubtaskIndex = null;
     }
 
 
