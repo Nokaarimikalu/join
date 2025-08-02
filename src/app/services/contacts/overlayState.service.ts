@@ -96,6 +96,13 @@ export class OverlayState implements OnDestroy {
     this.toggleSelectedProfile(newIndex);
   }
 
+    async addRegisterContact(contact: ContactList) {
+    contact.firstName = contact.firstName.charAt(0).toUpperCase() + contact.firstName.slice(1);
+    contact.lastName = contact.lastName.charAt(0).toUpperCase() + contact.lastName.slice(1);
+    const docRef = await addDoc(collection(this.firestore, 'contacts'), contact);
+    this.sortContacts();
+  }
+
   /**
    * Sorts contacts alphabetically by first name
    */

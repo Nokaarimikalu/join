@@ -83,7 +83,7 @@ export class SignupOverlayComponent {
                             this.contactList.email = rawForm.email;
                             this.contactList.firstName = rawForm.username;
                             this.splitFullName();
-                            this.overlayState.addContacts(this.contactList);
+                            this.overlayState.addRegisterContact(this.contactList);
                             localStorage.removeItem('signupDraft');
                         }
                     },
