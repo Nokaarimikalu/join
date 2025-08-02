@@ -106,6 +106,7 @@
 
                 //#region info container
                 .info-container {
+                        flex-wrap: wrap;
                     display: flex;
                     align-items: center;
                     flex: 1;

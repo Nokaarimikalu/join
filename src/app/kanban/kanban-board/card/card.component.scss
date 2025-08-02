@@ -10,7 +10,7 @@ section {
 
 }
 
-.overlay-status-for-mobile{
+.overlay-status-for-mobile {
 	flex-direction: column;
 	justify-content: flex-end;
 	position: absolute;
@@ -19,15 +19,18 @@ section {
 	background-color: #ffffff;
 	border-radius: 20px;
 	z-index: 100;
-	&:hover{
+
+	&:hover {
 		box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 	}
-	.close-mobile-status{
+
+	.close-mobile-status {
 		display: flex;
 		justify-content: flex-end;
 		padding: 1em;
 	}
-	.mobile-status-overlay{
+
+	.mobile-status-overlay {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -35,20 +38,22 @@ section {
 		gap: 15px;
 		height: 80%;
 		padding: 0em 1em 1em 1em;
-		border-bottom-left-radius:20px;
-		border-bottom-right-radius:20px;
-		
-		button{
+		border-bottom-left-radius: 20px;
+		border-bottom-right-radius: 20px;
+
+		button {
 			font-size: 16px;
 			border-radius: 20px;
 			height: 30px;
 			width: 160px;
 			background-color: transparent;
-			&:hover{
+
+			&:hover {
 				border: solid 2px #29abe2
 			}
 		}
-		.chosen-one{
+
+		.chosen-one {
 			background-color: #29abe2;
 			color: white;
 		}
@@ -90,38 +95,54 @@ section {
 		box-shadow: 0 0 6px rgba(42, 54, 71, 0.3);
 	}
 
-	.category-moveto{
+	.category-moveto {
 		display: flex;
 		justify-content: space-between;
 		width: 100%;
-			.category {
-		font-size: 16px;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		width: 125px;
-		height: 27px;
-		border-radius: 5px;
-		margin-bottom: 12px;
-	}
-	.move-to-mobile{
-		z-index: 3;
-		width: 25px;
-		height: 25px;
-		display: none;
-			&:hover {
-		box-shadow: 0 0 6px rgba(42, 54, 71, 0.3);
-	}
-		@media (max-width: 1300px) {
+
+		.category {
+			font-size: 16px;
 			display: flex;
-			img{
-				width: 25x;
-				height: 25px;
+			justify-content: center;
+			align-items: center;
+			width: 125px;
+			height: 27px;
+			border-radius: 5px;
+			margin-bottom: 12px;
+		}
+
+		.move-to-mobile {
+			z-index: 3;
+			width: 25px;
+			height: 25px;
+			display: none;
+
+			&:hover {
+				box-shadow: 0 0 6px rgba(42, 54, 71, 0.3);
+			}
+
+			@media (max-width: 1300px) {
+				display: flex;
+
+				img {
+					width: 25x;
+					height: 25px;
+				}
 			}
 		}
 	}
-	}
 
+	.title {
+		width: 100%;
+
+		h4 {
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			width: 100%;
+		}
+
+	}
 
 
 	.description {
