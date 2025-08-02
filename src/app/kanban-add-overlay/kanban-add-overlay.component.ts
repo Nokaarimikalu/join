@@ -145,20 +145,32 @@ export class KanbanAddOverlayComponent {
   }
 
   /** Removes the last subtask from the list. */
-  spliceSubtask() {
-    this.taskList.subTaskFillTest.splice(-1, 1);
-  }
+  spliceSubtask(index:number) {
+        this.taskList.subTaskFillTest.splice(index, 1);
+        this.cancelEditingSubtask();
+    }
 
   /**
    * Saves the edited subtask text at the current index.
    * @param index - Index of the subtask being edited
    */
   saveEditingSubtask(index: number) {
-    if (this.editingSubtaskValue.trim() !== '') {
-      this.taskList.subTaskFillTest[this.currentIndex].text = this.editingSubtaskValue.trim();
+        if (this.subtaskString.trim() === '') {
+            this.spliceSubtask(index);
+            this.cancelEditingSubtask();
+            return;
+        }
+        if (this.editingSubtaskValue.trim() !== '') {
+        this.taskList.subTaskFillTest[index].text =
+        this.editingSubtaskValue.trim();
+        }
+        this.editingSubtaskIndex = null;
     }
-    this.editingSubtaskIndex = null;
-  }
+
+
+    cancelEditingSubtask() {
+        this.editingSubtaskIndex = null;
+    }
 
   /** Clears the subtask input field. */
   emptySubtask() {

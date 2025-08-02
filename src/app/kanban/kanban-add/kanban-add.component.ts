@@ -188,12 +188,22 @@ export class KanbanAddComponent {
      * @param {number} index - Index of the subtask being edited
      */
     saveEditingSubtask(index: number) {
+        if (this.subtaskString.trim() === '') {
+            this.spliceSubtask(index);
+            this.cancelEditingSubtask();
+            return;
+        }
         if (this.editingSubtaskValue.trim() !== '') {
-            this.taskList.subTaskFillTest[this.currentIndex].text = this.editingSubtaskValue.trim();
+        this.taskList.subTaskFillTest[index].text =
+        this.editingSubtaskValue.trim();
         }
         this.editingSubtaskIndex = null;
     }
 
+
+    cancelEditingSubtask() {
+        this.editingSubtaskIndex = null;
+    }
     /**
      * Resets the form to its initial state
      */
@@ -216,8 +226,9 @@ export class KanbanAddComponent {
     /**
      * Removes the last subtask from the list
      */
-    spliceSubtask() {
-        this.taskList.subTaskFillTest.splice(-1, 1);
+    spliceSubtask(index:number) {
+        this.taskList.subTaskFillTest.splice(index, 1);
+        this.cancelEditingSubtask();
     }
 
     /**

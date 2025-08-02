@@ -126,7 +126,7 @@
                                     <button (click)="saveEditingSubtask($index); $event.stopPropagation()">
 									    <img src="assets/img/kanban-add/checkmark-subtask.svg" alt="save">
                                     </button>
-                                    <button (click)="cancelEditingSubtask(); $event.stopPropagation()">
+                                    <button (click)="spliceSubtask($index); $event.stopPropagation()">
                                         <img src="assets/img/kanban-add/subTaskDeleteButton.png" alt="delete">
                                     </button>
                                 </li>
