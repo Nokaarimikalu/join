@@ -175,8 +175,7 @@ section {
 
   .initials {
     font-size: 16px;
-/*     margin-right: 8%;
- */    color: white;
+    color: white;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -207,7 +206,7 @@ section {
   .user-mail {
     font-size: 1.8em;
     color: #007cee;
-        white-space: nowrap;
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     width: 100%;
