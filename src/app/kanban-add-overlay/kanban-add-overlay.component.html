@@ -156,7 +156,7 @@
 							@if (editingSubtaskIndex === $index) {
 							<li (click)="$event.stopPropagation()">
 								<textarea [(ngModel)]="pushedSubtask.text"></textarea>
-								<button (click)="spliceSubtask()">
+								<button (click)="spliceSubtask($index)">
                                     <img src="assets/img/kanban-add/subTaskDeleteButton.png" alt="delete">
 								</button>
 								<button (click)="saveEditingSubtask($index); $event.stopPropagation()">

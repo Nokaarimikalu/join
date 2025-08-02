@@ -33,7 +33,7 @@
                                         <label class="form-label">
                                             Due date<span class="required-asterisk">*</span>
                                         </label>
-                                        <input [(ngModel)]="taskList.dueDate" type="date" [min]="currentDate"
+                                        <input [(ngModel)]="taskList.dueDate" type="date" onkeydown="return false;" [min]="currentDate"
                                             name="dueDate" required #dueDate="ngModel"
                                             [class.errorborder]="!dueDate.valid && dueDate.touched" />
                                         <div class="invalid-input">
@@ -177,7 +177,7 @@
                             @if (editingSubtaskIndex === $index) {
                             <li (click)="$event.stopPropagation()">
                                 <textarea [(ngModel)]="pushedSubtask.text" maxlength="30"></textarea>
-                                <button (click)="spliceSubtask()">
+                                <button (click)="spliceSubtask($index)">
                                     <img src="assets/img/kanban-add/subTaskDeleteButton.png" alt="delete">
                                 </button>
                                 <button (click)="saveEditingSubtask($index); $event.stopPropagation()">
