@@ -212,12 +212,15 @@
                     font-size: 1.6em;
                     margin-left: 2.8em;
                     color: #007cee;
-                    width: 100%;
+                    width: 90%;
+                   
 
                     p {
                         white-space: nowrap;
                         text-overflow: ellipsis;
                         overflow: hidden;
+                        margin-left: 2em;
+                        width: 100%;
 
                         @media (max-width: 1075px) {
                             margin-left: 2em;
@@ -260,6 +263,8 @@
     @media (min-width: 1300px) {
         display: none;
     }
+
+    
 
     //#endregion
 
