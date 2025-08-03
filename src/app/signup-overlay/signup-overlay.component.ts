@@ -109,12 +109,17 @@ export class SignupOverlayComponent {
      * Splits the username into first and last name, sets initials and random color
      */
     splitFullName(): void {
-        this.splittedName = this.contactList.firstName.split(' ');
-        this.contactList.firstName = this.splittedName[0];
-        this.contactList.lastName = this.splittedName[1] || '';
+        const fullName = this.contactList.firstName.trim();
+        const lastSpaceIndex = fullName.lastIndexOf(' ');
+        if (lastSpaceIndex !== -1) {
+            this.contactList.firstName = fullName.substring(0, lastSpaceIndex);
+            this.contactList.lastName = fullName.substring(lastSpaceIndex + 1);
+        } else {
+            this.contactList.lastName = '';
+        }
         this.contactList.initials =
-            this.contactList.firstName.charAt(0).toUpperCase() +
-            this.contactList.lastName.charAt(0).toUpperCase();
+            (this.contactList.firstName.charAt(0).toUpperCase() || '') +
+            (this.contactList.lastName.charAt(0).toUpperCase() || '');
         this.contactList.color = this.overlayState.getRandomColor();
     }
 

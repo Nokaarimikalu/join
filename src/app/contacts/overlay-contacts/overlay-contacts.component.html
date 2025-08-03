@@ -47,7 +47,7 @@
               @case ('addContact') {
                 <div class="inputAreas">
                   <input [(ngModel)]="contactList.firstName" class="user" type="text" placeholder="Name" name="name"
-                  required pattern="^[a-zA-ZäöüÄÖÜß]+ [a-zA-ZäöüÄÖÜß]+$" id="name" #name="ngModel"
+                  required pattern="^([a-zA-ZäöüÄÖÜß]+\.?(-[a-zA-ZäöüÄÖÜß]+\.?)*\s+)+[a-zA-ZäöüÄÖÜß]+\.?(-[a-zA-ZäöüÄÖÜß]+\.?)*$" id="name" #name="ngModel"
                   [class.invalid]=" name.invalid && name.dirty " maxlength="30"/>
                   <div class="invalid-input">
                   @if (name.invalid && name.dirty) {
@@ -69,10 +69,10 @@
 
               <div class="inputAreas">
                 <input [(ngModel)]="contactList.phone" class="phone" type="text" placeholder="Phone"
-                name="phone" required pattern="^[0-9]{6,16}$" id="phone" #phone="ngModel"
+                name="phone" required pattern="^\+[0-9]{6,15}$" id="phone" #phone="ngModel"
                 [class.invalid]=" phone.invalid && phone.dirty " (input)="addPrefix()" maxlength="15" (keypress)="allowOnlyNumbersAndPlus($event)"/>
               <div class="invalid-input">
-                @if (phone.invalid && phone.dirty || !contactForm.valid) {
+                @if (phone.invalid && phone.dirty) {
                 <div>Example: +49301234567</div>
                 }
               </div>
@@ -81,7 +81,7 @@
               } @case ('editContact') {
               @if (overlayState.selectedUser) {
               <input [(ngModel)]="overlayState.fullNameForEdit" class="user" type="text" placeholder="Name" name="name"
-                required pattern="^[a-zA-ZäöüÄÖÜß]+( [a-zA-ZäöüÄÖÜß]+)?$" id="name" #name="ngModel"
+                required pattern="^([a-zA-ZäöüÄÖÜß]+\.?(-[a-zA-ZäöüÄÖÜß]+\.?)*\s+)+[a-zA-ZäöüÄÖÜß]+\.?(-[a-zA-ZäöüÄÖÜß]+\.?)*$" id="name" #name="ngModel"
                 [class.invalid]=" name.invalid && name.dirty " maxlength="30"/>
               <div class="invalid-input">
                 @if (name.invalid && name.dirty) {
@@ -99,10 +99,10 @@
               </div>
 
               <input [(ngModel)]="overlayState.selectedUser.phone" class="phone" type="text" placeholder="Phone"
-                name="phone" required pattern="^[0-9]{6,16}$" id="phone" #phone="ngModel"
+                name="phone" required pattern="^\+[0-9]{6,15}$" id="phone" #phone="ngModel"
                 [class.invalid]=" phone.invalid && phone.dirty " (input)="addPrefix()" maxlength="15" (keypress)="allowOnlyNumbersAndPlus($event)"/>
               <div class="invalid-input">
-                @if (phone.invalid && phone.dirty || !contactForm.valid) {
+                @if (phone.invalid && phone.dirty) {
                 <div>Example: +49301234567</div>
                 }
               </div>
