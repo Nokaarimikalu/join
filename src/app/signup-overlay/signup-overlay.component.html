@@ -20,7 +20,7 @@
       <div class="signup-form">
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
           <div class="username-input allInputs" >
-            <input type="text" placeholder="Name" maxlength="30" formControlName="username" [class.error-border]="form.get('username')?.invalid && form.get('username')?.touched" pattern="^[a-zA-ZäöüÄÖÜß]+ [a-zA-ZäöüÄÖÜß]+$" required>
+            <input type="text" placeholder="Name" maxlength="30" formControlName="username" [class.error-border]="form.get('username')?.invalid && form.get('username')?.touched" pattern="^([a-zA-ZäöüÄÖÜß]+\.?(-[a-zA-ZäöüÄÖÜß]+\.?)*\s+)+[a-zA-ZäöüÄÖÜß]+\.?(-[a-zA-ZäöüÄÖÜß]+\.?)*$" required>
             <img  class="absoluteimg" src="assets/img/sign-up/person.svg" alt="">
           </div>
           
@@ -46,6 +46,9 @@
             }
             @if (form.get('password')?.value !== form.get('confirmPassword')?.value && form.get('confirmPassword')?.touched) {
             <p>Your passwords don't match.</p>
+            }
+            @if(form.get('email')?.invalid && form.get('email')?.touched){
+            <p>Invalid email format.</p>
             }
           </div>
 
