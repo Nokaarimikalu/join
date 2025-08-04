@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { ContactList } from '../../shared/interface/contact-list.interface';
 import { OverlayState } from '../../services/contacts/overlayState.service';
 
@@ -38,4 +38,8 @@ export class ContactListComponent {
     toggleOverlay() {
         this.overlayState.toggleOverlay();
     }
+
+        ngOnDestroy(): void {  
+        this.overlayState.toggleSelectedProfile(-1); 
+    }  
 }
