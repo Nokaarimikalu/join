@@ -146,8 +146,9 @@ export class HeaderComponent {
   get initialsUser(): string {
     const email = this.userEmail || this.authService.loggedInUser();
     if (!email) return 'G';
+    
     const userContact = this.overlayState.contactList.find(
-      (contact) => contact.email.toLowerCase() === email.toLowerCase()
+      (contact) => contact.email && contact.email.toLowerCase() === email.toLowerCase()
     );
     return userContact?.initials || 'G';
   }

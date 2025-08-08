@@ -7,5 +7,19 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideFirebaseApp(() => initializeApp({ projectId: "join-42542", appId: "1:1033228656604:web:4a7b2e3a4ed43af39d3919", storageBucket: "join-42542.firebasestorage.app", apiKey: "AIzaSyCmDh3SPsvoZ1yBlvz3H-ZrSIqRWozxGbE", authDomain: "join-42542.firebaseapp.com", messagingSenderId: "1033228656604" })), provideFirestore(() => getFirestore()), provideFirebaseApp(() => initializeApp({ projectId: "join-42542", appId: "1:1033228656604:web:4a7b2e3a4ed43af39d3919", storageBucket: "join-42542.firebasestorage.app", apiKey: "AIzaSyCmDh3SPsvoZ1yBlvz3H-ZrSIqRWozxGbE", authDomain: "join-42542.firebaseapp.com", messagingSenderId: "1033228656604" })), provideAuth(() => getAuth()), provideFirestore(() => getFirestore())]
+  providers: [
+    provideZoneChangeDetection({ eventCoalescing: true }), 
+    provideRouter(routes), 
+    provideFirebaseApp(() => initializeApp({ 
+      projectId: "kanban-board-fe3c5", 
+      appId: "1:719244632942:web:63a5fdaacc220db6f1d77f", 
+      storageBucket: "kanban-board-fe3c5.firebasestorage.app", 
+      apiKey: "AIzaSyAXn_F7hJs9XUNhQ6izBnpOpY-MZK0yygs", 
+      authDomain: "kanban-board-fe3c5.firebaseapp.com", 
+      messagingSenderId: "719244632942", 
+      measurementId: "G-1N3F9WK1HD" 
+    })), 
+    provideAuth(() => getAuth()), 
+    provideFirestore(() => getFirestore())
+  ]
 };
