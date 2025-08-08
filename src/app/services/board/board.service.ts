@@ -1,7 +1,7 @@
 import { inject, Injectable, OnDestroy } from '@angular/core';
 import { Firestore, collection, onSnapshot, addDoc, updateDoc, doc, deleteDoc } from '@angular/fire/firestore';
-import { TaskItem, TaskItemBoard } from "../../shared/interface/task.interface";
-import { RouterLink, Router } from '@angular/router';
+import { TaskItemBoard } from "../../shared/interface/task.interface";
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
