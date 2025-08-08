@@ -9,7 +9,7 @@ export class OverlayState implements OnDestroy {
   //#region attributes
   firestore: Firestore = inject(Firestore);
 
-  unsubscribe: () => void;
+  unsubscribe?: () => void;
 
   isMobileView: boolean = false;
 
@@ -35,17 +35,25 @@ export class OverlayState implements OnDestroy {
   //#region constructor
   /**
    * Creates an instance of OverlayState
-   * Initializes Firestore snapshot listener
+   * Initializes Firestore snapshot listener with silent error handling
    */
   constructor() {
-    this.unsubscribe = onSnapshot(collection(this.firestore, 'contacts'), (contact) => {
-      this.contactList = [];
-      contact.forEach((element) => {
-        this.contactList.push(this.setContactsObject(element.id, element.data()));
+    try {
+      this.unsubscribe = onSnapshot(collection(this.firestore, 'contacts'), (contact) => {
+        this.contactList = [];
+        contact.forEach((element) => {
+          this.contactList.push(this.setContactsObject(element.id, element.data()));
+        });
+        this.sortContacts();
+        this.controllResize();
+      }, (error) => {
+        // Fehler stillschweigend ignorieren (User nicht angemeldet)
+        this.contactList = [];
       });
-      this.sortContacts();
-      this.controllResize();
-    })
+    } catch (error) {
+      // Fehler stillschweigend ignorieren
+      this.contactList = [];
+    }
   }
   //#endregion
 
