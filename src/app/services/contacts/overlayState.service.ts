@@ -1,4 +1,4 @@
-import { inject, Injectable, OnDestroy } from '@angular/core';
+import { inject, Injectable, OnDestroy, Injector, runInInjectionContext } from '@angular/core';
 import { Firestore, collection, onSnapshot, addDoc, updateDoc, doc, deleteDoc } from '@angular/fire/firestore';
 import { ContactList } from '../../shared/interface/contact-list.interface';
 
@@ -8,6 +8,7 @@ import { ContactList } from '../../shared/interface/contact-list.interface';
 export class OverlayState implements OnDestroy {
   //#region attributes
   firestore: Firestore = inject(Firestore);
+  injector: Injector = inject(Injector);
 
   unsubscribe?: () => void;
 
@@ -39,16 +40,18 @@ export class OverlayState implements OnDestroy {
    */
   constructor() {
     try {
-      this.unsubscribe = onSnapshot(collection(this.firestore, 'contacts'), (contact) => {
-        this.contactList = [];
-        contact.forEach((element) => {
-          this.contactList.push(this.setContactsObject(element.id, element.data()));
+      runInInjectionContext(this.injector, () => {
+        this.unsubscribe = onSnapshot(collection(this.firestore, 'contacts'), (contact) => {
+          this.contactList = [];
+          contact.forEach((element) => {
+            this.contactList.push(this.setContactsObject(element.id, element.data()));
+          });
+          this.sortContacts();
+          this.controllResize();
+        }, (error) => {
+          // Fehler stillschweigend ignorieren (User nicht angemeldet)
+          this.contactList = [];
         });
-        this.sortContacts();
-        this.controllResize();
-      }, (error) => {
-        // Fehler stillschweigend ignorieren (User nicht angemeldet)
-        this.contactList = [];
       });
     } catch (error) {
       // Fehler stillschweigend ignorieren
